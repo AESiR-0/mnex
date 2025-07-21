@@ -1,103 +1,170 @@
+'use client'
 import Image from "next/image";
+import { useState } from "react";
+
+const tabData = [
+  {
+    title: "Tooling",
+    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+    desc: "High-precision tooling for every need.",
+  },
+  {
+    title: "CNC",
+    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    desc: "Advanced CNC machining for complex parts.",
+  },
+  {
+    title: "EDM",
+    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80",
+    desc: "Precision EDM for intricate geometries.",
+  },
+  {
+    title: "Automation",
+    img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
+    desc: "Smart automation for manufacturing efficiency.",
+  },
+];
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState(0);
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <main className="bg-[#F5F5F5] min-h-screen flex flex-col">
+      {/* 1. Hero Image Section (full width) */}
+      <section className="relative w-full h-[60vh] min-h-[400px] flex items-center justify-center">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"
+          alt="Factory machinery"
+          fill
+          className="object-cover"
           priority
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* 2. Centered Headline Section */}
+      <section className="w-full min-h-[20vh] flex items-center">
+        <div className="px-30 mx-auto w-full flex items-center justify-start">
+          <h1 className="text-3xl md:text-5xl font-semibold text-[#1789FF] text-left">
+            Shaping Precision,<br />Engineering what matters
+          </h1>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* 3. Two-column Approach Section */}
+      <section className="w-full min-h-[75vh] flex items-center">
+        <div className="max-w-7xl mx-auto w-full flex justify-around gap-40  items-center px-4">
+          <div className="w-1/2 flex flex-col gap-4">
+            <h2 className="text-lg font-semibold text-[#595959] mb-2 uppercase tracking-widest">Our Approach</h2>
+            <div className="text-4xl font-semibold text-[#595959] mb-2">We Build What Matters</div>
+            <div className="text-[#009B80] text-xl mb-4">Tooling, molding, automation, secondary processes, and assembly—all under one roof. Faster cycles. Tighter control. Seamless delivery.</div>
+          </div>
+          <div className="flex w-1/2 flex-col gap-2">
+            {[
+              "Business-Aligned Manufacturing",
+              "Scalable and Specialized",
+              "Vertically integrated for Speed",
+              "Precision by Design",
+              "Innovation with Purpose",
+              "Execution Obsessed",
+            ].map((item, i) => (
+              <button
+                key={item}
+                onClick={(e)=>acitveSecondButton(i)}
+                className={`text-left  px-0 py-2 text-3xl font-medium transition-colors duration-200 ${i === 2 ? "text-[#009B80]" : "text-[#595959]"}`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Case Study Section with Background (full width) */}
+      <section className="relative w-full h-[400px] flex items-end">
+        <Image
+          src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80"
+          alt="Machinery in action"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute left-0 bottom-0 p-8 max-w-xl z-10 bg-gradient-to-r from-black/80 to-transparent rounded-tr-2xl rounded-br-2xl">
+          <div className="text-xs text-[#A8D3FF] uppercase mb-2">Case Study</div>
+          <div className="text-2xl md:text-3xl font-semibold mb-2 text-white">Speed Without Compromise</div>
+          <div className="text-[#A8D3FF] mb-2">Delivering results at the intersection of speed and precision.</div>
+          <div className="text-white mb-4">Our advanced manufacturing process enables rapid prototyping and delivery without sacrificing quality or accuracy.</div>
+          <button className="mt-4 px-6 py-2 border border-white rounded-full text-white bg-transparent hover:bg-white/10 transition">Know more</button>
+        </div>
+      </section>
+
+      {/* 5. Solutions Section */}
+      <section className="w-full min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-0 px-4">
+          <div className="bg-[#1789FF] text-white flex flex-col justify-center p-8 md:rounded-l-2xl min-h-[300px]">
+            <h2 className="text-xs font-semibold uppercase tracking-widest mb-2">Solutions</h2>
+            <div className="text-2xl md:text-3xl font-semibold mb-2">We don’t sell capabilities.<br />We build the right one for you.</div>
+          </div>
+          <div className="bg-[#F5F5F5] text-[#595959] flex flex-col justify-center p-8 md:rounded-r-2xl min-h-[300px]">
+            <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Manufacturing Capabilities Section */}
+      <section className="w-full min-h-screen flex items-center bg-white">
+        <div className="max-w-7xl mx-auto w-full">
+          <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 text-[#595959]">Our Manufacturing Capabilities</h2>
+          <div className="flex border rounded-lg overflow-hidden mb-6">
+            {tabData.map((tab, idx) => (
+              <button
+                key={tab.title}
+                onClick={() => setActiveTab(idx)}
+                className={`flex-1 py-3 text-lg font-semibold transition-colors duration-200 ${activeTab === idx ? "bg-[#1789FF] text-white" : "bg-[#F5F5F5] text-[#595959]"} border-r last:border-r-0 border-[#D1D1D1]`}
+              >
+                {tab.title}
+              </button>
+            ))}
+          </div>
+          <div className="relative w-full h-[40vh] min-h-[300px] rounded-xl overflow-hidden">
+            <Image
+              src={tabData[activeTab].img}
+              alt={tabData[activeTab].title}
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent" />
+            <div className="absolute left-0 top-0 h-full flex flex-col justify-center p-10 z-10">
+              <div className="text-white text-2xl md:text-3xl font-semibold mb-2">{tabData[activeTab].title}</div>
+              <div className="text-[#A8D3FF] mb-4 max-w-md">{tabData[activeTab].desc}</div>
+              <div className="flex gap-4 mt-2">
+                <div className="rounded-full bg-white/10 border border-white px-6 py-3 text-white text-center text-lg font-semibold whitespace-pre">30+\npatents</div>
+                <div className="rounded-full bg-white/10 border border-white px-6 py-3 text-white text-center text-lg font-semibold">CNC</div>
+                <div className="rounded-full bg-white/10 border border-white px-6 py-3 text-white text-center text-lg font-semibold">EDM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Sustainability Section */}
+      <section className="w-full min-h-screen flex items-center bg-[#009B80] text-white">
+        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-center gap-8">
+          <div className="flex-1 max-w-xl">
+            <h2 className="text-xs font-semibold uppercase tracking-widest mb-2">Sustainability</h2>
+            <div className="text-2xl md:text-3xl font-semibold mb-2">Built to Perform,<br />Designed to Waste Less.</div>
+            <p className="mb-2">We believe good manufacturing is also responsible manufacturing.</p>
+            <p className="mb-4">At MNex, we reduce waste, save energy, and build smarter—because it’s better for business and the planet.</p>
+            <button className="mt-2 px-6 py-2 border border-white rounded-full text-white bg-transparent hover:bg-white/10 transition">Learn More</button>
+          </div>
+          <div className="flex-1 grid grid-cols-3 grid-rows-2 gap-4">
+            {["XX%\nPATENTS", "ISO\n9001", "EDM", "30+\nPATENTS", "CNC", "EDM"].map((item, i) => (
+              <div key={i} className="rounded-2xl bg-white/10 border border-white flex items-center justify-center text-center text-lg font-semibold min-h-[80px] whitespace-pre-line">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
