@@ -31,6 +31,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const [language, setLanguage] = useState<"EN" | "中文">("EN");
+  const [langOpen, setLangOpen] = useState(false);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
@@ -38,7 +41,7 @@ export default function Navbar() {
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
 
   return (
-    <nav className="fixed max-md:w-full max-w-screen bg-white uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center border-b border-[#1789FF]/50 ">
+    <nav className=" max-md:w-full max-w-screen bg-white uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center border-b border-[#1789FF]/50 ">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 w-full">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -236,6 +239,41 @@ export default function Navbar() {
                 </li>
               );
           })}
+          <div className="relative">
+            <button
+              onClick={() => setLangOpen((v) => !v)}
+              className="h-9 w-9 flex items-center bg-[#1789FF]  justify-center rounded-full border border-[#595959]/40  text-sm font-semibold text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298]  transition-colors"
+              aria-label="Change language"
+            >
+              {language}
+            </button>
+
+            <AnimatePresence>
+              {langOpen && (
+                <motion.ul
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 mt-2 w-28 bg-white border border-[#e0e0e0] rounded-lg shadow-md overflow-hidden z-50"
+                >
+                  {["EN", "中文"].map((lang) => (
+                    <li key={lang}>
+                      <button
+                        onClick={() => {
+                          setLanguage(lang as "EN" | "中文");
+                          setLangOpen(false);
+                        }}
+                        className="w-full px-3 py-2 text-left text-sm hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
+                      >
+                        {lang}
+                      </button>
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </div>
         </ul>
 
         {/* Hamburger */}
@@ -368,6 +406,47 @@ export default function Navbar() {
                 </AnimatePresence>
               </li>
             ))}
+            {/* Language Selector (Mobile only) */}
+            <li className="px-6 py-4 flex items-center justify-between">
+              <span className="text-[#595959] font-sans font-semibold">
+                Language
+              </span>
+              <div className="relative ">
+                <button
+                  onClick={() => setLangOpen((v) => !v)}
+                  className="h-9 w-9 flex items-center justify-center bg-[#1789ff] rounded-full border border-[#595959]/40  text-sm font-semibold text-[#595959] hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
+                  aria-label="Change language"
+                >
+                  {language}
+                </button>
+
+                <AnimatePresence>
+                  {langOpen && (
+                    <motion.ul
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 mt-2 w-28 bg-white border border-[#e0e0e0] rounded-lg shadow-md overflow-hidden z-50"
+                    >
+                      {["EN", "中文"].map((lang) => (
+                        <li key={lang}>
+                          <button
+                            onClick={() => {
+                              setLanguage(lang as "EN" | "中文");
+                              setLangOpen(false);
+                            }}
+                            className="w-full px-3 py-2 text-left text-sm hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
+                          >
+                            {lang}
+                          </button>
+                        </li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </div>
+            </li>
           </motion.ul>
         )}
       </AnimatePresence>

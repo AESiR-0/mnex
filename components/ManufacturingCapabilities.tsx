@@ -71,7 +71,7 @@ export default function CapabilitiesSection({
     <section className="w-full bg-[#eaeaea]">
       <div className="mx-auto w-full">
         {/* Eyebrow + tabs bar */}
-        <div className="sticky my-4 top-14 md:top-16 z-10 bg-[#eaeaea]/90 backdrop-blur border-b border-neutral-200">
+        <div className=" my-4 top-14 md:top-16 z-10 bg-[#eaeaea]/90 backdrop-blur border-b border-neutral-200">
           <div className="px-4 pt-3 text-center text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] uppercase text-black">
             {eyebrow}
           </div>
