@@ -88,7 +88,7 @@ export default function SiteFooter() {
         </div>
 
         {/* Row 2: tagline left, contact right */}
-        <div className="flex flex-col md:flex-row justify-start gap-[31.5rem] ">
+        <div className="flex flex-col md:flex-row justify-start max-md:gap-[3rem]  gap-[31.5rem] ">
           {/* Tagline */}
           <h3 className="text-lg  md:text-xl font-medium text-[#595959]">
             Shaping Precision,
@@ -109,7 +109,7 @@ export default function SiteFooter() {
         </div>
 
         {/* Row 3: back to top left, copyright & links right */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-t border-[#E0E0E0] pt-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-t border-[#E0E0E0] max-md:pt-0  pt-6">
           {/* Back to top */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

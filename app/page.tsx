@@ -91,9 +91,9 @@ export default function Home() {
       </section>
 
       {/* 2. Centered Headline Section */}
-      <section className="w-full min-h-[40vh] flex items-center">
-        <div className="px-30 mx-auto w-full flex items-center justify-start">
-          <h1 className="text-5xl md:text-7xl font-semibold text-[#1789FF] text-left">
+      <section className="w-full min-h-[20vh] md:min-h-[40vh] flex items-center">
+        <div className="mx-auto w-full flex items-center justify-start px-4 sm:px-8 lg:px-20">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-[#1789FF] leading-tight">
             Shaping Precision,
             <br />
             Engineering what matters
@@ -148,9 +148,6 @@ export default function Home() {
 
       {/* 7. Sustainability Section */}
       <SustainabilitySection />
-
-      {/* Footer */}
-      <SiteFooter />
     </main>
   );
 }

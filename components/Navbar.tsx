@@ -38,7 +38,7 @@ export default function Navbar() {
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
 
   return (
-    <nav className="fixed bg-white uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center border-b border-[#1789FF]/50 ">
+    <nav className="fixed max-md:w-full max-w-screen bg-white uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center border-b border-[#1789FF]/50 ">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 w-full">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -240,13 +240,22 @@ export default function Navbar() {
 
         {/* Hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5"
+          className="md:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          <span className="w-6 h-0.5 bg-[#595959] rounded transition-all" />
-          <span className="w-6 h-0.5 bg-[#595959] rounded transition-all" />
-          <span className="w-6 h-0.5 bg-[#595959] rounded transition-all" />
+          <span
+            className={`block absolute h-0.5 w-6 bg-[#595959] rounded transform transition duration-300 ease-in-out
+      ${menuOpen ? "rotate-45 translate-y-0" : "-translate-y-2"}`}
+          />
+          <span
+            className={`block absolute h-0.5 w-6 bg-[#595959] rounded transform transition duration-300 ease-in-out
+      ${menuOpen ? "opacity-0" : "opacity-100"}`}
+          />
+          <span
+            className={`block absolute h-0.5 w-6 bg-[#595959] rounded transform transition duration-300 ease-in-out
+      ${menuOpen ? "-rotate-45 translate-y-0" : "translate-y-2"}`}
+          />
         </button>
       </div>
 
@@ -257,7 +266,7 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 60, damping: 22 }}
+            transition={{ type: "keyframes", duration: 0.2 }}
             className="md:hidden flex flex-col bg-white border-t border-[#595959]/10 shadow-lg w-full absolute top-full left-0"
           >
             {navLinks.map((link) => (
@@ -283,13 +292,11 @@ export default function Navbar() {
                       <motion.span
                         initial={false}
                         animate={{
-                          rotate: mobileDropdown === link.name ? 90 : 0,
+                          rotate: mobileDropdown === link.name ? 180 : 0,
                         }}
                         transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 20,
-                          mass: 0.5,
+                          type: "keyframes",
+                          duration: 0.2,
                         }}
                         className="flex items-center justify-center w-4 h-4"
                       >

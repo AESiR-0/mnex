@@ -1,8 +1,8 @@
 // app/layout.tsx
 import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
-import GearTransition from "@/components/GearTransition";
 import Navbar from "@/components/Navbar";
+import SiteFooter from "@/components/Footer";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -19,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={instrumentSans.variable}>
-        <GearTransition />
         <Navbar />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
