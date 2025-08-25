@@ -7,10 +7,10 @@ import Image from "next/image";
 const navLinks = [
   {
     name: "About Us",
-    href: "/about",
+    href: "/about/approach",
     children: [
-      { name: "Meiban - mnex story", href: "/about/story" },
       { name: "Our approach + usp", href: "/about/approach" },
+      { name: "Meiban - mnex story", href: "/about/legacy" },
       { name: "Leadership", href: "/about/leadership" },
     ],
   },
@@ -59,7 +59,7 @@ export default function Navbar() {
           {navLinks.map((link) => {
             if (link.name == "Contact Us") {
               return (
-                <li>
+                <li key={link.name} className="relative group transition-all">
                   <div className="flex  bg-transparent items-center">
                     <Link
                       href={link.href}

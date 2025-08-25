@@ -8,9 +8,9 @@ export default function SiteFooter() {
       {/* top teal rule */}
       <div className="h-[2px] w-full bg-[#009B80]" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-4 py-20 space-y-12">
+      <div className="max-w-[82rem] mx-auto px-10  py-20 space-y-12">
         {/* Row 1: logo left, links right */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-10">
+        <div className="flex flex-col md:flex-row justify-between items-start  gap-20">
           {/* Logo */}
           <Link href="/" className="block w-[200px]">
             <Image
@@ -27,13 +27,13 @@ export default function SiteFooter() {
               Sitemap
             </p>
             {/* Left: Sustainability | Middle: About/Solutions/Industries | Right: Culture/Contact */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-8">
+            <div className="grid grid-cols-2 text-2xl  gap-x-20 gap-y-8">
               {/* Right stack (the “on the right” column) */}
               <ul className="space-y-6 md:order-none order-3">
                 <li>
                   <Link
                     href="/about"
-                    className="text-lg font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
                   >
                     ABOUT
                   </Link>
@@ -41,7 +41,7 @@ export default function SiteFooter() {
                 <li>
                   <Link
                     href="/solutions"
-                    className="text-lg font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
                   >
                     SOLUTIONS
                   </Link>
@@ -49,7 +49,7 @@ export default function SiteFooter() {
                 <li>
                   <Link
                     href="/industries"
-                    className="text-lg font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
                   >
                     INDUSTRIES
                   </Link>
@@ -61,7 +61,7 @@ export default function SiteFooter() {
                 <li>
                   <Link
                     href="/sustainability"
-                    className="text-lg font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    className=" font-semibold text-[#595959] hover:text-[#1789FF] transition"
                   >
                     SUSTAINABILITY
                   </Link>
@@ -69,7 +69,7 @@ export default function SiteFooter() {
                 <li>
                   <Link
                     href="/culture"
-                    className="text-lg font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    className=" font-semibold text-[#595959] hover:text-[#1789FF] transition"
                   >
                     CULTURE
                   </Link>
@@ -77,7 +77,7 @@ export default function SiteFooter() {
                 <li>
                   <Link
                     href="/contact"
-                    className="text-lg font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    className=" font-semibold text-[#595959] hover:text-[#1789FF] transition"
                   >
                     CONTACT US
                   </Link>
@@ -90,7 +90,7 @@ export default function SiteFooter() {
         {/* Row 2: tagline left, contact right */}
         <div className="flex flex-col md:flex-row justify-start max-md:gap-[3rem]  gap-[31.5rem] ">
           {/* Tagline */}
-          <h3 className="text-lg  md:text-xl font-medium text-[#595959]">
+          <h3 className="text-xl  md:text-2xl font-medium text-[#595959]">
             Shaping Precision,
             <br />
             Engineering What Matters.

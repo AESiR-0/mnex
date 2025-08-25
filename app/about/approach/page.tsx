@@ -11,19 +11,89 @@ const slides = [
       "Tailored manufacturing strategies",
       "Early alignment to cost, compliance, and launch targets",
     ],
+    ctas: [
+      { label: "See How We Build", href: "/build" },
+      { label: "Explore Case Studies", href: "/case-studies" },
+    ],
   },
   {
     img: "/images/about/approach-2.jpg",
+    imgAlt: "Custom manufacturing",
     step: "2",
-    title: "Precision by Design",
-    lead: "Design for manufacturing and digital traceability built into the process from the start.",
-    bullets: ["DFM reviews", "Process capability early", "Paperless QA"],
+    title: "Flexible from Specialized to Scaled",
+    lead: "Structured for global manufacturing programs, yet agile enough for custom industrial builds.",
+    bullets: [
+      "Agile teams for complex custom projects",
+      "Systems designed for consistent large-scale execution",
+    ],
+    ctas: [
+      { label: "See How We Build", href: "/build" },
+      { label: "Explore Case Studies", href: "/case-studies" },
+    ],
   },
   {
     img: "/images/about/approach-3.jpg",
+    imgAlt: "Integrated tooling and automation",
     step: "3",
-    title: "Automation that Matters",
-    lead: "Robotics, vision and closed-loop control applied with intention for throughput and quality.",
+    title: "Vertically Integrated for Speed",
+    lead: "Everything in one place: tooling, molding, automation, assembly.",
+    bullets: [
+      "Faster iteration cycles",
+      "Tighter quality control",
+      "Seamless handoffs at every stage",
+    ],
+    ctas: [
+      { label: "See How We Build", href: "/build" },
+      { label: "Explore Case Studies", href: "/case-studies" },
+    ],
+  },
+  {
+    img: "/images/about/approach-4.jpg",
+    imgAlt: "Precision design",
+    step: "4",
+    title: "Precision by Design",
+    lead: "Decades of tooling and process mastery are built into every solution.",
+    bullets: [
+      "Stable, repeatable results",
+      "Micron-level tolerances where it matters",
+      "Quality designed in, not inspected in",
+    ],
+    ctas: [
+      { label: "See How We Build", href: "/build" },
+      { label: "Explore Case Studies", href: "/case-studies" },
+    ],
+  },
+  {
+    img: "/images/about/approach-5.jpg",
+    imgAlt: "Innovation",
+    step: "5",
+    title: "Pragmatic Innovation",
+    lead: "We don’t add complexity for show.",
+    bullets: [
+      "Right technology for the right reason",
+      "Outcome-driven solutions, never overengineered",
+      "Measurable gains in performance and reliability",
+    ],
+    ctas: [
+      { label: "See How We Build", href: "/build" },
+      { label: "Explore Case Studies", href: "/case-studies" },
+    ],
+  },
+  {
+    img: "/images/about/approach-6.jpg",
+    imgAlt: "Execution focused",
+    step: "6",
+    title: "Execution Obsessed",
+    lead: "Because ideas only matter if they launch on time.",
+    bullets: [
+      "Fast setups and mature systems",
+      "Teams with decades of successful deliveries",
+      "Relentless focus on timelines and outcomes",
+    ],
+    ctas: [
+      { label: "See How We Build", href: "/build" },
+      { label: "Explore Case Studies", href: "/case-studies" },
+    ],
   },
 ];
 

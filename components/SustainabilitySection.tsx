@@ -19,8 +19,8 @@ export default function SustainabilitySection() {
             We believe good manufacturing is also responsible manufacturing.
           </p>
           <p className="text-lg md:text-2xl leading-snug mb-10 opacity-95">
-            At Mnex, we reduce waste, save energy, and build smarter for a
-            better planet.
+            At Mnex, we reduce waste, save energy, and build smarter-because
+            it's better for business and the planet.
           </p>
 
           <a

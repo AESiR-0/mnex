@@ -10,23 +10,24 @@ import { useState } from "react";
 const tabData = [
   {
     title: "Tooling",
-    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
-    desc: "High-precision tooling for every need.",
+    video: "/videos/home/Solutions - Tooling.webm",
+    desc: "Tools that shape outcomes.",
   },
   {
-    title: "CNC",
-    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-    desc: "Advanced CNC machining for complex parts.",
+    title: "Injection Molding",
+    video: "/videos/home/Solutions - Injection Molding.webm",
+    desc: "Where material, machine, and process align.",
   },
   {
-    title: "EDM",
-    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80",
-    desc: "Precision EDM for intricate geometries.",
+    title: "Smart Automation & Assembly",
+    video: "/videos/home/Solutions - Smart Automation & Fixtures.webm",
+    desc: "Automation designed to flow-assembly built to scale",
   },
   {
-    title: "Automation",
-    img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
-    desc: "Smart automation for manufacturing efficiency.",
+    title: "Integrated Product Development",
+    video:
+      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
+    desc: "Design thinking, built for reality.",
   },
 ];
 
@@ -34,35 +35,33 @@ const approachContent = [
   {
     title: "We Build What Matters",
     desc: `From concept to precision-built reality,
- We create with purpose, speed 
-and obsessive detail.
- This is industrial manufacturing where
- manufacturability is engineered 
-from day one`,
+We create with purpose, speed and obsessive detail.
+This is industrial manufacturing where manufacturability is engineered from day one.`,
   },
   {
-    title: "Business-Aligned Manufacturing",
-    desc: "We align our manufacturing processes with your business goals for maximum impact.",
+    title: "Vision, Engineered",
+    desc: `Business-Aligned from Day One
+We align every step of production to your business strategy—not the other way around.`,
   },
   {
-    title: "Scalable and Specialized",
-    desc: "Our solutions scale with your needs and are tailored for specialized requirements.",
+    title: "Built to Scale or Specialize",
+    desc: "Global programs or custom builds—we serve both with equal precision.",
   },
   {
-    title: "Vertically integrated for Speed",
-    desc: "Integrated processes mean faster cycles and seamless delivery.",
+    title: "Vertically Integrated for Speed",
+    desc: "Tooling, molding, automation, assembly—all in one place for tighter control and faster delivery.",
   },
   {
     title: "Precision by Design",
-    desc: "Every product is engineered for accuracy and reliability from the start.",
+    desc: "Decades of expertise ensure stable, repeatable, high-accuracy parts.",
   },
   {
-    title: "Innovation with Purpose",
-    desc: "We innovate with a clear focus on solving real-world challenges.",
+    title: "Innovation That Serves",
+    desc: "Smart tech, applied with intention. No overengineering. No waste.",
   },
   {
-    title: "Execution Obsessed",
-    desc: "Our team is dedicated to flawless execution at every stage.",
+    title: "Driven to Deliver",
+    desc: "Fast setups. Proven systems. A team that executes—every time.",
   },
 ];
 
@@ -81,18 +80,19 @@ export default function Home() {
     <main className="bg-[#F5F5F5] min-h-screen flex flex-col">
       {/* 1. Hero Image Section (full width) */}
       <section className="relative w-full h-screen min-h-[400px] flex items-center justify-center">
-        <Image
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"
-          alt="Factory machinery"
-          fill
-          className="object-cover"
-          priority
+        <video
+          src="/videos/home/hero.webm"
+          autoPlay
+          playsInline
+          loop
+          muted
+          className="object-cover absolute inset-0 w-full h-full"
         />
       </section>
 
       {/* 2. Centered Headline Section */}
       <section className="w-full min-h-[20vh] md:min-h-[40vh] flex items-center">
-        <div className="mx-auto w-full flex items-center justify-start px-4 sm:px-8 lg:px-20">
+        <div className="mx-auto max-w-7xl w-full flex items-center justify-start ">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-[#1789FF] leading-tight">
             Shaping Precision,
             <br />

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 type Slide = {
   img: string; // public/ path or remote URL
@@ -72,21 +73,19 @@ export default function PurposeCarousel({
   return (
     <section className="w-full bg-[#f5f5f5]">
       {/* Top copy */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 text-center">
+      <div className="max-w-7xl mx-auto px-20 sm:px-6 lg:px-8 py-10 sm:py-12 text-center">
         <h2 className="text-[#444] font-semibold text-2xl sm:text-3xl md:text-4xl">
           Engineering with purpose.
           <br />
           Delivering with precision.
         </h2>
-        <p className="mt-4 text-[#6F6F6F] text-sm sm:text-[15px]">
-          We begin with your business reality—
-          <br className="hidden sm:block" />
-          your volumes, cost targets, and roadmap.
+        <p className="mt-4   text-[#6F6F6F] text-2xl sm:text-[16px]">
+          We begin with your business reality— your volumes, cost targets, and
+          roadmap.
         </p>
-        <p className="mt-2 text-[#6F6F6F] text-sm sm:text-[15px]">
-          Then we engineer what matters: solutions shaped by
-          <br className="hidden sm:block" />
-          clarity, operational discipline, and purposeful innovation.
+        <p className="mt-2  text-[#6F6F6F] text-2xl sm:text-[16px]">
+          Then we engineer what matters: solutions shaped by clarity,
+          operational discipline, and purposeful innovation.
         </p>
       </div>
 
@@ -119,7 +118,7 @@ export default function PurposeCarousel({
         {/* Overlay content */}
         <div className="absolute inset-0 z-10 flex items-center">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
-            <div className="max-w-xl text-white">
+            <div className="max-w-3xl text-white">
               {slide.step && (
                 <div className="text-base sm:text-lg md:text-xl mb-4 opacity-90">
                   {slide.step}
@@ -129,20 +128,46 @@ export default function PurposeCarousel({
                 {slide.title}
               </h3>
               {slide.lead && (
-                <p className="mt-4 text-sm sm:text-base md:text-lg text-white/90">
+                <p className="mt-4 text-lg md:text-2xl text-white/90">
                   {slide.lead}
                 </p>
               )}
               {!!slide.bullets?.length && (
-                <ul className="mt-4 space-y-2 text-sm sm:text-base text-white/90">
+                <ul className="mt-8 space-y-4 text-2xl font-light flex flex-col justify-center  text-white/90">
                   {slide.bullets.map((b, i) => (
-                    <li key={i} className="pl-4 relative">
-                      <span className="absolute left-0 top-2 block h-1 w-1 rounded-full bg-white/80" />
+                    <li key={i} className="relative flex gap-4 items-center">
+                      <span className="block h-[0.4rem] w-[0.4rem]  rounded-full bg-white/80" />
                       {b}
                     </li>
                   ))}
                 </ul>
               )}
+              {/* Global CTAs under content */}
+              <div className="flex w-fit gap-1 mt-20 flex-col">
+                <h2 className="  text-white transition  font-semibold  text-lg">
+                  See How We Build
+                </h2>
+                <Link
+                  href="/case-studies"
+                  className=" flex gap-1 text-lg font-thin hover:text-[#1789FF] text-white transition"
+                >
+                  <span>Explore Case Studies </span>
+                  <svg
+                    className="w-5 h-5 mt-1 hover:-rotate-90 transition-all -rotate-45"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
