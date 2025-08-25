@@ -3,13 +3,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 
-const tabs = [
+const defaultTabs = [
   { name: "Approach", href: "/about/approach" },
   { name: "Legacy", href: "/about/legacy" },
   { name: "Leadership", href: "/about/leadership" },
 ];
 
-export default function AboutTabs() {
+export default function Tabs({
+  tabs = defaultTabs,
+}: {
+  tabs?: { name: string; href: string }[];
+}) {
   const pathname = usePathname();
 
   // figure out the active tab from the URL every render

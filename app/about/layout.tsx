@@ -1,4 +1,4 @@
-import AboutTabs from "@/components/About/Tabs";
+import Tabs from "@/components/Tabs";
 
 export default function AboutLayout({
   children,
@@ -7,8 +7,7 @@ export default function AboutLayout({
 }) {
   return (
     <>
-      {/* Tabs visible only on /about/* */}
-      <AboutTabs />
+      <Tabs />
       <main>{children}</main>
     </>
   );
