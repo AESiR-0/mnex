@@ -100,7 +100,7 @@ export default function ApproachSection({
         </div>
       </section>
       <div ref={contentRef} className="h-[70vh] flex  items-start py-10">
-        <div className="max-w-7xl px-4 space-y-10 mx-auto w-full ">
+        <div className="max-w-7xl px-4 space-y-5 mx-auto w-full ">
           <Header>Our Approach</Header>
           <div className="flex justify-between items-start">
             {/* Left: Active content */}
@@ -108,7 +108,7 @@ export default function ApproachSection({
               id={panelId}
               role="tabpanel"
               aria-labelledby={activeTabId}
-              className="flex flex-col w-1/2 gap-3 text-[#009B80]"
+              className="flex flex-col w-1/2  gap-3 text-[#009B80]"
             >
 
 
@@ -122,10 +122,10 @@ export default function ApproachSection({
                     transition={{ duration: 0, ease: "easeOut" }}
                     className="contents "
                   >
-                    <h3 className="text-xl sm:text-2xl md:text-4xl font-semibold">
+                    <h3 className="text-2xl sm:text-2xl md:text-4xl font-semibold">
                       {items[active].title}
                     </h3>
-                    <p className="text-2xl py-5 whitespace-pre-wrap sm:text-xl md:text-xl leading-relaxed">
+                    <p className="text-2xl  whitespace-pre-wrap sm:text-xl md:text-xl leading-relaxed">
                       {items[active].desc}
                     </p>
                   </motion.div>
@@ -182,7 +182,7 @@ export default function ApproachSection({
                           scrollTriggerRef.current.scroll(progress);
                         }
                       }}
-                      className={`text-left px-0 pb-2 sm:pb-2.5 md:pb-3 text-xl sm:text-2xl md:text-3xl  font-medium transition-all duration-300 ease-out
+                      className={`text-left px-0 pb-2 sm:pb-2.5 md:pb-3 text-xl sm:text-2xl md:text-3xl  font-regular  transition-all duration-300 ease-out
                           ${isActive
                           ? "text-[#009B80]  "
                           : "text-[#969696] hover:text-[#009B80] "

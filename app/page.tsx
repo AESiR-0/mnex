@@ -106,12 +106,12 @@ export default function Home() {
 
         {/* 5. Solutions Section */}
         <section className="w-full min-h-[60vh] justify-center flex flex-col items-center bg-white px-4 sm:px-6 lg:px-8">
-          <div className="w-full max-w-7xl px-8  ">
+          <div className="w-full max-w-7xl px-4  ">
             <Header>Solutions</Header>
           </div>
-          <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-6 lg:gap-0">
+          <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-6 lg:gap-0 px-4  ">
             {/* Left column */}
-            <div className="flex flex-col justify-start p-4 sm:p-6 lg:p-8">
+            <div className="flex flex-col justify-start ">
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-[#1789FF] leading-snug">
                 We don't sell capabilities.
                 <br />

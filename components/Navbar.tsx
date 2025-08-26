@@ -86,9 +86,9 @@ export default function Navbar() {
   return (
     <motion.nav
       className="fixed max-md:w-full max-w-screen text-[#575757] bg-[#ececec] uppercase transition-all top-0 min-h-[70px] left-0 w-full z-50 flex items-center shadow-none border-none"
-      initial={{ y: -72 }} // Start hidden above viewport
+      initial={{ y: -70 }} // Start hidden above viewport
       animate={{
-        y: isLoaded ? (isVisible ? 0 : -72) : -72 // Slide down after 2 seconds, then follow scroll behavior
+        y: isLoaded ? (isVisible ? 0 : -70) : -70 // Slide down after 2 seconds, then follow scroll behavior
       }}
       transition={{
         duration: 0.55,
@@ -210,7 +210,7 @@ export default function Navbar() {
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[72px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
+                        className="fixed left-0 top-[70px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">

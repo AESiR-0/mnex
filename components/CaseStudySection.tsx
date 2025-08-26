@@ -23,7 +23,7 @@ export default function CaseStudySpotlight({
   useEffect(() => {
     const v = vref.current;
     if (!v) return;
-    v.play().catch(() => {});
+    v.play().catch(() => { });
   }, []);
 
   return (
@@ -64,15 +64,15 @@ export default function CaseStudySpotlight({
 
             <div className="grid md:grid-cols-1 gap-12 text-white">
               <div>
-                <p className="text-white/80 text-[11px] md:text-xs tracking-[0.18em] uppercase mb-3">
+                <Header className="text-white font-semibold  tracking-[0.18em] uppercase mb-3">
                   Sector
-                </p>
-                <p className="text-white text-lg md:text-2xl">{sector}</p>
+                </Header>
+                <p className="text-white  text-lg md:text-2xl">{sector}</p>
               </div>
               <div>
-                <p className="text-white/80 text-[11px] md:text-xs tracking-[0.18em] uppercase mb-3">
+                <Header className="text-white font-semibold  tracking-[0.18em] uppercase mb-3">
                   Challenge
-                </p>
+                </Header>
                 <p className="text-white/95 text-lg md:text-2xl leading-snug">
                   {challenge}
                 </p>
