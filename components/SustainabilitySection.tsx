@@ -3,7 +3,7 @@ import Header from "./Header";
 // components/SustainabilitySection.tsx
 export default function SustainabilitySection() {
   return (
-    <section className="w-full h-[100svh] bg-[#009B80] text-white flex items-center">
+    <section className="w-full h-screen bg-[#009B80] text-white flex items-center">
       <div className="max-w-7xl mx-auto w-full px-6 md:px-4 grid md:grid-cols-2 gap-10 items-center">
         {/* Left copy */}
         <div className="max-w-2xl">

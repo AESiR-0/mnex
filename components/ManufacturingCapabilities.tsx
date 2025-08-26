@@ -92,8 +92,8 @@ export default function CapabilitiesSection({
         }
       }, 50); // Small delay to prevent rapid changes
 
-      // Handle scroll up - only trigger once
-      if (!goingDown && offset > 0 && !isScrollingUp) {
+      // Handle scroll up - only trigger when at the start of the last tab
+      if (!goingDown && offset > (tabs.length - 1) * vh && offset < tabs.length * vh && !isScrollingUp) {
         isScrollingUp = true;
         const firstTabStart = topPx;
         window.scrollTo({

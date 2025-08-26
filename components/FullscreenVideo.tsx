@@ -28,7 +28,7 @@ export default function FullscreenVideo({
   }, []);
 
   return (
-    <section className="relative w-full h-[100svh]">
+    <section className="relative w-full h-screen">
       <div className="relative w-full h-full">
         {!isLoaded && (
           <div className="absolute inset-0 bg-gray-800 flex items-center justify-center z-20">

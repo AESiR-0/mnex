@@ -4,130 +4,136 @@ import Link from "next/link";
 
 export default function SiteFooter() {
   return (
-    <footer className="w-full bg-[#eaeaea]    ">
+    <footer className="w-full bg-[#eaeaea]">
       {/* top teal rule */}
-      <div className="h-[2px] w-full bg-[#009B80]" />
+      <div className="h-0.5 w-full bg-[#009B80]" />
 
-      <div className="max-w-7xl mx-auto px-4  py-20 space-y-12">
-        {/* Row 1: logo left, links right */}
-        <div className="flex flex-col md:flex-row justify-between items-start  gap-20">
-          {/* Logo */}
-          <Link href="/" className="block w-[128px]">
-            <Image
-              src="/static/Logo/Logo_PNG/MNex_v2-11.png"
-              alt="MNEX"
-              width={128}
-              height={128}
-              className="h-auto w-auto"
-            />
-          </Link>
+      <div className="max-w-7xl mx-auto px-4 py-16 lg:py-20">
+        {/* Main footer content - two columns */}
+        <div className="flex flex-col md:flex-row gap-12 lg:justify-between  ">
 
-          <div className="w-full md:w-auto">
-            <p className="text-xs tracking-[0.18em] uppercase text-[#7A7A7A] mb-6">
-              Sitemap
-            </p>
-            {/* Left: Sustainability | Middle: About/Solutions/Industries | Right: Culture/Contact */}
-            <div className="grid grid-cols-2 text-2xl  gap-x-20 gap-y-8">
-              {/* Right stack (the “on the right” column) */}
-              <ul className="space-y-6 md:order-none order-3">
-                <li>
-                  <Link
-                    href="/about"
-                    className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
-                  >
-                    ABOUT
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/solutions"
-                    className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
-                  >
-                    SOLUTIONS
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/industries"
-                    className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
-                  >
-                    INDUSTRIES
-                  </Link>
-                </li>
-              </ul>
+          {/* Left Column: Logo, Tagline, Back to Top */}
+          <div className="flex flex-col justify-between gap-8 ">
+            {/* Logo */}
+            <Link href="/" className="block w-24 min-h-48 lg:w-32">
+              <Image
+                src="/static/Logo/Logo_PNG/MNex_v2-11.png"
+                alt="MNEX"
+                width={128}
+                height={128}
+                className="h-auto w-auto pb-10"
+              />
+            </Link>
 
-              {/* Far right */}
-              <ul className="space-y-6">
-                <li>
-                  <Link
-                    href="/sustainability"
-                    className=" font-semibold text-[#595959] hover:text-[#1789FF] transition"
-                  >
-                    SUSTAINABILITY
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/culture"
-                    className=" font-semibold text-[#595959] hover:text-[#1789FF] transition"
-                  >
-                    CULTURE
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className=" font-semibold text-[#595959] hover:text-[#1789FF] transition"
-                  >
-                    CONTACT US
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+            {/* Tagline */}
+            <h3 className="text-lg lg:text-xl xl:text-2xl font-medium text-[#595959]">
+              Shaping Precision,
+              <br />
+              Engineering What Matters.
+            </h3>
 
-        {/* Row 2: tagline left, contact right */}
-        <div className="flex flex-col md:flex-row justify-start max-md:gap-[3rem]  gap-[31.5rem] ">
-          {/* Tagline */}
-          <h3 className="text-xl  md:text-2xl font-medium text-[#595959]">
-            Shaping Precision,
-            <br />
-            Engineering What Matters.
-          </h3>
-          <div>
-            <p className="uppercase text-xs tracking-widest text-[#7A7A7A] ">
-              Contact Us
-            </p>
-            <a
-              href="mailto:info@mnexprecision.com"
-              className="text-base md:text-lg font-semibold text-[#595959] hover:text-[#1789FF] transition"
+            {/* Back to Top */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-sm text-[#595959] hover:text-[#1789FF] transition self-start font-bold"
             >
-              info@mnexprecision.com
-            </a>
+              Back to Top <span className="inline-block rotate-45 hover:rotate-0 transition-transform duration-300 align-middle"><svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></span>
+            </button>
           </div>
-        </div>
 
-        {/* Row 3: back to top left, copyright & links right */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-t border-[#E0E0E0] max-md:pt-0  pt-6">
-          {/* Back to top */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-sm text-[#595959] hover:text-[#1789FF] transition"
-          >
-            Back to Top
-          </button>
+          {/* Right Column: Sitemap, Contact, Legal */}
+          <div className=" flex flex-col gap-8 lg:gap-12">
 
-          {/* Legal */}
-          <div className="flex flex-col md:flex-row md:items-center gap-4 text-sm text-[#595959]">
-            <p>Copyright © {new Date().getFullYear()} Mnex Precision</p>
-            <div className="flex gap-6">
-              <Link href="/privacy" className="hover:text-[#1789FF] transition">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-[#1789FF] transition">
-                Terms of Use
-              </Link>
+            {/* Sitemap Section */}
+            <div className="min-h-48">
+              <p className="text-xs tracking-wider font-bold uppercase text-[#7A7A7A] pb-10 ">
+                Sitemap
+              </p>
+              <div className="grid grid-cols-2 text-lg  gap-x-12 lg:gap-x-20 gap-y-6 lg:gap-y-8">
+                {/* Left column */}
+                <ul className="space-y-4 lg:space-y-6">
+                  <li>
+                    <Link
+                      href="/about"
+                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    >
+                      ABOUT
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/solutions"
+                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    >
+                      SOLUTIONS
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/industries"
+                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    >
+                      INDUSTRIES
+                    </Link>
+                  </li>
+                </ul>
+
+                {/* Right column */}
+                <ul className="space-y-4 lg:space-y-6">
+                  <li>
+                    <Link
+                      href="/sustainability"
+                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    >
+                      SUSTAINABILITY
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/culture"
+                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    >
+                      CULTURE
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/contact"
+                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                    >
+                      CONTACT US
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Contact Section */}
+            <div>
+              <p className="uppercase font-bold text-xs tracking-wider pb-5 text-[#7A7A7A]">
+                Contact Us
+              </p>
+              <a
+                href="mailto:info@mnexprecision.com"
+                className="text-sm lg:text-base xl:text-lg font-semibold text-[#595959] hover:text-[#1789FF] transition"
+              >
+                info@mnexprecision.com
+              </a>
+            </div>
+
+            {/* Legal Section */}
+            <div className="font-bold pt-4 lg:pt-6">
+              <div className="flex flex-col md:flex-row md:items-center gap-3 lg:gap-4 text-sm text-[#595959]">
+                <p>Copyright © {new Date().getFullYear()} Mnex Precision</p>
+                <div className="flex gap-4 lg:gap-6">
+                  <Link href="/privacy" className="hover:text-[#1789FF] transition">
+                    Privacy Policy
+                  </Link>
+                  <Link href="/terms" className="hover:text-[#1789FF] transition">
+                    Terms of Use
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

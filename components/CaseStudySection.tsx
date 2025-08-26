@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useRef, useEffect } from "react";
 import Header from "./Header";
-import { useVideoCache } from "@/lib/useVideoCache";
 
 export default function CaseStudySpotlight({
   href,
@@ -20,37 +19,26 @@ export default function CaseStudySpotlight({
   poster?: string;
 }) {
   const vref = useRef<HTMLVideoElement | null>(null);
-  const { isLoaded, hasError } = useVideoCache(videoSrc);
 
   useEffect(() => {
     const v = vref.current;
     if (!v) return;
     v.play().catch(() => { });
   }, []);
-
+  
   return (
     <section className="relative w-full h-[100vh] overflow-hidden">
-      {/* Background Video with Loading State */}
-      <div className="absolute inset-0 w-full h-full">
-        {!isLoaded && (
-          <div className="absolute inset-0 bg-gray-800 flex items-center justify-center z-20">
-            <div className="text-white text-lg">Loading video...</div>
-          </div>
-        )}
-        <video
-          ref={vref}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          src={videoSrc}
-          muted
-          loop
-          playsInline
-          autoPlay
-          poster={poster}
-          preload="metadata"
-        />
-      </div>
+      {/* Background Video */}
+      <video
+        ref={vref}
+        className="absolute inset-0 w-full h-full object-cover"
+        src={videoSrc}
+        muted
+        loop
+        playsInline
+        autoPlay
+        poster={poster}
+      />
       <div className="absolute inset-0 bg-black/25" />
 
       <div className="relative z-10 h-full flex items-center justify-center px-4">

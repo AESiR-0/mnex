@@ -47,7 +47,7 @@ export default function SolutionsSection({ tabs }: { tabs: Tab[] }) {
             <div
               id={`solution-pane-${i}`}
               key={t.title}
-              className="relative w-full h-[100svh]"
+              className="relative w-full h-[100vh]"
             >
               {t.image && (
                 <div
