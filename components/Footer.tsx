@@ -8,7 +8,7 @@ export default function SiteFooter() {
       {/* top teal rule */}
       <div className="h-[2px] w-full bg-[#009B80]" />
 
-      <div className="max-w-[82rem] mx-auto px-10  py-20 space-y-12">
+      <div className="max-w-7xl mx-auto px-4  py-20 space-y-12">
         {/* Row 1: logo left, links right */}
         <div className="flex flex-col md:flex-row justify-between items-start  gap-20">
           {/* Logo */}

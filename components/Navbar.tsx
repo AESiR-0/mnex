@@ -85,7 +85,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="fixed max-md:w-full max-w-screen text-[#575757] bg-[#ececec] uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center shadow-none border-none"
+      className="fixed max-md:w-full max-w-screen text-[#575757] bg-[#ececec] uppercase transition-all top-0 min-h-[70px] left-0 w-full z-50 flex items-center shadow-none border-none"
       initial={{ y: -72 }} // Start hidden above viewport
       animate={{
         y: isLoaded ? (isVisible ? 0 : -72) : -72 // Slide down after 2 seconds, then follow scroll behavior
