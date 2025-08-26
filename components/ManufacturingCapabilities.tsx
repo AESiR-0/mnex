@@ -73,12 +73,11 @@ export default function CapabilitiesSection({
 
       // where we are inside the pinned region
       const offset = Math.max(0, Math.min(y - topPx, tabs.length * vh + 200));
-      if (!goingDown) return; // up-scroll: do nothing (normal scroll)
 
       // which "frame" we are in (0..tabs.length-1)
       const idx = Math.min(tabs.length - 1, Math.floor(offset / vh));
 
-      if (idx > active) setActive(idx);
+      if (idx !== active) setActive(idx);
     };
 
     const onResize = () => {

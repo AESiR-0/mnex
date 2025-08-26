@@ -34,14 +34,13 @@ export default function SustainabilitySection() {
         {/* Right badges */}
         <div className="justify-self-start md:justify-self-end w-full max-w-[640px]">
           <div className="grid grid-cols-3 gap-x-8 gap-y-10">
-            {/* Row 1 */}
+            {/* Row 1
             <Badge title="ISO" subtitle="14001" className="h-32" />
             <Badge title="ISO" subtitle="9001" className="h-32" />
-            <div /> {/* spacer to mimic layout */}
-            {/* Row 2 */}
+            <div /> 
             <Badge title="RoHS" className="h-28" />
             <Badge title="REACH" className="h-28" />
-            <Badge title="Prop65" className="h-28" />
+            <Badge title="Prop65" className="h-28" /> */}
           </div>
         </div>
       </div>
