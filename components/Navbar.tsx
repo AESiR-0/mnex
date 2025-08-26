@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -33,15 +33,56 @@ const navLinks = [
 export default function Navbar() {
   const [language, setLanguage] = useState<"EN" | "中文">("EN");
   const [langOpen, setLangOpen] = useState(false);
-
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-
-  // For mobile: track which dropdown is open
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
 
+  // Scroll direction state
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Initial load state for delayed slide down
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Handle initial load animation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Show navbar when scrolling up, hide when scrolling down
+      if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <nav className=" max-md:w-full max-w-screen bg-white uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center border-b border-[#1789FF]/50 ">
+    <motion.nav
+      className="fixed max-md:w-full max-w-screen text-[#575757] bg-white uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center border-b border-[#1789FF]/50"
+      initial={{ y: -72 }} // Start hidden above viewport
+      animate={{
+        y: isLoaded ? (isVisible ? 0 : -72) : -72 // Slide down after 2 seconds, then follow scroll behavior
+      }}
+      transition={{
+        duration: 0.55,
+        delay: isLoaded ? 0 : 0 // No delay when loaded, but initial delay handled by isLoaded state
+      }}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 w-full">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -55,15 +96,15 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden transition-all text-sm md:flex gap-8 items-center">
+        <ul className="hidden transition-all font-[var(--font-instrument-sans)]   font-medium text-sm md:flex gap-8 items-center">
           {navLinks.map((link) => {
             if (link.name == "Contact Us") {
               return (
                 <li key={link.name} className="relative group transition-all">
-                  <div className="flex  bg-transparent items-center">
+                  <div className="flex bg-transparent items-center">
                     <Link
                       href={link.href}
-                      className={`text-[#595959] hover:bg-[#00b298] hover:text-white border rounded-xl  font-sans font-semibold px-8 py-2 transition-colors duration-200 flex items-center gap-1
+                      className={`text-[#575757]  hover:bg-[#00b298] hover:text-white border rounded-2xl  px-4 py-1 transition-colors duration-200 flex items-center gap-1
             ${openDropdown === link.name ? "border-b-2 border-[#1789FF]" : ""}
           `}
                     >
@@ -138,7 +179,7 @@ export default function Navbar() {
                   <div className="flex items-center">
                     <Link
                       href={link.href}
-                      className={`text-[#595959] font-sans font-semibold px-2 py-1 transition-colors duration-200 flex items-center gap-1
+                      className={`text-[#575757] px-2 py-1 transition-colors duration-200 flex items-center gap-1
             ${openDropdown === link.name ? "border-b-2 border-[#1789FF]" : ""}
           `}
                     >
@@ -312,7 +353,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between px-6 py-4">
                   <Link
                     href={link.href}
-                    className="text-[#595959] font-sans font-semibold"
+                    className="text-[#595959] font-semibold"
                     onClick={() => setMenuOpen(false)}
                   >
                     {link.name}
@@ -394,7 +435,7 @@ export default function Navbar() {
                         <li key={sublink.name}>
                           <Link
                             href={sublink.href}
-                            className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10 font-sans"
+                            className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10 "
                             onClick={() => setMenuOpen(false)}
                           >
                             {sublink.name}
@@ -408,7 +449,7 @@ export default function Navbar() {
             ))}
             {/* Language Selector (Mobile only) */}
             <li className="px-6 py-4 flex items-center justify-between">
-              <span className="text-[#595959] font-sans font-semibold">
+              <span className="text-[#595959] font-semibold">
                 Language
               </span>
               <div className="relative ">
@@ -450,6 +491,6 @@ export default function Navbar() {
           </motion.ul>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }

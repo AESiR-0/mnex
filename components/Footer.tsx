@@ -12,13 +12,13 @@ export default function SiteFooter() {
         {/* Row 1: logo left, links right */}
         <div className="flex flex-col md:flex-row justify-between items-start  gap-20">
           {/* Logo */}
-          <Link href="/" className="block w-[200px]">
+          <Link href="/" className="block w-[128px]">
             <Image
               src="/static/Logo/Logo_PNG/MNex_v2-11.png"
               alt="MNEX"
-              width={200}
-              height={40}
-              className="h-10 w-auto"
+              width={128}
+              height={128}
+              className="h-auto w-auto"
             />
           </Link>
 

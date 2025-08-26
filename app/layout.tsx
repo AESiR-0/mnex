@@ -8,7 +8,7 @@ const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-instrument-sans",
   display: "swap",
-  weight: ["400", "600"], // 400=Regular, 600=Semibold
+  weight: ["400", "500", "600", "700"], // 400=Regular, 500=Medium, 600=Semibold, 700=Bold
 });
 
 export default function RootLayout({
@@ -18,10 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={instrumentSans.variable}>
-        <Navbar />
-        {children}
-        <SiteFooter />
+      <body className={`${instrumentSans.variable} font-sans`}>
+        <div className="relative">
+          <Navbar />
+          {children}
+          <SiteFooter />
+        </div>
       </body>
     </html>
   );

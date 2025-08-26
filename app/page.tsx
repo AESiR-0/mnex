@@ -76,78 +76,77 @@ export default function Home() {
     "Innovation with Purpose",
     "Execution Obsessed",
   ];
+
   return (
     <main className="bg-[#F5F5F5] min-h-screen flex flex-col">
-      {/* 1. Hero Image Section (full width) */}
-      <section className="relative w-full h-screen min-h-[400px] flex items-center justify-center">
+      {/* 1. Fixed Hero Video Background */}
+      <section className="fixed top-0 left-0 w-full h-screen z-0">
         <video
           src="/videos/home/hero.webm"
           autoPlay
           playsInline
           loop
           muted
-          className="object-cover absolute inset-0 w-full h-full"
+          className="object-cover w-full h-full"
         />
       </section>
 
-      {/* 2. Centered Headline Section */}
-      <section className="w-full min-h-[20vh] md:min-h-[40vh] flex items-center">
-        <div className="mx-auto max-w-7xl w-full flex items-center justify-start ">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-[#1789FF] leading-tight">
-            Shaping Precision,
-            <br />
-            Engineering what matters
-          </h1>
-        </div>
-      </section>
+      {/* 2. Content Container with Parallax Effect */}
+      <div className="relative z-10">
+        {/* Spacer to push content below the fixed video and navbar */}
+        <div className="h-screen pt-[72px]" />
 
-      {/* 3. Two-column Approach Section */}
-      <ApproachSection items={approachContent} />
+        {/* 3. Centered Headline Section */}
+       
 
-      {/* 4. Case Study Section with Background (full width) */}
-      <CaseStudySection
-        sector="Consumer Electronics"
-        challenge="Deliver a cosmetically critical
+        {/* 4. Two-column Approach Section */}
+        <ApproachSection items={approachContent} />
+
+        {/* 5. Case Study Section with Background (full width) */}
+        <CaseStudySection
+          sector="Consumer Electronics"
+          challenge="Deliver a cosmetically critical
  control panel in 6 weeks"
-        href="case-study"
-        title="Speed Without
+          href="case-study"
+          title="Speed Without
  Compromise"
-        key={"case-study"}
-      />
+          key={"case-study"}
+        />
 
-      {/* 5. Solutions Section */}
-      <section className="w-full min-h-[60vh] flex items-center bg-white">
-        <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-0">
-          {/* Left column */}
-          <div className="flex flex-col justify-start p-8">
-            <h2 className="text-lg font-semibold text-[#595959] uppercase tracking-widest mb-6">
-              Solutions
-            </h2>
-            <p className="text-2xl md:text-4xl font-semibold text-[#1789FF] leading-snug">
-              We don't sell capabilities.
-              <br />
-              We build the right one for you.
-            </p>
+        {/* 6. Solutions Section */}
+        <section className="w-full min-h-[60vh] flex items-center bg-white px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-6 lg:gap-0">
+            {/* Left column */}
+            <div className="flex flex-col justify-start p-4 sm:p-6 lg:p-8">
+              <h2 className="text-sm sm:text-base lg:text-lg font-semibold text-[#595959] uppercase tracking-widest mb-4 sm:mb-6">
+                Solutions
+              </h2>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-[#1789FF] leading-snug">
+                We don't sell capabilities.
+                <br />
+                We build the right one for you.
+              </p>
+            </div>
+
+            {/* Right column */}
+            <div className="flex flex-col justify-center p-4 sm:p-6 lg:p-8 text-[#595959]">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-4 sm:mb-6">
+                At Mnex, every solution is engineered around your product, scale
+                and market demands.
+              </p>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed">
+                From precision tooling to smart automation. We deliver what your
+                strategy needs, nothing more, nothing less.
+              </p>
+            </div>
           </div>
+        </section>
 
-          {/* Right column */}
-          <div className="flex flex-col justify-center p-8 text-[#595959]">
-            <p className="text-2xl leading-relaxed mb-6">
-              At Mnex, every solution is engineered around your product, scale
-              and market demands.
-            </p>
-            <p className="text-2xl leading-relaxed">
-              From precision tooling to smart automation. We deliver what your
-              strategy needs, nothing more, nothing less.
-            </p>
-          </div>
-        </div>
-      </section>
+        <CapabilitiesSection tabs={tabData} />
 
-      <CapabilitiesSection tabs={tabData} />
-
-      {/* 7. Sustainability Section */}
-      <SustainabilitySection />
+        {/* 7. Sustainability Section */}
+        <SustainabilitySection />
+      </div>
     </main>
   );
 }

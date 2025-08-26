@@ -1,41 +1,65 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export type ApproachItem = { title: string; desc: string };
 
 export default function ApproachSection({
   items,
   sectionId = "approach",
-  releaseOffset = 200, // extra px after last item
 }: {
   items: ApproachItem[];
   sectionId?: string;
-  releaseOffset?: number;
 }) {
   const [activeApproach, setActiveApproach] = useState(0);
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
 
-  // Handle scroll-driven step switching
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+    if (!sectionRef.current || !contentRef.current) return;
 
-    const onScroll = () => {
-      const rect = el.getBoundingClientRect();
-      const totalHeight = window.innerHeight * items.length + releaseOffset;
-      const scrollTop = Math.min(
-        Math.max(-rect.top, 0),
-        totalHeight - window.innerHeight
-      );
+    const section = sectionRef.current;
+    const content = contentRef.current;
 
-      const step = Math.floor(scrollTop / window.innerHeight);
-      setActiveApproach(Math.min(step, items.length - 1));
+    // Create smooth scroll trigger for pinning
+    scrollTriggerRef.current = ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: `+=${(items.length - 1) * 100}`,
+      pin: true,
+      pinSpacing: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const step = Math.floor(progress * items.length);
+        const clampedStep = Math.min(step, items.length - 1);
+
+        if (clampedStep !== activeApproach) {
+          setActiveApproach(clampedStep);
+        }
+      },
+      onLeave: () => {
+        setActiveApproach(items.length - 1);
+      },
+      onEnterBack: () => {
+        setActiveApproach(0);
+      }
+    });
+
+    // Cleanup
+    return () => {
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+      }
     };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [items.length, releaseOffset]);
+  }, [items.length, activeApproach]);
 
   if (!items || items.length === 0) return null;
 
@@ -47,12 +71,19 @@ export default function ApproachSection({
     <section
       id={sectionId}
       ref={sectionRef}
-      // full height = N * 100vh + release offset
-      style={{ height: `${items.length * 100}vh`, minHeight: "100vh" }}
-      className="w-full bg-[#eaeaea]"
+      className="w-full bg-[#D1D1D1] h-screen"
     >
-      <div className="sticky top-0 h-screen flex items-center">
-        <div className="max-w-7xl mx-auto w-full px-4">
+      <section className="w-full min-h-[20vh] md:min-h-[30vh] flex items-center bg-[#F5F5F5] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl w-full flex items-center justify-start">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-semibold text-[#1789FF] leading-tight">
+            Shaping Precision,
+            <br />
+            Engineering what matters
+          </h1>
+        </div>
+      </section>
+      <div ref={contentRef} className="h-[70vh] flex items-start py-10">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:gap-24 md:grid-cols-2 items-start">
             {/* Left: Active content */}
             <div
@@ -71,7 +102,7 @@ export default function ApproachSection({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
                   className="contents"
                 >
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
@@ -101,12 +132,18 @@ export default function ApproachSection({
                     role="tab"
                     aria-selected={isActive}
                     aria-controls={panelId}
-                    onClick={() => setActiveApproach(i)}
-                    className={`text-left px-0 py-2 sm:py-2.5 md:py-3 text-xl sm:text-2xl font-medium transition-colors outline-none
-                      ${
-                        isActive
-                          ? "text-[#009B80] font-semibold"
-                          : "text-[#595959] hover:text-[#009B80]"
+                    onClick={() => {
+                      setActiveApproach(i);
+                      // Smooth scroll to the specific progress
+                      if (scrollTriggerRef.current) {
+                        const progress = i / (items.length - 1);
+                        scrollTriggerRef.current.scroll(progress);
+                      }
+                    }}
+                    className={`text-left px-0 py-2 sm:py-2.5 md:py-3 text-xl sm:text-2xl font-medium transition-all duration-300 ease-out
+                      ${isActive
+                        ? "text-[#009B80] font-semibold "
+                        : "text-[#595959] hover:text-[#009B80] "
                       }`}
                   >
                     {it.title}
