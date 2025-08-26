@@ -10,8 +10,8 @@ const navLinks = [
     name: "About Us",
     href: "/about/approach",
     children: [
-      { name: "Our approach + usp", href: "/about/approach" },
-      { name: "Meiban - mnex story", href: "/about/legacy" },
+      { name: "Approach", href: "/about/approach" },
+      { name: "Legacy", href: "/about/legacy" },
       { name: "Leadership", href: "/about/leadership" },
     ],
   },
@@ -210,24 +210,33 @@ export default function Navbar() {
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[72px] w-screen bg-[#ececec] flex justify-center overflow-hidden "
+                        className="fixed left-0 top-[72px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
-                          {link.children.map((sublink) => {
+                          {link.children.map((sublink, index) => {
                             const isSublinkActive = isLinkActive(sublink.href);
                             return (
-                              <Link
+                              <motion.div
                                 key={sublink.name}
-                                href={sublink.href}
-                                className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold uppercase rounded-full border transition-colors duration-200 
-                                  ${isSublinkActive
-                                    ? "bg-[#1789FF] text-white  hover:bg-[#959595]"
-                                    : "bg-transparent text-[#969696] hover:bg-[#1789FF] hover:text-white"
-                                  }`}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{
+                                  duration: 0.3,
+                                  ease: "easeOut"
+                                }}
                               >
-                                {sublink.name}
-                              </Link>
+                                <Link
+                                  href={sublink.href}
+                                  className={`px-6 sm:px-5 py-2 text-xs font-regular tracking-widest uppercase rounded-full border transition-colors duration-200 
+                                    ${isSublinkActive
+                                      ? "bg-[#1789FF] text-white  hover:bg-[#959595]"
+                                      : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
+                                    }`}
+                                >
+                                  {sublink.name}
+                                </Link>
+                              </motion.div>
                             );
                           })}
                         </div>

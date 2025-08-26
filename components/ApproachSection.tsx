@@ -91,7 +91,7 @@ export default function ApproachSection({
         </div>
 
         {/* Content overlay */}
-        <div className="relative z-10 mx-auto max-w-7xl w-full flex items-center justify-start ">
+        <div className="relative z-10 mx-auto max-w-7xl px-4  w-full flex items-center justify-start ">
           <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
             Shaping Precision,
             <br />
@@ -100,7 +100,7 @@ export default function ApproachSection({
         </div>
       </section>
       <div ref={contentRef} className="h-[70vh] flex  items-start py-10">
-        <div className="max-w-7xl space-y-10 mx-auto w-full ">
+        <div className="max-w-7xl px-4 space-y-10 mx-auto w-full ">
           <Header>Our Approach</Header>
           <div className="flex justify-between items-start">
             {/* Left: Active content */}

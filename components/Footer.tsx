@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function SiteFooter() {
   return (
-    <footer className="w-full bg-[#eaeaea]    border-t border-[#E0E0E0]">
+    <footer className="w-full bg-[#eaeaea]    ">
       {/* top teal rule */}
       <div className="h-[2px] w-full bg-[#009B80]" />
 

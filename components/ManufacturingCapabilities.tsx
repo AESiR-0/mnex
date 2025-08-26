@@ -111,7 +111,7 @@ export default function CapabilitiesSection({
           <Header className="text-center pt-6 pb-2 md:mb-0">Core Capabilities</Header>
           <div className="pb-3 flex  justify-center  z-10 ">
             {/* Tabs: horizontal scroll on small screens */}
-            <div className="max-w-7xl w-full px-4  ">
+            <div className=" w-full max-w-7xl mx-auto px-4   ">
               <div className="flex justify-between gap-6 md:gap-20 overflow-x-auto no-scrollbar snap-x">
                 {tabs.map((t, idx) => (
                   <button
@@ -163,7 +163,7 @@ export default function CapabilitiesSection({
 
             {/* overlay content */}
             <div className="absolute h-full inset-0 z-10 flex items-center">
-              <div className="px-4 h-full sm:px-8 lg:px-20 mx-auto w-full">
+              <div className="px-4 h-full   mx-auto w-full max-w-7xl">
                 <div className="max-w-xl flex flex-col gap-4 justify-between h-full py-20 sm:max-w-2xl">
                   <div className="">
                     <h3 className="text-white text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight mb-4 sm:mb-6 whitespace-pre-line">
@@ -184,22 +184,22 @@ export default function CapabilitiesSection({
                     <Image
                       src="/static/badges/BMC.png"
                       alt="BMC"
-                      width={64}
-                      height={64}
+                      width={85}
+                      height={85}
                       className="text-white object-contain "
                     />
                     <Image
                       src="/static/badges/LSR.png"
-                      alt="LS"
-                      width={64}
-                      height={64}
+                      alt="LSR"
+                      width={85}
+                      height={85}
                       className="text-white object-contain"
                     />
                     <Image
                       src="/static/badges/2K.png"
-                      alt="BMC"
-                      width={256}
-                      height={64}
+                      alt="2K"
+                      width={280}
+                      height={100}
                       className="text-white col-span-2 object-contain"
                     />
                   </div>
