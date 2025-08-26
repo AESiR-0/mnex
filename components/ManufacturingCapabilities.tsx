@@ -49,6 +49,7 @@ export default function CapabilitiesSection({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const lastScrollY = useRef(0);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // viewport height (handles mobile address bar)
   useEffect(() => {
@@ -65,11 +66,18 @@ export default function CapabilitiesSection({
     const root = containerRef.current;
     const rootTop = () => root.getBoundingClientRect().top + window.scrollY;
     let topPx = rootTop();
+    let scrollTimeout: NodeJS.Timeout | null = null;
+    let isScrollingUp = false;
 
     const onScroll = () => {
       const y = window.scrollY;
       const goingDown = y > lastScrollY.current;
       lastScrollY.current = y;
+
+      // Clear any existing timeout
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
 
       // where we are inside the pinned region
       const offset = Math.max(0, Math.min(y - topPx, tabs.length * vh + 210));
@@ -77,15 +85,26 @@ export default function CapabilitiesSection({
       // which "frame" we are in (0..tabs.length-1)
       const idx = Math.min(tabs.length - 1, Math.floor(offset / vh));
 
-      if (idx !== active) setActive(idx);
+      // Debounce the state change to prevent flashing
+      scrollTimeout = setTimeout(() => {
+        if (idx !== active) {
+          setActive(idx);
+        }
+      }, 50); // Small delay to prevent rapid changes
 
-      // Simple: if scrolling up and not at the very start, go to first tab start
-      if (!goingDown && offset > 0) {
+      // Handle scroll up - only trigger once
+      if (!goingDown && offset > 0 && !isScrollingUp) {
+        isScrollingUp = true;
         const firstTabStart = topPx;
         window.scrollTo({
-          top: firstTabStart - 200,
+          top: firstTabStart - 10,
           behavior: 'smooth'
         });
+        
+        // Reset the flag after a delay
+        setTimeout(() => {
+          isScrollingUp = false;
+        }, 50);
       }
     };
 
@@ -98,6 +117,9 @@ export default function CapabilitiesSection({
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
     };
   }, [vh, tabs.length, active]);
 
@@ -105,6 +127,29 @@ export default function CapabilitiesSection({
 
   // The container height is N * 100vh + 200px (extra to release pin)
   const containerHeight = tabs.length * vh + 200;
+
+  // Handle video loading state
+  useEffect(() => {
+    if (videoRef.current && tab.video) {
+      const video = videoRef.current;
+      
+      const handleLoadedData = () => {
+        setIsVideoLoaded(true);
+      };
+
+      const handleLoadStart = () => {
+        setIsVideoLoaded(false);
+      };
+
+      video.addEventListener('loadeddata', handleLoadedData);
+      video.addEventListener('loadstart', handleLoadStart);
+
+      return () => {
+        video.removeEventListener('loadeddata', handleLoadedData);
+        video.removeEventListener('loadstart', handleLoadStart);
+      };
+    }
+  }, [tab.video, active]);
 
   return (
     <section className="w-full bg-[#ececec]">
@@ -155,9 +200,9 @@ export default function CapabilitiesSection({
             {/* media */}
             {tab.video ? (
               <video
-                key={tab.video}
+                key={`${tab.title}-${active}`}
                 ref={videoRef}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
                 src={tab.video}
                 poster={tab.poster}
                 muted
@@ -166,11 +211,11 @@ export default function CapabilitiesSection({
               />
             ) : tab.img ? (
               <Image
-                key={tab.img}
+                key={`${tab.title}-${active}`}
                 src={tab.img}
                 alt={tab.title}
                 fill
-                className="object-cover"
+                className="object-cover transition-opacity duration-300"
                 priority={active === 0}
               />
             ) : null}

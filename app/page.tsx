@@ -64,6 +64,7 @@ We align every step of production to your business strategy—not the other way 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeApproach, setActiveApproach] = useState(0);
+  
   const approachButtons = [
     "Business-Aligned Manufacturing",
     "Scalable and Specialized",

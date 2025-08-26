@@ -3,6 +3,7 @@ import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/Footer";
+import VideoPreloader from "@/components/VideoPreloader";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -13,17 +14,18 @@ const instrumentSans = Instrument_Sans({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={`overflow-x-hidden ${instrumentSans.variable} font-sans`}>
+        <VideoPreloader />
+        <Navbar />
         <div className="relative">
-          <Navbar />
           {children}
-          <SiteFooter />
         </div>
+        <SiteFooter />
       </body>
     </html>
   );
