@@ -18,7 +18,7 @@ export default function Tabs({
 
   // figure out the active tab from the URL every render
   const activeName = useMemo(() => {
-    const p = (pathname || "").toLowerCase();
+    const p   = (pathname || "").toLowerCase();
     // exact match or startsWith allows /about/approach/anything
     const hit = tabs.find(
       (t) => p === t.href.toLowerCase() || p.startsWith(t.href.toLowerCase())
@@ -29,7 +29,7 @@ export default function Tabs({
   }, [pathname]);
 
   return (
-    <div className="w-full bg-[#f0f0f0] py-6">
+    <div className="w-full bg-[#ececec] py-6 pt-20">
       <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4">
         {tabs.map((tab) => {
           const isActive = activeName === tab.name;

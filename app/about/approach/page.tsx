@@ -2,7 +2,7 @@ import PurposeCarousel from "@/components/About/PurposeCarousel";
 
 const slides = [
   {
-    img: "/images/about/approach-1.jpg",
+    img: "/static/about/1.jpg",
     imgAlt: "Team discussion",
     step: "1",
     title: "Business-Aligned from Day One",
@@ -17,7 +17,7 @@ const slides = [
     ],
   },
   {
-    img: "/images/about/approach-2.jpg",
+    img: "/static/about/2.webp",
     imgAlt: "Custom manufacturing",
     step: "2",
     title: "Flexible from Specialized to Scaled",
@@ -32,7 +32,7 @@ const slides = [
     ],
   },
   {
-    img: "/images/about/approach-3.jpg",
+    img: "/static/about/3.jpg",
     imgAlt: "Integrated tooling and automation",
     step: "3",
     title: "Vertically Integrated for Speed",
@@ -48,7 +48,7 @@ const slides = [
     ],
   },
   {
-    img: "/images/about/approach-4.jpg",
+    img: "/static/about/4.jpg",
     imgAlt: "Precision design",
     step: "4",
     title: "Precision by Design",
@@ -64,11 +64,11 @@ const slides = [
     ],
   },
   {
-    img: "/images/about/approach-5.jpg",
+    img: "/static/about/5.jpg",
     imgAlt: "Innovation",
     step: "5",
     title: "Pragmatic Innovation",
-    lead: "We don’t add complexity for show.",
+    lead: "We don't add complexity for show.",
     bullets: [
       "Right technology for the right reason",
       "Outcome-driven solutions, never overengineered",
@@ -80,7 +80,7 @@ const slides = [
     ],
   },
   {
-    img: "/images/about/approach-6.jpg",
+    img: "/static/about/6.jpg",
     imgAlt: "Execution focused",
     step: "6",
     title: "Execution Obsessed",

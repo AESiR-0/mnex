@@ -6,7 +6,6 @@ export default function SiteFooter() {
   return (
     <footer className="w-full bg-[#eaeaea]">
       {/* top teal rule */}
-      <div className="h-0.5 w-full bg-[#009B80]" />
 
       <div className="max-w-7xl mx-auto px-4 py-16 lg:py-20">
         {/* Main footer content - two columns */}

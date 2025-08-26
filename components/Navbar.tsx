@@ -37,24 +37,31 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
-  const pathname = usePathname();
-
-  // Scroll direction state
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const pathname = usePathname();
 
-  // Initial load state for delayed slide down
-  const [isLoaded, setIsLoaded] = useState(false);
+  // Check if a link is active
+  const isLinkActive = (href: string) => {
+    return pathname.split('/').includes(href);
+  };
 
-  // Handle initial load animation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 200);
+  // Check if About section is active
+  const isAboutActive = () => {
+    return pathname.includes('about');
+  };
 
-    return () => clearTimeout(timer);
-  }, []);
+  // Check if Industries section is active
+  const isIndustriesActive = () => {
+    return pathname.includes('industries');
+  };
 
+  // Check if a link should show dropdown (not active)
+  const shouldShowDropdown = (href: string) => {
+    return !isLinkActive(href);
+  };
+
+  // Handle scroll for navbar visibility
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -73,27 +80,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Check if a link is active
-  const isLinkActive = (href: string) => {
-    return pathname === href || pathname.startsWith(href + '/');
-  };
-
-  // Check if a link should show dropdown (not active)
-  const shouldShowDropdown = (href: string) => {
-    return !isLinkActive(href);
-  };
-
   return (
     <motion.nav
-      className="fixed max-md:w-full max-w-screen text-[#575757] bg-[#ececec] uppercase transition-all top-0 min-h-[70px] left-0 w-full z-50 flex items-center shadow-none border-none"
-      initial={{ y: -70 }} // Start hidden above viewport
-      animate={{
-        y: isLoaded ? (isVisible ? 0 : -70) : -70 // Slide down after 2 seconds, then follow scroll behavior
-      }}
-      transition={{
-        duration: 0.55,
-        delay: isLoaded ? 0 : 0 // No delay when loaded, but initial delay handled by isLoaded state
-      }}
+      className="fixed left-0 top-0 min-h-[65px] max-md:w-full w-full max-w-screen text-[#575757] bg-[#ececec] uppercase z-50 flex items-center shadow-none border-none"
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -70 }}
+      transition={{ duration: 0.3, ease: "linear" }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 w-full">
         {/* Logo */}
@@ -123,6 +115,250 @@ export default function Navbar() {
                       {link.name}
                     </Link>
                   </div>
+                </li>
+              );
+            } else if (link.name === "About Us") {
+              // Special handling for About Us - no dropdown when About is active
+              const isAboutSectionActive = isAboutActive();
+              return (
+                <li
+                  key={link.name}
+                  className="relative group transition-all"
+                  onMouseEnter={() =>
+                    !isAboutSectionActive && link.children && setOpenDropdown(link.name)
+                  }
+                  onMouseLeave={() => link.children && setOpenDropdown(null)}
+                  tabIndex={0}
+                  onFocus={() => !isAboutSectionActive && link.children && setOpenDropdown(link.name)}
+                  onBlur={() => link.children && setOpenDropdown(null)}
+                >
+                  <div className="flex items-center">
+                    <Link
+                      href={link.href}
+                      className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
+            ${isAboutSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
+          `}
+                    >
+                      {link.name}
+                    </Link>
+                    {link.children && !isAboutSectionActive && (
+                      <motion.span
+                        initial={false}
+                        animate={{
+                          rotate: openDropdown === link.name ? 180 : 0,
+                        }}
+                        transition={{
+                          type: "keyframes",
+                          duration: 0.2,
+                        }}
+                        className="flex items-center justify-center w-3 h-3 group-hover:fill-[#1789FF]"
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="group-hover:fill-[#1789FF]"
+                        >
+                          <motion.rect
+                            x="3"
+                            y="7.25"
+                            width="10"
+                            height="1.5"
+                            rx="0.75"
+                            fill={`${isAboutSectionActive ? "#1789ff" : "#595959"}`}
+                            className="group-hover:fill-[#1789FF]"
+                          />
+                          <motion.rect
+                            x="7.25"
+                            y="3"
+                            width="1.5"
+                            height="10"
+                            rx="0.75"
+                            fill={`${isAboutSectionActive ? "#1789ff" : "#595959"}`}
+                            className="group-hover:fill-[#1789FF]"
+                            animate={{
+                              scaleY: openDropdown === link.name ? 0 : 1,
+                            }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 20,
+                              mass: 0.5,
+                            }}
+                            style={{ originY: 0.5 }}
+                          />
+                        </svg>
+                      </motion.span>
+                    )}
+                  </div>
+                  {/* Mega Dropdown - only show when About is not active */}
+                  <AnimatePresence>
+                    {link.children && !isAboutSectionActive && openDropdown === link.name && (
+                      <motion.div
+                        initial={{ opacity: 1, height: 0, y: -10 }}
+                        animate={{ opacity: 1, height: "auto", y: 0 }}
+                        exit={{ opacity: 1, height: 0, y: -10 }}
+                        transition={{
+                          type: "keyframes",
+                          duration: 0.2,
+                        }}
+                        className="fixed left-0 top-[55px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
+                        style={{ zIndex: 100 }}
+                      >
+                        <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
+                          {link.children.map((sublink, index) => {
+                            const isSublinkActive = isLinkActive(sublink.href);
+                            return (
+                              <motion.div
+                                key={sublink.name}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{
+                                  duration: 0.3,
+                                  ease: "easeOut"
+                                }}
+                              >
+                                <Link
+                                  href={sublink.href}
+                                  className={`px-6 sm:px-5 py-2 text-xs font-regular tracking-widest uppercase rounded-full border transition-colors duration-200 
+                                    ${isSublinkActive
+                                      ? "bg-[#1789FF] text-white  hover:bg-[#959595]"
+                                      : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
+                                    }`}
+                                >
+                                  {sublink.name}
+                                </Link>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
+              );
+            } else if (link.name === "Industries") {
+              // Special handling for Industries - no dropdown when Industries is active
+              const isIndustriesSectionActive = isIndustriesActive();
+              return (
+                <li
+                  key={link.name}
+                  className="relative group transition-all"
+                  onMouseEnter={() =>
+                    !isIndustriesSectionActive && link.children && setOpenDropdown(link.name)
+                  }
+                  onMouseLeave={() => link.children && setOpenDropdown(null)}
+                  tabIndex={0}
+                  onFocus={() => !isIndustriesSectionActive && link.children && setOpenDropdown(link.name)}
+                  onBlur={() => link.children && setOpenDropdown(null)}
+                >
+                  <div className="flex items-center">
+                    <Link
+                      href={link.href}
+                      className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
+            ${isIndustriesSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
+          `}
+                    >
+                      {link.name}
+                    </Link>
+                    {link.children && !isIndustriesSectionActive && (
+                      <motion.span
+                        initial={false}
+                        animate={{
+                          rotate: openDropdown === link.name ? 180 : 0,
+                        }}
+                        transition={{
+                          type: "keyframes",
+                          duration: 0.2,
+                        }}
+                        className="flex items-center justify-center w-3 h-3 group-hover:fill-[#1789FF]"
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="group-hover:fill-[#1789FF]"
+                        >
+                          <motion.rect
+                            x="3"
+                            y="7.25"
+                            width="10"
+                            height="1.5"
+                            rx="0.75"
+                            fill={`${isIndustriesSectionActive ? "#1789ff" : "#595959"}`}
+                            className="group-hover:fill-[#1789FF]"
+                          />
+                          <motion.rect
+                            x="7.25"
+                            y="3"
+                            width="1.5"
+                            height="10"
+                            rx="0.75"
+                            fill={`${isIndustriesSectionActive ? "#1789ff" : "#595959"}`}
+                            className="group-hover:fill-[#1789FF]"
+                            animate={{
+                              scaleY: openDropdown === link.name ? 0 : 1,
+                            }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 20,
+                              mass: 0.5,
+                            }}
+                            style={{ originY: 0.5 }}
+                          />
+                        </svg>
+                      </motion.span>
+                    )}
+                  </div>
+                  {/* Mega Dropdown - only show when Industries is not active */}
+                  <AnimatePresence>
+                    {link.children && !isIndustriesSectionActive && openDropdown === link.name && (
+                      <motion.div
+                        initial={{ opacity: 1, height: 0, y: -10 }}
+                        animate={{ opacity: 1, height: "auto", y: 0 }}
+                        exit={{ opacity: 1, height: 0, y: -10 }}
+                        transition={{
+                          type: "keyframes",
+                          duration: 0.2,
+                        }}
+                        className="fixed left-0 top-[55px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
+                        style={{ zIndex: 100 }}
+                      >
+                        <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
+                          {link.children.map((sublink, index) => {
+                            const isSublinkActive = isLinkActive(sublink.href);
+                            return (
+                              <motion.div
+                                key={sublink.name}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{
+                                  duration: 0.3,
+                                  ease: "easeOut"
+                                }}
+                              >
+                                <Link
+                                  href={sublink.href}
+                                  className={`px-6 sm:px-5 py-2 text-xs font-regular tracking-widest uppercase rounded-full border transition-colors duration-200 
+                                    ${isSublinkActive
+                                      ? "bg-[#1789FF] text-white  hover:bg-[#959595]"
+                                      : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
+                                    }`}
+                                >
+                                  {sublink.name}
+                                </Link>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </li>
               );
             } else
@@ -210,7 +446,7 @@ export default function Navbar() {
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[70px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
+                        className="fixed left-0 top-[55px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
@@ -299,7 +535,7 @@ export default function Navbar() {
           />
           <span
             className={`block absolute h-0.5 w-6 bg-[#595959] rounded transform transition duration-300 ease-in-out
-      ${menuOpen ? "-rotate-45 translate-y-0" : "translate-y-2"}`}
+      ${menuOpen ? "-rotate-45 translate-y-0" : "translate-y-0"}`}
           />
         </button>
       </div>
@@ -367,16 +603,6 @@ export default function Navbar() {
                             height="10"
                             rx="0.75"
                             fill="#1789FF"
-                            animate={{
-                              scaleY: mobileDropdown === link.name ? 0 : 1,
-                            }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 20,
-                              mass: 0.5,
-                            }}
-                            style={{ originY: 0.5 }}
                           />
                         </svg>
                       </motion.span>

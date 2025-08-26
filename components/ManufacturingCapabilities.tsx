@@ -49,7 +49,6 @@ export default function CapabilitiesSection({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const lastScrollY = useRef(0);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // viewport height (handles mobile address bar)
   useEffect(() => {
@@ -128,29 +127,6 @@ export default function CapabilitiesSection({
   // The container height is N * 100vh + 200px (extra to release pin)
   const containerHeight = tabs.length * vh + 200;
 
-  // Handle video loading state
-  useEffect(() => {
-    if (videoRef.current && tab.video) {
-      const video = videoRef.current;
-      
-      const handleLoadedData = () => {
-        setIsVideoLoaded(true);
-      };
-
-      const handleLoadStart = () => {
-        setIsVideoLoaded(false);
-      };
-
-      video.addEventListener('loadeddata', handleLoadedData);
-      video.addEventListener('loadstart', handleLoadStart);
-
-      return () => {
-        video.removeEventListener('loadeddata', handleLoadedData);
-        video.removeEventListener('loadstart', handleLoadStart);
-      };
-    }
-  }, [tab.video, active]);
-
   return (
     <section className="w-full bg-[#ececec]">
       {/* SCROLL CONTAINER (tall) */}
@@ -202,7 +178,7 @@ export default function CapabilitiesSection({
               <video
                 key={`${tab.title}-${active}`}
                 ref={videoRef}
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+                className="absolute inset-0 w-full h-full object-cover"
                 src={tab.video}
                 poster={tab.poster}
                 muted
@@ -215,7 +191,7 @@ export default function CapabilitiesSection({
                 src={tab.img}
                 alt={tab.title}
                 fill
-                className="object-cover transition-opacity duration-300"
+                className="object-cover"
                 priority={active === 0}
               />
             ) : null}
