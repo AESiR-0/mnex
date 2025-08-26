@@ -85,7 +85,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="fixed max-md:w-full max-w-screen text-[#575757] bg-white uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center "
+      className="fixed max-md:w-full max-w-screen text-[#575757] bg-[#ececec] uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center shadow-none border-none"
       initial={{ y: -72 }} // Start hidden above viewport
       animate={{
         y: isLoaded ? (isVisible ? 0 : -72) : -72 // Slide down after 2 seconds, then follow scroll behavior
@@ -154,10 +154,8 @@ export default function Navbar() {
                           rotate: openDropdown === link.name ? 180 : 0,
                         }}
                         transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 10,
-                          mass: 0.5,
+                          type: "keyframes",
+                          duration: 0.2,
                         }}
                         className="flex items-center justify-center w-3 h-3 group-hover:fill-[#1789FF]"
                       >
@@ -205,15 +203,14 @@ export default function Navbar() {
                   <AnimatePresence>
                     {link.children && shouldShowDropdown(link.href) && openDropdown === link.name && (
                       <motion.div
-                        initial={{ opacity: 0, y: -16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -16 }}
+                        initial={{ opacity: 1, height: 0, y: -10 }}
+                        animate={{ opacity: 1, height: "auto", y: 0 }}
+                        exit={{ opacity: 1, height: 0, y: -10 }}
                         transition={{
-                          type: "spring",
-                          stiffness: 100,
-                          damping: 15,
+                          type: "keyframes",
+                          duration: 0.2,
                         }}
-                        className="fixed left-0 top-[72px] w-screen bg-[#f0f0f0]  flex justify-center"
+                        className="fixed left-0 top-[72px] w-screen bg-[#ececec] flex justify-center overflow-hidden "
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
@@ -225,8 +222,8 @@ export default function Navbar() {
                                 href={sublink.href}
                                 className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold uppercase rounded-full border transition-colors duration-200 
                                   ${isSublinkActive
-                                    ? "bg-[#1789FF] text-white border-[#1789FF] hover:bg-[#959595] hover:border-[#959595]"
-                                    : "bg-transparent text-[#969696] border-[#969696]/50 hover:bg-[#1789FF] hover:text-white hover:border-[#1789FF]"
+                                    ? "bg-[#1789FF] text-white  hover:bg-[#959595]"
+                                    : "bg-transparent text-[#969696] hover:text-white "
                                   }`}
                               >
                                 {sublink.name}
