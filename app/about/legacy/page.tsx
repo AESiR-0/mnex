@@ -14,7 +14,7 @@ export default function Page() {
             Our Origin:{"\n"}From Meiban to Mnex
           </h1>
 
-          <div className="mt-5 space-y-1.5">
+          <div className="my-8 ">
             <p className="text-[#6b6b6b] text-sm sm:text-[15px] md:text-base">
               A legacy of precision.
             </p>
@@ -25,15 +25,17 @@ export default function Page() {
         </div>
 
         {/* Full-bleed image */}
-        <div className="relative w-full h-[36vh] sm:h-[44vh] md:h-[56vh] lg:h-[64vh] xl:h-[72vh]">
+        <div className="relative w-full h-[36vh] text-[#595959] sm:h-[44vh] md:h-[56vh] lg:h-[64vh] xl:h-[72vh]">
           <Image
-            src="/images/about/origin.jpg" // ✅ hardcoded
+            src="/static/about/approach.webp" // ✅ hardcoded
             alt="Meiban to MNEX crates"
             fill
             sizes="100vw"
             priority
-            className="object-cover"
+            className="object-cover grayscale"
           />
+          {/* Blue overlay */}
+          <div className="absolute inset-0 bg-[#1789FF]/60 mix-blend-multiply" />
         </div>
       </section>
 
