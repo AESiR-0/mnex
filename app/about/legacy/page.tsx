@@ -1,23 +1,7 @@
 "use client";
 import Image from "next/image";
 
-type Props = {
-  title?: string;
-  subtitleTop?: string;
-  subtitleBottom?: string;
-  imageSrc: string; // e.g. /images/about/origin.jpg
-  imageAlt?: string;
-  priority?: boolean;
-};
-
-export default function AboutOriginHero({
-  title = "Our Origin:\nFrom Meiban to Mnex",
-  subtitleTop = "A legacy of precision.",
-  subtitleBottom = "A future of purpose-driven manufacturing.",
-  imageSrc,
-  imageAlt = "Meiban to MNEX crates",
-  priority = false,
-}: Props) {
+export default function Page() {
   return (
     <>
       <section className="w-full bg-white">
@@ -27,15 +11,15 @@ export default function AboutOriginHero({
             className="whitespace-pre-line text-[#333] font-semibold
                        text-2xl sm:text-3xl md:text-4xl lg:text-[28px]"
           >
-            {title}
+            Our Origin:{"\n"}From Meiban to Mnex
           </h1>
 
           <div className="mt-5 space-y-1.5">
             <p className="text-[#6b6b6b] text-sm sm:text-[15px] md:text-base">
-              {subtitleTop}
+              A legacy of precision.
             </p>
             <p className="text-[#6b6b6b] text-sm sm:text-[15px] md:text-base">
-              {subtitleBottom}
+              A future of purpose-driven manufacturing.
             </p>
           </div>
         </div>
@@ -43,15 +27,16 @@ export default function AboutOriginHero({
         {/* Full-bleed image */}
         <div className="relative w-full h-[36vh] sm:h-[44vh] md:h-[56vh] lg:h-[64vh] xl:h-[72vh]">
           <Image
-            src={imageSrc}
-            alt={imageAlt}
+            src="/images/about/origin.jpg" // ✅ hardcoded
+            alt="Meiban to MNEX crates"
             fill
             sizes="100vw"
-            priority={priority}
+            priority
             className="object-cover"
           />
         </div>
       </section>
+
       <section className="w-full bg-white text-[#595959] py-16 px-6">
         <div className="max-w-4xl mx-auto space-y-6 text-base leading-relaxed">
           <p>
