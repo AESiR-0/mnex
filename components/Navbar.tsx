@@ -96,7 +96,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden transition-all font-[var(--font-instrument-sans)]   font-medium text-sm md:flex gap-8 items-center">
+        <ul className="hidden transition-all  font-medium text-sm md:flex gap-8 items-center">
           {navLinks.map((link) => {
             if (link.name == "Contact Us") {
               return (
