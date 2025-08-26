@@ -32,12 +32,7 @@ const tabData = [
 ];
 
 const approachContent = [
-  {
-    title: "We Build What Matters",
-    desc: `From concept to precision-built reality,
-We create with purpose, speed and obsessive detail.
-This is industrial manufacturing where manufacturability is engineered from day one.`,
-  },
+
   {
     title: "Vision, Engineered",
     desc: `Business-Aligned from Day One
@@ -79,8 +74,8 @@ export default function Home() {
 
   return (
     <main className="bg-[#F5F5F5] min-h-screen flex flex-col">
-      {/* 1. Fixed Hero Video Background */}
-      <section className="fixed top-0 left-0 w-full h-screen z-0">
+      {/* 1. Hero Video Section (Normal Scroll) */}
+      <section className="relative w-full h-screen">
         <video
           src="/videos/home/hero.webm"
           autoPlay
@@ -89,20 +84,15 @@ export default function Home() {
           muted
           className="object-cover w-full h-full"
         />
+        
       </section>
 
-      {/* 2. Content Container with Parallax Effect */}
+      {/* 2. Content Container */}
       <div className="relative z-10">
-        {/* Spacer to push content below the fixed video and navbar */}
-        <div className="h-screen pt-[72px]" />
-
-        {/* 3. Centered Headline Section */}
-       
-
-        {/* 4. Two-column Approach Section */}
+        {/* 3. Two-column Approach Section */}
         <ApproachSection items={approachContent} />
 
-        {/* 5. Case Study Section with Background (full width) */}
+        {/* 4. Case Study Section with Background (full width) */}
         <CaseStudySection
           sector="Consumer Electronics"
           challenge="Deliver a cosmetically critical
@@ -113,7 +103,7 @@ export default function Home() {
           key={"case-study"}
         />
 
-        {/* 6. Solutions Section */}
+        {/* 5. Solutions Section */}
         <section className="w-full min-h-[60vh] flex items-center bg-white px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-6 lg:gap-0">
             {/* Left column */}
@@ -144,7 +134,7 @@ export default function Home() {
 
         <CapabilitiesSection tabs={tabData} />
 
-        {/* 7. Sustainability Section */}
+        {/* 6. Sustainability Section */}
         <SustainabilitySection />
       </div>
     </main>

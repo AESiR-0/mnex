@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${instrumentSans.variable} font-sans`}>
+      <body className={`overflow-x-hidden ${instrumentSans.variable} font-sans`}>
         <div className="relative">
           <Navbar />
           {children}

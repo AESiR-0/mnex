@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   {
@@ -36,6 +37,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const pathname = usePathname();
 
   // Scroll direction state
   const [isVisible, setIsVisible] = useState(true);
@@ -71,9 +73,19 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  // Check if a link is active
+  const isLinkActive = (href: string) => {
+    return pathname === href || pathname.startsWith(href + '/');
+  };
+
+  // Check if a link should show dropdown (not active)
+  const shouldShowDropdown = (href: string) => {
+    return !isLinkActive(href);
+  };
+
   return (
     <motion.nav
-      className="fixed max-md:w-full max-w-screen text-[#575757] bg-white uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center border-b border-[#1789FF]/50"
+      className="fixed max-md:w-full max-w-screen text-[#575757] bg-white uppercase transition-all top-0 min-h-[72px] left-0 w-full z-50 flex items-center "
       initial={{ y: -72 }} // Start hidden above viewport
       animate={{
         y: isLoaded ? (isVisible ? 0 : -72) : -72 // Slide down after 2 seconds, then follow scroll behavior
@@ -96,7 +108,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden transition-all  font-medium text-sm md:flex gap-8 items-center">
+        <ul className="hidden transition-all font-medium text-sm md:flex gap-8 items-center">
           {navLinks.map((link) => {
             if (link.name == "Contact Us") {
               return (
@@ -104,62 +116,12 @@ export default function Navbar() {
                   <div className="flex bg-transparent items-center">
                     <Link
                       href={link.href}
-                      className={`text-[#575757]  hover:bg-[#00b298] hover:text-white border rounded-2xl  px-4 py-1 transition-colors duration-200 flex items-center gap-1
-            ${openDropdown === link.name ? "border-b-2 border-[#1789FF]" : ""}
+                      className={`text-[#575757] hover:bg-[#00b298] hover:text-white border rounded-2xl px-4 py-1 transition-colors duration-200 flex items-center gap-1
+            ${openDropdown === link.name ? "" : ""}
           `}
                     >
                       {link.name}
                     </Link>
-                    {link.children && (
-                      <motion.span
-                        initial={false}
-                        animate={{
-                          rotate: openDropdown === link.name ? 180 : 0,
-                        }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 10,
-                          mass: 0.5,
-                        }}
-                        className="ml-1 flex items-center justify-center w-4 h-4"
-                      >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <motion.rect
-                            x="3"
-                            y="7.25"
-                            width="10"
-                            height="1.5"
-                            rx="0.75"
-                            fill="#1789FF"
-                          />
-                          <motion.rect
-                            x="7.25"
-                            y="3"
-                            width="1.5"
-                            height="10"
-                            rx="0.75"
-                            fill="#1789FF"
-                            animate={{
-                              scaleY: openDropdown === link.name ? 0 : 1,
-                            }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 20,
-                              mass: 0.5,
-                            }}
-                            style={{ originY: 0.5 }}
-                          />
-                        </svg>
-                      </motion.span>
-                    )}
                   </div>
                 </li>
               );
@@ -169,23 +131,23 @@ export default function Navbar() {
                   key={link.name}
                   className="relative group transition-all"
                   onMouseEnter={() =>
-                    link.children && setOpenDropdown(link.name)
+                    link.children && shouldShowDropdown(link.href) && setOpenDropdown(link.name)
                   }
                   onMouseLeave={() => link.children && setOpenDropdown(null)}
                   tabIndex={0}
-                  onFocus={() => link.children && setOpenDropdown(link.name)}
+                  onFocus={() => link.children && shouldShowDropdown(link.href) && setOpenDropdown(link.name)}
                   onBlur={() => link.children && setOpenDropdown(null)}
                 >
                   <div className="flex items-center">
                     <Link
                       href={link.href}
-                      className={`text-[#575757] px-2 py-1 transition-colors duration-200 flex items-center gap-1
-            ${openDropdown === link.name ? "border-b-2 border-[#1789FF]" : ""}
+                      className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
+            ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
                       {link.name}
                     </Link>
-                    {link.children && (
+                    {link.children && shouldShowDropdown(link.href) && (
                       <motion.span
                         initial={false}
                         animate={{
@@ -197,7 +159,7 @@ export default function Navbar() {
                           damping: 10,
                           mass: 0.5,
                         }}
-                        className="ml-1 flex items-center justify-center w-4 h-4"
+                        className="flex items-center justify-center w-3 h-3 group-hover:fill-[#1789FF]"
                       >
                         <svg
                           width="16"
@@ -205,6 +167,7 @@ export default function Navbar() {
                           viewBox="0 0 16 16"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
+                          className="group-hover:fill-[#1789FF]"
                         >
                           <motion.rect
                             x="3"
@@ -212,7 +175,8 @@ export default function Navbar() {
                             width="10"
                             height="1.5"
                             rx="0.75"
-                            fill="#1789FF"
+                            fill={`${isLinkActive(link.href) ? "#1789ff" : "#595959"}`}
+                            className="group-hover:fill-[#1789FF]"
                           />
                           <motion.rect
                             x="7.25"
@@ -220,7 +184,8 @@ export default function Navbar() {
                             width="1.5"
                             height="10"
                             rx="0.75"
-                            fill="#1789FF"
+                            fill={`${isLinkActive(link.href) ? "#1789ff" : "#595959"}`}
+                            className="group-hover:fill-[#1789FF]"
                             animate={{
                               scaleY: openDropdown === link.name ? 0 : 1,
                             }}
@@ -238,7 +203,7 @@ export default function Navbar() {
                   </div>
                   {/* Mega Dropdown */}
                   <AnimatePresence>
-                    {link.children && openDropdown === link.name && (
+                    {link.children && shouldShowDropdown(link.href) && openDropdown === link.name && (
                       <motion.div
                         initial={{ opacity: 0, y: -16 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -248,31 +213,26 @@ export default function Navbar() {
                           stiffness: 100,
                           damping: 15,
                         }}
-                        className="fixed left-0 top-[72px] w-screen md:h-[300px] md:max-h-[300px] px-28 bg-[#1789FF] justify-center  text-white border-t border-[#1789FF] flex"
+                        className="fixed left-0 top-[72px] w-screen bg-[#f0f0f0]  flex justify-center"
                         style={{ zIndex: 100 }}
                       >
-                        {/* Left: Subpages */}
-                        <div className="flex-1 p-8 flex flex-col justify-center gap-4">
-                          {link.children.map((sublink) => (
-                            <Link
-                              key={sublink.name}
-                              href={sublink.href}
-                              className="text-2xl transition-all font-semibold hover:underline"
-                            >
-                              {sublink.name}
-                            </Link>
-                          ))}
-                        </div>
-                        {/* Right: Description (optional, can be dynamic) */}
-                        <div className="flex-1 p-8 border-l border-[#1789FF] flex items-center">
-                          <p>
-                            {/* You can add a description for each section here, or make it dynamic */}
-                            {link.name === "About Us" &&
-                              "Learn more about our story, approach, and leadership."}
-                            {link.name === "Industries" &&
-                              "Explore the industries we serve: CE, Industrial, Medical, Oil and Gas."}
-                            {/* ...other descriptions */}
-                          </p>
+                        <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
+                          {link.children.map((sublink) => {
+                            const isSublinkActive = isLinkActive(sublink.href);
+                            return (
+                              <Link
+                                key={sublink.name}
+                                href={sublink.href}
+                                className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold uppercase rounded-full border transition-colors duration-200 
+                                  ${isSublinkActive
+                                    ? "bg-[#1789FF] text-white border-[#1789FF] hover:bg-[#959595] hover:border-[#959595]"
+                                    : "bg-transparent text-[#969696] border-[#969696]/50 hover:bg-[#1789FF] hover:text-white hover:border-[#1789FF]"
+                                  }`}
+                              >
+                                {sublink.name}
+                              </Link>
+                            );
+                          })}
                         </div>
                       </motion.div>
                     )}
@@ -283,7 +243,7 @@ export default function Navbar() {
           <div className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className="h-9 w-9 flex items-center bg-[#1789FF]  justify-center rounded-full border border-[#595959]/40  text-sm font-semibold text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298]  transition-colors"
+              className="h-9 w-9 flex items-center bg-[#1789FF] justify-center rounded-full border border-[#595959]/40 text-sm font-semibold text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
               aria-label="Change language"
             >
               {language}
@@ -346,19 +306,19 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "keyframes", duration: 0.2 }}
-            className="md:hidden flex flex-col bg-white border-t border-[#595959]/10 shadow-lg w-full absolute top-full left-0"
+            className="md:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
           >
             {navLinks.map((link) => (
               <li key={link.name} className="border-b border-[#595959]/5">
                 <div className="flex items-center justify-between px-6 py-4">
                   <Link
                     href={link.href}
-                    className="text-[#595959] font-semibold"
+                    className={`font-semibold ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
                     onClick={() => setMenuOpen(false)}
                   >
                     {link.name}
                   </Link>
-                  {link.children && (
+                  {link.children && shouldShowDropdown(link.href) && (
                     <button
                       onClick={() =>
                         setMobileDropdown(
@@ -419,7 +379,7 @@ export default function Navbar() {
                 </div>
                 {/* Mobile Dropdown */}
                 <AnimatePresence>
-                  {link.children && mobileDropdown === link.name && (
+                  {link.children && shouldShowDropdown(link.href) && mobileDropdown === link.name && (
                     <motion.ul
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
@@ -435,7 +395,7 @@ export default function Navbar() {
                         <li key={sublink.name}>
                           <Link
                             href={sublink.href}
-                            className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10 "
+                            className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10"
                             onClick={() => setMenuOpen(false)}
                           >
                             {sublink.name}
@@ -452,10 +412,10 @@ export default function Navbar() {
               <span className="text-[#595959] font-semibold">
                 Language
               </span>
-              <div className="relative ">
+              <div className="relative">
                 <button
                   onClick={() => setLangOpen((v) => !v)}
-                  className="h-9 w-9 flex items-center justify-center bg-[#1789ff] rounded-full border border-[#595959]/40  text-sm font-semibold text-[#595959] hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
+                  className="h-9 w-9 flex items-center justify-center bg-[#1789ff] rounded-full border border-[#595959]/40 text-sm font-semibold text-[#595959] hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
                   aria-label="Change language"
                 >
                   {language}

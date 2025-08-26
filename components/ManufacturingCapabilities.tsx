@@ -109,9 +109,7 @@ export default function CapabilitiesSection({
         <div className="sticky top-0">
           {/* Eyebrow + tabs bar */}
           <div className="my-4 z-10 bg-[#eaeaea]/90 backdrop-blur border-b border-neutral-200">
-            <div className="px-4 pt-3 text-center text-[11px] sm:text-[12px] font-semibold tracking-[0.2em] uppercase text-black">
-              {eyebrow}
-            </div>
+           
 
             {/* Tabs: horizontal scroll on small screens */}
             <div className="px-4 md:pt-2 md:px-10 lg:px-20">
