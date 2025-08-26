@@ -72,12 +72,21 @@ export default function CapabilitiesSection({
       lastScrollY.current = y;
 
       // where we are inside the pinned region
-      const offset = Math.max(0, Math.min(y - topPx, tabs.length * vh + 200));
+      const offset = Math.max(0, Math.min(y - topPx, tabs.length * vh + 210));
 
       // which "frame" we are in (0..tabs.length-1)
       const idx = Math.min(tabs.length - 1, Math.floor(offset / vh));
 
       if (idx !== active) setActive(idx);
+
+      // Simple: if scrolling up and not at the very start, go to first tab start
+      if (!goingDown && offset > 0) {
+        const firstTabStart = topPx;
+        window.scrollTo({
+          top: firstTabStart - 200,
+          behavior: 'smooth'
+        });
+      }
     };
 
     const onResize = () => {
@@ -116,7 +125,18 @@ export default function CapabilitiesSection({
                 {tabs.map((t, idx) => (
                   <button
                     key={`${t.title}-${idx}`}
-                    onClick={() => setActive(idx)}
+                    onClick={() => {
+                      // Calculate the scroll position for this tab
+                      const tabScrollPosition = idx * vh + 60;
+                      const containerTop = containerRef.current?.getBoundingClientRect().top || 0;
+                      const scrollTarget = window.scrollY + containerTop + tabScrollPosition;
+
+                      // Smooth scroll to the tab position
+                      window.scrollTo({
+                        top: scrollTarget,
+                        behavior: 'smooth'
+                      });
+                    }}
                     className={`shrink-0 snap-start text-lg sm:text-md md:text-xl py-3 transition-colors ${active === idx
                       ? "text-[#1789FF]"
                       : "text-[#8a8a8a] hover:text-[#1789FF]"
@@ -196,7 +216,7 @@ export default function CapabilitiesSection({
                       className="text-white object-contain"
                     />
                     <Image
-                      src="/static/badges/2K.png"
+                      src="/static/badges/2k.png"
                       alt="2K"
                       width={280}
                       height={100}

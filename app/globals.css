@@ -11,23 +11,13 @@
   --font-sans: var(--font-instrument-sans);
 }
 
+/* Global scroll behavior - single declaration to prevent conflicts */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 40px;
 }
 
-/* Custom scroll behavior to make it feel heavier */
-html {
-  scroll-behavior: smooth;
-  /* Add momentum and weight to scrolling */
-  scroll-padding-top: 72px;
-}
-
-/* Make scroll feel heavier by 10% */
-* {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar for heavier feel */
+/* Custom scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -38,18 +28,10 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background: #1789FF;
-  /* border-radius: 5px; */
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #1470cc;
-}
-
-/* Add scroll momentum for heavier feel */
-html {
-  scroll-behavior: smooth;
-  /* Increase scroll momentum */
-  scroll-padding-top: 40px;
 }
 
 body {
@@ -58,8 +40,5 @@ body {
   background: var(--background);
   /* Add momentum scrolling for heavier feel */
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  /* Add weight to scrolling */
-  scroll-padding-top: 40px;
 }
 
