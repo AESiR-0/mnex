@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useDownOnlyObserver } from "@/lib/useDownOnlyObserver";
+import Header from "./Header";
 
 type Tab = { title: string; image?: string; desc: string };
 
@@ -14,13 +15,11 @@ export default function SolutionsSection({ tabs }: { tabs: Tab[] }) {
   useDownOnlyObserver(ids, onActive, paneRef.current ?? undefined);
 
   return (
-    <section className="w-full h-[100svh]">
+    <section className="w-full h-[100vh]">
       <div className="h-full grid grid-rows-[auto_1fr]">
         {/* Header + Tabs */}
         <div className="max-w-7xl mx-auto px-4 pt-10">
-          <h2 className="text-xs font-semibold text-[#595959] uppercase tracking-widest mb-3">
-            Solutions
-          </h2>
+          <Header className="mb-3">Solutions</Header>
           <div className="flex flex-wrap items-center gap-2">
             {tabs.map((t, i) => (
               <button
@@ -31,14 +30,14 @@ export default function SolutionsSection({ tabs }: { tabs: Tab[] }) {
                   setActive(i);
                 }}
                 className={`px-4 py-2 rounded-full border text-sm transition
-                  ${active === i ? "bg-[#1789FF] text-white border-[#1789FF]" : "bg-white text-[#595959] border-[#D1D1D1] hover:border-[#1789FF]"}`}
+                    ${active === i ? "bg-[#1789FF] text-white border-[#1789FF]" : "bg-white text-[#595959] border-[#D1D1D1] hover:border-[#1789FF]"}`}
               >
                 {t.title}
               </button>
             ))}
           </div>
           <p className="mt-4 text-2xl md:text-3xl font-semibold text-[#595959]">
-            We don’t sell capabilities. We build the right one for you.
+            We don't sell capabilities. We build the right one for you.
           </p>
         </div>
 

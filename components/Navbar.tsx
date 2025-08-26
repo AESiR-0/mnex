@@ -223,7 +223,7 @@ export default function Navbar() {
                                 className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold uppercase rounded-full border transition-colors duration-200 
                                   ${isSublinkActive
                                     ? "bg-[#1789FF] text-white  hover:bg-[#959595]"
-                                    : "bg-transparent text-[#969696] hover:text-white "
+                                    : "bg-transparent text-[#969696] hover:bg-[#1789FF] hover:text-white"
                                   }`}
                               >
                                 {sublink.name}

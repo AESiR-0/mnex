@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import Header from "@/components/Header";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -77,7 +78,7 @@ export default function ApproachSection({
       ref={sectionRef}
       className="w-full bg-[#D1D1D1] min-h-screen"
     >
-      <section className="w-full relative min-h-[20vh] md:min-h-[40vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
+      <section className="w-full relative min-h-[20vh] md:min-h-[30vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
         {/* Background Image with reduced opacity */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -100,16 +101,14 @@ export default function ApproachSection({
       </section>
       <div ref={contentRef} className="h-[70vh] flex  items-start py-10">
         <div className="max-w-7xl space-y-10 mx-auto w-full ">
-          <h2 className="text-xs text-[#595959] font-medium uppercase tracking-widest">
-            Our Approach
-          </h2>
+          <Header>Our Approach</Header>
           <div className="flex justify-between items-start">
             {/* Left: Active content */}
             <div
               id={panelId}
               role="tabpanel"
               aria-labelledby={activeTabId}
-              className="flex flex-col w-1/2 gap-3 text-[#595959]"
+              className="flex flex-col w-1/2 gap-3 text-[#009B80]"
             >
 
 
@@ -117,32 +116,32 @@ export default function ApproachSection({
                 {active >= 0 ? (
                   <motion.div
                     key={active}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 1, y: 0 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="contents"
+                    exit={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0, ease: "easeOut" }}
+                    className="contents "
                   >
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold">
+                    <h3 className="text-xl sm:text-2xl md:text-4xl font-semibold">
                       {items[active].title}
                     </h3>
-                    <p className="text-lg whitespace-pre-wrap sm:text-xl md:text-xl leading-relaxed">
+                    <p className="text-2xl py-5 whitespace-pre-wrap sm:text-xl md:text-xl leading-relaxed">
                       {items[active].desc}
                     </p>
                   </motion.div>
                 ) : (
                   <motion.div
                     key="inactive"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 1, y: 0 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    exit={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0, ease: "easeOut" }}
                     className="contents"
                   >
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold">
+                    <h3 className="text-2xl sm:text-2xl md:text-4xl font-semibold">
                       We Build What Matters
                     </h3>
-                    <p className="text-lg whitespace-pre-wrap sm:text-xl md:text-xl leading-relaxed">
+                    <p className="text-2xl py-5 whitespace-pre-wrap sm:text-xl md:text-xl leading-relaxed">
                       From concept to precision-built reality,<br />
                       We create with purpose, speed and obsessive detail.<br />
                       This is industrial manufacturing where manufacturability is engineered from day one.

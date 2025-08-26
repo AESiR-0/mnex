@@ -6,6 +6,7 @@ import SustainabilitySection from "@/components/SustainabilitySection";
 import Image from "next/image";
 import CapabilitiesSection from "@/components/ManufacturingCapabilities";
 import { useState } from "react";
+import Header from "@/components/Header";
 
 const tabData = [
   {
@@ -26,7 +27,7 @@ const tabData = [
   {
     title: "Integrated Product Development",
     video:
-      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
+      "/videos/home/Solutions - Integrated Product Development.webm",
     desc: "Design thinking, built for reality.",
   },
 ];
@@ -84,7 +85,7 @@ export default function Home() {
           muted
           className="object-cover w-full h-full"
         />
-        
+
       </section>
 
       {/* 2. Content Container */}
@@ -104,13 +105,13 @@ export default function Home() {
         />
 
         {/* 5. Solutions Section */}
-        <section className="w-full min-h-[60vh] flex items-center bg-white px-4 sm:px-6 lg:px-8">
+        <section className="w-full min-h-[60vh] justify-center flex flex-col items-center bg-white px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-7xl px-8  ">
+            <Header>Solutions</Header>
+          </div>
           <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-6 lg:gap-0">
             {/* Left column */}
             <div className="flex flex-col justify-start p-4 sm:p-6 lg:p-8">
-              <h2 className="text-sm sm:text-base lg:text-lg font-semibold text-[#595959] uppercase tracking-widest mb-4 sm:mb-6">
-                Solutions
-              </h2>
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-[#1789FF] leading-snug">
                 We don't sell capabilities.
                 <br />

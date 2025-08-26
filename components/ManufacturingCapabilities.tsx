@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Header from "@/components/Header";
 
 type Tab = {
   title: string;
@@ -98,7 +99,7 @@ export default function CapabilitiesSection({
   const containerHeight = tabs.length * vh + 200;
 
   return (
-    <section className="w-full bg-[#eaeaea]">
+    <section className="w-full bg-[#ececec]">
       {/* SCROLL CONTAINER (tall) */}
       <div
         ref={containerRef}
@@ -108,21 +109,19 @@ export default function CapabilitiesSection({
         {/* STICKY LAYER (pinned) */}
         <div className="sticky top-0">
           {/* Eyebrow + tabs bar */}
-          <div className="my-4 z-10 bg-[#eaeaea]/90 backdrop-blur border-b border-neutral-200">
-           
-
+          <Header className="text-center pt-6 pb-2 md:mb-0">Core Capabilities</Header>
+          <div className="pb-3 flex  justify-center  z-10 ">
             {/* Tabs: horizontal scroll on small screens */}
-            <div className="px-4 md:pt-2 md:px-10 lg:px-20">
-              <div className="flex justify-between gap-6 md:gap-10 overflow-x-auto no-scrollbar snap-x">
+            <div className="max-w-7xl w-full px-4  ">
+              <div className="flex justify-between gap-6 md:gap-20 overflow-x-auto no-scrollbar snap-x">
                 {tabs.map((t, idx) => (
                   <button
                     key={`${t.title}-${idx}`}
                     onClick={() => setActive(idx)}
-                    className={`shrink-0 snap-start text-sm sm:text-base md:text-lg py-3 transition-colors ${
-                      active === idx
-                        ? "text-[#1789FF]"
-                        : "text-[#8a8a8a] hover:text-[#1789FF]"
-                    }`}
+                    className={`shrink-0 snap-start text-lg sm:text-md md:text-xl py-3 transition-colors ${active === idx
+                      ? "text-[#1789FF]"
+                      : "text-[#8a8a8a] hover:text-[#1789FF]"
+                      }`}
                     aria-current={active === idx ? "page" : undefined}
                   >
                     {t.title}
@@ -164,37 +163,46 @@ export default function CapabilitiesSection({
             </div>
 
             {/* overlay content */}
-            <div className="absolute inset-0 z-10 flex items-center">
-              <div className="px-4 sm:px-8 lg:px-20 mx-auto w-full">
-                <div className="max-w-xl sm:max-w-2xl">
-                  <p className="text-white/80 text-[10px] sm:text-[11px] tracking-[0.18em] uppercase mb-3 sm:mb-4">
-                    {tab.title}
-                  </p>
-                  <h3 className="text-white text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight mb-4 sm:mb-6 whitespace-pre-line">
-                    {tab.title === "Tooling"
-                      ? "Tools that\nshape outcomes."
-                      : tab.title}
-                  </h3>
-                  <p className="text-[#A8D3FF] text-base sm:text-lg md:text-2xl leading-relaxed max-w-xl mb-5 sm:mb-6 whitespace-pre-line">
-                    {tab.desc}
-                  </p>
+            <div className="absolute h-full inset-0 z-10 flex items-center">
+              <div className="px-4 h-full sm:px-8 lg:px-20 mx-auto w-full">
+                <div className="max-w-xl flex flex-col gap-4 justify-between h-full py-20 sm:max-w-2xl">
+                  <div className="">
+                    <h3 className="text-white text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight mb-4 sm:mb-6 whitespace-pre-line">
+                      {tab.title === "Tooling"
+                        ? "Tools that\nshape outcomes."
+                        : tab.desc}
+                    </h3>
 
-                  <a
-                    href="/solutions"
-                    className="inline-block text-white/90 text-xs sm:text-sm uppercase tracking-wide underline underline-offset-4 decoration-white/60 hover:decoration-white"
-                  >
-                    Learn more
-                  </a>
-
+                    <a
+                      href="/solutions"
+                      className="inline-block text-white/90 text-xs sm:text-sm uppercase tracking-wide underline underline-offset-4 decoration-white/60 hover:decoration-white"
+                    >
+                      Learn more
+                    </a>
+                  </div>
                   {/* Badges */}
-                  <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 mt-8 sm:mt-10 md:mt-12">
-                    <Badge
-                      title="30+"
-                      subtitle="Patents"
-                      className="text-white"
+                  <div className="flex flex-wrap justify-start max-w-sm gap-3 sm:gap-4 md:gap-4 mt-8 sm:mt-10 md:mt-12">
+                    <Image
+                      src="/static/badges/BMC.png"
+                      alt="BMC"
+                      width={64}
+                      height={64}
+                      className="text-white object-contain "
                     />
-                    <Badge title="CNC" className="text-white" />
-                    <Badge title="EDM" className="text-white" />
+                    <Image
+                      src="/static/badges/LSR.png"
+                      alt="LS"
+                      width={64}
+                      height={64}
+                      className="text-white object-contain"
+                    />
+                    <Image
+                      src="/static/badges/2K.png"
+                      alt="BMC"
+                      width={256}
+                      height={64}
+                      className="text-white col-span-2 object-contain"
+                    />
                   </div>
 
                   {/* Optional dynamic chips */}

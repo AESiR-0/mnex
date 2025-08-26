@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
+import Header from "./Header";
 
 export default function CaseStudySpotlight({
   href,
@@ -42,33 +43,34 @@ export default function CaseStudySpotlight({
       <div className="relative z-10 h-full flex items-center justify-center px-4">
         <Link
           href={href}
-          className="group block w-full max-w-xl"
+          className="group block w-full max-w-lg aspect-square"
           aria-label={`Open case study: ${title}`}
         >
           <div
             className="
-              rounded-3xl max-w-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)]
-              px-8 md:px-12 py-8 md:py-12
+              rounded-3xl w-full aspect-square shadow-[0_10px_40px_rgba(0,0,0,0.1)]
+              px-12 md:px-16 py-12 md:py-16
               transition-colors duration-300
               bg-[rgba(23,137,255,0.60)] group-hover:bg-[rgba(23,137,255,1)]
+              flex flex-col justify-between
             "
           >
-            <p className="text-white/90 text-xs md:text-sm tracking-[0.15em] uppercase mb-6">
-              Case Study
-            </p>
-            <h2 className="text-white text-3xl md:text-5xl font-semibold leading-tight mb-8">
-              {title}
-            </h2>
+            <div>
+              <Header className="text-white/90 mb-8">Case Study</Header>
+              <h2 className="text-white text-3xl md:text-5xl font-semibold leading-tight mb-12">
+                {title}
+              </h2>
+            </div>
 
-            <div className="grid md:grid-cols-1 gap-8 text-white">
+            <div className="grid md:grid-cols-1 gap-12 text-white">
               <div>
-                <p className="text-white/80 text-[11px] md:text-xs tracking-[0.18em] uppercase mb-2">
+                <p className="text-white/80 text-[11px] md:text-xs tracking-[0.18em] uppercase mb-3">
                   Sector
                 </p>
                 <p className="text-white text-lg md:text-2xl">{sector}</p>
               </div>
               <div>
-                <p className="text-white/80 text-[11px] md:text-xs tracking-[0.18em] uppercase mb-2">
+                <p className="text-white/80 text-[11px] md:text-xs tracking-[0.18em] uppercase mb-3">
                   Challenge
                 </p>
                 <p className="text-white/95 text-lg md:text-2xl leading-snug">
