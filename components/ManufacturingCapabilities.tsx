@@ -57,19 +57,6 @@ export default function CapabilitiesSection({
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  // autoplay when tab changes
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    const play = async () => {
-      try {
-        await v.play();
-      } catch {}
-    };
-    const id = setTimeout(play, 60);
-    return () => clearTimeout(id);
-  }, [active]);
-
   // scroll logic: pin + advance on down only
   useEffect(() => {
     if (!containerRef.current || vh === 0 || tabs.length === 0) return;
@@ -104,10 +91,6 @@ export default function CapabilitiesSection({
       window.removeEventListener("resize", onResize);
     };
   }, [vh, tabs.length, active]);
-
-  const onVideoEnded = () => {
-    setActive((prev) => (prev + 1) % tabs.length);
-  };
 
   const tab = tabs[active];
 
@@ -164,7 +147,6 @@ export default function CapabilitiesSection({
                 muted
                 playsInline
                 autoPlay
-                onEnded={onVideoEnded}
               />
             ) : tab.img ? (
               <Image
