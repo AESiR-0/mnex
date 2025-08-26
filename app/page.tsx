@@ -105,9 +105,9 @@ export default function Home() {
         />
 
         {/* 5. Solutions Section */}
-        <section className="w-full min-h-[60vh] justify-center flex flex-col items-center bg-white px-4 sm:px-6 lg:px-8">
-          <div className="w-full max-w-7xl px-4  ">
-            <Header>Solutions</Header>
+        <section className="w-full min-h-[60vh] justify-start py-10  flex flex-col items-center bg-white px-4 sm:px-6 lg:px-8">
+          <div className="w-full  max-w-7xl px-4  ">
+            <Header className="pb-5">Solutions</Header>
           </div>
           <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-6 lg:gap-0 px-4  ">
             {/* Left column */}
@@ -120,7 +120,7 @@ export default function Home() {
             </div>
 
             {/* Right column */}
-            <div className="flex flex-col justify-center p-4 sm:p-6 lg:p-8 text-[#595959]">
+            <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 text-[#595959]">
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-4 sm:mb-6">
                 At Mnex, every solution is engineered around your product, scale
                 and market demands.
