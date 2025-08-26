@@ -1,3 +1,5 @@
+import Header from "./Header";
+
 // components/SustainabilitySection.tsx
 export default function SustainabilitySection() {
   return (
@@ -5,9 +7,7 @@ export default function SustainabilitySection() {
       <div className="max-w-7xl mx-auto w-full px-6 md:px-4 grid md:grid-cols-2 gap-10 items-center">
         {/* Left copy */}
         <div className="max-w-2xl">
-          <p className="text-xl tracking-widest uppercase mb-6 opacity-90">
-            Sustainability
-          </p>
+          <Header className="text-white">Sustainability</Header>
 
           <h2 className="text-3xl leading-[1] md:text-4xl md:leading-[1.25] font-semibold mb-10">
             Built to Perform.
