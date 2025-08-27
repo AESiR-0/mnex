@@ -100,7 +100,6 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-[9999] flex items-center justify-end"
-          onClick={handleBackdropClick}
         >
           {/* Blurred background overlay */}
           <motion.div
@@ -108,7 +107,8 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
             animate={{ backdropFilter: "blur(8px)" }}
             exit={{ backdropFilter: "blur(0px)" }}
             transition={{ duration: 0.3 }}
-            className="absolute inset-0 bg-black/20"
+            className="absolute inset-0 bg-black/30 cursor-pointer"
+            onClick={handleBackdropClick}
           />
 
           {/* Contact form slider */}
@@ -124,7 +124,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               duration: 0.5
             }}
             className="relative px-5 w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden"
-            onClick={handleSliderClick}
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
