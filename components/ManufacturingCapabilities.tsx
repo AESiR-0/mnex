@@ -244,20 +244,7 @@ export default function CapabilitiesSection({
                             height={85}
                             className="text-white object-contain "
                           />
-                          <Image
-                            src="/static/badges/LSR.png"
-                            alt="LSR"
-                            width={85}
-                            height={85}
-                            className="text-white object-contain"
-                          />
-                          <Image
-                            src="/static/badges/2k.png"
-                            alt="2K"
-                            width={280}
-                            height={100}
-                            className="text-white col-span-2 object-contain"
-                          />
+                          
                         </div>
                       </>
                     )}

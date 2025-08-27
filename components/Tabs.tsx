@@ -17,7 +17,7 @@ export default function Tabs({
 
   // figure out the active tab from the URL every render
   const activeName = useMemo(() => {
-    const p   = (pathname || "").toLowerCase();
+    const p = (pathname || "").toLowerCase();
     // exact match or startsWith allows /about/approach/anything
     const hit = tabs.find(
       (t) => p === t.href.toLowerCase() || p.startsWith(t.href.toLowerCase())
@@ -37,11 +37,10 @@ export default function Tabs({
               key={tab.name}
               href={tab.href}
               aria-current={isActive ? "page" : undefined}
-              className={`px-4 sm:px-5 py-2 text-xs sm:text-sm  uppercase rounded-full border transition-colors duration-200
-                ${
-                  isActive
-                    ? "bg-[#1789FF] text-white border-[#1789FF]"
-                    : "bg-transparent text-[#595959] border-[#595959]/50 hover:bg-[#1789FF] hover:text-white hover:border-[#1789FF]"
+              className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
+                ${isActive
+                  ? "bg-[#1789FF] text-white "
+                  : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
                 }`}
             >
               {tab.name}

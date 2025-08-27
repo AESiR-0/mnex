@@ -32,10 +32,9 @@ export default function Page() {
             fill
             sizes="100vw"
             priority
-            className="object-cover grayscale"
+            className="object-cover "
           />
           {/* Blue overlay */}
-          <div className="absolute inset-0 bg-[#1789FF]/60 mix-blend-multiply" />
         </div>
       </section>
 

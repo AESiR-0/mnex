@@ -21,8 +21,8 @@ const navLinks = [
     href: "/industries/cei",
     children: [
       { name: "Consumer & Industrial", href: "/industries/cei" },
-      { name: "Medical", href: "/industries/medical" },
-      { name: "Oil & Gas", href: "/industries/oil-gas" },
+      { name: "Regulated", href: "/industries/regulated" },
+      { name: "Oil & Gas", href: "/industries/oil-and-gas" },
     ],
   },
   { name: "Sustainability", href: "/sustainability" },
@@ -107,9 +107,11 @@ export default function Navbar() {
                   <div className="flex bg-transparent items-center">
                     <Link
                       href={link.href}
-                      className={`text-[#575757] hover:bg-[#00b298] hover:text-white border rounded-2xl px-4 py-1 transition-colors duration-200 flex items-center gap-1
-            ${openDropdown === link.name ? "" : ""}
-          `}
+                      className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
+                        ${isLinkActive(link.href)
+                          ? "bg-[#1789FF] text-white  hover:bg-[#959595] border-[#1789FF]"
+                          : "bg-transparent text-[#595959] hover:bg-[#009b80] hover:text-white"
+                        }`}
                     >
                       {link.name}
                     </Link>

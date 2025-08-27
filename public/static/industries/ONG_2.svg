@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2400.39 1600.26">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" x="309.61" y="320.52" width="1919.44" height="1024.77"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g class="cls-1">
+      <image width="6240" height="4160" transform="scale(.38)" xlink:href="../../../../mnex_design/mnex homepage_Folder 0/mnex homepage_Folder 0/Links/Oil &amp; Gas.jpg"/>
+    </g>
+  </g>
+</svg>
