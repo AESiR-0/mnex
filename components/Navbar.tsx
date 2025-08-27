@@ -40,6 +40,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
+  const { isOpen: isContactOpen } = useContactSlider();
 
   // Check if a link is active
   const isLinkActive = (href: string) => {
@@ -84,7 +85,10 @@ export default function Navbar() {
     <motion.nav
       className="fixed left-0 top-0 min-h-[65px] max-md:w-full w-full max-w-screen text-[#575757] bg-[#ffffff] uppercase z-50 flex items-center shadow-none border-none"
       initial={{ y: 0 }}
-      animate={{ y: isVisible ? 0 : -70 }}
+      animate={{ 
+        y: isVisible && !isContactOpen ? 0 : -70,
+        opacity: isContactOpen ? 0 : 1
+      }}
       transition={{ duration: 0.3, ease: "linear" }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 w-full">

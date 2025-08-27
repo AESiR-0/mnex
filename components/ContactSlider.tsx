@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import Header from "./Header";
 
 interface ContactSliderProps {
   isOpen: boolean;
@@ -92,7 +93,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-center justify-end"
+          className="fixed inset-0 z-[9999] flex items-center justify-end"
           onClick={handleBackdropClick}
         >
           {/* Blurred background overlay */}
@@ -110,20 +111,20 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ 
-              type: "spring", 
-              damping: 25, 
+            transition={{
+              type: "spring",
+              damping: 25,
               stiffness: 200,
-              duration: 0.5 
+              duration: 0.5
             }}
-            className="relative w-full max-w-md h-full bg-white shadow-2xl overflow-hidden"
+            className="relative w-full max-w-lg h-full bg-white shadow-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
               <div>
-                <p className="text-sm font-medium text-[#1789FF] mb-1">
+                <Header className="text-sm pb-5 font-medium text-[#1789FF] mb-1">
                   GENERAL INQUIRY
-                </p>
+                </Header>
                 <h2 className="text-2xl font-bold text-[#595959]">
                   Let's talk.
                 </h2>
@@ -150,7 +151,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-colors bg-transparent"
+                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
                     placeholder="Enter first name"
                   />
                 </div>
@@ -164,7 +165,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-colors bg-transparent"
+                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
                     placeholder="Enter last name"
                   />
                 </div>
@@ -181,7 +182,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   value={formData.companyName}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-colors bg-transparent"
+                  className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
                   placeholder="Enter company name"
                 />
               </div>
@@ -195,7 +196,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   name="positionTitle"
                   value={formData.positionTitle}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-colors bg-transparent"
+                  className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
                   placeholder="Enter position title"
                 />
               </div>
@@ -211,7 +212,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-colors bg-transparent"
+                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
                     placeholder="Enter phone number"
                   />
                 </div>
@@ -225,7 +226,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-colors bg-transparent"
+                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
                     placeholder="Enter email address"
                   />
                 </div>
@@ -241,7 +242,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     name="region"
                     value={formData.region}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-colors bg-transparent appearance-none cursor-pointer"
+                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm appearance-none cursor-pointer"
                   >
                     <option value="">Select region</option>
                     {regions.map((region) => (
@@ -259,7 +260,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     name="category"
                     value={formData.category}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-colors bg-transparent appearance-none cursor-pointer"
+                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm appearance-none cursor-pointer"
                   >
                     <option value="">Select category</option>
                     {categories.map((category) => (
@@ -281,7 +282,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-colors bg-transparent resize-none"
+                  className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm resize-none"
                   placeholder="Help us help you - please add details about your inquiry."
                 />
               </div>
