@@ -18,7 +18,8 @@ const tabData = [
   {
     title: "Injection Molding",
     video: "/videos/home/Solutions - Injection Molding.webm",
-    desc: "Where material, machine, and process align.",
+    desc: `Where material, machine 
+    and process align.`,
     link: "/solutions#injection-molding",
   },
   {
@@ -31,7 +32,8 @@ const tabData = [
     title: "Integrated Product Development",
     video:
       "/videos/home/Solutions - Integrated Product Development.webm",
-    desc: "Design thinking, built for reality.",
+    desc: `Design thinking, 
+    built for reality.`,
     link: "/solutions#integrated-product-development",
   },
 ];
@@ -39,23 +41,20 @@ const tabData = [
 const approachContent = [
 
   {
-    title: "Vision, Engineered. Innovation That Serves",
-    desc: `From the very first step, we align our manufacturing strategy to your business strategy 
-not the other way round. Innovation is applied with intention: smart technology that 
-serves your needs, without overengineering or waste. The outcome is practical, scalable 
-value that moves in lockstep with your visions.`,
+    title: "Vision, Engineered",
+    desc: `From the very first step, we align our manufacturing strategy to your business strategy - not the other way round.`,
   },
   {
-    title: "Built to Scale or Specialize",
-    desc: `Whether it's a global program demanding consistency across geographies or a custom build 
-requiring deep technical attention, we deliver with equal precision and commitment. Our 
-structure is robust enough to support complex, high-volume rollouts-yet flexible enough to 
-adapt to specialized, low-volume needs. In both, you get the same discipline, speed, and 
-engineering rigor.`,
+    title: "Innovation That Serves",
+    desc: `Smart technology, no overengineering—just practical, scalable value aligned to your goals`,
+  },
+  {
+    title: "Built to Scale + Specialize",
+    desc: `Smart technology, no overengineering—just practical, scalable value aligned to your goals`,
   },
   // {
   //   title: "Vertically Integrated for Speed",
-  //   desc: "Tooling, molding, automation, assembly—all in one place for tighter control and faster delivery.",
+  //   desc: "Tooling, molding, automation, assembly - all in one place for tighter control and faster delivery.",
   // },
   // {
   //   title: "Precision by Design",
@@ -67,9 +66,7 @@ engineering rigor.`,
   // },
   {
     title: "Integrated Precision, Delivered Fast",
-    desc: `Tooling, molding, automation, and assembly-brought together under one roof for tighter control 
-and faster turnaround. Backed by decades of expertise, every process is engineered for 
-stability, repeatability, and high-accuracy results`,
+    desc: `Tooling, molding, automation, and assembly under one roof—for speed, control, and accuracy.`,
   },
 ];
 
@@ -91,7 +88,7 @@ export default function Home() {
       {/* 1. Hero Video Section (Normal Scroll) */}
       <section className="relative w-full h-screen">
         <video
-          src="/videos/home/hero.webm"
+          src="/videos/home/hero_1.webm"
           autoPlay
           playsInline
           loop

@@ -17,22 +17,6 @@ html {
   scroll-padding-top: 40px;
 }
 
-/* Custom scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1789FF;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #1470cc;
-}
 
 body {
   font-family: var(--font-instrument-sans), sans-serif;

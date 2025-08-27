@@ -81,7 +81,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="fixed left-0 top-0 min-h-[65px] max-md:w-full w-full max-w-screen text-[#575757] bg-[#ececec] uppercase z-50 flex items-center shadow-none border-none"
+      className="fixed left-0 top-0 min-h-[65px] max-md:w-full w-full max-w-screen text-[#575757] bg-[#ffffff] uppercase z-50 flex items-center shadow-none border-none"
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -70 }}
       transition={{ duration: 0.3, ease: "linear" }}
@@ -99,11 +99,11 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden transition-all font-medium text-sm md:flex gap-8 items-center">
+        <ul className="hidden transition-all  tracking-[0.05em] text-sm md:flex gap-8 items-center">
           {navLinks.map((link) => {
             if (link.name == "Contact Us") {
               return (
-                <li key={link.name} className="relative group transition-all">
+                <li key={link.name} className="relative group  transition-all">
                   <div className="flex bg-transparent items-center">
                     <Link
                       href={link.href}
@@ -203,7 +203,7 @@ export default function Navbar() {
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[55px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
+                        className="fixed left-0 top-[55px] pb-3 w-screen bg-[#ffffff] flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
@@ -221,7 +221,7 @@ export default function Navbar() {
                               >
                                 <Link
                                   href={sublink.href}
-                                  className={`px-6 sm:px-5 py-2 text-xs font-regular tracking-widest uppercase rounded-full border transition-colors duration-200 
+                                  className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                                     ${isSublinkActive
                                       ? "bg-[#1789FF] text-white  hover:bg-[#959595]"
                                       : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
@@ -343,7 +343,7 @@ export default function Navbar() {
                               >
                                 <Link
                                   href={sublink.href}
-                                  className={`px-6 sm:px-5 py-2 text-xs font-regular tracking-widest uppercase rounded-full border transition-colors duration-200 
+                                  className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                                     ${isSublinkActive
                                       ? "bg-[#1789FF] text-white  hover:bg-[#959595]"
                                       : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
@@ -463,7 +463,7 @@ export default function Navbar() {
                               >
                                 <Link
                                   href={sublink.href}
-                                  className={`px-6 sm:px-5 py-2 text-xs font-regular tracking-widest uppercase rounded-full border transition-colors duration-200 
+                                  className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                                     ${isSublinkActive
                                       ? "bg-[#1789FF] text-white  hover:bg-[#959595]"
                                       : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
@@ -484,7 +484,7 @@ export default function Navbar() {
           <div className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className="h-9 w-9 flex items-center bg-[#1789FF] justify-center rounded-full border border-[#595959]/40 text-sm font-semibold text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
+              className="h-9 w-9 flex items-center bg-[#1789FF] justify-center rounded-full border border-[#595959]/40 text-sm text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
               aria-label="Change language"
             >
               {language}
@@ -554,7 +554,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between px-6 py-4">
                   <Link
                     href={link.href}
-                    className={`font-semibold ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
+                    className={` ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
                     onClick={() => setMenuOpen(false)}
                   >
                     {link.name}

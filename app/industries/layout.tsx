@@ -20,7 +20,7 @@ export default function AboutLayout({
             Where proof lives.
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-[#595959]/80 leading-relaxed">
-            At Mnex, we start with your product, scale, and market risks— then
+            At Mnex, we start with your product, scale, and market risks -  then
             shape a complete solution around it.
           </p>
         </div>

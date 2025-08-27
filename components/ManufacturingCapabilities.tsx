@@ -11,6 +11,7 @@ type Tab = {
   poster?: string;
   img?: string;
   chips?: string[];
+  bullets?: string[];
 };
 
 function Badge({
@@ -100,7 +101,7 @@ export default function CapabilitiesSection({
           top: firstTabStart - 10,
           behavior: 'smooth'
         });
-        
+
         // Reset the flag after a delay
         setTimeout(() => {
           isScrollingUp = false;
@@ -208,62 +209,78 @@ export default function CapabilitiesSection({
               <div className="px-4 h-full   mx-auto w-full max-w-7xl">
                 <div className="max-w-xl flex flex-col gap-4 justify-between h-full py-20 sm:max-w-2xl">
                   <div className="">
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight mb-4 sm:mb-6 whitespace-pre-line">
+                    <h3 className="text-white text-2xl sm:text-3xl md:text-5xl font-medium leading-tight mb-4 sm:mb-6 whitespace-pre-line">
                       {tab.title === "Tooling"
                         ? "Tools that\nshape outcomes."
                         : tab.desc}
                     </h3>
 
-                    <Link
-                      href="/solutions"
-                      className="inline-block text-white/90 text-xs sm:text-sm uppercase tracking-wide underline underline-offset-4 decoration-white/60 hover:decoration-white"
-                    >
-                      Learn more
-                    </Link>
-                  </div>
-                  {/* Badges */}
-                  <div className="flex flex-wrap justify-start max-w-sm gap-3 sm:gap-4 md:gap-4 mt-8 sm:mt-10 md:mt-12">
-                    <Image
-                      src="/static/badges/BMC.png"
-                      alt="BMC"
-                      width={85}
-                      height={85}
-                      className="text-white object-contain "
-                    />
-                    <Image
-                      src="/static/badges/LSR.png"
-                      alt="LSR"
-                      width={85}
-                      height={85}
-                      className="text-white object-contain"
-                    />
-                    <Image
-                      src="/static/badges/2k.png"
-                      alt="2K"
-                      width={280}
-                      height={100}
-                      className="text-white col-span-2 object-contain"
-                    />
-                  </div>
 
-                  {/* Optional dynamic chips */}
-                  {!!tab.chips?.length && (
-                    <div className="flex flex-wrap gap-3 sm:gap-4 mt-6">
-                      {tab.chips.map((c, i) => (
-                        <div
-                          key={`${c}-${i}`}
-                          className="rounded-2xl bg-white/10 border border-white/80 px-4 py-2 sm:px-6 sm:py-3 text-white text-center text-sm sm:text-base font-semibold"
-                        >
-                          {c}
+
+                    {/* Show bullets if they exist, otherwise show badges */}
+                    {tab.bullets && tab.bullets.length > 0 ? (
+                      <div className="mt-8 sm:mt-10 md:mt-4">
+                        <ul className="space-y-3 sm:space-y-4">
+                          {tab.bullets.map((bullet, index) => (
+                            <li key={index} className="text-white/90 text-sm sm:text-base leading-relaxed">
+                              {bullet}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <> <Link
+                        href="/solutions"
+                        className="inline-block text-white/90 text-xs sm:text-sm uppercase tracking-wide underline underline-offset-4 decoration-white/60 hover:decoration-white"
+                      >
+                        Learn more
+                      </Link>
+                        {/* Badges */}
+                        <div className="flex flex-wrap justify-start max-w-sm gap-3 sm:gap-4 md:gap-4 mt-8 sm:mt-10 md:mt-12">
+                          <Image
+                            src="/static/badges/BMC.png"
+                            alt="BMC"
+                            width={85}
+                            height={85}
+                            className="text-white object-contain "
+                          />
+                          <Image
+                            src="/static/badges/LSR.png"
+                            alt="LSR"
+                            width={85}
+                            height={85}
+                            className="text-white object-contain"
+                          />
+                          <Image
+                            src="/static/badges/2k.png"
+                            alt="2K"
+                            width={280}
+                            height={100}
+                            className="text-white col-span-2 object-contain"
+                          />
                         </div>
-                      ))}
-                    </div>
-                  )}
+                      </>
+                    )}
+
+                    {/* Optional dynamic chips */}
+                    {!!tab.chips?.length && (
+                      <div className="flex flex-wrap gap-3 sm:gap-4 mt-6">
+                        {tab.chips.map((c, i) => (
+                          <div
+                            key={`${c}-${i}`}
+                            className="rounded-2xl bg-white/10 border border-white/80 px-4 py-2 sm:px-6 sm:py-3 text-white text-center text-sm sm:text-base font-semibold"
+                          >
+                            {c}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
+            {/* END sticky block */}
           </div>
-          {/* END sticky block */}
         </div>
       </div>
     </section>

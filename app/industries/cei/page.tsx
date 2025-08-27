@@ -20,14 +20,14 @@ const caseStudies: CaseStudy[] = [
     approach: [
       "Conducted a process trade-off study and chose In-Mold Labeling (IML) for consistent quality, flexible MOQs, and fast deployment.",
       "Solved thin-wall warpage with robust tooling design, optimized gate placement, and precise processing controls.",
-      "Delivered a fully integrated solution—tooling, machine pairing, and automation—developed in parallel at the design stage.",
+      "Delivered a fully integrated solution - tooling, machine pairing, and automation - developed in parallel at the design stage.",
     ],
     outcome: [
       "Concept to production in 6 weeks",
       "Finish quality on par with spray painting, zero post-processing",
     ],
     quote:
-      "Partnering with Mnex on the right process—and having them execute end-to-end with incredible speed and quality—let us focus on our product, not the manufacturing hurdles.",
+      "Partnering with Mnex on the right process - and having them execute end-to-end with incredible speed and quality - let us focus on our product, not the manufacturing hurdles.",
     author: "Program Manager, Electronics (Anonymized)",
   },
   {

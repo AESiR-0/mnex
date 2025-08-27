@@ -80,7 +80,7 @@ export default function PurposeCarousel({
           Delivering with precision.
         </h2>
         <p className="mt-4   text-[#6F6F6F] text-xl">
-          We begin with your business reality— <br /> your volumes, cost targets, and
+          We begin with your business reality -  <br /> your volumes, cost targets, and
           roadmap.
         </p>
         <p className="mt-2  text-[#6F6F6F] text-xl">

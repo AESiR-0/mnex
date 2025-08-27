@@ -6,7 +6,7 @@ const slides = [
     imgAlt: "Team discussion",
     step: "1",
     title: "Business-Aligned from Day One",
-    lead: "We start with your strategy—not our machines. Every plan is tailored to your volumes, risks, and business goals.",
+    lead: "We start with your strategy - not our machines. Every plan is tailored to your volumes, risks, and business goals.",
     bullets: [
       "Tailored manufacturing strategies",
       "Early alignment to cost, compliance, and launch targets",

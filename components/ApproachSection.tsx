@@ -35,7 +35,7 @@ export default function ApproachSection({
     scrollTriggerRef.current = ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: `+=${items.length * 100}`,
+      end: `+=${items.length * 700}`,
       pin: true,
       pinSpacing: true,
       onUpdate: (self) => {
@@ -76,7 +76,7 @@ export default function ApproachSection({
     <section
       id={sectionId}
       ref={sectionRef}
-      className="w-full bg-[#D1D1D1] min-h-screen"
+      className="w-full bg-[#ececec] min-h-screen"
     >
       <section className="w-full relative min-h-[20vh] md:min-h-[30vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
         {/* Background Image with reduced opacity */}
@@ -101,14 +101,14 @@ export default function ApproachSection({
       </section>
       <div ref={contentRef} className="h-[70vh] flex  items-start py-10">
         <div className="max-w-7xl px-4 space-y-5 mx-auto w-full ">
-          <Header>Our Approach</Header>
-          <div className="flex justify-between items-start">
+          <Header className="pb-5">Our Approach</Header>
+          <div className="flex justify-between  items-start">
             {/* Left: Active content */}
             <div
               id={panelId}
               role="tabpanel"
               aria-labelledby={activeTabId}
-              className="flex flex-col w-1/2  gap-3 text-[#009B80]"
+              className="flex flex-col w-[32%]  gap-3 text-[#009B80]"
             >
 
 
@@ -125,7 +125,7 @@ export default function ApproachSection({
                     <h3 className="text-2xl sm:text-2xl md:text-4xl font-semibold">
                       {items[active].title}
                     </h3>
-                    <p className="text-2xl  whitespace-pre-wrap sm:text-xl md:text-xl leading-relaxed">
+                    <p className="text-2xl   sm:text-xl md:text-2xl leading-tight">
                       {items[active].desc}
                     </p>
                   </motion.div>
@@ -138,12 +138,12 @@ export default function ApproachSection({
                     transition={{ duration: 0, ease: "easeOut" }}
                     className="contents"
                   >
-                    <h3 className="text-2xl sm:text-2xl md:text-4xl font-semibold">
+                    <h3 className="text-2xl sm:text-2xl md:text-4xl font-semibold text-[#595959]">
                       We Build What Matters
                     </h3>
-                    <p className="text-2xl py-5 whitespace-pre-wrap sm:text-xl md:text-xl leading-relaxed">
-                      From concept to precision-built reality,<br />
-                      We create with purpose, speed and obsessive detail.<br />
+                    <p className="text-2xl sm:text-xl md:text-2xl leading-tight text-[#595959]">
+                      From concept to precision-built reality,
+                      we create with purpose, speed and obsessive detail.
                       This is industrial manufacturing where manufacturability is engineered from day one.
                     </p>
                   </motion.div>
@@ -159,7 +159,7 @@ export default function ApproachSection({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="flex  flex-col gap-2 sm:gap-3"
+                className="flex  w-1/2 flex-col gap-2 sm:gap-3"
                 role="tablist"
                 aria-label="Approach options"
               >

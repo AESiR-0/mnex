@@ -6,7 +6,6 @@ import { useMemo } from "react";
 const defaultTabs = [
   { name: "Approach", href: "/about/approach" },
   { name: "Legacy", href: "/about/legacy" },
-  { name: "Leadership", href: "/about/leadership" },
 ];
 
 export default function Tabs({
@@ -29,8 +28,8 @@ export default function Tabs({
   }, [pathname]);
 
   return (
-    <div className="w-full bg-[#ececec] py-6 pt-20">
-      <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4">
+    <div className="w-full bg-[#ffffff] py-6 pt-20">
+      <div className="max-w-5xl mx-auto tracking-[0.15em] flex justify-center gap-3 sm:gap-4">
         {tabs.map((tab) => {
           const isActive = activeName === tab.name;
           return (
@@ -38,7 +37,7 @@ export default function Tabs({
               key={tab.name}
               href={tab.href}
               aria-current={isActive ? "page" : undefined}
-              className={`px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold uppercase rounded-full border transition-colors duration-200
+              className={`px-4 sm:px-5 py-2 text-xs sm:text-sm  uppercase rounded-full border transition-colors duration-200
                 ${
                   isActive
                     ? "bg-[#1789FF] text-white border-[#1789FF]"

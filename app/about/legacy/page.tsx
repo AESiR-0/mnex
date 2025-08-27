@@ -49,7 +49,7 @@ export default function Page() {
           </p>
 
           <p>
-            Mnex represents the next phase of that legacy—shaped by modern
+            Mnex represents the next phase of that legacy - shaped by modern
             manufacturing needs, advanced automation, and digitally integrated
             systems.
           </p>
@@ -59,7 +59,7 @@ export default function Page() {
               Execution Aligned with Strategy
             </h3>
             <p>
-              Your business goals—volume, cost, speed, and compliance—guide how
+              Your business goals - volume, cost, speed, and compliance - guide how
               we engineer, automate, and deliver. We don’t just manufacture
               parts; we build purpose-driven solutions that reduce risk and
               create measurable value.
@@ -83,7 +83,7 @@ export default function Page() {
             </h3>
             <p>
               From robotics to closed-loop process control, we apply automation
-              with intention—enhancing scalability, quality, and smart labor
+              with intention - enhancing scalability, quality, and smart labor
               use.
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function Page() {
               The Spirit of Meiban Lives On.
             </h3>
             <p className="italic">
-              But Mnex brings a new momentum—
+              But Mnex brings a new momentum - 
               <br />
               <span className="not-italic font-medium">
                 Strategic. Responsive. Precision-led.

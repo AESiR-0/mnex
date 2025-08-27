@@ -34,7 +34,7 @@ export default function SiteFooter() {
             {/* Back to Top */}
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-sm text-[#595959] hover:text-[#1789FF] transition self-start font-bold"
+              className="text-sm text-[#595959] hover:text-[#1789FF] transition self-start"
             >
               Back to Top <span className="inline-block rotate-45 hover:rotate-0 transition-transform duration-300 align-middle"><svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></span>
             </button>
@@ -54,7 +54,7 @@ export default function SiteFooter() {
                   <li>
                     <Link
                       href="/about"
-                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                      className="text-[#595959] hover:text-[#1789FF] transition"
                     >
                       ABOUT
                     </Link>
@@ -62,7 +62,7 @@ export default function SiteFooter() {
                   <li>
                     <Link
                       href="/solutions"
-                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                      className="text-[#595959] hover:text-[#1789FF] transition"
                     >
                       SOLUTIONS
                     </Link>
@@ -70,7 +70,7 @@ export default function SiteFooter() {
                   <li>
                     <Link
                       href="/industries"
-                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                      className="text-[#595959] hover:text-[#1789FF] transition"
                     >
                       INDUSTRIES
                     </Link>
@@ -82,7 +82,7 @@ export default function SiteFooter() {
                   <li>
                     <Link
                       href="/sustainability"
-                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                      className="text-[#595959] hover:text-[#1789FF] transition"
                     >
                       SUSTAINABILITY
                     </Link>
@@ -90,7 +90,7 @@ export default function SiteFooter() {
                   <li>
                     <Link
                       href="/culture"
-                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                      className="text-[#595959] hover:text-[#1789FF] transition"
                     >
                       CULTURE
                     </Link>
@@ -98,7 +98,7 @@ export default function SiteFooter() {
                   <li>
                     <Link
                       href="/contact"
-                      className="font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                      className="text-[#595959] hover:text-[#1789FF] transition"
                     >
                       CONTACT US
                     </Link>
@@ -113,15 +113,15 @@ export default function SiteFooter() {
                 Contact Us
               </p>
               <a
-                href="mailto:info@mnexprecision.com"
-                className="text-sm lg:text-base xl:text-lg font-semibold text-[#595959] hover:text-[#1789FF] transition"
+                href="mailto:connect@mnexprecision.com"
+                className="text-sm lg:text-base xl:text-lg text-[#595959] hover:text-[#1789FF] transition"
               >
-                info@mnexprecision.com
+                connect@mnexprecision.com
               </a>
             </div>
 
             {/* Legal Section */}
-            <div className="font-bold pt-4 lg:pt-6">
+            <div className=" pt-4 lg:pt-6">
               <div className="flex flex-col md:flex-row md:items-center gap-3 lg:gap-4 text-sm text-[#595959]">
                 <p>Copyright © {new Date().getFullYear()} Mnex Precision</p>
                 <div className="flex gap-4 lg:gap-6">

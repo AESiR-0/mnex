@@ -3,8 +3,9 @@ import Header from "./Header";
 // components/SustainabilitySection.tsx
 export default function SustainabilitySection() {
   return (
-    <section className="w-full h-screen bg-[#009B80] text-white flex items-center">
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-4 grid md:grid-cols-2 gap-10 items-center">
+    <section className="w-full h-screen bg-cover bg-center bg-no-repeat text-white flex items-center relative" style={{ backgroundImage: 'url(/static/home/sustainability.webp)' }}>
+      <div className="absolute inset-0 bg-[#009B80]/50"></div>
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-4 grid md:grid-cols-2 gap-10 items-center">
         {/* Left copy */}
         <div className="max-w-2xl">
           <Header className="text-white">Sustainability</Header>
@@ -16,11 +17,10 @@ export default function SustainabilitySection() {
           </h2>
 
           <p className="text-lg md:text-2xl leading-snug mb-6 opacity-95">
-            We believe good manufacturing is also responsible manufacturing.
+            We believe good manufacturing <br /> is responsible manufacturing.
           </p>
           <p className="text-lg md:text-2xl leading-snug mb-10 opacity-95">
-            At Mnex, we reduce waste, save energy, and build smarter-because
-            it's better for business and the planet.
+            At Mnex, we reduce waste, save energy, <br /> and build smarter for a better planet.
           </p>
 
           <a

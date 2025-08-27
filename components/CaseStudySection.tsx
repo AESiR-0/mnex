@@ -37,7 +37,6 @@ export default function CaseStudySpotlight({
         loop
         playsInline
         autoPlay
-        poster={poster}
       />
       <div className="absolute inset-0 bg-black/25" />
 
