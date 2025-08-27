@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import Header from "@/components/Header";
+import { usePathname } from "next/navigation";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -24,51 +24,118 @@ export default function VerticalContent({
     content: string;
     backgroundImage?: string;
 }) {
-    const [activeApproach, setActiveApproach] = useState(0); // Start with first approach active
+    const [activeApproach, setActiveApproach] = useState(0);
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const contentRef = useRef<HTMLDivElement | null>(null);
+    const isMountedRef = useRef(true);
     const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
+    const pathname = usePathname();
 
+    // Component mount/unmount tracking
     useEffect(() => {
-        if (!sectionRef.current || !contentRef.current) return;
+        isMountedRef.current = true;
+        
+        return () => {
+            isMountedRef.current = false;
+        };
+    }, []);
+
+    // Next.js 15 specific: Disable ScrollTrigger during navigation
+    useEffect(() => {
+        // Disable ScrollTrigger globally during navigation
+        ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" });
+        
+        return () => {
+            // Re-enable ScrollTrigger
+            ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" });
+        };
+    }, [pathname]);
+
+    // GSAP Context-based ScrollTrigger management
+    useEffect(() => {
+        if (!sectionRef.current || !contentRef.current || !isMountedRef.current) return;
 
         const section = sectionRef.current;
         const content = contentRef.current;
 
-        // Create smooth scroll trigger for pinning
-        scrollTriggerRef.current = ScrollTrigger.create({
-            trigger: section,
-            start: "top top",
-            end: `+=${items.length * 700}`,
-            pin: true,
-            pinSpacing: true,
-            onUpdate: (self) => {
-                const progress = self.progress;
-                const step = Math.floor(progress * items.length);
-                const clampedStep = Math.min(step, items.length - 1);
-
-                // Set active approach based on scroll progress
-                const newActiveApproach = Math.max(0, clampedStep);
-
-                if (newActiveApproach !== activeApproach) {
-                    setActiveApproach(newActiveApproach);
-                }
-            },
-            onLeave: () => {
-                setActiveApproach(items.length - 1);
-            },
-            onEnterBack: () => {
-                setActiveApproach(0); // Back to first item
-            }
-        });
-
-        // Cleanup
-        return () => {
-            if (scrollTriggerRef.current) {
+        // Kill existing ScrollTrigger if it exists
+        if (scrollTriggerRef.current) {
+            try {
                 scrollTriggerRef.current.kill();
+                scrollTriggerRef.current = null;
+            } catch (error) {
+                console.warn('ScrollTrigger cleanup error:', error);
+            }
+        }
+
+        // Create GSAP context for this component
+        const ctx = gsap.context(() => {
+            // Create ScrollTrigger within the context
+            scrollTriggerRef.current = ScrollTrigger.create({
+                trigger: section,
+                start: "top top",
+                end: `+=${items.length * 700}`,
+                pin: true,
+                pinSpacing: true,
+                onUpdate: (self) => {
+                    if (!isMountedRef.current) return;
+                    
+                    try {
+                        const progress = self.progress;
+                        const step = Math.floor(progress * items.length);
+                        const clampedStep = Math.min(step, items.length - 1);
+
+                        // Set active approach based on scroll progress
+                        const newActiveApproach = Math.max(0, clampedStep);
+
+                        if (newActiveApproach !== activeApproach && isMountedRef.current) {
+                            setActiveApproach(newActiveApproach);
+                        }
+                    } catch (error) {
+                        console.warn('ScrollTrigger onUpdate error:', error);
+                    }
+                },
+                onLeave: () => {
+                    if (isMountedRef.current) {
+                        try {
+                            setActiveApproach(items.length - 1);
+                        } catch (error) {
+                            console.warn('ScrollTrigger onLeave error:', error);
+                        }
+                    }
+                },
+                onEnterBack: () => {
+                    if (isMountedRef.current) {
+                        try {
+                            setActiveApproach(0);
+                        } catch (error) {
+                            console.warn('ScrollTrigger onEnterBack error:', error);
+                        }
+                    }
+                }
+            });
+        }, sectionRef); // Scope to the section element
+
+        // Cleanup function
+        return () => {
+            // Kill ScrollTrigger first
+            if (scrollTriggerRef.current) {
+                try {
+                    scrollTriggerRef.current.kill();
+                    scrollTriggerRef.current = null;
+                } catch (error) {
+                    console.warn('ScrollTrigger kill error:', error);
+                }
+            }
+
+            // Then revert the GSAP context
+            try {
+                ctx.revert();
+            } catch (error) {
+                console.warn('GSAP context revert error:', error);
             }
         };
-    }, [items.length, activeApproach]);
+    }, [items.length, activeApproach, pathname]);
 
     if (!items || items.length === 0) return null;
 
@@ -91,19 +158,29 @@ export default function VerticalContent({
                         {content}
                     </p>
                 </div>
-                <div className="">
-
-                </div>
-            </section >
+            </section>
             <div ref={contentRef} className="h-[70vh] flex items-center py-10 relative">
-                <div className="max-w-4xl bg-[url('/static/industries/CEI_2.svg')] bg-cover bg-center px-10 space-y-5 mx-auto w-full relative z-10">
+                {/* Background Image */}
+                {backgroundImage && (
+                    <div className="absolute inset-0 z-0">
+                        <Image
+                            src={backgroundImage}
+                            alt="Background"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                )}
+
+                <div className="max-w-4xl px-10 space-y-5 mx-auto w-full relative z-10">
                     <div className="flex flex-col-reverse justify-end items-center">
                         {/* Left: Active content - Now horizontal */}
                         <div
                             id={panelId}
                             role="tabpanel"
                             aria-labelledby={activeTabId}
-                            className="flex  gap-6 sm:gap-8 md:gap-10 text-[#009B80]"
+                            className="flex gap-6 sm:gap-8 md:gap-10 text-[#009B80]"
                         >
                             <motion.div
                                 key={active}
@@ -112,7 +189,7 @@ export default function VerticalContent({
                                 transition={{ duration: 0, ease: "easeOut" }}
                                 className="contents"
                             >
-                                <h3 className="text-2xl leading-tight  ">
+                                <h3 className="text-2xl leading-tight">
                                     {items[active].desc}
                                 </h3>
                             </motion.div>
@@ -125,7 +202,7 @@ export default function VerticalContent({
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className="flex flex-wrap py-10 justify-between w-full  gap-x-3     "
+                                className="flex flex-wrap py-10 justify-between w-full gap-x-3"
                                 role="tablist"
                                 aria-label="Approach options"
                             >
@@ -141,17 +218,14 @@ export default function VerticalContent({
                                             aria-selected={isActive}
                                             aria-controls={panelId}
                                             onClick={() => {
-                                                setActiveApproach(i);
-                                                // Smooth scroll to the specific progress
-                                                if (scrollTriggerRef.current) {
-                                                    const progress = i / items.length;
-                                                    scrollTriggerRef.current.scroll(progress);
+                                                if (isMountedRef.current) {
+                                                    setActiveApproach(i);
                                                 }
                                             }}
-                                            className={`text-left px-0 py-2  text-4xl  transition-all duration-300 ease-out
-                          ${isActive
-                                                    ? "text-[#009B80]  "
-                                                    : "text-[#969696] hover:text-[#009B80] "
+                                            className={`text-left px-0 py-2 text-4xl transition-all duration-300 ease-out
+                                                ${isActive
+                                                    ? "text-[#009B80]"
+                                                    : "text-[#969696] hover:text-[#009B80]"
                                                 }`}
                                         >
                                             {it.title}.<span className="pr-1" />
