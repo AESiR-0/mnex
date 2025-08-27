@@ -46,9 +46,15 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
 
   // Close on outside click
   const handleBackdropClick = (e: React.MouseEvent) => {
+    // Close if clicking on the backdrop (not on the slider content)
     if (e.target === e.currentTarget) {
       onClose();
     }
+  };
+
+  const handleSliderClick = (e: React.MouseEvent) => {
+    // Prevent clicks inside the slider from closing it
+    e.stopPropagation();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -117,7 +123,8 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               stiffness: 200,
               duration: 0.5
             }}
-            className="relative w-full max-w-lg h-full bg-white shadow-2xl overflow-hidden"
+            className="relative px-5 w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden"
+            onClick={handleSliderClick}
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
