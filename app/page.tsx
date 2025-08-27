@@ -13,58 +13,70 @@ const tabData = [
     title: "Tooling",
     video: "/videos/home/Solutions - Tooling.webm",
     desc: "Tools that shape outcomes.",
+    link: "/solutions#tooling",
   },
   {
     title: "Injection Molding",
     video: "/videos/home/Solutions - Injection Molding.webm",
     desc: "Where material, machine, and process align.",
+    link: "/solutions#injection-molding",
   },
   {
     title: "Smart Automation & Assembly",
     video: "/videos/home/Solutions - Smart Automation & Fixtures.webm",
     desc: "Automation designed to flow-assembly built to scale",
+    link: "/solutions#smart-automation-assembly",
   },
   {
     title: "Integrated Product Development",
     video:
       "/videos/home/Solutions - Integrated Product Development.webm",
     desc: "Design thinking, built for reality.",
+    link: "/solutions#integrated-product-development",
   },
 ];
 
 const approachContent = [
 
   {
-    title: "Vision, Engineered",
-    desc: `Business-Aligned from Day One
-We align every step of production to your business strategy—not the other way around.`,
+    title: "Vision, Engineered. Innovation That Serves",
+    desc: `From the very first step, we align our manufacturing strategy to your business strategy 
+not the other way round. Innovation is applied with intention: smart technology that 
+serves your needs, without overengineering or waste. The outcome is practical, scalable 
+value that moves in lockstep with your visions.`,
   },
   {
     title: "Built to Scale or Specialize",
-    desc: "Global programs or custom builds—we serve both with equal precision.",
+    desc: `Whether it's a global program demanding consistency across geographies or a custom build 
+requiring deep technical attention, we deliver with equal precision and commitment. Our 
+structure is robust enough to support complex, high-volume rollouts-yet flexible enough to 
+adapt to specialized, low-volume needs. In both, you get the same discipline, speed, and 
+engineering rigor.`,
   },
+  // {
+  //   title: "Vertically Integrated for Speed",
+  //   desc: "Tooling, molding, automation, assembly—all in one place for tighter control and faster delivery.",
+  // },
+  // {
+  //   title: "Precision by Design",
+  //   desc: "Decades of expertise ensure stable, repeatable, high-accuracy parts.",
+  // },
+  // {
+  //   title: "Innovation That Serves",
+  //   desc: "Smart tech, applied with intention. No overengineering. No waste.",
+  // },
   {
-    title: "Vertically Integrated for Speed",
-    desc: "Tooling, molding, automation, assembly—all in one place for tighter control and faster delivery.",
-  },
-  {
-    title: "Precision by Design",
-    desc: "Decades of expertise ensure stable, repeatable, high-accuracy parts.",
-  },
-  {
-    title: "Innovation That Serves",
-    desc: "Smart tech, applied with intention. No overengineering. No waste.",
-  },
-  {
-    title: "Driven to Deliver",
-    desc: "Fast setups. Proven systems. A team that executes—every time.",
+    title: "Integrated Precision, Delivered Fast",
+    desc: `Tooling, molding, automation, and assembly-brought together under one roof for tighter control 
+and faster turnaround. Backed by decades of expertise, every process is engineered for 
+stability, repeatability, and high-accuracy results`,
   },
 ];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeApproach, setActiveApproach] = useState(0);
-  
+
   const approachButtons = [
     "Business-Aligned Manufacturing",
     "Scalable and Specialized",
@@ -127,8 +139,8 @@ export default function Home() {
                 and market demands.
               </p>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed">
-                From precision tooling to smart automation. We deliver what your
-                strategy needs, nothing more, nothing less.
+                From precision tooling to smart automation. We deliver exactly what your strategy demands.
+
               </p>
             </div>
           </div>

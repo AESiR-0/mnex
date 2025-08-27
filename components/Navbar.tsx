@@ -12,18 +12,17 @@ const navLinks = [
     children: [
       { name: "Approach", href: "/about/approach" },
       { name: "Legacy", href: "/about/legacy" },
-      { name: "Leadership", href: "/about/leadership" },
+      // { name: "Leadership", href: "/about/leadership" },
     ],
   },
-  { name: "Solution", href: "/solution" },
+  { name: "Solutions", href: "/solutions" },
   {
     name: "Industries",
-    href: "/industries",
+    href: "/industries/cei",
     children: [
-      { name: "CE", href: "/industries/ce" },
-      { name: "Industrial", href: "/industries/industrial" },
+      { name: "Consumer & Industrial", href: "/industries/cei" },
       { name: "Medical", href: "/industries/medical" },
-      { name: "Oil and Gas", href: "/industries/oil-gas" },
+      { name: "Oil & Gas", href: "/industries/oil-gas" },
     ],
   },
   { name: "Sustainability", href: "/sustainability" },

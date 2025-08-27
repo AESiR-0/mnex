@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
+import Link from "next/link";
 
 type Tab = {
   title: string;
@@ -213,12 +214,12 @@ export default function CapabilitiesSection({
                         : tab.desc}
                     </h3>
 
-                    <a
+                    <Link
                       href="/solutions"
                       className="inline-block text-white/90 text-xs sm:text-sm uppercase tracking-wide underline underline-offset-4 decoration-white/60 hover:decoration-white"
                     >
                       Learn more
-                    </a>
+                    </Link>
                   </div>
                   {/* Badges */}
                   <div className="flex flex-wrap justify-start max-w-sm gap-3 sm:gap-4 md:gap-4 mt-8 sm:mt-10 md:mt-12">
