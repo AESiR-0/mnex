@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useContactSlider } from "@/lib/useContactSlider";
 
 const navLinks = [
   {
@@ -102,19 +103,17 @@ export default function Navbar() {
         <ul className="hidden transition-all  tracking-[0.05em] text-sm md:flex gap-8 items-center">
           {navLinks.map((link) => {
             if (link.name == "Contact Us") {
+              const { open } = useContactSlider();
               return (
                 <li key={link.name} className="relative group  transition-all">
                   <div className="flex bg-transparent items-center">
-                    <Link
-                      href={link.href}
+                    <button
+                      onClick={open}
                       className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
-                        ${isLinkActive(link.href)
-                          ? "bg-[#1789FF] text-white  hover:bg-[#959595] border-[#1789FF]"
-                          : "bg-transparent text-[#595959] hover:bg-[#009b80] hover:text-white"
-                        }`}
+                        bg-transparent text-[#595959] hover:bg-[#009b80] hover:text-white`}
                     >
                       {link.name}
-                    </Link>
+                    </button>
                   </div>
                 </li>
               );
@@ -551,95 +550,116 @@ export default function Navbar() {
             transition={{ type: "keyframes", duration: 0.2 }}
             className="md:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
           >
-            {navLinks.map((link) => (
-              <li key={link.name} className="border-b border-[#595959]/5">
-                <div className="flex items-center justify-between px-6 py-4">
-                  <Link
-                    href={link.href}
-                    className={` ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                  {link.children && shouldShowDropdown(link.href) && (
-                    <button
-                      onClick={() =>
-                        setMobileDropdown(
-                          mobileDropdown === link.name ? null : link.name
-                        )
-                      }
-                      aria-label={`Toggle ${link.name} submenu`}
-                      className="ml-2 flex items-center justify-center w-4 h-4"
-                    >
-                      <motion.span
-                        initial={false}
-                        animate={{
-                          rotate: mobileDropdown === link.name ? 180 : 0,
+            {navLinks.map((link) => {
+              if (link.name === "Contact Us") {
+                const { open } = useContactSlider();
+                return (
+                  <li key={link.name} className="border-b border-[#595959]/5">
+                    <div className="flex items-center justify-between px-6 py-4">
+                      <button
+                        onClick={() => {
+                          open();
+                          setMenuOpen(false);
                         }}
-                        transition={{
-                          type: "keyframes",
-                          duration: 0.2,
-                        }}
-                        className="flex items-center justify-center w-4 h-4"
+                        className="text-[#595959] hover:text-[#1789FF] transition-colors"
                       >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <motion.rect
-                            x="3"
-                            y="7.25"
-                            width="10"
-                            height="1.5"
-                            rx="0.75"
-                            fill="#1789FF"
-                          />
-                          <motion.rect
-                            x="7.25"
-                            y="3"
-                            width="1.5"
-                            height="10"
-                            rx="0.75"
-                            fill="#1789FF"
-                          />
-                        </svg>
-                      </motion.span>
-                    </button>
-                  )}
-                </div>
-                {/* Mobile Dropdown */}
-                <AnimatePresence>
-                  {link.children && shouldShowDropdown(link.href) && mobileDropdown === link.name && (
-                    <motion.ul
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 60,
-                        damping: 22,
-                      }}
-                      className="flex flex-col bg-white border-l border-[#1789FF]/20 ml-6"
+                        {link.name}
+                      </button>
+                    </div>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={link.name} className="border-b border-[#595959]/5">
+                  <div className="flex items-center justify-between px-6 py-4">
+                    <Link
+                      href={link.href}
+                      className={` ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
+                      onClick={() => setMenuOpen(false)}
                     >
-                      {link.children.map((sublink) => (
-                        <li key={sublink.name}>
-                          <Link
-                            href={sublink.href}
-                            className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10"
-                            onClick={() => setMenuOpen(false)}
+                      {link.name}
+                    </Link>
+                    {link.children && shouldShowDropdown(link.href) && (
+                      <button
+                        onClick={() =>
+                          setMobileDropdown(
+                            mobileDropdown === link.name ? null : link.name
+                          )
+                        }
+                        aria-label={`Toggle ${link.name} submenu`}
+                        className="ml-2 flex items-center justify-center w-4 h-4"
+                      >
+                        <motion.span
+                          initial={false}
+                          animate={{
+                            rotate: mobileDropdown === link.name ? 180 : 0,
+                          }}
+                          transition={{
+                            type: "keyframes",
+                            duration: 0.2,
+                          }}
+                          className="flex items-center justify-center w-4 h-4"
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
                           >
-                            {sublink.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </motion.ul>
-                  )}
-                </AnimatePresence>
-              </li>
-            ))}
+                            <motion.rect
+                              x="3"
+                              y="7.25"
+                              width="10"
+                              height="1.5"
+                              rx="0.75"
+                              fill="#1789FF"
+                            />
+                            <motion.rect
+                              x="7.25"
+                              y="3"
+                              width="1.5"
+                              height="10"
+                              rx="0.75"
+                              fill="#1789FF"
+                            />
+                          </svg>
+                        </motion.span>
+                      </button>
+                    )}
+                  </div>
+                  {/* Mobile Dropdown */}
+                  <AnimatePresence>
+                    {link.children && shouldShowDropdown(link.href) && mobileDropdown === link.name && (
+                      <motion.ul
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 60,
+                          damping: 22,
+                        }}
+                        className="flex flex-col bg-white border-l border-[#1789FF]/20 ml-6"
+                      >
+                        {link.children.map((sublink) => (
+                          <li key={sublink.name}>
+                            <Link
+                              href={sublink.href}
+                              className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10"
+                              onClick={() => setMenuOpen(false)}
+                            >
+                              {sublink.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </li>
+              );
+            })}
             {/* Language Selector (Mobile only) */}
             <li className="px-6 py-4 flex items-center justify-between">
               <span className="text-[#595959] font-semibold">

@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/Footer";
 import VideoPreloader from "@/components/VideoPreloader";
 import GSAPCleanupProvider from "@/components/GSAPCleanupProvider";
+import ContactSlider from "@/components/ContactSlider";
+import ContactSliderProvider from "@/components/ContactSliderProvider";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -22,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`overflow-x-hidden ${instrumentSans.variable} font-sans`}>
         <GSAPCleanupProvider />
+        <ContactSliderProvider />
         <VideoPreloader />
         <Navbar />
         <div className="relative">
