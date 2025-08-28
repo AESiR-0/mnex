@@ -28,8 +28,8 @@ export default function Tabs({
   }, [pathname]);
 
   return (
-    <div className="w-full bg-[#ffffff] py-6 pt-20">
-      <div className="max-w-5xl mx-auto tracking-[0.15em] flex justify-center gap-3 sm:gap-4">
+        <div className="w-full bg-[#ffffff] py-6 pt-18">
+      <div className="max-w-5xl mx-auto tracking-[0.05em]  flex justify-center gap-3 sm:gap-4">
         {tabs.map((tab) => {
           const isActive = activeName === tab.name;
           return (

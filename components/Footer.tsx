@@ -1,8 +1,11 @@
 "use client";
+import { useContactSlider } from "@/lib/useContactSlider";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function SiteFooter() {
+  const { open } = useContactSlider();
+
   return (
     <footer className="w-full bg-[#eaeaea]">
       {/* top teal rule */}
@@ -36,7 +39,7 @@ export default function SiteFooter() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-sm text-[#595959] hover:text-[#1789FF] transition self-start"
             >
-              Back to Top <span className="inline-block rotate-45 hover:rotate-0 transition-transform duration-300 align-middle"><svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></span>
+              Back to Top <span className="inline-block rotate-45 hover:rotate-0 transition-transform duration-300 align-middle"><svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg></span>
             </button>
           </div>
 
@@ -88,20 +91,14 @@ export default function SiteFooter() {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/culture"
-                      className="text-[#595959] hover:text-[#1789FF] transition"
-                    >
-                      CULTURE
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contact"
+                    <button
+                      onClick={() => {
+                        open();
+                      }}
                       className="text-[#595959] hover:text-[#1789FF] transition"
                     >
                       CONTACT US
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </div>

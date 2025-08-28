@@ -27,7 +27,7 @@ const navLinks = [
     ],
   },
   { name: "Sustainability", href: "/sustainability" },
-  { name: "Culture", href: "/culture" },
+  // { name: "Culture", href: "/culture" },
   { name: "Contact Us", href: "/contact" },
 ];
 
@@ -39,12 +39,13 @@ export default function Navbar() {
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollUpDistance, setScrollUpDistance] = useState(0); // Track how much we've scrolled up
   const pathname = usePathname();
   const { isOpen: isContactOpen } = useContactSlider();
 
   // Check if a link is active
   const isLinkActive = (href: string) => {
-    return pathname.split('/').includes(href);
+    return pathname.includes(href);
   };
 
   // Check if About section is active
@@ -67,11 +68,24 @@ export default function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Show navbar when scrolling up, hide when scrolling down
-      if (currentScrollY < lastScrollY) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Track scroll up distance when scrolling up
+      if (currentScrollY < lastScrollY && currentScrollY > 500) {
+        setScrollUpDistance(prev => prev + (lastScrollY - currentScrollY));
+        
+        // Only show navbar after scrolling up 500px
+        if (scrollUpDistance >= 500) {
+          setIsVisible(true);
+        }
+      } 
+      // Reset scroll up distance and hide navbar when scrolling down
+      else if (currentScrollY > lastScrollY && currentScrollY > 500) {
+        setScrollUpDistance(0);
         setIsVisible(false);
+      }
+      // Always show navbar when above 500px
+      else if (currentScrollY <= 500) {
+        setScrollUpDistance(0);
+        setIsVisible(true);
       }
 
       setLastScrollY(currentScrollY);
@@ -80,6 +94,11 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
+
+  // Handle navbar mouse leave to close all dropdowns
+  const handleNavbarMouseLeave = () => {
+    setOpenDropdown(null);
+  };
 
   return (
     <motion.nav
@@ -90,6 +109,7 @@ export default function Navbar() {
         opacity: isContactOpen ? 0 : 1
       }}
       transition={{ duration: 0.3, ease: "linear" }}
+      onMouseLeave={handleNavbarMouseLeave}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 w-full">
         {/* Logo */}
@@ -131,10 +151,8 @@ export default function Navbar() {
                   onMouseEnter={() =>
                     !isAboutSectionActive && link.children && setOpenDropdown(link.name)
                   }
-                  onMouseLeave={() => link.children && setOpenDropdown(null)}
                   tabIndex={0}
                   onFocus={() => !isAboutSectionActive && link.children && setOpenDropdown(link.name)}
-                  onBlur={() => link.children && setOpenDropdown(null)}
                 >
                   <div className="flex items-center">
                     <Link
@@ -253,10 +271,8 @@ export default function Navbar() {
                   onMouseEnter={() =>
                     !isIndustriesSectionActive && link.children && setOpenDropdown(link.name)
                   }
-                  onMouseLeave={() => link.children && setOpenDropdown(null)}
                   tabIndex={0}
                   onFocus={() => !isIndustriesSectionActive && link.children && setOpenDropdown(link.name)}
-                  onBlur={() => link.children && setOpenDropdown(null)}
                 >
                   <div className="flex items-center">
                     <Link
@@ -325,7 +341,7 @@ export default function Navbar() {
                       <motion.div
                         initial={{ opacity: 1, height: 0, y: -10 }}
                         animate={{ opacity: 1, height: "auto", y: 0 }}
-                        exit={{ opacity: 1, height: 0, y: -10 }}
+                        exit={{ opacity: 1, height: 0, y: 0 }}
                         transition={{
                           type: "keyframes",
                           duration: 0.2,
@@ -365,6 +381,26 @@ export default function Navbar() {
                   </AnimatePresence>
                 </li>
               );
+            } else if (link.name === "Sustainability") {
+              // Special handling for Sustainability - hover effect
+              const isSustainabilityActive = isLinkActive(link.href);
+              return (
+                <li
+                  key={link.name}
+                  className="relative group transition-all"
+                >
+                  <div className="flex items-center">
+                    <Link
+                      href={link.href}
+                      className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#009b80]
+            ${isSustainabilityActive ? "text-[#009b80]" : "text-[#575757]"}
+          `}
+                    >
+                      {link.name}
+                    </Link>
+                  </div>
+                </li>
+              );
             } else
               return (
                 <li
@@ -373,10 +409,8 @@ export default function Navbar() {
                   onMouseEnter={() =>
                     link.children && shouldShowDropdown(link.href) && setOpenDropdown(link.name)
                   }
-                  onMouseLeave={() => link.children && setOpenDropdown(null)}
                   tabIndex={0}
                   onFocus={() => link.children && shouldShowDropdown(link.href) && setOpenDropdown(link.name)}
-                  onBlur={() => link.children && setOpenDropdown(null)}
                 >
                   <div className="flex items-center">
                     <Link
@@ -450,7 +484,7 @@ export default function Navbar() {
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[55px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
+                        className="fixed left-0 top-[55px] w-screen bg-[#ffffff] flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">

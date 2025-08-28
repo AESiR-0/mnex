@@ -40,7 +40,10 @@ const tabData = [
 ];
 
 const approachContent = [
-
+  {
+    title: "We Build What Matters",
+    desc: `From concept to precision-built reality, we create with purpose, speed and obsessive detail. This is industrial manufacturing where manufacturability is engineered from day one.`,
+  },
   {
     title: "Vision, Engineered",
     desc: `From the very first step, we align our manufacturing strategy to your business strategy - not the other way round.`,
@@ -51,7 +54,7 @@ const approachContent = [
   },
   {
     title: "Built to Scale + Specialize",
-    desc: `Smart technology, no overengineering—just practical, scalable value aligned to your goals`,
+    desc: `From global programs to custom builds, we deliver with equal precision and commitment—robust for scale, flexible for specialization.`,
   },
   // {
   //   title: "Vertically Integrated for Speed",
@@ -89,7 +92,7 @@ export default function Home() {
       {/* 1. Hero Video Section (Normal Scroll) */}
       <section className="relative w-full h-screen">
         <video
-          src="/videos/home/hero_1.webm"
+          src="/videos/home/hero.webm"
           autoPlay
           playsInline
           loop
@@ -107,11 +110,9 @@ export default function Home() {
         {/* 4. Case Study Section with Background (full width) */}
         <CaseStudySection
           sector="Consumer Electronics"
-          challenge="Deliver a cosmetically critical
- control panel in 6 weeks"
+          challenge={`Reduce cost for a long-running program without changing the material, function & aesthetics.`}
           href="case-study"
-          title="Speed Without
- Compromise"
+          title="Doubling Output with Multi-Level Tooling"
           key={"case-study"}
         />
 

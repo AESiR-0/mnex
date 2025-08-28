@@ -194,35 +194,11 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-[#595959] mb-2">
-                  Position Title
-                </label>
-                <input
-                  type="text"
-                  name="positionTitle"
-                  value={formData.positionTitle}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
-                  placeholder="Enter position title"
-                />
-              </div>
+
 
               {/* Contact fields */}
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-[#595959] mb-2">
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
-                    placeholder="Enter phone number"
-                  />
-                </div>
+              <div className="grid grid-cols-1 gap-4">
+
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
                     Email *
@@ -240,7 +216,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               </div>
 
               {/* Dropdowns */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
                     Region
@@ -255,24 +231,6 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     {regions.map((region) => (
                       <option key={region} value={region}>
                         {region}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-[#595959] mb-2">
-                    Category
-                  </label>
-                  <select
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm appearance-none cursor-pointer"
-                  >
-                    <option value="">Select category</option>
-                    {categories.map((category) => (
-                      <option key={category} value={category}>
-                        {category}
                       </option>
                     ))}
                   </select>

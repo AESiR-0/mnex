@@ -31,7 +31,7 @@ export default function CaseStudySpotlight({
       {/* Background Video */}
       <video
         ref={vref}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute grayscale inset-0 w-full h-full object-cover"
         src={videoSrc}
         muted
         loop
@@ -43,21 +43,21 @@ export default function CaseStudySpotlight({
       <div className="relative z-10 h-full flex items-center justify-center px-4">
         <Link
           href={href}
-          className="group block w-full max-w-lg aspect-square"
+          className="group block w-full max-w-[34rem] aspect-square"
           aria-label={`Open case study: ${title}`}
         >
           <div
             className="
               rounded-3xl w-full aspect-square shadow-[0_10px_40px_rgba(0,0,0,0.1)]
-              px-16 py-12 md:py-16
+              px-16  py-12 md:py-16
               transition-colors duration-300
               bg-[rgba(23,137,255,0.60)] group-hover:bg-[rgba(23,137,255,1)]
               flex flex-col justify-around
             "
           >
             <div>
-              <Header className="text-white/90 mb-28">Case Study</Header>
-              <h2 className="text-white text-3xl md:text-5xl font-semibold leading-tight mb-8 ">
+              <Header className="text-white/90 mb-0 pb-2">Case Study</Header>
+              <h2 className="text-white text-3xl md:text-[2.5rem] font-semibold leading-tight mb-8 ">
                 {title}
               </h2>
             </div>
@@ -73,7 +73,7 @@ export default function CaseStudySpotlight({
                 <Header className="text-white mb-0 pb-2 font-semibold   uppercase ">
                   Challenge
                 </Header>
-                <p className="text-white/95 text-lg md:text-2xl leading-tight">
+                <p className="text-white/95 text-lg whitespace-pre-line  md:text-2xl leading-tight">
                   {challenge}
                 </p>
               </div>
