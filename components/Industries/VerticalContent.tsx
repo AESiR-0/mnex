@@ -177,14 +177,14 @@ export default function VerticalContent({
                     </div>
                 )}
 
-                <div className="max-w-4xl px-10 space-y-5 mx-auto w-full relative z-10">
-                    <div className="flex flex-col-reverse justify-end items-center">
+                <div className="max-w-4xl  h-full  px-10 space-y-5 mx-auto w-full relative z-10">
+                    <div className="flex flex-col-reverse h-full justify-center items-center">
                         {/* Left: Active content - Now horizontal */}
                         <div
                             id={panelId}
                             role="tabpanel"
                             aria-labelledby={activeTabId}
-                            className="flex gap-6 sm:gap-8 md:gap-10 text-[#009B80]"
+                            className="flex gap-6  h-1/2 sm:gap-8 md:gap-10 text-white"
                         >
                             <motion.div
                                 key={active}
@@ -206,7 +206,7 @@ export default function VerticalContent({
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className="flex flex-wrap py-10 justify-between w-full gap-x-3"
+                                className="flex  flex-wrap h-[35%]  py-10 justify-between w-full gap-x-3"
                                 role="tablist"
                                 aria-label="Approach options"
                             >
@@ -228,8 +228,8 @@ export default function VerticalContent({
                                             }}
                                             className={`text-left px-0 py-2 text-4xl transition-all duration-300 ease-out
                                                 ${isActive
-                                                    ? "text-[#009B80]"
-                                                    : "text-white hover:text-[#009B80]"
+                                                    ? "text-white"
+                                                    : "text-[#009B80] hover:text-white"
                                                 }`}
                                         >
                                             {it.title}.<span className="pr-1" />
@@ -248,7 +248,7 @@ export default function VerticalContent({
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="flex justify-center mt-16"
                         >
-                            <button className="px-6 sm:px-5 py-2 text-xs font-regular uppercase rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
+                            <button className="px-6 sm:px-5 py-2 text-xs font-regular  rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
                                 {buttonText}
                             </button>
                         </motion.div>

@@ -489,7 +489,7 @@ export default function Navbar() {
           <div className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className="h-9 w-9 flex items-center bg-[#1789FF] justify-center rounded-full border border-[#595959]/40 text-sm text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
+              className="h-7 w-7  flex items-center bg-[#1789FF] justify-center rounded-full border border-[#595959]/40 text-sm text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
               aria-label="Change language"
             >
               {language}
@@ -672,7 +672,7 @@ export default function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setLangOpen((v) => !v)}
-                  className="h-5 w-5 flex items-center justify-center bg-[#1789ff] rounded-full border border-[#595959]/40 text-sm font-semibold text-[#595959] hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
+                  className="h-8 w-8 flex items-center justify-center bg-[#1789ff] rounded-full border border-[#595959]/40 text-sm font-semibold text-[#595959] hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
                   aria-label="Change language"
                 >
                   {language}
@@ -694,7 +694,7 @@ export default function Navbar() {
                               setLanguage(lang as "EN" | "中文");
                               setLangOpen(false);
                             }}
-                            className="w-full px-3 py-2 text-left text-sm hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
+                            className="w-full px-3 py-3 text-left text-sm hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
                           >
                             {lang}
                           </button>
