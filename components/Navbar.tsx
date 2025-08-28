@@ -489,7 +489,7 @@ export default function Navbar() {
           <div className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className="h-7 w-7  flex items-center bg-[#1789FF] justify-center rounded-full border border-[#595959]/40 text-sm text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
+              className="h-8 w-8  flex items-center bg-[#1789FF] justify-center rounded-full border border-[#595959]/40 text-sm text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
               aria-label="Change language"
             >
               {language}
