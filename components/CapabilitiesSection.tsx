@@ -92,7 +92,7 @@ export default function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line bg-[#ececec] h-screen flex flex-col">
+        <section className="w-full whitespace-pre-line bg-[#ececec] flex flex-col">
             {/* Header */}
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4">
@@ -145,7 +145,7 @@ export default function CapabilitiesSection() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-transparent" />
 
                 {/* Content overlay */}
-                <div className="relative z-10 h-full flex items-center">
+                <div className="relative z-10 h-full flex items-start py-20">
                     <div className="max-w-7xl mx-auto px-4 w-full">
                         <div className="max-w-2xl">
                             {/* Headline */}
