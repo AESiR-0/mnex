@@ -28,24 +28,24 @@ const caseStudies: CaseStudy[] = [
     quote: "",
     author: "",
   },
-  {
-    id: 2,
-    title: "Fast-Tracked Control Panel",
-    challenge:
-      "Deliver a cosmetically critical control panel in 6 weeks, evaluating options like spray painting, IMD, and IML.",
-    approach: [
-      "Conducted a process trade-off study and chose In-Mold Labeling (IML) for consistent quality, flexible MOQs, and fast deployment.",
-      "Solved thin-wall warpage with robust tooling design, optimized gate placement, and precise processing controls.",
-      "Delivered a fully integrated solution—tooling, machine pairing, and automation—developed in parallel at the design stage.",
-    ],
-    outcome: [
-      "Concept to production in 6 weeks",
-      "Finish quality on par with spray painting, zero post-processing",
-    ],
-    quote:
-      "Partnering with Mnex on the right process—and having them execute end-to-end with incredible speed and quality—let us focus on our product, not the manufacturing hurdles.",
-    author: "Program Manager, Electronics (Anonymized)",
-  },
+  // {
+  //   id: 2,
+  //   title: "Fast-Tracked Control Panel",
+  //   challenge:
+  //     "Deliver a cosmetically critical control panel in 6 weeks, evaluating options like spray painting, IMD, and IML.",
+  //   approach: [
+  //     "Conducted a process trade-off study and chose In-Mold Labeling (IML) for consistent quality, flexible MOQs, and fast deployment.",
+  //     "Solved thin-wall warpage with robust tooling design, optimized gate placement, and precise processing controls.",
+  //     "Delivered a fully integrated solution—tooling, machine pairing, and automation—developed in parallel at the design stage.",
+  //   ],
+  //   outcome: [
+  //     "Concept to production in 6 weeks",
+  //     "Finish quality on par with spray painting, zero post-processing",
+  //   ],
+  //   quote:
+  //     "Partnering with Mnex on the right process—and having them execute end-to-end with incredible speed and quality—let us focus on our product, not the manufacturing hurdles.",
+  //   author: "Program Manager, Electronics (Anonymized)",
+  // },
 ];
 
 export default function CaseStudySection() {

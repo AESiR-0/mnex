@@ -129,10 +129,10 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
             {/* Header */}
             <div className="flex items-center justify-between p-6 py-5 border-b border-gray-100">
               <div>
-                <Header className="text-sm pb-5 font-medium text-[#1789FF] mb-1">
+                <Header className="text-sm pb-5 font-medium  mb-1">
                   GENERAL INQUIRY
                 </Header>
-                <h2 className="text-2xl font-bold text-[#595959]">
+                <h2 className="text-2xl font-bold text-[#1789FF]">
                   Let's talk.
                 </h2>
               </div>
@@ -324,7 +324,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               {/* Submit button */}
               <button
                 type="submit"
-                className="w-full bg-[#009B80] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#009B80] rounded-full text-white py-3 px-6  font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={!formData.consent}
               >
                 Send Message

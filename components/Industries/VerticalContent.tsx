@@ -206,7 +206,7 @@ export default function VerticalContent({
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className="flex  flex-wrap h-[35%]  py-10 justify-between w-full gap-x-3"
+                                className="flex  flex-wrap h-1/2  py-10 justify-between w-full gap-x-3"
                                 role="tablist"
                                 aria-label="Approach options"
                             >
@@ -246,7 +246,7 @@ export default function VerticalContent({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex justify-center mt-16"
+                            className="flex justify-center -mt-15 "
                         >
                             <button className="px-6 sm:px-5 py-2 text-xs font-regular  rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
                                 {buttonText}
