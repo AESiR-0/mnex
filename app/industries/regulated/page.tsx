@@ -5,7 +5,7 @@ const Page = () => {
   return (
     <>
       <VerticalContent
-        backgroundImage="/static/industries/regulated_2.svg"
+        backgroundImage="/static/industries/Regulated.webp"
         items={[
           {
             title: "Compliance",

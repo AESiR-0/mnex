@@ -6,7 +6,7 @@ export default function CeiPage() {
   return (
     <>
       <VerticalContent 
-        backgroundImage="/static/industries/CEI_2.svg" 
+        backgroundImage="/static/industries/CEI.jpg" 
         items={[
           {
             title: "Speed",

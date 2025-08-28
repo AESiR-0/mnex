@@ -236,13 +236,13 @@ export default function CapabilitiesSection({
                         Learn more
                       </Link>
                         {/* Badges */}
-                        <div className="flex flex-wrap justify-start max-w-sm gap-3 sm:gap-4 md:gap-4 mt-8 sm:mt-10 md:mt-12">
+                        <div className="flex flex-wrap justify-start max-w-4xl gap-3 sm:gap-4 md:gap-4 mt-16">
                           <Image
-                            src="/static/badges/BMC.png"
+                            src="/static/badges/Badges_Capabilities.svg"
                             alt="BMC"
-                            width={85}
-                            height={85}
-                            className="text-white object-contain "
+                            width={1500}
+                            height={1500}
+                            className="text-white object-cover "
                           />
                           
                         </div>

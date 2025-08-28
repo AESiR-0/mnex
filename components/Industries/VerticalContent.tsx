@@ -18,9 +18,11 @@ export default function VerticalContent({
     sectionId = "approach",
     content,
     backgroundImage,
+    buttonText,
 }: {
     items: ApproachItem[];
     sectionId?: string;
+    buttonText?: string;
     content: string;
     backgroundImage?: string;
 }) {
@@ -34,7 +36,7 @@ export default function VerticalContent({
     // Component mount/unmount tracking
     useEffect(() => {
         isMountedRef.current = true;
-        
+
         return () => {
             isMountedRef.current = false;
         };
@@ -44,7 +46,7 @@ export default function VerticalContent({
     useEffect(() => {
         // Disable ScrollTrigger globally during navigation
         ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" });
-        
+
         return () => {
             // Re-enable ScrollTrigger
             ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" });
@@ -79,7 +81,7 @@ export default function VerticalContent({
                 pinSpacing: true,
                 onUpdate: (self) => {
                     if (!isMountedRef.current) return;
-                    
+
                     try {
                         const progress = self.progress;
                         const step = Math.floor(progress * items.length);
@@ -170,6 +172,8 @@ export default function VerticalContent({
                             className="object-cover"
                             priority
                         />
+                        {/* Blue overlay */}
+                        <div className="absolute inset-0 mix-blend-multiply bg-[#005190] z-10"></div>
                     </div>
                 )}
 
@@ -225,7 +229,7 @@ export default function VerticalContent({
                                             className={`text-left px-0 py-2 text-4xl transition-all duration-300 ease-out
                                                 ${isActive
                                                     ? "text-[#009B80]"
-                                                    : "text-[#969696] hover:text-[#009B80]"
+                                                    : "text-white hover:text-[#009B80]"
                                                 }`}
                                         >
                                             {it.title}.<span className="pr-1" />
@@ -235,6 +239,20 @@ export default function VerticalContent({
                             </motion.div>
                         </AnimatePresence>
                     </div>
+
+                    {/* Action Button */}
+                    {buttonText && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                            className="flex justify-center mt-16"
+                        >
+                            <button className="px-6 sm:px-5 py-2 text-xs font-regular uppercase rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
+                                {buttonText}
+                            </button>
+                        </motion.div>
+                    )}
                 </div>
             </div>
         </section>

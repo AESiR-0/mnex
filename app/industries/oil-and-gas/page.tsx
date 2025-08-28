@@ -5,7 +5,9 @@ const Page = () => {
   return (
     <>
       <VerticalContent
-        backgroundImage="/static/industries/ONG_2.svg"
+        buttonText={"Learn more at meibanenergy.com"}
+
+        backgroundImage="/static/industries/ONG.jpg"
         items={[
           {
             title: "Ruggedness",
@@ -28,13 +30,7 @@ const Page = () => {
         sectionId="oil-gas"
       />
 
-      <section className="w-full bg-[#f5f5f5] py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <p className="text-sm sm:text-base md:text-lg text-[#595959]/80 leading-relaxed">
-            Learn More at <a href="https://meibanenergy.com" className="text-[#009B80] hover:text-[#1789FF] underline">meibanenergy.com</a>
-          </p>
-        </div>
-      </section>
+    
     </>
   );
 };

@@ -149,8 +149,7 @@ export default function Home() {
         {/* 6. Sustainability Section */}
         <SustainabilitySection />
 
-        {/* 7. Contact Section */}
-        <section className="w-full py-20 bg-[#009B80]">
+        {/* <section className="w-full py-20 bg-[#009B80]">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Ready to build what matters?
@@ -160,7 +159,7 @@ export default function Home() {
             </p>
             <ContactButton />
           </div>
-        </section>
+        </section> */}
       </div>
     </main>
   );

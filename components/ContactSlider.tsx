@@ -127,7 +127,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+            <div className="flex items-center justify-between p-6 py-5 border-b border-gray-100">
               <div>
                 <Header className="text-sm pb-5 font-medium text-[#1789FF] mb-1">
                   GENERAL INQUIRY
