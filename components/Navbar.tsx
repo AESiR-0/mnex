@@ -330,7 +330,7 @@ export default function Navbar() {
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[55px] w-screen bg-[#ececec] flex justify-center overflow-hidden"
+                        className="fixed left-0 top-[55px] w-screen bg-white flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
@@ -672,7 +672,7 @@ export default function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setLangOpen((v) => !v)}
-                  className="h-9 w-9 flex items-center justify-center bg-[#1789ff] rounded-full border border-[#595959]/40 text-sm font-semibold text-[#595959] hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
+                  className="h-5 w-5 flex items-center justify-center bg-[#1789ff] rounded-full border border-[#595959]/40 text-sm font-semibold text-[#595959] hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
                   aria-label="Change language"
                 >
                   {language}
