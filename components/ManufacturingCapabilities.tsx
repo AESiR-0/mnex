@@ -53,10 +53,10 @@ export default function CapabilitiesSection({
     <section className="w-full bg-[#ececec]">
       {/* Header and Tabs */}
       <div className="bg-[#ececec]">
-        <Header className="text-center pt-4 sm:pt-6 pb-2 md:mb-0">Core Capabilities</Header>
+        <Header className="text-center pt-4 sm:pt-6 pb-4 md:mb-0">Core Capabilities</Header>
         <div className="pb-3 flex justify-center z-10">
-          <div className="w-full max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
-            <div className="flex justify-between max-md:justify-start max-md:flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-20 overflow-x-auto no-scrollbar">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between max-md:justify-center max-md:gap-y-0 max-md:flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-20 overflow-x-auto no-scrollbar">
               {tabs.map((t, idx) => (
                 <button
                   key={`${t.title}-${idx}`}

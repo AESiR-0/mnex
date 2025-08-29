@@ -98,7 +98,7 @@ export default function ApproachSection({
   const containerHeight = items.length * 700 + 200;
 
   return (
-    <section className="w-full px-4 bg-[#ececec]">
+    <section className="w-full  bg-[#ececec]">
       {/* SCROLL CONTAINER (tall) */}
       <div
         ref={sectionRef}
@@ -121,8 +121,8 @@ export default function ApproachSection({
             </div>
 
             {/* Content overlay */}
-            <div className="relative z-10 mx-auto max-w-7xl px-4  w-full flex items-center justify-start ">
-              <h1 className="text-2xl sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
+            <div className="relative z-10 mx-auto max-w-7xl   w-full flex items-center justify-start ">
+              <h1 className="text-2xl sm:text-2xl px-4 lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
                 Shaping Precision,
                 <br />
                 Engineering what matters
@@ -164,7 +164,7 @@ export default function ApproachSection({
                 </div>
 
                 {/* Right: Buttons */}
-                <div className="flex  w-full lg:w-1/2 h-[80%] lg:h-full flex-col gap-2 sm:gap-3">
+                <div className="flex  w-full lg:w-1/2 h-[78%] lg:h-full flex-col gap-2 sm:gap-3">
                   {items.map((it, i) => { 
                     const isActive = active === i;
                     const tabId = `${sectionId}-tab-${i}`;

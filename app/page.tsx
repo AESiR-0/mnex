@@ -114,7 +114,7 @@ export default function Home() {
         />
 
         {/* 5. Solutions Section */}
-        <section className="w-full md:min-h-[60vh]  justify-start py-6 pb-10 sm:py-8 md:py-10 flex flex-col items-center bg-white px-4 lg:px-8">
+        <section className="w-full md:min-h-[60vh]  justify-start py-6 pb-10 sm:py-8 md:py-10 flex flex-col items-center bg-white lg:px-8">
           <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <Header className="pb-3 sm:pb-4 md:pb-5 max-md:text-center">Solutions</Header>
           </div>

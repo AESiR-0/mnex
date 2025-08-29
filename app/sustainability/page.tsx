@@ -88,7 +88,7 @@ export default function Sustainability() {
                         text-lg   "
                         >
                             We believe good manufacturing is responsible manufacturing.
-                            <br />   We build smarterbecause it's better for business and the planet
+                            <br />   We build smarter because it's better for business and the planet
                         </p>
 
                     </div>
