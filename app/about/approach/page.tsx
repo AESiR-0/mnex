@@ -17,7 +17,8 @@ const slides = [
     ],
   },
   {
-    img: "/static/about/2.webp",
+    // /static/about/2.webp
+    img: "/static/about.jpg",
     imgAlt: "Custom manufacturing",
     step: "2",
     title: "Flexible from Specialized to Scaled",

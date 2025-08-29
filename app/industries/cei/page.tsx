@@ -5,8 +5,8 @@ import CaseStudySection from "@/components/Industries/CaseStudySection";
 export default function CeiPage() {
   return (
     <>
-      <VerticalContent 
-        backgroundImage="/static/industries/CEI.jpg" 
+      <VerticalContent
+        backgroundImage="/static/industries/CEI.jpg"
         items={[
           {
             title: "Speed",
@@ -25,11 +25,12 @@ export default function CeiPage() {
             desc: `Molding expertise, advanced texturing, IMD/IML and secondary finishing ensure that cosmetic surfaces and design intent are preserved — because in consumer products, looks matter as much as performance.
 At Mnex, we engineer for speed, volume, cost, and aesthetics — so your products launch fast, scale reliably, and win in the market.`
           }
-        ]} 
-        content="In the consumer and industrial space, market success is defined by how quickly you launch, how efficiently you scale, and how well you balance cost with product appeal. Mnex brings decades of experience partnering with the world's top brands to deliver at this intersection." 
+        ]}
+        content="In the consumer and industrial space, market success is defined by how quickly you launch, how efficiently you scale, and how well you balance cost with product appeal. Mnex brings decades of experience partnering with the world's top brands to deliver at this intersection."
       />
-      
-      <CaseStudySection />
+      <div id="case-study">
+        <CaseStudySection />
+      </div>
     </>
   );
 }

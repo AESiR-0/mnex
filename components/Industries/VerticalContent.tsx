@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -248,9 +249,11 @@ export default function VerticalContent({
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="flex justify-center -mt-15 "
                         >
-                            <button className="px-6 sm:px-5 py-2 text-xs font-regular  rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
-                                {buttonText}
-                            </button>
+                            <Link href={'https://meibanenergy.com'} target="_blank">
+                                <button className="px-6 sm:px-5 py-2 text-xs font-regular  rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
+                                    {buttonText}
+                                </button>
+                            </Link>
                         </motion.div>
                     )}
                 </div>

@@ -1,13 +1,10 @@
 "use client";
 import ApproachSection from "@/components/ApproachSection";
 import CaseStudySection from "@/components/CaseStudySection";
-import SiteFooter from "@/components/Footer";
 import SustainabilitySection from "@/components/SustainabilitySection";
-import Image from "next/image";
 import CapabilitiesSection from "@/components/ManufacturingCapabilities";
 import { useState } from "react";
 import Header from "@/components/Header";
-import ContactButton from "@/components/ContactButton";
 
 const tabData = [
   {
@@ -111,7 +108,7 @@ export default function Home() {
         <CaseStudySection
           sector="Consumer Electronics"
           challenge={`Reduce cost for a long-running program without changing the material, function & aesthetics.`}
-          href="case-study"
+          href="/industries/cei#case-study"
           title="Doubling Output with Multi-Level Tooling"
           key={"case-study"}
         />
