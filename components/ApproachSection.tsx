@@ -98,7 +98,7 @@ export default function ApproachSection({
   const containerHeight = items.length * 700 + 200;
 
   return (
-    <section className="w-full bg-[#ececec]">
+    <section className="w-full px-4 bg-[#ececec]">
       {/* SCROLL CONTAINER (tall) */}
       <div
         ref={sectionRef}
@@ -108,7 +108,7 @@ export default function ApproachSection({
         {/* STICKY LAYER (pinned) */}
         <div className="sticky top-0">
           {/* Header section */}
-          <section className="w-full relative min-h-[20vh] md:min-h-[30vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
+          <section className="w-full relative min-h-[25vh] md:min-h-[30vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
             {/* Background Image with reduced opacity */}
             <div className="absolute inset-0 z-0">
               <Image
@@ -122,7 +122,7 @@ export default function ApproachSection({
 
             {/* Content overlay */}
             <div className="relative z-10 mx-auto max-w-7xl px-4  w-full flex items-center justify-start ">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
+              <h1 className="text-2xl sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
                 Shaping Precision,
                 <br />
                 Engineering what matters
@@ -131,16 +131,16 @@ export default function ApproachSection({
           </section>
 
           {/* Approach content */}
-          <div className="h-[70vh] flex items-start py-10">
-            <div className="max-w-7xl px-4 space-y-5 mx-auto w-full ">
-              <Header className="pb-5">Our Approach</Header>
-              <div className="flex justify-between items-start">
+          <div className="h-[60vh] flex items-start py-6 sm:py-8 md:py-10">
+            <div className="max-w-7xl h-full px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 mx-auto w-full">
+              <Header className="pb-3 sm:pb-4 md:pb-5">Our Approach</Header>
+              <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-0 h-full">
                 {/* Left: Active content */}
                 <div
                   id={panelId}
                   role="tabpanel"
                   aria-labelledby={activeTabId}
-                  className="flex flex-col w-[32%] gap-3 text-[#009B80]"
+                  className="flex flex-col w-full lg:w-[32%] h-[40%] lg:h-full gap-2 sm:gap-3 text-[#009B80]"
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -151,11 +151,11 @@ export default function ApproachSection({
                       transition={{ duration: 0, ease: "easeOut" }}
                       className="contents"
                     >
-                      <h3 className={`text-2xl pb-2 sm:text-2xl md:text-4xl font-semibold ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
+                      <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl pb-2 font-semibold ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
                         }`}>
                         {items[active]?.title || 'No title'}
                       </h3>
-                      <p className={`text-2xl sm:text-xl md:text-2xl leading-tight ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
+                      <p className={`text-lg sm:text-xl md:text-2xl leading-tight ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
                         }`}>
                         {items[active]?.desc || 'No description'}
                       </p>
@@ -164,8 +164,8 @@ export default function ApproachSection({
                 </div>
 
                 {/* Right: Buttons */}
-                <div className="flex w-1/2 flex-col gap-2 sm:gap-3">
-                  {items.map((it, i) => {
+                <div className="flex  w-full lg:w-1/2 h-[80%] lg:h-full flex-col gap-2 sm:gap-3">
+                  {items.map((it, i) => { 
                     const isActive = active === i;
                     const tabId = `${sectionId}-tab-${i}`;
                     if (i === 0) {
@@ -196,7 +196,7 @@ export default function ApproachSection({
                             behavior: 'smooth'
                           });
                         }}
-                        className={`text-left px-0 pb-2 sm:pb-2.5 md:pb-3 text-xl sm:text-2xl md:text-3xl font-regular transition-all duration-300 ease-out
+                        className={`text-left px-0 pb-2 sm:pb-2.5 md:pb-3 text-lg sm:text-xl md:text-2xl lg:text-3xl font-regular transition-all duration-300 ease-out
                             ${isActive
                             ? "text-[#009B80]"
                             : "text-[#969696] hover:text-[#009B80]"

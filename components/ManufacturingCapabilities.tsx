@@ -25,9 +25,9 @@ function Badge({
 }) {
   return (
     <div
-      className={`rounded-[20px] border-2 border-white/90 px-5 py-3 sm:px-6 sm:py-4 flex flex-col items-center justify-center text-center shadow-[0_0_0_1px_rgba(255,255,255,0.1)_inset] ${className}`}
+      className={`rounded-[20px] border-2 border-white/90 px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-4 flex flex-col items-center justify-center text-center shadow-[0_0_0_1px_rgba(255,255,255,0.1)_inset] ${className}`}
     >
-      <span className="font-semibold tracking-wide text-lg sm:text-2xl leading-none">
+      <span className="font-semibold tracking-wide text-base sm:text-lg md:text-2xl leading-none">
         {title}
       </span>
       {subtitle ? (
@@ -52,16 +52,16 @@ export default function CapabilitiesSection({
   return (
     <section className="w-full bg-[#ececec]">
       {/* Header and Tabs */}
-      <div className="bg-[#ececec] ">
-        <Header className="text-center pt-6 pb-2 md:mb-0">Core Capabilities</Header>
+      <div className="bg-[#ececec]">
+        <Header className="text-center pt-4 sm:pt-6 pb-2 md:mb-0">Core Capabilities</Header>
         <div className="pb-3 flex justify-center z-10">
-          <div className="w-full max-w-7xl mx-auto px-4">
-            <div className="flex justify-between gap-6 md:gap-20 overflow-x-auto no-scrollbar">
+          <div className="w-full max-w-7xl mx-auto px-8 sm:px-6 lg:px-8">
+            <div className="flex justify-between max-md:justify-start max-md:flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-20 overflow-x-auto no-scrollbar">
               {tabs.map((t, idx) => (
                 <button
                   key={`${t.title}-${idx}`}
                   onClick={() => setActive(idx)}
-                  className={`shrink-0 text-lg sm:text-md md:text-xl py-3 transition-colors ${active === idx
+                  className={`shrink-0 text-xs sm:text-lg md:text-xl py-2 sm:py-3 transition-colors ${active === idx
                     ? "text-[#1789FF]"
                     : "text-[#8a8a8a] hover:text-[#1789FF]"
                     }`}
@@ -76,7 +76,7 @@ export default function CapabilitiesSection({
       </div>
 
       {/* Content Area */}
-      <div className="relative w-full h-[58vh] sm:h-[64vh] md:h-[75vh] xl:h-[85vh] overflow-hidden">
+      <div className="relative w-full h-[50vh] sm:h-[58vh] md:h-[64vh] lg:h-[75vh] xl:h-[85vh] overflow-hidden">
         {/* Media */}
         {tab.video ? (
           <video
@@ -107,10 +107,10 @@ export default function CapabilitiesSection({
 
         {/* Overlay content */}
         <div className="absolute h-full inset-0 z-10 flex items-center">
-          <div className="px-4 h-full mx-auto w-full max-w-7xl">
-            <div className="max-w-xl flex flex-col gap-4 justify-between h-full py-20 sm:max-w-2xl">
+          <div className="px-4 sm:px-6 lg:px-8 h-full mx-auto w-full max-w-7xl">
+            <div className="max-w-lg sm:max-w-xl md:max-w-2xl flex flex-col gap-3 sm:gap-4 justify-between h-full py-12 sm:py-16 md:py-20">
               <div className="">
-                <h3 className="text-white text-2xl sm:text-3xl md:text-5xl font-medium leading-tight mb-4 sm:mb-6 whitespace-pre-line">
+                <h3 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-5xl font-medium leading-tight mb-3 sm:mb-4 md:mb-6 whitespace-pre-line">
                   {tab.title === "Tooling"
                     ? "Tools that\nshape outcomes."
                     : tab.desc}
@@ -118,8 +118,8 @@ export default function CapabilitiesSection({
 
                 {/* Show bullets if they exist, otherwise show badges */}
                 {tab.bullets && tab.bullets.length > 0 ? (
-                  <div className="mt-8 sm:mt-10 md:mt-4">
-                    <ul className="space-y-3 sm:space-y-4">
+                  <div className="mt-6 sm:mt-8 md:mt-10">
+                    <ul className="space-y-2 sm:space-y-3 md:space-y-4">
                       {tab.bullets.map((bullet, index) => (
                         <li key={index} className="text-white/90 text-sm sm:text-base leading-relaxed">
                           {bullet}
@@ -136,8 +136,8 @@ export default function CapabilitiesSection({
                       Learn more
                     </Link>
                     {/* Badges */}
-                    <div className="flex flex-wrap text-left justify-start max-w-2xl gap-3 sm:gap-4 md:gap-4 mt-16">
-                      <Image src="/static/badges/Thermoplastics unit.svg" alt="capabilities" width={400} height={400} className="object-contain" />
+                    <div className="flex flex-wrap text-left justify-start max-w-2xl gap-2 sm:gap-3 md:gap-4 mt-12 sm:mt-14 md:mt-16">
+                      <Image src="/static/badges/Thermoplastics unit.svg" alt="capabilities" width={400} height={400} className="object-contain w-64 sm:w-80 md:w-96 lg:w-[400px]" />
 
                       {/* {<div className="bg-transparent border border-white py-3 rounded-lg">
                         <div className="text-white text-center space-y-2">
@@ -174,11 +174,11 @@ export default function CapabilitiesSection({
 
                 {/* Optional dynamic chips */}
                 {!!tab.chips?.length && (
-                  <div className="flex flex-wrap gap-3 sm:gap-4 mt-6">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 mt-4 sm:mt-6">
                     {tab.chips.map((c, i) => (
                       <div
                         key={`${c}-${i}`}
-                        className="rounded-2xl bg-white/10 border border-white/80 px-4 py-2 sm:px-6 sm:py-3 text-white text-center text-sm sm:text-base font-semibold"
+                        className="rounded-2xl bg-white/10 border border-white/80 px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 text-white text-center text-xs sm:text-sm md:text-base font-semibold"
                       >
                         {c}
                       </div>

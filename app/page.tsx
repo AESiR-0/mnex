@@ -114,13 +114,13 @@ export default function Home() {
         />
 
         {/* 5. Solutions Section */}
-        <section className="w-full min-h-[60vh] justify-start py-10  flex flex-col items-center bg-white px-4 sm:px-6 lg:px-8">
-          <div className="w-full  max-w-7xl px-4  ">
-            <Header className="pb-5">Solutions</Header>
+        <section className="w-full md:min-h-[60vh]  justify-start py-6 pb-10 sm:py-8 md:py-10 flex flex-col items-center bg-white px-4 lg:px-8">
+          <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Header className="pb-3 sm:pb-4 md:pb-5 max-md:text-center">Solutions</Header>
           </div>
-          <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-6 lg:gap-0 px-4  ">
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 px-4 sm:px-6 lg:px-8">
             {/* Left column */}
-            <div className="flex flex-col justify-start ">
+            <div className="flex flex-col justify-start">
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-[#1789FF] leading-snug">
                 We don't sell capabilities.
                 <br />
@@ -129,8 +129,8 @@ export default function Home() {
             </div>
 
             {/* Right column */}
-            <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 text-[#595959]">
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-4 sm:mb-6">
+            <div className="flex flex-col justify-center text-[#595959]">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-3 sm:mb-4 md:mb-6">
                 At Mnex, every solution is engineered around your product, scale
                 and market demands.
               </p>

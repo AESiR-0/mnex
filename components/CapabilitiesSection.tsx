@@ -138,7 +138,7 @@ export default function CapabilitiesSection() {
                     </Header>
 
                     {/* Navigation Tabs */}
-                    <div className="flex justify-between gap-6 md:gap-20">
+                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-20">
                         {capabilities.map((capability, index) => {
                             const tabId = capability.title.toLowerCase().split(' ').join('-');
                             return (
