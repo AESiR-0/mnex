@@ -279,7 +279,7 @@ function CapabilitiesSection() {
                     <div className="max-w-7xl mx-auto px-4 w-full">
                         <div className="max-w-full  ">
                             {/* Headline */}
-                            <h3 className="text-white  text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-10">
+                            <h3 className="text-white  text-5xl font-semibold leading-tight mb-10">
                                 {activeCapability.headline}
                             </h3>
 

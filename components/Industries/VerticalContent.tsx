@@ -1,16 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-
-// Register GSAP plugins
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 export type ApproachItem = { title: string; desc: string };
 
@@ -28,117 +20,6 @@ export default function VerticalContent({
     backgroundImage?: string;
 }) {
     const [activeApproach, setActiveApproach] = useState(0);
-    const sectionRef = useRef<HTMLDivElement | null>(null);
-    const contentRef = useRef<HTMLDivElement | null>(null);
-    const isMountedRef = useRef(true);
-    const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
-    const pathname = usePathname();
-
-    // Component mount/unmount tracking
-    useEffect(() => {
-        isMountedRef.current = true;
-
-        return () => {
-            isMountedRef.current = false;
-        };
-    }, []);
-
-    // Next.js 15 specific: Disable ScrollTrigger during navigation
-    useEffect(() => {
-        // Disable ScrollTrigger globally during navigation
-        ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" });
-
-        return () => {
-            // Re-enable ScrollTrigger
-            ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" });
-        };
-    }, [pathname]);
-
-    // GSAP Context-based ScrollTrigger management
-    useEffect(() => {
-        if (!sectionRef.current || !contentRef.current || !isMountedRef.current) return;
-
-        const section = sectionRef.current;
-        const content = contentRef.current;
-
-        // Kill existing ScrollTrigger if it exists
-        if (scrollTriggerRef.current) {
-            try {
-                scrollTriggerRef.current.kill();
-                scrollTriggerRef.current = null;
-            } catch (error) {
-                console.warn('ScrollTrigger cleanup error:', error);
-            }
-        }
-
-        // Create GSAP context for this component
-        const ctx = gsap.context(() => {
-            // Create ScrollTrigger within the context
-            scrollTriggerRef.current = ScrollTrigger.create({
-                trigger: section,
-                start: "top top",
-                end: `+=${items.length * 700}`,
-                pin: true,
-                pinSpacing: true,
-                onUpdate: (self) => {
-                    if (!isMountedRef.current) return;
-
-                    try {
-                        const progress = self.progress;
-                        const step = Math.floor(progress * items.length);
-                        const clampedStep = Math.min(step, items.length - 1);
-
-                        // Set active approach based on scroll progress
-                        const newActiveApproach = Math.max(0, clampedStep);
-
-                        if (newActiveApproach !== activeApproach && isMountedRef.current) {
-                            setActiveApproach(newActiveApproach);
-                        }
-                    } catch (error) {
-                        console.warn('ScrollTrigger onUpdate error:', error);
-                    }
-                },
-                onLeave: () => {
-                    if (isMountedRef.current) {
-                        try {
-                            setActiveApproach(items.length - 1);
-                        } catch (error) {
-                            console.warn('ScrollTrigger onLeave error:', error);
-                        }
-                    }
-                },
-                onEnterBack: () => {
-                    if (isMountedRef.current) {
-                        try {
-                            setActiveApproach(0);
-                        } catch (error) {
-                            console.warn('ScrollTrigger onEnterBack error:', error);
-                        }
-                    }
-                }
-            });
-        }, sectionRef); // Scope to the section element
-
-        // Cleanup function
-        return () => {
-            // Kill ScrollTrigger first
-            if (scrollTriggerRef.current) {
-                try {
-                    scrollTriggerRef.current.kill();
-                    scrollTriggerRef.current = null;
-                } catch (error) {
-                    console.warn('ScrollTrigger kill error:', error);
-                }
-            }
-
-            // Then revert the GSAP context
-            try {
-                ctx.revert();
-            } catch (error) {
-                console.warn('GSAP context revert error:', error);
-            }
-        };
-    }, [items.length, activeApproach, pathname]);
 
     if (!items || items.length === 0) return null;
 
@@ -149,7 +30,6 @@ export default function VerticalContent({
     return (
         <section
             id={sectionId}
-            ref={sectionRef}
             className="w-full bg-[#ececec] min-h-screen"
         >
             <section className="w-full bg-[#f5f5f5] py-8 sm:py-10" >
@@ -162,7 +42,7 @@ export default function VerticalContent({
                     </p>
                 </div>
             </section>
-            <div ref={contentRef} className="h-[70vh] flex items-center py-10 relative">
+            <div className="h-[70vh] flex items-center py-10 relative">
                 {/* Background Image */}
                 {backgroundImage && (
                     <div className="absolute inset-0 z-0">
@@ -222,11 +102,7 @@ export default function VerticalContent({
                                             role="tab"
                                             aria-selected={isActive}
                                             aria-controls={panelId}
-                                            onClick={() => {
-                                                if (isMountedRef.current) {
-                                                    setActiveApproach(i);
-                                                }
-                                            }}
+                                            onClick={() => setActiveApproach(i)}
                                             className={`text-left px-0 py-2 text-4xl transition-all duration-300 ease-out
                                                 ${isActive
                                                     ? "text-white"

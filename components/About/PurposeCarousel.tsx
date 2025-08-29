@@ -115,7 +115,7 @@ export default function PurposeCarousel({
         </div>
 
         {/* Overlay content */}
-        <div className="absolute -top-20  inset-0 z-10 flex items-center">
+        <div className="absolute -top-20  inset-0 z-10 flex items-start pt-[15rem]">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl text-white">
               {slide.step && (
@@ -147,6 +147,56 @@ export default function PurposeCarousel({
         </div>
 
         {/* Dots */}
+        {/* Arrow Navigation */}
+        <div className="absolute z-10 bottom-20 left-0 w-full">
+          <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
+            <div className="max-w-3xl flex justify-start gap-5 items-center">
+              {/* Left Arrow */}
+              <button
+                onClick={() => to(idx === 0 ? slides.length - 1 : idx - 1)}
+                aria-label="Previous slide"
+                className="p-4 rounded-full hover:bg-[#1789FF] bg-white/20 transition-all duration-200 backdrop-blur-sm"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-white"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+
+              {/* Right Arrow */}
+              <button
+                onClick={() => to(idx === slides.length - 1 ? 0 : idx + 1)}
+                aria-label="Next slide"
+                className="p-4 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-200 backdrop-blur-sm"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-white"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Dots Navigation */}
         <div className="absolute z-10 bottom-8 left-0 w-full">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex gap-3">

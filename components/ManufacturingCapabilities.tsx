@@ -136,11 +136,10 @@ export default function CapabilitiesSection({
                       Learn more
                     </Link>
                     {/* Badges */}
-                    <div className="flex flex-wrap text-left justify-start max-w-3xl gap-3 sm:gap-4 md:gap-4 mt-16">
+                    {/* <div className="flex flex-wrap text-left justify-start max-w-3xl gap-3 sm:gap-4 md:gap-4 mt-16">
                       <div className="bg-transparent border border-white py-3 rounded-lg">
                         <div className="text-white text-center space-y-2">
-                          {/* Top Section */}
-                          <div className="pb-2 border-b border-white/30">
+                          <div className="pb-2 border-b border-white">
                             <div className="text-lg uppercase flex gap-2  px-6 tracking-wide text-left">
                               <span className="text-white">THERMOPLASTICS</span> |
                               <span className="text-white">THERMOSETS</span>
@@ -150,7 +149,7 @@ export default function CapabilitiesSection({
                             </div>
                           </div>
 
-                          <div className="py-2  border-b border-white/30">
+                          <div className="py-2  border-b border-white">
                             <div className="text-lg items-center    uppercase flex gap-2  px-6 tracking-wide text-left">
                               <span className="text-white">MULTI-SHOT</span> |
                               <span className="text-white">MULTI-MATERIAL FUSION</span>
@@ -165,7 +164,7 @@ export default function CapabilitiesSection({
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </>
                 )}
 

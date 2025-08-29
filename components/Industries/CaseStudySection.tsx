@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import Header from "@/components/Header";
 
 type CaseStudy = {
@@ -133,9 +134,15 @@ export default function CaseStudySection() {
         </div>
 
         {/* Right Column - Image Placeholder (1/3 width) */}
-        <div className="md:col-span-1">
-          <div className="w-full h-64 md:h-96 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
-            📷 Image of the {study.title.toLowerCase()} or production line in operation
+        <div className="ml-36 px-10 mt-24 flex justify-end">
+          <div className="w-full h-[80%]   overflow-hidden">
+            <Image
+              src="/static/industries/case-study-product.webp"
+              alt={`${study.title} case study product`}
+              width={420}
+              height={700}
+              className="object-cover"
+            />
           </div>
         </div>
       </div>
