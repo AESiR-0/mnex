@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "./Header";
 
@@ -77,6 +77,43 @@ export default function CapabilitiesSection() {
     const [activeTab, setActiveTab] = useState(0);
     const activeCapability = capabilities[activeTab];
 
+    // Function to get tab index from hash
+    const getTabIndexFromHash = (hash: string) => {
+        const cleanHash = hash.replace('#', '');
+        const tabIndex = capabilities.findIndex(capability => 
+            capability.title.toLowerCase().split(' ').join('-') === cleanHash
+        );
+        return tabIndex >= 0 ? tabIndex : 0;
+    };
+
+    // Handle hash changes and initial load
+    useEffect(() => {
+        const handleHashChange = () => {
+            const hash = window.location.hash;
+            if (hash) {
+                const tabIndex = getTabIndexFromHash(hash);
+                setActiveTab(tabIndex);
+            }
+        };
+
+        // Set initial tab from hash if present
+        if (window.location.hash) {
+            const tabIndex = getTabIndexFromHash(window.location.hash);
+            setActiveTab(tabIndex);
+        }
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
+
+    // Update hash when tab changes
+    const handleTabChange = (index: number) => {
+        setActiveTab(index);
+        const tabId = capabilities[index].title.toLowerCase().split(' ').join('-');
+        window.location.hash = tabId;
+    };
+
     // Function to format bullet text with bold parts
     const formatBulletText = (text: string) => {
         const parts = text.split(':');
@@ -100,21 +137,28 @@ export default function CapabilitiesSection() {
                         Core Capabilities
                     </Header>
 
-                        {/* Navigation Tabs */}
-                        <div className="flex justify-between gap-6 md:gap-20">
-                            {capabilities.map((capability, index) => (
+                    {/* Navigation Tabs */}
+                    <div className="flex justify-between gap-6 md:gap-20">
+                        {capabilities.map((capability, index) => {
+                            const tabId = capability.title.toLowerCase().split(' ').join('-');
+                            return (
                                 <button
                                     key={capability.title}
-                                    onClick={() => setActiveTab(index)}
+                                    id={tabId}
+                                    onClick={() => handleTabChange(index)}
                                     className={`text-lg md:text-xl py-2 whitespace-pre-line transition-colors ${activeTab === index
                                         ? "text-[#1789FF] "
                                         : "text-[#8a8a8a] hover:text-[#1789FF]"
                                         }`}
+                                    aria-selected={activeTab === index}
+                                    role="tab"
+                                    aria-controls={`${tabId}-panel`}
                                 >
                                     {capability.title}
                                 </button>
-                            ))}
-                        </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
 
@@ -147,7 +191,12 @@ export default function CapabilitiesSection() {
                 {/* Content overlay */}
                 <div className="relative z-10 h-full flex items-start py-20">
                     <div className="max-w-7xl mx-auto px-4 w-full">
-                        <div className="max-w-2xl">
+                        <div
+                            id={`${activeCapability.title.toLowerCase().split(' ').join('-')}-panel`}
+                            role="tabpanel"
+                            aria-labelledby={`${activeCapability.title.toLowerCase().split(' ').join('-')}`}
+                            className="max-w-2xl"
+                        >
                             {/* Headline */}
                             <h3 className="text-white  text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-6">
                                 {activeCapability.headline}
