@@ -130,14 +130,16 @@ export default function CapabilitiesSection({
                 ) : (
                   <>
                     <Link
-                      href="/solutions"
+                      href={`/solutions#${tab.title}`}
                       className="inline-block text-white/90 text-xs sm:text-sm uppercase tracking-wide underline underline-offset-4 decoration-white/60 hover:decoration-white"
                     >
                       Learn more
                     </Link>
                     {/* Badges */}
-                    {/* <div className="flex flex-wrap text-left justify-start max-w-3xl gap-3 sm:gap-4 md:gap-4 mt-16">
-                      <div className="bg-transparent border border-white py-3 rounded-lg">
+                    <div className="flex flex-wrap text-left justify-start max-w-2xl gap-3 sm:gap-4 md:gap-4 mt-16">
+                    <Image src="/static/badges/Thermoplastics unit.svg" alt="capabilities" width={400} height={400} className="object-contain" />
+
+                      {/* {<div className="bg-transparent border border-white py-3 rounded-lg">
                         <div className="text-white text-center space-y-2">
                           <div className="pb-2 border-b border-white">
                             <div className="text-lg uppercase flex gap-2  px-6 tracking-wide text-left">
@@ -164,7 +166,9 @@ export default function CapabilitiesSection({
                           </div>
                         </div>
                       </div>
-                    </div> */}
+                      } */}
+                    </div>
+
                   </>
                 )}
 
