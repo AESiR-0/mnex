@@ -22,14 +22,7 @@ const useIsMobile = () => {
       const userAgent = navigator.userAgent.toLowerCase();
       const isMobileUserAgent = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
 
-      // Check if device is in portrait mode (common on mobile)
-      const isPortrait = window.innerHeight > window.innerWidth;
-
-      // Check for mobile-specific features
-      const hasMobileFeatures = 'orientation' in window || 'devicePixelRatio' in window;
-
-      // Consider it mobile if any of these conditions are met
-      const isMobileDevice = isSmallScreen || hasTouch || isMobileUserAgent || (isPortrait && hasMobileFeatures);
+      const isMobileDevice = isSmallScreen || hasTouch || isMobileUserAgent;
 
       setIsMobile(isMobileDevice);
     };
@@ -157,7 +150,7 @@ export default function ApproachSection({
                 src="/static/home/second_section.webp"
                 alt="Background"
                 fill
-                className="object-cover opacity-25"
+                className="object-cover opacity-25 max-md:opacity-40"
                 priority
               />
             </div>

@@ -584,7 +584,7 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ type: "keyframes", duration: 0.2 }}
+            transition={{ duration: 0.15, ease: "easeInOut" }}
             className="md:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
           >
             {navLinks.map((link) => {
@@ -632,8 +632,8 @@ export default function Navbar() {
                             rotate: mobileDropdown === link.name ? 180 : 0,
                           }}
                           transition={{
-                            type: "keyframes",
-                            duration: 0.2,
+                            duration: 0.15,
+                            ease: "easeInOut"
                           }}
                           className="flex items-center justify-center w-4 h-4"
                         >
@@ -659,6 +659,13 @@ export default function Navbar() {
                               height="10"
                               rx="0.75"
                               fill="#1789FF"
+                              animate={{
+                                scaleY: mobileDropdown === link.name ? 0 : 1,
+                              }}
+                              transition={{
+                                duration: 0.2,
+                                ease: "easeInOut"
+                              }}
                             />
                           </svg>
                         </motion.span>
@@ -673,9 +680,8 @@ export default function Navbar() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{
-                          type: "spring",
-                          stiffness: 60,
-                          damping: 22,
+                          duration: 0.15,
+                          ease: "easeInOut"
                         }}
                         className="flex flex-col bg-white border-l border-[#1789FF]/20 ml-6"
                       >
@@ -704,7 +710,7 @@ export default function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setLangOpen((v) => !v)}
-                  className="h-8 w-8 flex items-center text-xs justify-center bg-[#1789ff] rounded-full border border-[#595959]/40  font-semibold text-[#595959] hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
+                  className="h-8 w-8 flex items-center text-xs justify-center bg-[#1789ff] rounded-full border border-[#595959]/40  font-semibold text-white hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
                   aria-label="Change language"
                 >
                   {language}
