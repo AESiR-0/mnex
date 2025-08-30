@@ -41,7 +41,7 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollUpDistance, setScrollUpDistance] = useState(0); // Track how much we've scrolled up
   const pathname = usePathname();
-  const { isOpen: isContactOpen } = useContactSlider();
+  const { isOpen: isContactOpen, open: openContactSlider } = useContactSlider();
 
   // Check if a link is active
   const isLinkActive = (href: string) => {
@@ -127,12 +127,11 @@ export default function Navbar() {
         <ul className="hidden transition-all  tracking-[0.05em] text-sm md:flex gap-8 items-center">
           {navLinks.map((link) => {
             if (link.name == "Contact Us") {
-              const { open } = useContactSlider();
               return (
                 <li key={link.name} className="relative group  transition-all">
                   <div className="flex bg-transparent items-center">
                     <button
-                      onClick={open}
+                      onClick={openContactSlider}
                       className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                         bg-transparent text-[#595959] hover:bg-[#009b80] hover:text-white`}
                     >
@@ -590,13 +589,12 @@ export default function Navbar() {
           >
             {navLinks.map((link) => {
               if (link.name === "Contact Us") {
-                const { open } = useContactSlider();
                 return (
                   <li key={link.name} className="border-b border-[#595959]/5">
                     <div className="flex items-center justify-between px-6 py-4">
                       <button
                         onClick={() => {
-                          open();
+                          openContactSlider();
                           setMenuOpen(false);
                         }}
                         className="text-[#595959] hover:text-[#1789FF] transition-colors"

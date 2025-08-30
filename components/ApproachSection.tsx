@@ -6,6 +6,46 @@ import Header from "@/components/Header";
 
 export type ApproachItem = { title: string; desc: string };
 
+// Hook to detect mobile devices
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      // Check screen width
+      const isSmallScreen = window.innerWidth < 768;
+
+      // Check if device has touch capability
+      const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+      // Check user agent for mobile devices
+      const userAgent = navigator.userAgent.toLowerCase();
+      const isMobileUserAgent = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+
+      // Check if device is in portrait mode (common on mobile)
+      const isPortrait = window.innerHeight > window.innerWidth;
+
+      // Check for mobile-specific features
+      const hasMobileFeatures = 'orientation' in window || 'devicePixelRatio' in window;
+
+      // Consider it mobile if any of these conditions are met
+      const isMobileDevice = isSmallScreen || hasTouch || isMobileUserAgent || (isPortrait && hasMobileFeatures);
+
+      setIsMobile(isMobileDevice);
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    window.addEventListener('orientationchange', checkIsMobile);
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+      window.removeEventListener('orientationchange', checkIsMobile);
+    };
+  }, []);
+
+  return isMobile;
+};
+
 export default function ApproachSection({
   items,
   sectionId = "approach",
@@ -17,8 +57,9 @@ export default function ApproachSection({
   const [vh, setVh] = useState(0); // viewport height in px
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const lastScrollY = useRef(0);
+  const isMobile = useIsMobile();
 
-    // viewport height (handles mobile address bar)
+  // viewport height (handles mobile address bar)
   useEffect(() => {
     const update = () => setVh(window.innerHeight || 0);
     update();
@@ -27,8 +68,9 @@ export default function ApproachSection({
   }, []);
 
   // scroll logic: pin + advance on down only (exactly like ManufacturingCapabilities)
+  // Only enable on desktop
   useEffect(() => {
-    if (!sectionRef.current || vh === 0 || items.length === 0) return;
+    if (!sectionRef.current || vh === 0 || items.length === 0 || isMobile) return;
 
     const root = sectionRef.current;
     const rootTop = () => root.getBoundingClientRect().top + window.scrollY;
@@ -60,7 +102,7 @@ export default function ApproachSection({
       }, 50); // Small delay to prevent rapid changes
 
       // Handle scroll up - only trigger when at the start of the last tab
-      
+
     };
 
     const onResize = () => {
@@ -76,7 +118,7 @@ export default function ApproachSection({
         clearTimeout(scrollTimeout);
       }
     };
-  }, [vh, items.length, activeApproach]);
+  }, [vh, items.length, activeApproach, isMobile]);
 
 
 
@@ -94,19 +136,19 @@ export default function ApproachSection({
   const panelId = `${sectionId}-panel`;
   const activeTabId = active >= 0 ? `${sectionId}-tab-${active}` : undefined;
 
-  // The container height is N * 700px + 200px (extra to release pin)
-  const containerHeight = items.length * 700 + 200;
+  // The container height is N * 700px + 200px (extra to release pin) - only on desktop
+  const containerHeight = isMobile ? 'auto' : items.length * 700 + 200;
 
   return (
     <section className="w-full  bg-[#ececec]">
       {/* SCROLL CONTAINER (tall) */}
       <div
         ref={sectionRef}
-        style={{ height: vh ? `${containerHeight}px` : undefined }}
+        style={{ height: isMobile ? 'auto' : (vh ? `${containerHeight}px` : undefined) }}
         className="relative"
       >
-        {/* STICKY LAYER (pinned) */}
-        <div className="sticky top-0">
+        {/* STICKY LAYER (pinned) - only on desktop */}
+        <div className={isMobile ? "relative" : "sticky top-0"}>
           {/* Header section */}
           <section className="w-full relative min-h-[25vh] md:min-h-[30vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
             {/* Background Image with reduced opacity */}
@@ -131,7 +173,7 @@ export default function ApproachSection({
           </section>
 
           {/* Approach content */}
-          <div className="h-[60vh] flex items-start py-6 sm:py-8 md:py-10">
+          <div className={`${isMobile ? 'min-h-[50vh]' : 'h-[60vh]'} flex items-start py-6 sm:py-8 md:py-10`}>
             <div className="max-w-7xl h-full px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 mx-auto w-full">
               <Header className="pb-3 sm:pb-4 md:pb-5">Our Approach</Header>
               <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-0 h-full">
@@ -165,7 +207,7 @@ export default function ApproachSection({
 
                 {/* Right: Buttons */}
                 <div className="flex  w-full lg:w-1/2 h-[78%] lg:h-full flex-col gap-2 sm:gap-3">
-                  {items.map((it, i) => { 
+                  {items.map((it, i) => {
                     const isActive = active === i;
                     const tabId = `${sectionId}-tab-${i}`;
                     if (i === 0) {
@@ -180,6 +222,12 @@ export default function ApproachSection({
                         aria-selected={isActive}
                         aria-controls={panelId}
                         onClick={() => {
+                          if (isMobile) {
+                            // On mobile, just update the active state without scroll effects
+                            setActiveApproach(i);
+                            return;
+                          }
+
                           // Calculate the scroll position for this tab (exactly like ManufacturingCapabilities)
                           const tabScrollPosition = i * 700 + 60;
                           const containerTop = sectionRef.current?.getBoundingClientRect().top || 0;
