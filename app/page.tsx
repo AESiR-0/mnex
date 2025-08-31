@@ -88,15 +88,25 @@ export default function Home() {
     <main className="bg-[#F5F5F5] min-h-screen flex flex-col">
       {/* 1. Hero Video Section (Normal Scroll) */}
       <section className="relative w-full h-screen">
+        {/* Mobile Video */}
+        <video
+          src="/videos/home/hero_mobile.webm"
+          autoPlay
+          playsInline
+          loop
+          muted
+          className="object-cover w-full h-full md:hidden"
+        />
+        
+        {/* Desktop Video */}
         <video
           src="/videos/home/hero.webm"
           autoPlay
           playsInline
           loop
           muted
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full hidden md:block"
         />
-
       </section>
 
       {/* 2. Content Container */}

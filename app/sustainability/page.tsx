@@ -68,13 +68,13 @@ const capabilities: Capability[] = [
 
 export default function Sustainability() {
     return (
-        <div>
-            <section className="w-full text-[#009b80] bg-[#F2F2F2]">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-18 lg:py-24 text-center">
+        <div className="pt-10">
+            <section className="w-full text-[#009b80]  bg-[#F2F2F2]">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 text-center">
                     {/* Headline */}
                     <h1
-                        className=" pt-5 font-semibold leading-tight
-                       text-2xl sm:text-3xl md:text-4xl "
+                        className="pt-3 sm:pt-4 md:pt-5 font-semibold leading-tight
+                       text-xl sm:text-2xl md:text-3xl lg:text-4xl"
                     >
                         Built to Perform.
                         <br />
@@ -82,10 +82,10 @@ export default function Sustainability() {
                     </h1>
 
                     {/* Copy */}
-                    <div className="mt-6 sm:mt-8 space-y-2 sm:space-y-5">
+                    <div className="mt-4 sm:mt-6 md:mt-8 space-y-2 sm:space-y-3 md:space-y-5">
                         <p
                             className="mx-auto max-w-2xl leading-relaxed
-                        text-lg   "
+                        text-base sm:text-lg"
                         >
                             We believe good manufacturing is responsible manufacturing.
                             <br />   We build smarter because it's better for business and the planet
@@ -95,71 +95,71 @@ export default function Sustainability() {
                 </div>
             </section>
             {/* Solar Energy Data Section */}
-            <section className="w-full bg-[#ebebeb] py-16">
-                <div className="max-w-7xl mx-auto px-4">
-                    <Header className="text-center text-xs sm:text-sm font-medium text-[#009b80] uppercase tracking-[0.15em] mb-0 pb-20">
+            <section className="w-full bg-[#ebebeb] py-10 sm:py-12 md:py-16">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <Header className="text-center text-xs sm:text-sm font-medium text-[#009b80] uppercase tracking-[0.15em] mb-0 pb-12 sm:pb-16 md:pb-20">
                         MNEX SOLAR ENERGY DATA
                     </Header>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 text-xl  gap-8 md:gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 text-base sm:text-lg md:text-xl gap-6 sm:gap-8 md:gap-12">
                         {/* Solar Panels */}
-                        <div className="flex items-center gap-6 px-20">
+                        <div className="flex items-center gap-8  sm:gap-6 px-8 sm:px-12 md:px-20">
                             <div className="flex-shrink-0">
                                 <Image
                                     src="/static/sustainability/solar panel.svg"
                                     alt="Solar Panel Icon"
-                                    width={80}
-                                    height={80}
-                                    className="text-[#009b80]"
+                                    width={60}
+                                    height={60}
+                                    className="sm:w-16 sm:h-16 md:w-20 md:h-20 text-[#009b80]"
                                 />
                             </div>
                             <div className="text-left">
-                                <div className="text-[#009b80] font-bold leading-none">
+                                <div className="text-[#009b80] font-bold leading-none text-lg sm:text-xl md:text-2xl">
                                     1,562
                                 </div>
-                                <div className="text-[#009b80]  font-medium">
+                                <div className="text-[#009b80] font-medium text-sm sm:text-base md:text-lg">
                                     SOLAR PANELS
                                 </div>
                             </div>
                         </div>
 
                         {/* Annual Power Generation */}
-                        <div className="flex items-center gap-6 px-10">
+                        <div className="flex items-center gap-8  sm:gap-6 px-6 sm:px-8 md:px-10">
                             <div className="flex-shrink-0">
                                 <Image
                                     src="/static/sustainability/annual power.svg"
                                     alt="Power Generation Icon"
-                                    width={80}
-                                    height={80}
-                                    className="text-[#009b80]"
+                                    width={60}
+                                    height={60}
+                                    className="sm:w-16 sm:h-16 md:w-20 md:h-20 text-[#009b80]"
                                 />
                             </div>
                             <div className="text-left">
-                                <div className="text-[#009b80]  ">
+                                <div className="text-[#009b80] text-sm sm:text-base md:text-lg">
                                     ANNUAL POWER GENERATION
                                 </div>
-                                <div className="text-[#009b80] uppercase  font-semibold   leading-none">
+                                <div className="text-[#009b80] uppercase font-semibold leading-none text-lg sm:text-xl md:text-2xl">
                                     1,150,000 kWh
                                 </div>
                             </div>
                         </div>
 
                         {/* CO2 Emissions Reduction */}
-                        <div className="flex items-center gap-6 px-10">
+                        <div className="flex items-center gap-8  sm:gap-6 px-6 sm:px-8 md:px-10">
                             <div className="flex-shrink-0">
                                 <Image
                                     src="/static/sustainability/c02 emission.svg"
                                     alt="CO2 Reduction Icon"
-                                    width={80}
-                                    height={80}
-                                    className="text-[#009b80]"
+                                    width={60}
+                                    height={60}
+                                    className="sm:w-16 sm:h-16 md:w-20 md:h-20 text-[#009b80]"
                                 />
                             </div>
                             <div className="text-left">
-                                <div className="text-[#009b80]  font-medium">
+                                <div className="text-[#009b80] font-medium text-sm sm:text-base md:text-lg">
                                     CO₂ EMISSIONS REDUCTION:
                                 </div>
-                                <div className="text-[#009b80] uppercase  font-semibold leading-none">
+                                <div className="text-[#009b80] uppercase font-semibold leading-none text-lg sm:text-xl md:text-2xl">
                                     920 Tonnes
                                 </div>
                             </div>
@@ -211,17 +211,17 @@ function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line bg-white h-screen flex flex-col">
+        <section className="w-full whitespace-pre-line bg-white h-screen max-md:h-[85vh] flex flex-col">
             {/* Header */}
-            <div className="bg-white py-4 flex-shrink-0">
-                <div className="max-w-7xl mx-auto px-4">
+            <div className="bg-white py-3 sm:py-4 flex-shrink-0">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Navigation Tabs */}
-                    <div className="flex max-md:flex-wrap max-md:justify-center max-md:gap-y-0 justify-between gap-6 md:gap-20">
+                    <div className="flex max-md:flex-wrap max-md:justify-center max-md:gap-y-2 justify-between gap-4 sm:gap-6 md:gap-20">
                         {capabilities.map((capability, index) => (
                             <button
                                 key={capability.title}
                                 onClick={() => setActiveTab(index)}
-                                className={`text-lg md:text-lg py-5 max-md:py-2 whitespace-pre-line transition-colors ${activeTab === index
+                                className={`text-sm sm:text-base md:text-lg py-3 sm:py-4 md:py-5 max-md:py-2 whitespace-pre-line transition-colors ${activeTab === index
                                     ? "text-[#009b80] "
                                     : "text-[#8a8a8a] hover:text-[#009b80]"
                                     }`}
@@ -279,7 +279,7 @@ function CapabilitiesSection() {
                     <div className="max-w-7xl mx-auto px-4 w-full">
                         <div className="max-w-full  ">
                             {/* Headline */}
-                            <h3 className="text-white text-xl mb-10 sm:text-2xl md:text-3xl lg:text-5xl font-medium leading-tight  whitespace-pre-line">
+                            <h3 className="text-white text-2xl mb-12 md:text-3xl lg:text-5xl font-medium leading-tight  whitespace-pre-line">
 
                                 {activeCapability.headline}
                             </h3>
@@ -292,7 +292,7 @@ function CapabilitiesSection() {
                             {/* Bullet Points */}
                             <ul className="space-y-4 ">
                                 {activeCapability.bullets.map((bullet, index) => (
-                                    <li key={index} className="text-white/90 max-md:pr-10  pr-40 text-base  md:text-lg leading-normal flex items-start">
+                                    <li key={index} className="text-white/90 max-md:pr-24  pr-40 text-base  md:text-lg leading-normal flex items-start">
                                         <span className="font-bold rounded-full mr-2">•</span>
                                         <span>{formatBulletText(bullet)}</span>
                                     </li>

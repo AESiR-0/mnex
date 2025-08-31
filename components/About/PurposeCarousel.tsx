@@ -134,7 +134,7 @@ export default function PurposeCarousel({
               {!!slide.bullets?.length && (
                 <ul className="space-y-4 text-lg md:text-xl font-light text-white/90 mb-12">
                   {slide.bullets.map((b, i) => (
-                    <li key={i} className="relative flex gap-4 items-center">
+                    <li key={i} className="relative max-md:pr-5 flex gap-4 items-center">
                       <span className="block h-2 w-2 rounded-full bg-white/80 flex-shrink-0 mt-1" />
                       <span>{b}</span>
                     </li>
@@ -197,7 +197,7 @@ export default function PurposeCarousel({
         </div>
 
         {/* Dots Navigation */}
-        <div className="absolute z-10 bottom-8 left-0 w-full">
+        <div className="absolute max-md:hidden z-10 bottom-8 left-0 w-full">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex gap-3">
               {slides.map((_, i) => {

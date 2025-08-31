@@ -132,7 +132,7 @@ export default function CapabilitiesSection() {
         <section className="w-full whitespace-pre-line bg-[#ececec] flex flex-col">
             {/* Header */}
             <div className="bg-[#ececec] py-4 flex-shrink-0">
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
                     <Header className="text-center  mb-0 pb-2">
                         Core Capabilities
                     </Header>
@@ -190,12 +190,12 @@ export default function CapabilitiesSection() {
 
                 {/* Content overlay */}
                 <div className="relative z-10 h-full flex items-start py-20">
-                    <div className="max-w-7xl mx-auto px-4 w-full">
+                    <div className="max-w-7xl mx-auto px-4 w-full max-md:max-w-full">
                         <div
                             id={`${activeCapability.title.toLowerCase().split(' ').join('-')}-panel`}
                             role="tabpanel"
                             aria-labelledby={`${activeCapability.title.toLowerCase().split(' ').join('-')}`}
-                            className="max-w-2xl"
+                            className="max-w-2xl max-md:max-w-full"
                         >
                             {/* Headline */}
                             <h3 className="text-white  text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-6">
@@ -210,7 +210,7 @@ export default function CapabilitiesSection() {
                             {/* Bullet Points */}
                             <ul className="space-y-4">
                                 {activeCapability.bullets.map((bullet, index) => (
-                                    <li key={index} className="text-white/90 pr-48 text-base  md:text-lg leading-normal flex items-start">
+                                    <li key={index} className="text-white/90 pr-48 max-md:pr-5 text-base  md:text-lg leading-normal flex items-start">
                                         <span className="font-bold rounded-full mr-2">•</span>
                                         <span>{formatBulletText(bullet)}</span>
                                     </li>

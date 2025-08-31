@@ -57,7 +57,7 @@ export default function CaseStudySection() {
     <div className="max-w-7xl py-16 sm:py-20 mx-auto px-4">
       {/* Top Navigation */}
       <div className="flex items-center justify-between mb-8 text-xs uppercase tracking-widest text-[#595959]">
-        <div className="flex w-full pb-16 gap-5">
+        <div className="flex w-full pb-16 max-md:pb-0 gap-5">
           <Header className="mb-0 ">Case Study</Header>
           <div className="flex gap-2">
             {caseStudies.map((_, idx) => (
@@ -77,7 +77,7 @@ export default function CaseStudySection() {
       </div>
 
       {/* Content */}
-      <div className="grid max-md:grid-cols-1 gap-x-20 grid-cols-2 items-start">
+      <div className="grid max-md:grid-cols-1 gap-x-20 max-md:gap-x-0 grid-cols-2 items-start max-md:flex max-md:flex-col-reverse">
         {/* Left Column - Text Content (2/3 width) */}
         <div className="">
           <h2 className="text-2xl md:text-3xl font-semibold text-[#1789FF] mb-6">
@@ -134,8 +134,8 @@ export default function CaseStudySection() {
         </div>
 
         {/* Right Column - Image Placeholder (1/3 width) */}
-        <div className="ml-36 px-10 mt-24 flex justify-end">
-          <div className="w-full h-[80%]   overflow-hidden">
+        <div className="ml-36 max-md:ml-0 px-10 max-md:mb-10 max-md:mt-0 mt-24 flex justify-end max-md:justify-center">
+          <div className="w-full h-[80%] max-md:h-[50%] max-md:max-w-[70%]   overflow-hidden">
             <Image
               src="/static/industries/case-study-product.webp"
               alt={`${study.title} case study product`}

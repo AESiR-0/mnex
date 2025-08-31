@@ -30,19 +30,19 @@ export default function VerticalContent({
     return (
         <section
             id={sectionId}
-            className="w-full bg-[#ececec] min-h-screen"
+            className="w-full bg-[#ececec] min-h-screen max-md:min-h-[50vh]"
         >
-            <section className="w-full bg-[#f5f5f5] py-8 sm:py-10" >
-                <div className="max-w-3xl mx-auto px-4 text-center">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#595959] mb-6">
+            <section className="w-full bg-[#f5f5f5] py-6 sm:py-8 md:py-10" >
+                <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-[#595959] mb-4 sm:mb-6">
                         Where proof lives.
                     </h2>
-                    <p className="text-sm  sm:text-base md:text-lg text-[#595959]/80 leading-normal">
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#595959]/80 leading-normal">
                         {content}
                     </p>
                 </div>
             </section>
-            <div className="h-[70vh] flex items-center py-10 relative">
+            <div className="h-[60vh] sm:h-[65vh] md:h-[70vh] flex items-center py-6 sm:py-8 md:py-10 relative">
                 {/* Background Image */}
                 {backgroundImage && (
                     <div className="absolute inset-0 z-0">
@@ -58,14 +58,14 @@ export default function VerticalContent({
                     </div>
                 )}
 
-                <div className="max-w-4xl  h-full  px-10 space-y-5 mx-auto w-full relative z-10">
+                <div className="max-w-4xl h-full px-4 sm:px-6 md:px-8 lg:px-10 space-y-4 sm:space-y-5 mx-auto w-full relative z-10">
                     <div className="flex flex-col-reverse h-full justify-center items-center">
                         {/* Left: Active content - Now horizontal */}
                         <div
                             id={panelId}
                             role="tabpanel"
                             aria-labelledby={activeTabId}
-                            className="flex gap-6  h-1/2 sm:gap-8 md:gap-10 text-white"
+                            className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10 h-1/2 text-white"
                         >
                             <motion.div
                                 key={active}
@@ -74,7 +74,7 @@ export default function VerticalContent({
                                 transition={{ duration: 0, ease: "easeOut" }}
                                 className="contents"
                             >
-                                <h3 className="text-2xl leading-tight">
+                                <h3 className="text-lg sm:text-xl md:text-2xl leading-tight">
                                     {items[active].desc}
                                 </h3>
                             </motion.div>
@@ -87,7 +87,7 @@ export default function VerticalContent({
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className="flex  flex-wrap h-1/2  py-10 justify-between w-full gap-x-3"
+                                className="flex flex-wrap max-md:flex-nowrap max-md:flex-col max-md:justify-center max-md:gap-4 h-1/2 py-6 sm:py-8 md:py-10 justify-between w-full gap-x-2 sm:gap-x-3"
                                 role="tablist"
                                 aria-label="Approach options"
                             >
@@ -103,7 +103,7 @@ export default function VerticalContent({
                                             aria-selected={isActive}
                                             aria-controls={panelId}
                                             onClick={() => setActiveApproach(i)}
-                                            className={`text-left px-0 py-2 text-4xl transition-all duration-300 ease-out
+                                            className={`text-left px-0 py-1 sm:py-2 text-2xl sm:text-3xl md:text-4xl transition-all duration-300 ease-out
                                                 ${isActive
                                                     ? "text-white"
                                                     : "text-[#009B80] hover:text-white"
@@ -123,10 +123,10 @@ export default function VerticalContent({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex justify-center -mt-15 "
+                            className="flex justify-center -mt-20 "
                         >
                             <Link href={'https://meibanenergy.com'} target="_blank">
-                                <button className="px-6 sm:px-5 py-2 text-xs font-regular  rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
+                                <button className="px-4 sm:px-5 md:px-6 py-2 text-xs font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
                                     {buttonText}
                                 </button>
                             </Link>
