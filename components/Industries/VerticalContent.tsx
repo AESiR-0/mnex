@@ -109,7 +109,7 @@ export default function VerticalContent({
                                                     : "text-[#009B80] hover:text-white"
                                                 }`}
                                         >
-                                            {it.title}.<span className="pr-1" />
+                                            {it.title}
                                         </button>
                                     );
                                 })}

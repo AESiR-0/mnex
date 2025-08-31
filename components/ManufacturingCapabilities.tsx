@@ -61,7 +61,7 @@ export default function CapabilitiesSection({
                 <button
                   key={`${t.title}-${idx}`}
                   onClick={() => setActive(idx)}
-                  className={`shrink-0 text-xs sm:text-lg md:text-xl py-2 sm:py-3 transition-colors ${active === idx
+                  className={`shrink-0 text-sm sm:text-lg md:text-xl py-2 sm:py-3 transition-colors ${active === idx
                     ? "text-[#1789FF]"
                     : "text-[#8a8a8a] hover:text-[#1789FF]"
                     }`}
@@ -110,7 +110,7 @@ export default function CapabilitiesSection({
           <div className="px-4 sm:px-6 lg:px-8 h-full mx-auto w-full max-w-7xl">
             <div className="max-w-lg sm:max-w-xl md:max-w-2xl flex flex-col gap-3 sm:gap-4 justify-between h-full py-12 sm:py-16 md:py-20">
               <div className="">
-                <h3 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-5xl font-medium leading-tight mb-3 sm:mb-4 md:mb-6 whitespace-pre-line">
+                <h3 className="text-white text-2xl sm:text-2xl md:text-3xl lg:text-5xl font-medium leading-tight mb-3 sm:mb-4 md:mb-6 whitespace-pre-line">
                   {tab.title === "Tooling"
                     ? "Tools that\nshape outcomes."
                     : tab.desc}
@@ -137,7 +137,7 @@ export default function CapabilitiesSection({
                     </Link>
                     {/* Badges */}
                     <div className="flex flex-wrap text-left justify-start max-w-2xl gap-2 sm:gap-3 md:gap-4 mt-24 sm:mt-24 md:mt-24">
-                      <Image src="/static/badges/Thermoplastics unit.svg" alt="capabilities" width={400} height={400} className="object-contain w-56 sm:w-80 md:w-96 lg:w-[400px]" />
+                      <Image src="/static/badges/badge_1.webp" alt="capabilities" width={400} height={400} className="object-contain w-56 sm:w-80 md:w-96 lg:w-[400px]" />
 
                       {/* {<div className="bg-transparent border border-white py-3 rounded-lg">
                         <div className="text-white text-center space-y-2">
@@ -147,7 +147,7 @@ export default function CapabilitiesSection({
                               <span className="text-white">THERMOSETS</span>
                             </div>
                             <div className="text-base text-left px-6 md:text-lg uppercase tracking-wide mt-2">
-                              SUSTAINABLE POLYMERS
+                              SUSj ageTAINABLE POLYMERS
                             </div>
                           </div>
 

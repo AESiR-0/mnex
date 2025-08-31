@@ -143,7 +143,7 @@ export default function ApproachSection({
         {/* STICKY LAYER (pinned) - only on desktop */}
         <div className={isMobile ? "relative" : "sticky top-0"}>
           {/* Header section */}
-          <section className="w-full relative min-h-[25vh] md:min-h-[30vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
+          <section className="w-full relative min-h-[20vh] md:min-h-[30vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
             {/* Background Image with reduced opacity */}
             <div className="absolute inset-0 z-0">
               <Image
@@ -157,7 +157,7 @@ export default function ApproachSection({
 
             {/* Content overlay */}
             <div className="relative z-10 mx-auto max-w-7xl   w-full flex items-center justify-start ">
-              <h1 className="text-2xl sm:text-2xl px-4 lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
+              <h1 className="text-3xl px-4 lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
                 Shaping Precision,
                 <br />
                 Engineering what matters

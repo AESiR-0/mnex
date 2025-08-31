@@ -80,7 +80,7 @@ export default function CapabilitiesSection() {
     // Function to get tab index from hash
     const getTabIndexFromHash = (hash: string) => {
         const cleanHash = hash.replace('#', '');
-        const tabIndex = capabilities.findIndex(capability => 
+        const tabIndex = capabilities.findIndex(capability =>
             capability.title.toLowerCase().split(' ').join('-') === cleanHash
         );
         return tabIndex >= 0 ? tabIndex : 0;
@@ -133,7 +133,7 @@ export default function CapabilitiesSection() {
             {/* Header */}
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
-                    <Header className="text-center  mb-0 pb-2">
+                    <Header className="text-center pt-4 sm:pt-6 pb-4 md:mb-0">
                         Core Capabilities
                     </Header>
 
@@ -146,7 +146,7 @@ export default function CapabilitiesSection() {
                                     key={capability.title}
                                     id={tabId}
                                     onClick={() => handleTabChange(index)}
-                                    className={`text-lg md:text-xl py-2 whitespace-pre-line transition-colors ${activeTab === index
+                                    className={`shrink-0 text-sm sm:text-lg md:text-xl py-2 sm:py-3 transition-colors ${activeTab === index
                                         ? "text-[#1789FF] "
                                         : "text-[#8a8a8a] hover:text-[#1789FF]"
                                         }`}
