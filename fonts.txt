@@ -1,0 +1,2 @@
+Header in phone - 24 px
+description in phone - 18p x

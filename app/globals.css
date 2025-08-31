@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+
+@theme inline {
+  --primary-dark: #595959;
+  --primary-blue: #1789FF;
+  --secondary-green: #009B80;
+  --secondary-grey: #D1D1D1;
+  --secondary-red: #FD5A4F;
+  --secondary-light-blue: #A8D3FF;
+  --font-sans: var(--font-instrument-sans);
+}
+
+/* Global scroll behavior - single declaration to prevent conflicts */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 40px;
+}
+
+
+body {
+  font-family: var(--font-instrument-sans), sans-serif;
+  color: var(--color-primary-dark);
+  background: var(--background);
+  /* Add momentum scrolling for heavier feel */
+  -webkit-overflow-scrolling: touch;
+}
+
