@@ -29,7 +29,7 @@ export default function Tabs({
 
   return (
         <div className="w-full bg-[#ffffff] py-6 pt-18">
-      <div className="max-w-5xl mx-auto tracking-[0.05em]  flex justify-center gap-3 sm:gap-4">
+      <div className="max-w-5xl mx-auto tracking-[0.05em0] max-md:px-4  flex justify-center gap-3 sm:gap-4">
         {tabs.map((tab) => {
           const isActive = activeName === tab.name;
           return (
@@ -37,11 +37,12 @@ export default function Tabs({
               key={tab.name}
               href={tab.href}
               aria-current={isActive ? "page" : undefined}
-              className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
+              className={`px-6 sm:px-5 py-2 text-xs font-regular max-md:text-center max-md:items-center max-md:justify-center max-md:flex  uppercase rounded-full border transition-colors duration-200 
                 ${isActive
                   ? "bg-[#1789FF] text-white "
                   : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
-                }`}
+                }
+                `}
             >
               {tab.name}
             </Link>
