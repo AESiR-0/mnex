@@ -5,6 +5,7 @@ import Link from "next/link";
 
 type Slide = {
   img: string; // public/ path or remote URL
+  mobileImg?: string; // mobile-specific image
   imgAlt?: string;
   step?: string; // e.g. "1"
   title: string; // "Business-Aligned from Day One"
@@ -96,7 +97,7 @@ export default function PurposeCarousel({
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        {/* Image */}
+        {/* Desktop/Tablet: Always show regular image */}
         <Image
           key={slide.img + idx}
           src={slide.img}
@@ -104,8 +105,30 @@ export default function PurposeCarousel({
           fill
           priority
           sizes="100vw"
-          className="object-cover transition-transform duration-[800ms] will-change-transform"
+          className="object-cover transition-transform duration-[800ms] will-change-transform max-md:hidden"
         />
+        {/* Mobile: Show mobileImg if available, otherwise show regular image */}
+        {slide.mobileImg ? (
+          <Image
+            key={slide.mobileImg + idx}
+            src={slide.mobileImg}
+            alt={slide.imgAlt || slide.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover transition-transform duration-[800ms] will-change-transform md:hidden"
+          />
+        ) : (
+          <Image
+            key={slide.img + idx}
+            src={slide.img}
+            alt={slide.imgAlt || slide.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover transition-transform duration-[800ms] will-change-transform md:hidden"
+          />
+        )}
         {/* Gradient for legibility */}
         <div className="absolute inset-0">
           {/* base black fade for readability */}

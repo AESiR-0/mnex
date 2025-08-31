@@ -11,6 +11,7 @@ export default function VerticalContent({
     sectionId = "approach",
     content,
     backgroundImage,
+    mobileImage,
     buttonText,
 }: {
     items: ApproachItem[];
@@ -18,6 +19,7 @@ export default function VerticalContent({
     buttonText?: string;
     content: string;
     backgroundImage?: string;
+    mobileImage?: string;
 }) {
     const [activeApproach, setActiveApproach] = useState(0);
 
@@ -46,13 +48,32 @@ export default function VerticalContent({
                 {/* Background Image */}
                 {backgroundImage && (
                     <div className="absolute inset-0 z-0">
+                        {/* Desktop/Tablet: Always show backgroundImage */}
                         <Image
                             src={backgroundImage}
                             alt="Background"
                             fill
-                            className="object-cover"
+                            className="object-cover max-md:hidden"
                             priority
                         />
+                        {/* Mobile: Show mobileImage if available, otherwise show backgroundImage */}
+                        {mobileImage ? (
+                            <Image
+                                src={mobileImage}
+                                alt="Background"
+                                fill
+                                className="object-cover md:hidden"
+                                priority
+                            />
+                        ) : (
+                            <Image
+                                src={backgroundImage}
+                                alt="Background"
+                                fill
+                                className="object-cover md:hidden"
+                                priority
+                            />
+                        )}
                         {/* Blue overlay */}
                         <div className="absolute inset-0 mix-blend-multiply bg-[#005190] z-10"></div>
                     </div>

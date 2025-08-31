@@ -18,6 +18,7 @@ const slides = [
   },
   {
     img: "/static/about/2.webp",
+    mobileImg: "/static/about/2_mobile.webp",
     imgAlt: "Custom manufacturing",
     step: "2",
     title: "Flexible from Specialized to Scaled",
@@ -33,6 +34,7 @@ const slides = [
   },
   {
     img: "/static/about/3.webp",
+    mobileImg: "/static/about/3_mobile.webp",
     imgAlt: "Integrated tooling and automation",
     step: "3",
     title: "Vertically Integrated for Speed",

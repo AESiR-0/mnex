@@ -7,6 +7,7 @@ export default function CeiPage() {
     <>
       <VerticalContent
         backgroundImage="/static/industries/CEI.jpg"
+        mobileImage="/static/industries/C&I_mobile.webp"
         items={[
           {
             title: "Speed",

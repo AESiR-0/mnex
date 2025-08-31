@@ -20,7 +20,7 @@ export default function SiteFooter() {
             <div className="min-h-32 sm:min-h-40 md:min-h-48 w-full">
               <Link href="/" className="block w-20 sm:w-24 lg:w-32">
                 <Image
-                  src="/static/Logo/Logo_PNG/MNex_v2-11.png"
+                  src="/static/Logo/Logo_SVG/MNex_v2-12.svg"
                   alt="MNEX"
                   width={128}
                   height={128}
