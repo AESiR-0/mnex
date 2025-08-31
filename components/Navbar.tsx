@@ -683,7 +683,7 @@ export default function Navbar() {
                           duration: 0.15,
                           ease: "easeInOut"
                         }}
-                        className="flex flex-col bg-white border-l border-[#1789FF]/20 ml-6"
+                        className="flex flex-col bg-white  ml-6"
                       >
                         {link.children.map((sublink) => (
                           <li key={sublink.name}>
