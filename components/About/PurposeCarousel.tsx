@@ -5,11 +5,13 @@ import Link from "next/link";
 
 type Slide = {
   img: string; // public/ path or remote URL
+  mobileImage?: string; // mobile-specific image path
   imgAlt?: string;
   step?: string; // e.g. "1"
   title: string; // "Business-Aligned from Day One"
   lead?: string; // short paragraph
   bullets?: string[]; // bullet list
+  ctas?: { label: string; href: string }[]; // call-to-action links
 };
 
 export default function PurposeCarousel({
@@ -21,6 +23,7 @@ export default function PurposeCarousel({
 }) {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const len = slides.length;
   const clamp = (n: number) => (n + len) % len;
@@ -28,7 +31,10 @@ export default function PurposeCarousel({
   const go = (n: number) => setIdx((i) => clamp(i + n));
   const to = (n: number) => setIdx(clamp(n));
 
-  // autoplay (pause on hover / when tab hidden)
+  // Mobile detection
+
+
+  // Autoplay (pause on hover / when tab hidden)
   useEffect(() => {
     if (paused || len <= 1) return;
     const id = setInterval(() => setIdx((i) => clamp(i + 1)), intervalMs);
@@ -41,7 +47,7 @@ export default function PurposeCarousel({
     return () => document.removeEventListener("visibilitychange", onVis);
   }, []);
 
-  // swipe
+  // Swipe
   const touch = useRef<{ x: number; y: number } | null>(null);
   const onTouchStart = (e: React.TouchEvent) => {
     const t = e.touches[0];
@@ -58,7 +64,7 @@ export default function PurposeCarousel({
     touch.current = null;
   };
 
-  // keyboard
+  // Keyboard
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") go(-1);
@@ -70,21 +76,22 @@ export default function PurposeCarousel({
 
   const slide = slides[idx];
 
+  // Determine which image to use
+  const currentImage = slide.img;
   return (
     <section className="w-full bg-[#ececec] min-h-screen">
       {/* Top copy */}
-      <div className="max-w-7xl px-4 mx-auto  py-20 space-y-4 sm:py-12 text-center">
+      <div className="max-w-7xl px-4 mx-auto py-20 space-y-4 sm:py-12 text-center">
         <h2 className="text-[#444] font-semibold text-2xl sm:text-3xl md:text-4xl">
           Engineering with purpose.
-          <br />
           Delivering with precision.
         </h2>
-        <p className="mt-4   text-[#6F6F6F] text-xl">
-          We begin with your business reality -  <br /> your volumes, cost targets, and
+        <p className="mt-4 text-[#6F6F6F] text-lg">
+          We begin with your business reality -  your volumes, cost targets, and
           roadmap.
         </p>
-        <p className="mt-2  text-[#6F6F6F] text-xl">
-          Then we engineer what matters: solutions shaped by <br /> clarity, operational  discipline, and purposeful innovation.
+        <p className="mt-2 text-[#6F6F6F] text-lg">
+          Then we engineer what matters: solutions shaped by  clarity, operational discipline, and purposeful innovation.
         </p>
       </div>
 
@@ -98,8 +105,8 @@ export default function PurposeCarousel({
       >
         {/* Image */}
         <Image
-          key={slide.img + idx}
-          src={slide.img}
+          key={currentImage + idx}
+          src={currentImage}
           alt={slide.imgAlt || slide.title}
           fill
           priority
@@ -115,7 +122,7 @@ export default function PurposeCarousel({
         </div>
 
         {/* Overlay content */}
-        <div className="absolute -top-20  inset-0 z-10 flex items-start pt-[15rem]">
+        <div className="absolute -top-20 inset-0 z-10 flex items-start pt-[10rem]">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl text-white">
               {slide.step && (
@@ -127,7 +134,7 @@ export default function PurposeCarousel({
                 {slide.title}
               </h3>
               {slide.lead && (
-                <p className="text-lg  text-white/90 leading-relaxed mb-8">
+                <p className="text-lg text-white/90 leading-relaxed mb-8">
                   {slide.lead}
                 </p>
               )}
@@ -141,14 +148,25 @@ export default function PurposeCarousel({
                   ))}
                 </ul>
               )}
-
+              {!!slide.ctas?.length && (
+                <div className="flex gap-4">
+                  {slide.ctas.map((cta, i) => (
+                    <Link
+                      key={i}
+                      href={cta.href}
+                      className="inline-block px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-200 backdrop-blur-sm"
+                    >
+                      {cta.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Dots */}
         {/* Arrow Navigation */}
-        <div className="absolute z-10 bottom-20 left-0 w-full">
+        <div className="absolute z-10 max-md:bottom-96 max-md:left-1 bottom-20 left-0 w-full">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex justify-start gap-5 items-center">
               {/* Left Arrow */}
