@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 const slides = [
   {
     img: "/static/about/1.jpg",
-    mobileImage: "/static/about/mobile/1.jpg",
     imgAlt: "Team discussion",
     step: "1",
     title: "Business-Aligned from Day One",
@@ -21,7 +20,7 @@ const slides = [
   },
   {
     img: "/static/about/2.webp",
-    mobileImage: "/static/about/mobile/2_mobile.webp",
+    mobileImage: "/static/about/2_mobile.webp",
     imgAlt: "Custom manufacturing",
     step: "2",
     title: "Flexible from Specialized to Scaled",
@@ -37,7 +36,7 @@ const slides = [
   },
   {
     img: "/static/about/3.webp",
-    mobileImage: "/static/about/mobile/3_mobile.webp",
+    mobileImage: "/static/about/3_mobile.webp",
     imgAlt: "Integrated tooling and automation",
     step: "3",
     title: "Vertically Integrated for Speed",
@@ -70,7 +69,6 @@ const slides = [
   },
   {
     img: "/static/about/5.jpg",
-    mobileImage: "/static/about/mobile/5.jpg",
     imgAlt: "Innovation",
     step: "5",
     title: "Pragmatic Innovation",
@@ -87,7 +85,6 @@ const slides = [
   },
   {
     img: "/static/about/6.jpg",
-    mobileImage: "/static/about/mobile/6.jpg",
     imgAlt: "Execution focused",
     step: "6",
     title: "Execution Obsessed",

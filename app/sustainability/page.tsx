@@ -114,7 +114,7 @@ export default function Sustainability() {
                                 />
                             </div>
                             <div className="text-left">
-                                <div className="text-[#009b80] font-bold leading-none text-lg sm:text-xl md:text-2xl">
+                                <div className="text-[#009b80] font-semibold leading-none text-lg sm:text-xl md:text-2xl">
                                     1,562
                                 </div>
                                 <div className="text-[#009b80] font-medium text-sm sm:text-base md:text-lg">
@@ -202,7 +202,7 @@ function CapabilitiesSection() {
         if (parts.length > 1) {
             return (
                 <>
-                    <span className="font-bold">{parts[0]}:</span>
+                    <span className="font-semibold">{parts[0]}:</span>
                     <span>{parts.slice(1).join(':')}</span>
                 </>
             );
@@ -293,7 +293,7 @@ function CapabilitiesSection() {
                             <ul className="space-y-4 ">
                                 {activeCapability.bullets.map((bullet, index) => (
                                     <li key={index} className="text-white/90 max-md:pr-24  pr-40 text-base  md:text-lg leading-normal flex items-start">
-                                        <span className="font-bold rounded-full mr-2">•</span>
+                                        <span className="font-semibold rounded-full mr-2">•</span>
                                         <span>{formatBulletText(bullet)}</span>
                                     </li>
                                 ))}

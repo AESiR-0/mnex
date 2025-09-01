@@ -69,7 +69,7 @@ export default function SiteFooter() {
 
             {/* Sitemap Section */}
             <div className="min-h-36 sm:min-h-56 md:min-h-64">
-              <p className="text-xs tracking-wider font-bold uppercase text-[#7A7A7A] pb-3 sm:pb-5">
+              <p className="text-xs tracking-wider font-semibold uppercase text-[#7A7A7A] pb-3 sm:pb-5">
                 Sitemap
               </p>
               <div className="grid grid-cols-2 text-base sm:text-lg gap-x-8 sm:gap-x-12 lg:gap-x-20 gap-y-4 sm:gap-y-6 lg:gap-y-8">
@@ -127,7 +127,7 @@ export default function SiteFooter() {
 
             {/* Contact Section */}
             <div>
-              <p className="uppercase font-bold text-xs tracking-wider pb-3 sm:pb-5 text-[#7A7A7A]">
+              <p className="uppercase font-semibold text-xs tracking-wider pb-3 sm:pb-5 text-[#7A7A7A]">
                 Contact Us
               </p>
               <a

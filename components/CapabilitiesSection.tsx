@@ -120,7 +120,7 @@ export default function CapabilitiesSection() {
         if (parts.length > 1) {
             return (
                 <>
-                    <span className="font-bold">{parts[0]}:</span>
+                    <span className="font-semibold">{parts[0]}:</span>
                     <span>{parts.slice(1).join(':')}</span>
                 </>
             );
@@ -211,7 +211,7 @@ export default function CapabilitiesSection() {
                             <ul className="space-y-4">
                                 {activeCapability.bullets.map((bullet, index) => (
                                     <li key={index} className="text-white/90 pr-48 max-md:pr-5 text-base  md:text-lg leading-normal flex items-start">
-                                        <span className="font-bold rounded-full mr-2">•</span>
+                                        <span className="font-semibold rounded-full mr-2">•</span>
                                         <span>{formatBulletText(bullet)}</span>
                                     </li>
                                 ))}

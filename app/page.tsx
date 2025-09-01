@@ -159,7 +159,7 @@ export default function Home() {
 
         {/* <section className="w-full py-20 bg-[#009B80]">
           <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-semibold text-white mb-6">
               Ready to build what matters?
             </h2>
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto">

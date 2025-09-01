@@ -76,12 +76,10 @@ export default function PurposeCarousel({
 
   const slide = slides[idx];
 
-  // Determine which image to use
-  const currentImage = slide.img;
   return (
     <section className="w-full bg-[#ececec] min-h-screen">
       {/* Top copy */}
-      <div className="max-w-7xl px-4 mx-auto py-20 space-y-4 sm:py-12 text-center">
+      <div className="max-w-7xl px-4 mx-auto py-10 space-y-4 sm:py-12 text-center">
         <h2 className="text-[#444] font-semibold text-2xl sm:text-3xl md:text-4xl">
           Engineering with purpose.
           Delivering with precision.
@@ -105,8 +103,8 @@ export default function PurposeCarousel({
       >
         {/* Image */}
         <Image
-          key={currentImage + idx}
-          src={currentImage}
+          key={slide.img + idx}
+          src={slide.img}
           alt={slide.imgAlt || slide.title}
           fill
           priority
@@ -122,15 +120,15 @@ export default function PurposeCarousel({
         </div>
 
         {/* Overlay content */}
-        <div className="absolute -top-20 inset-0 z-10 flex items-start pt-[10rem]">
+        <div className="absolute -top-20 inset-0 pr-[8rem] z-10 flex items-start pt-[10rem]">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl text-white">
               {slide.step && (
-                <div className="text-3xl font-bold mb-20 opacity-90">
+                <div className="text-3xl font-semibold mb-20 opacity-90">
                   {slide.step}
                 </div>
               )}
-              <h3 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight mb-6">
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight mb-6">
                 {slide.title}
               </h3>
               {slide.lead && (
@@ -142,7 +140,7 @@ export default function PurposeCarousel({
                 <ul className="space-y-4 text-lg md:text-xl font-light text-white/90 mb-12">
                   {slide.bullets.map((b, i) => (
                     <li key={i} className="relative max-md:pr-1 flex gap-4 items-center">
-                      <span className="block h-2 w-2 rounded-full bg-white/80 flex-shrink-0 mt-1" />
+                      <span className="font-semibold rounded-full ">•</span>
                       <span>{b}</span>
                     </li>
                   ))}
@@ -166,7 +164,7 @@ export default function PurposeCarousel({
         </div>
 
         {/* Arrow Navigation */}
-        <div className="absolute z-10 max-md:bottom-96 max-md:left-1 bottom-20 left-0 w-full">
+        <div className="absolute z-10 max-md:bottom-60 max-md:left-1 bottom-20 left-0 w-full">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex justify-start gap-5 items-center">
               {/* Left Arrow */}

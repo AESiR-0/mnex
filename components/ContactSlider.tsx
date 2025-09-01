@@ -132,7 +132,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 <Header className="text-sm pb-5 font-medium  mb-1">
                   GENERAL INQUIRY
                 </Header>
-                <h2 className="text-2xl font-bold text-[#1789FF]">
+                <h2 className="text-2xl font-semibold text-[#1789FF]">
                   Let's talk.
                 </h2>
               </div>

@@ -4,21 +4,21 @@ import Image from "next/image";
 export default function Page() {
   return (
     <>
-      <section className="w-full bg-white">
+      <section className="w-full bg-[#ececec]">
         {/* Copy block */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 lg:pt-14 pb-6 text-center">
           <h1
-            className="whitespace-pre-line text-[#333] font-semibold
+            className="whitespace-pre-line text-[#444] font-semibold
                        text-2xl sm:text-3xl md:text-4xl lg:text-[28px]"
           >
             Our Origin:{"\n"}From Meiban to Mnex
           </h1>
 
           <div className="my-8 ">
-            <p className="text-[#6b6b6b] text-sm sm:text-[15px] md:text-base">
+            <p className="text-[#6b6b6b] text-lg md:text-base">
               A legacy of precision.
             </p>
-            <p className="text-[#6b6b6b] text-sm sm:text-[15px] md:text-base">
+            <p className="text-[#6b6b6b] text-lg md:text-base">
               A future of purpose-driven manufacturing.
             </p>
           </div>

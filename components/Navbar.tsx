@@ -115,7 +115,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/static/Logo_PNG/MNex_v2-11.png"
+            src="/static/Logo/Logo_PNG/MNex_v2-11.png"
             width={128}
             height={128}
             alt="MNex Logo"

@@ -109,7 +109,7 @@ export default function CaseStudySection() {
             <ul className="space-y-2 text-[#595959] text-sm md:text-base">
               {study.outcome.map((point, i) => {
                 return (
-                  <li className="flex gap-2" key={i}><span className="font-bold">•</span><span className="">{point}</span></li>
+                  <li className="flex gap-2" key={i}><span className="font-semibold">•</span><span className="">{point}</span></li>
                 )
               })}
             </ul>
