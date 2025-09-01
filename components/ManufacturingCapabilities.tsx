@@ -137,7 +137,7 @@ export default function CapabilitiesSection({
                     </Link>
                     {/* Badges */}
                     <div className="flex flex-wrap text-left justify-start max-w-2xl gap-2 sm:gap-3 md:gap-4 mt-24 sm:mt-24 md:mt-24">
-                      <Image src="/static/badges/badge_1.png" alt="capabilities" width={400} height={400} className="object-contain w-56 sm:w-80 md:w-96 lg:w-[400px]" />
+                      <Image src="/static/badges/bagde second.png" alt="capabilities" width={400} height={400} className="object-contain w-56 sm:w-80 md:w-96 lg:w-[400px]" />
 
                       {/* {<div className="bg-transparent border border-white py-3 rounded-lg">
                         <div className="text-white text-center space-y-2">

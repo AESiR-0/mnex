@@ -120,7 +120,7 @@ export default function PurposeCarousel({
         </div>
 
         {/* Overlay content */}
-        <div className="absolute -top-20 inset-0 pr-[8rem] z-10 flex items-start pt-[10rem]">
+        <div className="absolute -top-20 inset-0 pr-[4rem] z-10 flex items-start pt-[10rem]">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl text-white">
               {slide.step && (
@@ -164,7 +164,7 @@ export default function PurposeCarousel({
         </div>
 
         {/* Arrow Navigation */}
-        <div className="absolute z-10 max-md:bottom-60 max-md:left-1 bottom-20 left-0 w-full">
+        <div className="absolute z-10 max-md:bottom-40 xs:bottom-0 max-md:left-1 bottom-20 left-0 w-full">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex justify-start gap-5 items-center">
               {/* Left Arrow */}
