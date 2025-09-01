@@ -37,8 +37,8 @@ const capabilities: Capability[] = [
             "Optimized part design, gating and molding",
             "Vertical integration reduces packaging & logistics waste"
         ],
-        img: "/static/home/sustainability.webp",
-        video: "",
+        img: "",
+        video: "/videos/sustainability/Material Efficiency.webm",
     },
     {
         title: "Responsible Procurement",
