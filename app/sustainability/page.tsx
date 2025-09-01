@@ -74,7 +74,7 @@ export default function Sustainability() {
                     {/* Headline */}
                     <h1
                         className="pt-3 sm:pt-4 md:pt-5 font-semibold leading-tight
-                       text-xl sm:text-2xl md:text-3xl lg:text-4xl"
+                       text-2xl  md:text-3xl lg:text-4xl"
                     >
                         Built to Perform.
                         <br />
@@ -84,11 +84,11 @@ export default function Sustainability() {
                     {/* Copy */}
                     <div className="mt-4 sm:mt-6 md:mt-8 space-y-2 sm:space-y-3 md:space-y-5">
                         <p
-                            className="mx-auto max-w-2xl leading-relaxed
-                        text-base sm:text-lg"
+                            className="mx-auto max-w-2xl leading-tight
+                        text-lg"
                         >
                             We believe good manufacturing is responsible manufacturing.
-                            <br />   We build smarter because it's better for business and the planet
+                            We build smarter because it's better for business and the planet
                         </p>
 
                     </div>
@@ -101,7 +101,7 @@ export default function Sustainability() {
                         MNEX SOLAR ENERGY DATA
                     </Header>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 text-base sm:text-lg md:text-xl gap-6 sm:gap-8 md:gap-12">
+                    <div className="grid grid-cols-1 pl-10 md:grid-cols-3 text-base sm:text-lg md:text-xl gap-6 sm:gap-8 md:gap-12">
                         {/* Solar Panels */}
                         <div className="flex items-center gap-8  sm:gap-6 px-8 sm:px-12 md:px-20">
                             <div className="flex-shrink-0">
@@ -216,12 +216,12 @@ function CapabilitiesSection() {
             <div className="bg-white py-3 sm:py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Navigation Tabs */}
-                    <div className="flex max-md:flex-wrap max-md:justify-center max-md:gap-y-2 justify-between gap-4 sm:gap-6 md:gap-20">
+                    <div className="flex justify-between max-md:justify-center max-md:gap-y-0 max-md:flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-20 overflow-x-auto no-scrollbar">
                         {capabilities.map((capability, index) => (
                             <button
                                 key={capability.title}
                                 onClick={() => setActiveTab(index)}
-                                className={`text-sm sm:text-base md:text-lg py-3 sm:py-4 md:py-5 max-md:py-2 whitespace-pre-line transition-colors ${activeTab === index
+                                className={`text-xs leading-tight sm:text-base md:text-lg py-3 sm:py-4 md:py-5 max-md:py-2 whitespace-pre-line transition-colors ${activeTab === index
                                     ? "text-[#009b80] "
                                     : "text-[#8a8a8a] hover:text-[#009b80]"
                                     }`}
