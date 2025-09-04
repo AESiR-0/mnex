@@ -119,10 +119,6 @@ export default function ApproachSection({
 
   if (!items || items.length === 0) return null;
 
-  // Verify we have the correct data
-  if (items[0]?.title !== "We Build What Matters") {
-    console.error("Expected 'We Build What Matters' at index 0, but got:", items[0]?.title);
-  }
 
   const active = activeApproach; // 0 = "We Build", 1+ = approaches (all in items array now)
 

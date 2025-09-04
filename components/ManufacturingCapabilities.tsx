@@ -13,6 +13,7 @@ type Tab = {
   img?: string;
   chips?: string[];
   bullets?: string[];
+  link?: string;
 };
 
 function Badge({
@@ -120,7 +121,7 @@ export default function CapabilitiesSection({
                 ) : (
                   <>
                     <LocalizedLink
-                      href={`/solutions#${tab.title.toLowerCase().split(' ').join('-')}`}
+                      href={tab.link || `/solutions#${tab.title.toLowerCase().split(' ').join('-')}`}
                       className="inline-block text-white/90 text-xs uppercase tracking-wide underline underline-offset-4 decoration-white/60 hover:decoration-white"
                     >
                       {t("Common.learnMore")}
