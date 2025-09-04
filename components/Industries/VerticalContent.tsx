@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 
 export type ApproachItem = { title: string; desc: string };
 
@@ -22,6 +23,7 @@ export default function VerticalContent({
     mobileImage?: string;
 }) {
     const [activeApproach, setActiveApproach] = useState(0);
+    const t = useTranslations();
 
     if (!items || items.length === 0) return null;
 
@@ -37,7 +39,7 @@ export default function VerticalContent({
             <section className="w-full bg-[#f5f5f5] py-10 sm:py-10 md:py-20" >
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-semibold text-[#595959] mb-4 sm:mb-6">
-                        Where proof lives.
+                        {t("Industries.proofLives")}
                     </h2>
                     <p className="text-lg sm:text-sm md:text-base lg:text-lg text-[#595959]/80 leading-tight">
                         {content}

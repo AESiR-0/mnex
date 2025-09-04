@@ -1,53 +1,64 @@
 "use client";
 import LocalizedLink from "./LocalizedLink";
 import { usePathname } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { useTranslations } from 'next-intl';
 
 const defaultTabs = [
-  { name: "Approach", href: "/about/approach" },
-  { name: "Legacy", href: "/about/legacy" },
+  { nameKey: "Navigation.aboutSubmenu.approach", href: "/about/approach" },
+  { nameKey: "Navigation.aboutSubmenu.legacy", href: "/about/legacy" },
 ];
 
 export default function Tabs({
   tabs = defaultTabs,
 }: {
-  tabs?: { name: string; href: string }[];
+  tabs?: { name?: string; nameKey?: string; href: string }[];
 }) {
   const pathname = usePathname();
   const t = useTranslations();
+  const [isMounted, setIsMounted] = useState(false);
   const isIndustriesPage = pathname.split('/').includes('industries');
-  const activeName = useMemo(() => {
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const activeTabIndex = useMemo(() => {
+    if (!isMounted) return 0; // Default to first tab during SSR
+    
     const p = pathname.toLowerCase();
-    const activeTab = p.split('/').filter(Boolean).pop();
-    const hit = tabs.find((t) => {
-      const tabLast = t.href.toLowerCase().split('/').filter(Boolean).pop();
+    // Remove locale prefix from pathname for comparison
+    const pathWithoutLocale = p.replace(/^\/[a-z]{2}\//, '/');
+    const activeTab = pathWithoutLocale.split('/').filter(Boolean).pop();
+    const hit = tabs.findIndex((tab) => {
+      const tabLast = tab.href.toLowerCase().split('/').filter(Boolean).pop();
       return activeTab === tabLast;
     });
     // if user is on /about (no subpage), default to first tab
-    if (!hit && (p === "/about" || p === "/about/")) return tabs[0].name;
-    return hit?.name ?? tabs[0].name;
-  }, [pathname, tabs]);
+    if (hit === -1 && (pathWithoutLocale === "/about" || pathWithoutLocale === "/about/")) {
+      return 0;
+    }
+    return hit === -1 ? 0 : hit;
+  }, [pathname, tabs, isMounted]);
 
   return (
-    <div className={`w-full max-md:px-3   bg-[#ffffff] pt-18 ${isIndustriesPage ? 'py-0' : 'py-6'}`}>
+    <div className={`w-full max-md:px-3   bg-[#ffffff] pt-18 ${isIndustriesPage ? 'py-3' : 'py-6'}`}>
       <div className="max-w-5xl mx-auto tracking-[0.05em]   flex justify-center  gap-3 sm:gap-4">
-        {tabs.map((tab) => {
-          const isActive = activeName === tab.name;
+        {tabs.map((tab, index) => {
+          const tabName = tab.nameKey ? t(tab.nameKey) : tab.name;
+          const isActive = isMounted && activeTabIndex === index;
           return (
             <LocalizedLink
-              key={tab.name}
+              key={tab.nameKey || tab.name}
               href={tab.href}
               aria-current={isActive ? "page" : undefined}
               className={`px-6 sm:px-5 flex items-center justify-center  py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
-                ${tab.name ===
-                  "Consumer & Industrial"
+                ${tab.nameKey === "Navigation.industriesSubmenu.cei"
                   ? "text-center w-40"
                   : ""
                 }
               
-                ${tab.name ===
-                  "Oil & Gas"
+                ${tab.nameKey === "Navigation.industriesSubmenu.oilAndGas"
                   ? "text-center w-32"
                   : ""
                 }
@@ -56,7 +67,7 @@ export default function Tabs({
                   : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
                 }`}
             >
-              {tab.name}
+              {tabName}
             </LocalizedLink>
           );
         })}

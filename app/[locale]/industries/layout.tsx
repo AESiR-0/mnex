@@ -1,9 +1,9 @@
 import Tabs from "@/components/Tabs";
 
 const tabs = [
-  { name: "Consumer & Industrial", href: "/industries/cei" },
-  { name: "Regulated", href: "/industries/regulated" },
-  { name: "Oil & Gas", href: "/industries/oil-and-gas" },
+  { nameKey: "Navigation.industriesSubmenu.cei", href: "/industries/cei" },
+  { nameKey: "Navigation.industriesSubmenu.regulated", href: "/industries/regulated" },
+  { nameKey: "Navigation.industriesSubmenu.oilAndGas", href: "/industries/oil-and-gas" },
 ];
 
 export default function AboutLayout({
