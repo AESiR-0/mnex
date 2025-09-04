@@ -1,10 +1,13 @@
 "use client";
 import { useContactSlider } from "@/lib/useContactSlider";
 import Image from "next/image";
-import Link from "next/link";
+import LocalizedLink from "./LocalizedLink";
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function SiteFooter() {
   const { open } = useContactSlider();
+  const t = useTranslations();
+  const locale = useLocale();
 
   return (
     <footer className="w-full bg-[#eaeaea]">
@@ -18,7 +21,7 @@ export default function SiteFooter() {
           <div className="flex flex-col w-full md:w-1/2  justify-between gap-6 md:gap-0">
             {/* Logo */}
             <div className="min-h-32 sm:min-h-40 md:min-h-48 w-full">
-              <Link href="/" className="block w-20 sm:w-24 lg:w-32">
+              <LocalizedLink href="/" className="block w-20 sm:w-24 lg:w-32">
                 <Image
                   src="/static/Logo/Logo_SVG/MNex_v2-12.svg"
                   alt="MNEX"
@@ -26,7 +29,7 @@ export default function SiteFooter() {
                   height={128}
                   className="h-auto w-auto pb-5 sm:pb-5"
                 />
-              </Link>
+              </LocalizedLink>
               <p className="text-sm xl:text-md text-[#595959] pb-2 sm:pb-3">
                 Mnex Singapore <br />
                 8 Temasek Blvd, Suntec Tower 3 <br />
@@ -50,9 +53,9 @@ export default function SiteFooter() {
 
             {/* Tagline */}
             <h3 className="text-md sm:text-lg lg:text-xl xl:text-2xl font-medium max-md:font-semibold  text-[#595959]">
-              Shaping Precision,
+              {t("Home.hero.line1")}
               <br />
-              Engineering What Matters.
+              {t("Home.hero.line2")}
             </h3>
 
             {/* Back to Top */}
@@ -60,7 +63,7 @@ export default function SiteFooter() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-xs sm:text-sm text-[#595959] hover:text-[#1789FF] transition self-start"
             >
-              Back to Top <span className="inline-block rotate-45 hover:rotate-0 transition-transform duration-300 align-middle"><svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg></span>
+              {t("Common.back")} to Top <span className="inline-block rotate-45 hover:rotate-0 transition-transform duration-300 align-middle"><svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg></span>
             </button>
           </div>
 
@@ -70,46 +73,46 @@ export default function SiteFooter() {
             {/* Sitemap Section */}
             <div className="min-h-36 sm:min-h-56 md:min-h-64">
               <p className="text-xs tracking-wider font-bold uppercase text-[#7A7A7A] pb-3 sm:pb-5">
-                Sitemap
+                {t("Common.sitemap")}
               </p>
               <div className="grid grid-cols-2 text-base sm:text-lg gap-x-8 sm:gap-x-12 lg:gap-x-20 gap-y-4 sm:gap-y-6 lg:gap-y-8">
                 {/* Left column */}
                 <ul className="space-y-3 sm:space-y-4 lg:space-y-6">
                   <li>
-                    <Link
+                    <LocalizedLink
                       href="/about"
                       className="text-[#595959] hover:text-[#1789FF] transition"
                     >
-                      ABOUT
-                    </Link>
+                      {t("Navigation.about").toUpperCase()}
+                    </LocalizedLink>
                   </li>
                   <li>
-                    <Link
+                    <LocalizedLink
                       href="/solutions"
                       className="text-[#595959] hover:text-[#1789FF] transition"
                     >
-                      SOLUTIONS
-                    </Link>
+                      {t("Navigation.solutions").toUpperCase()}
+                    </LocalizedLink>
                   </li>
                   <li>
-                    <Link
+                    <LocalizedLink
                       href="/industries"
                       className="text-[#595959] hover:text-[#1789FF] transition"
                     >
-                      INDUSTRIES
-                    </Link>
+                      {t("Navigation.industries").toUpperCase()}
+                    </LocalizedLink>
                   </li>
                 </ul>
 
                 {/* Right column */}
                 <ul className="space-y-3 sm:space-y-4 lg:space-y-6">
                   <li>
-                    <Link
+                    <LocalizedLink
                       href="/sustainability"
                       className="text-[#595959] hover:text-[#1789FF] transition"
                     >
-                      SUSTAINABILITY
-                    </Link>
+                      {t("Navigation.sustainability").toUpperCase()}
+                    </LocalizedLink>
                   </li>
                   <li>
                     <button
@@ -118,7 +121,7 @@ export default function SiteFooter() {
                       }}
                       className="text-[#595959] hover:text-[#1789FF] transition"
                     >
-                      CONTACT US
+                      {t("Navigation.contact").toUpperCase()}
                     </button>
                   </li>
                 </ul>
@@ -128,7 +131,7 @@ export default function SiteFooter() {
             {/* Contact Section */}
             <div>
               <p className="uppercase font-bold text-xs tracking-wider pb-3 sm:pb-5 text-[#7A7A7A]">
-                Contact Us
+                {t("Navigation.contact")}
               </p>
               <a
                 href="mailto:connect@mnexprecision.com"
@@ -143,12 +146,12 @@ export default function SiteFooter() {
               <div className="flex md:items-center gap-5 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-[#595959]">
                 <p>Copyright © {new Date().getFullYear()} Mnex Precision</p>
                 <div className="flex gap-3 sm:gap-4 lg:gap-6">
-                  <Link href="/privacy" className="hover:text-[#1789FF] transition">
+                  <LocalizedLink href="/privacy" className="hover:text-[#1789FF] transition">
                     Privacy Policy
-                  </Link>
-                  <Link href="/terms" className="hover:text-[#1789FF] transition">
+                  </LocalizedLink>
+                  <LocalizedLink href="/terms" className="hover:text-[#1789FF] transition">
                     Terms of Use
-                  </Link>
+                  </LocalizedLink>
                 </div>
               </div>
             </div>

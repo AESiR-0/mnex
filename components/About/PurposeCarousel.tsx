@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 
 type Slide = {
   img: string; // public/ path or remote URL
@@ -22,6 +23,7 @@ export default function PurposeCarousel({
 }) {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
+  const t = useTranslations();
 
   const len = slides.length;
   const clamp = (n: number) => (n + len) % len;
@@ -75,17 +77,14 @@ export default function PurposeCarousel({
     <section className="w-full bg-[#ececec] min-h-screen">
       {/* Top copy */}
       <div className="max-w-7xl px-4 mx-auto   py-10 space-y-4 sm:py-12 text-center">
-        <h2 className="text-[#444] font-semibold text-2xl sm:text-3xl md:text-4xl">
-          Engineering with purpose.
-          <br />
-          Delivering with precision.
+        <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl md:text-4xl">
+          {t('About.purposeCarousel.title')}
         </h2>
-        <p className="mt-4 max-w-sm mx-auto  text-[#6F6F6F] text-lg">
-          We begin with your business reality -   your volumes, cost targets, and
-          roadmap.
+        <p className="mt-4 max-w-2xl mx-auto  text-[#6F6F6F] text-lg">
+          {t('About.purposeCarousel.paragraph1')}
         </p>
-        <p className="mt-2 max-w-sm mx-auto  text-[#6F6F6F] text-lg">
-          Then we engineer what matters: solutions shaped by  clarity, operational  discipline, and purposeful innovation.
+        <p className=" max-w-2xl mx-auto  text-[#6F6F6F] text-lg">
+          {t('About.purposeCarousel.paragraph2')}
         </p>
       </div>
 
@@ -99,7 +98,7 @@ export default function PurposeCarousel({
       >
         {/* Desktop/Tablet: Always show regular image */}
         <Image
-          key={slide.img + idx}
+          key={slide.title + idx}
           src={slide.img}
           alt={slide.imgAlt || slide.title}
           fill

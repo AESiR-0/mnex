@@ -2,7 +2,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
-import Link from "next/link";
+import LocalizedLink from "./LocalizedLink";
+import { useTranslations } from 'next-intl';
 
 type Tab = {
   title: string;
@@ -48,18 +49,19 @@ export default function CapabilitiesSection({
 }) {
   const [active, setActive] = useState(0);
   const tab = tabs[active];
+  const t = useTranslations();
 
   return (
     <section className="w-full bg-[#ececec]">
       {/* Header and Tabs */}
       <div className="bg-[#ececec]">
-        <Header className="text-center pt-4 sm:pt-6 pb-4 md:mb-0">Core Capabilities</Header>
+        <Header className="text-center pt-4 sm:pt-6 pb-4 md:mb-0">{t("Home.capabilities.title")}</Header>
         <div className="pb-3 flex justify-center z-10">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between max-md:justify-center max-md:gap-y-0 max-md:flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-20 overflow-x-auto no-scrollbar">
-              {tabs.map((t, idx) => (
+              {tabs.map((tab, idx) => (
                 <button
-                  key={`${t.title}-${idx}`}
+                  key={`${tab.title}-${idx}`}
                   onClick={() => setActive(idx)}
                   className={`shrink-0 text-sm sm:text-lg md:text-xl py-2 sm:py-3 transition-colors ${active === idx
                     ? "text-[#1789FF]"
@@ -67,7 +69,7 @@ export default function CapabilitiesSection({
                     }`}
                   aria-current={active === idx ? "page" : undefined}
                 >
-                  {t.title}
+                  {t(tab.title)}
                 </button>
               ))}
             </div>
@@ -101,9 +103,7 @@ export default function CapabilitiesSection({
             <div className="max-w-lg sm:max-w-xl md:max-w-2xl flex flex-col gap-3 sm:gap-4 justify-between h-full py-12 sm:py-16 md:py-20">
               <div className="">
                 <h3 className="text-white text-[1.7rem] sm:text-2xl md:text-3xl lg:text-5xl font-medium leading-tight mb-3 sm:mb-4 md:mb-6 whitespace-pre-line">
-                  {tab.title === "Tooling"
-                    ? "Tools that\nshape outcomes."
-                    : tab.desc}
+                  {t(tab.desc)}
                 </h3>
 
                 {/* Show bullets if they exist, otherwise show badges */}
@@ -119,12 +119,12 @@ export default function CapabilitiesSection({
                   </div>
                 ) : (
                   <>
-                    <Link
+                    <LocalizedLink
                       href={`/solutions#${tab.title.toLowerCase().split(' ').join('-')}`}
                       className="inline-block text-white/90 text-xs uppercase tracking-wide underline underline-offset-4 decoration-white/60 hover:decoration-white"
                     >
-                      Learn more
-                    </Link>
+                      {t("Common.learnMore")}
+                    </LocalizedLink>
                     {/* Badges */}
                     <div className="flex  flex-wrap text-left justify-start max-w-2xl gap-2 sm:gap-3 md:gap-4 mt-44 sm:mt-24 md:mt-24">
                       <Image src="/static/badges/Thermoplastics unit.svg" alt="capabilities" width={400} height={400} className="object-contain w-56 sm:w-80 md:w-96 lg:w-[400px]" />

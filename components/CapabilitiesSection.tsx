@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "./Header";
+import { useTranslations } from 'next-intl';
 
 type Capability = {
     title: string;
@@ -10,63 +11,63 @@ type Capability = {
     bullets: string[];
     img: string;
     video?: string;
+    id: string; // English identifier for hash navigation
 };
 
-const capabilities: Capability[] = [
+const getCapabilities = (t: any): Capability[] => [
     {
-        title: "Tooling",
-        headline: `Tools that drive performance,
-not just parts`,
-        desc: ``,
+        id: "tooling",
+        title: t("Solutions.tooling"),
+        headline: t("Solutions.toolingHeadline"),
+        desc: t("Solutions.toolingDesc"),
         bullets: [
-            "Innovation Built-In: 30+ patents; every mold is a system for efficiency and assembly.",
-            // "Motion Complexity Mastered: Engineered slides, lifters, and core pullers deliver accuracy in tight spaces.",
-            "Precision & Motion: Engineered slides, lifters, and core pullers deliver accuracy in tight spaces.",
-            "Integrated by Design: In-house CNC, EDM, and grinding achieve micron tolerances while enabling inserts, sub-assemblies, and encapsulation.",
-            "Ready for Anything: From prototypes to high-volume stack molds, our toolroom delivers."
+            t("Solutions.toolingBullet1"),
+            t("Solutions.toolingBullet2"),
+            t("Solutions.toolingBullet3"),
+            t("Solutions.toolingBullet4")
         ],
         img: "/images/capabilities/tooling.jpg",
         video: "/videos/home/Solutions - Tooling.webm",
     },
     {
-        title: "Injection Molding",
-        headline: `Material, machine, process, 
-perfectly aligned.`,
-        desc: "",
+        id: "injection-molding",
+        title: t("Solutions.injectionMolding"),
+        headline: t("Solutions.injectionMoldingHeadline"),
+        desc: t("Solutions.injectionMoldingDesc"),
         bullets: [
-            "Thermoplastics Perfected: Resins to advanced polymers - processed for accuracy and stability.",
-            "Beyond Thermoplastics: Thermosets (BMC, epoxy, LSR) with custom tooling and controls.",
-            "90+ Machines, Zero Limits: Micro to macro tonnage, vertical or horizontal, twin or single barrel.",
-            "Scientific Molding Discipline: Stable, repeatable, production-ready processes.",
-            "Sub-Micron Metrology: CMMs, vision systems and fixtures that measure performance and shape.",
+            t("Solutions.injectionMoldingBullet1"),
+            t("Solutions.injectionMoldingBullet2"),
+            t("Solutions.injectionMoldingBullet3"),
+            t("Solutions.injectionMoldingBullet4"),
+            t("Solutions.injectionMoldingBullet5"),
         ],
         img: "/images/capabilities/molding.jpg",
         video: "/videos/home/Solutions - Injection Molding.webm",
     },
     {
-        title: "Smart Automation & Assembly",
-        headline: `Automation built in,
-engineered to flow.`,
-        desc: "",
+        id: "smart-automation-assembly",
+        title: t("Solutions.smartAutomation"),
+        headline: t("Solutions.smartAutomationHeadline"),
+        desc: t("Solutions.smartAutomationDesc"),
         bullets: [
-            "Custom jigs, fixtures, EOATs, and robotic stations",
-            "Vision systems, poka-yoke checkpoints, and traceability",
-            "Modular, adaptable setups for changing product needs",
-            "Proprietary solutions when off-the-shelf isn't enough - improving productivity, safety, and quality",
+            t("Solutions.smartAutomationBullet1"),
+            t("Solutions.smartAutomationBullet2"),
+            t("Solutions.smartAutomationBullet3"),
+            t("Solutions.smartAutomationBullet4"),
         ],
         img: "/images/capabilities/automation.jpg",
         video: "/videos/home/Solutions - Smart Automation & Fixtures.webm",
     },
     {
-        title: "Integrated Product Development",
-        headline: `Design thinking,
-manufacturing reality.`,
-        desc: "",
+        id: "integrated-product-development",
+        title: t("Solutions.productDevelopment"),
+        headline: t("Solutions.productDevelopmentHeadline"),
+        desc: t("Solutions.productDevelopmentDesc"),
         bullets: [
-            "Structured product strategy and design-for-manufacturability",
-            "Built-in function, compliance, durability, and aesthetics",
-            "Proven track record: child safety systems, sterilizers, complex sub-assemblies",
-            "Same rigor whether it's a single part or a full electromechanical system",
+            t("Solutions.productDevelopmentBullet1"),
+            t("Solutions.productDevelopmentBullet2"),
+            t("Solutions.productDevelopmentBullet3"),
+            t("Solutions.productDevelopmentBullet4"),
         ],
         img: "/images/capabilities/development.jpg",
         video: "/videos/home/Solutions - Integrated Product Development.webm",
@@ -75,13 +76,15 @@ manufacturing reality.`,
 
 export default function CapabilitiesSection() {
     const [activeTab, setActiveTab] = useState(0);
+    const t = useTranslations();
+    const capabilities = getCapabilities(t);
     const activeCapability = capabilities[activeTab];
 
     // Function to get tab index from hash
     const getTabIndexFromHash = (hash: string) => {
         const cleanHash = hash.replace('#', '');
         const tabIndex = capabilities.findIndex(capability =>
-            capability.title.toLowerCase().split(' ').join('-') === cleanHash
+            capability.id === cleanHash
         );
         return tabIndex >= 0 ? tabIndex : 0;
     };
@@ -110,7 +113,7 @@ export default function CapabilitiesSection() {
     // Update hash when tab changes
     const handleTabChange = (index: number) => {
         setActiveTab(index);
-        const tabId = capabilities[index].title.toLowerCase().split(' ').join('-');
+        const tabId = capabilities[index].id;
         window.location.hash = tabId;
     };
 
@@ -134,17 +137,16 @@ export default function CapabilitiesSection() {
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
                     <Header className="pt-4 sm:pt-6 pb-4 md:mb-0 text-center">
-                        Core Capabilities
+                        {t("Home.capabilities.title")}
                     </Header>
 
                     {/* Navigation Tabs */}
                     <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-20">
                         {capabilities.map((capability, index) => {
-                            const tabId = capability.title.toLowerCase().split(' ').join('-');
                             return (
                                 <button
-                                    key={capability.title}
-                                    id={tabId}
+                                    key={capability.id}
+                                    id={capability.id}
                                     onClick={() => handleTabChange(index)}
                                     className={`shrink-0 text-sm sm:text-lg md:text-xl py-1 sm:py-3 transition-colors ${activeTab === index
                                         ? "text-[#1789FF] "
@@ -152,7 +154,7 @@ export default function CapabilitiesSection() {
                                         }`}
                                     aria-selected={activeTab === index}
                                     role="tab"
-                                    aria-controls={`${tabId}-panel`}
+                                    aria-controls={`${capability.id}-panel`}
                                 >
                                     {capability.title}
                                 </button>
@@ -192,9 +194,9 @@ export default function CapabilitiesSection() {
                 <div className="relative z-10 h-full flex items-start py-20">
                     <div className="max-w-7xl mx-auto px-4 w-full max-md:max-w-full">
                         <div
-                            id={`${activeCapability.title.toLowerCase().split(' ').join('-')}-panel`}
+                            id={`${activeCapability.id}-panel`}
                             role="tabpanel"
-                            aria-labelledby={`${activeCapability.title.toLowerCase().split(' ').join('-')}`}
+                            aria-labelledby={`${activeCapability.id}`}
                             className="max-w-2xl max-md:max-w-full"
                         >
                             {/* Headline */}

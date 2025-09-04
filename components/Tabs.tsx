@@ -1,7 +1,8 @@
 "use client";
-import Link from "next/link";
+import LocalizedLink from "./LocalizedLink";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
+import { useTranslations } from 'next-intl';
 
 const defaultTabs = [
   { name: "Approach", href: "/about/approach" },
@@ -14,26 +15,27 @@ export default function Tabs({
   tabs?: { name: string; href: string }[];
 }) {
   const pathname = usePathname();
-
-  // figure out the active tab from the URL every render
+  const t = useTranslations();
+  const isIndustriesPage = pathname.split('/').includes('industries');
   const activeName = useMemo(() => {
-    const p = (pathname || "").toLowerCase();
-    // exact match or startsWith allows /about/approach/anything
-    const hit = tabs.find(
-      (t) => p === t.href.toLowerCase() || p.startsWith(t.href.toLowerCase())
-    );
+    const p = pathname.toLowerCase();
+    const activeTab = p.split('/').filter(Boolean).pop();
+    const hit = tabs.find((t) => {
+      const tabLast = t.href.toLowerCase().split('/').filter(Boolean).pop();
+      return activeTab === tabLast;
+    });
     // if user is on /about (no subpage), default to first tab
     if (!hit && (p === "/about" || p === "/about/")) return tabs[0].name;
     return hit?.name ?? tabs[0].name;
-  }, [pathname]);
+  }, [pathname, tabs]);
 
   return (
-    <div className="w-full max-md:px-3   bg-[#ffffff] py-6 pt-18">
+    <div className={`w-full max-md:px-3   bg-[#ffffff] pt-18 ${isIndustriesPage ? 'py-0' : 'py-6'}`}>
       <div className="max-w-5xl mx-auto tracking-[0.05em]   flex justify-center  gap-3 sm:gap-4">
         {tabs.map((tab) => {
           const isActive = activeName === tab.name;
           return (
-            <Link
+            <LocalizedLink
               key={tab.name}
               href={tab.href}
               aria-current={isActive ? "page" : undefined}
@@ -55,7 +57,7 @@ export default function Tabs({
                 }`}
             >
               {tab.name}
-            </Link>
+            </LocalizedLink>
           );
         })}
       </div>

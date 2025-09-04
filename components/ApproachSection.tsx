@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Header from "@/components/Header";
+import { useTranslations } from 'next-intl';
 
 export type ApproachItem = { title: string; desc: string };
 
@@ -50,6 +51,7 @@ export default function ApproachSection({
   const [vh, setVh] = useState(0); // viewport height in px
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const lastScrollY = useRef(0);
+  const t = useTranslations();
   const isMobile = useIsMobile();
 
   // viewport height (handles mobile address bar)
@@ -157,10 +159,10 @@ export default function ApproachSection({
 
             {/* Content overlay */}
             <div className="relative z-10 mx-auto max-w-7xl   w-full flex items-center justify-start ">
-              <h1 className="text-[1.7rem] sm:text-2xl px-4 lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
-                Shaping Precision,
+              <h1 className="text-[1.7rem] whitespace-pre-line sm:text-2xl px-4 lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
+                {t("Home.hero.line1")}
                 <br />
-                Engineering what matters
+                {t("Home.hero.line2")}
               </h1>
             </div>
           </section>
@@ -168,7 +170,7 @@ export default function ApproachSection({
           {/* Approach content */}
           <div className={`${isMobile ? 'min-h-[50vh]' : 'h-[60vh]'} flex items-start py-6 sm:py-8 md:py-10`}>
             <div className="max-w-7xl h-full px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 mx-auto w-full">
-              <Header className="pb-3 pt-5 sm:pb-4 md:pb-5">Our Approach</Header>
+              <Header className="pb-3 pt-5 sm:pb-4 md:pb-5">{t("Home.approach.title")}</Header>
               <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-0 h-full">
                 {/* Left: Active content */}
                 <div

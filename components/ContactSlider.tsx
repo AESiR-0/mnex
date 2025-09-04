@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Header from "./Header";
+import LocalizedLink from "./LocalizedLink";
 
 interface ContactSliderProps {
   isOpen: boolean;
@@ -268,13 +269,13 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   />
                   <span className="text-sm text-[#595959] leading-relaxed">
                     I consent to receive communications from Mnex and understand that I may revoke this consent at any time. I agree to the{" "}
-                    <a href="/privacy" className="text-[#1789FF] hover:underline">
+                    <LocalizedLink href="/privacy" className="text-[#1789FF] hover:underline">
                       Privacy Policy
-                    </a>{" "}
+                    </LocalizedLink>{" "}
                     and{" "}
-                    <a href="/terms" className="text-[#1789FF] hover:underline">
+                    <LocalizedLink href="/terms" className="text-[#1789FF] hover:underline">
                       Terms of Service
-                    </a>.
+                    </LocalizedLink>.
                   </span>
                 </label>
               </div>

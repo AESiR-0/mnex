@@ -1,0 +1,290 @@
+{
+  "Navigation": {
+    "about": "About Us",
+    "solutions": "Solutions",
+    "industries": "Industries",
+    "sustainability": "Sustainability",
+    "contact": "Contact Us",
+    "aboutSubmenu": {
+      "approach": "Approach",
+      "legacy": "Legacy",
+      "leadership": "Leadership"
+    },
+    "industriesSubmenu": {
+      "cei": "Consumer & Industrial",
+      "regulated": "Regulated",
+      "oilAndGas": "Oil & Gas"
+    }
+  },
+  "Home": {
+    "title": "Manufacturing Excellence",
+    "subtitle": "Innovative solutions for tomorrow's challenges",
+    "hero": {
+      "line1": "Shaping Precision,",
+      "line2": "Engineering what matters"
+    },
+    "solutions": {
+      "title": "Our Solutions",
+      "leftTitle": {
+        "line1": "We don't sell capabilities.",
+        "line2": "We build the right one for you."
+      },
+      "rightText": {
+        "paragraph1": "At Mnex, every solution is engineered around your product, scale and market demands.",
+        "paragraph2": "From precision tooling to smart automation. We deliver exactly what your strategy demands."
+      }
+    },
+    "approach": {
+      "title": "Our Approach",
+      "weBuild": {
+        "title": "We Build What Matters",
+        "desc": "From concept to precision-built reality, we create with purpose, speed and obsessive detail. This is industrial manufacturing where manufacturability is engineered from day one."
+      },
+      "vision": {
+        "title": "Vision, Engineered",
+        "desc": "From the very first step, we align our manufacturing strategy to your business strategy - not the other way round."
+      },
+      "innovation": {
+        "title": "Innovation That Serves",
+        "desc": "Smart technology, no overengineering—just practical, scalable value aligned to your goals"
+      },
+      "scale": {
+        "title": "Built to Scale + Specialize",
+        "desc": "From global programs to custom builds, we deliver with equal precision and commitment—robust for scale, flexible for specialization."
+      },
+      "integrated": {
+        "title": "Integrated Precision, Delivered Fast",
+        "desc": "Tooling, molding, automation, and assembly under one roof—for speed, control, and accuracy."
+      },
+      "businessAligned": "Business-Aligned Manufacturing",
+      "scalable": "Scalable and Specialized",
+      "verticallyIntegrated": "Vertically integrated for Speed",
+      "precision": "Precision by Design",
+      "execution": "Execution Obsessed"
+    },
+    "capabilities": {
+      "title": "Core Capabilities"
+    },
+    "caseStudy": {
+      "label": "Case Study",
+      "sectorLabel": "Sector",
+      "challengeLabel": "Challenge",
+      "sector": "Consumer Electronics",
+      "challenge": "Reduce cost for a long-running program without changing the material, function & aesthetics.",
+      "title": "Doubling Output with Multi-Level Tooling"
+    },
+    "sustainability": {
+      "title": "Sustainability"
+    },
+    "cta": {
+      "title": "Ready to build what matters?",
+      "description": "Let's discuss how Mnex can help you achieve your manufacturing goals with precision, speed, and innovation."
+    }
+  },
+  "Solutions": {
+    "title": "Manufacturing Solutions",
+    "tooling": "Tooling",
+    "toolingHeadline": "Tools that drive performance,\nnot just parts",
+    "toolingDesc": "Tools that shape outcomes.",
+    "toolingBullet1": "Innovation Built-In: 30+ patents; every mold is a system for efficiency and assembly.",
+    "toolingBullet2": "Precision & Motion: Engineered slides, lifters, and core pullers deliver accuracy in tight spaces.",
+    "toolingBullet3": "Integrated by Design: In-house CNC, EDM, and grinding achieve micron tolerances while enabling inserts, sub-assemblies, and encapsulation.",
+    "toolingBullet4": "Ready for Anything: From prototypes to high-volume stack molds, our toolroom delivers.",
+    "injectionMolding": "Injection Molding",
+    "injectionMoldingHeadline": "Material, machine, process,\nperfectly aligned.",
+    "injectionMoldingDesc": "Where material, machine and process align.",
+    "injectionMoldingBullet1": "Thermoplastics Perfected: Resins to advanced polymers - processed for accuracy and stability.",
+    "injectionMoldingBullet2": "Beyond Thermoplastics: Thermosets (BMC, epoxy, LSR) with custom tooling and controls.",
+    "injectionMoldingBullet3": "90+ Machines, Zero Limits: Micro to macro tonnage, vertical or horizontal, twin or single barrel.",
+    "injectionMoldingBullet4": "Scientific Molding Discipline: Stable, repeatable, production-ready processes.",
+    "injectionMoldingBullet5": "Sub-Micron Metrology: CMMs, vision systems and fixtures that measure performance and shape.",
+    "smartAutomation": "Smart Automation & Assembly",
+    "smartAutomationHeadline": "Automation built in,\nengineered to flow.",
+    "smartAutomationDesc": "Automation designed to flow-assembly built to scale",
+    "smartAutomationBullet1": "Custom jigs, fixtures, EOATs, and robotic stations",
+    "smartAutomationBullet2": "Vision systems, poka-yoke checkpoints, and traceability",
+    "smartAutomationBullet3": "Modular, adaptable setups for changing product needs",
+    "smartAutomationBullet4": "Proprietary solutions when off-the-shelf isn't enough - improving productivity, safety, and quality",
+    "productDevelopment": "Integrated Product Development",
+    "productDevelopmentHeadline": "Design thinking,\nmanufacturing reality.",
+    "productDevelopmentDesc": "Design thinking, built for reality.",
+    "productDevelopmentBullet1": "Structured product strategy and design-for-manufacturability",
+    "productDevelopmentBullet2": "Built-in function, compliance, durability, and aesthetics",
+    "productDevelopmentBullet3": "Proven track record: child safety systems, sterilizers, complex sub-assemblies",
+    "productDevelopmentBullet4": "Same rigor whether it's a single part or a full electromechanical system"
+  },
+  "Industries": {
+    "title": "Industries We Serve",
+    "cei": {
+      "title": "Consumer & Industrial",
+      "content": "In the consumer and industrial space, market success is defined by how quickly you launch, how efficiently you scale, and how well you balance cost with product appeal. Mnex brings decades of experience partnering with the world's top brands to deliver at this intersection.",
+      "speed": {
+        "title": "Speed",
+        "desc": "Integrated tooling, molding, and automation under one roof. Proven ability to meet compressed launch schedules without sacrificing process discipline or product quality."
+      },
+      "volume": {
+        "title": "Volume",
+        "desc": "90+ injection molding machines across our facilities, supported by a developed supply chain and standardized processes refined over decades. Our teams have scaled stable, long-running programs for leading global brands — from pilot runs to millions of parts annually."
+      },
+      "cost": {
+        "title": "Cost",
+        "desc": "Early design-for-manufacturing (DFM), value engineering, and lean practices are built into every program. We invest in automation and process innovations that deliver measurable savings. See how we achieved 2× throughput for a legacy program without new capital equipment in our case study"
+      },
+      "aesthetics": {
+        "title": "Aesthetics",
+        "desc": "Molding expertise, advanced texturing, IMD/IML and secondary finishing ensure that cosmetic surfaces and design intent are preserved — because in consumer products, looks matter as much as performance. At Mnex, we engineer for speed, volume, cost, and aesthetics — so your products launch fast, scale reliably, and win in the market."
+      }
+    },
+    "regulated": {
+      "title": "Regulated Industries",
+      "content": "In regulated industries, precision alone is not enough. Every part must meet stringent safety, compliance and documentation requirements. We combines molding expertise with robust systems to ensure medical devices and juvenile products meet the highest global standards.",
+      "compliance": {
+        "title": "Compliance",
+        "desc": "Our facilities operate under ISO 13485 for medical manufacturing, with validated processes such as IQ, OQ, and PQ ensuring long-term stability. For juvenile products, we align with EN71, ASTM, and other international safety standards, while selecting materials that consistently meet global regulatory requirements."
+      },
+      "safety": {
+        "title": "Safety & Traceability",
+        "desc": "We safeguard every part through strict controls at both material and process level. Production begins with biocompatible, BPA-free, and phthalate-free materials, compliant with RoHS and REACH, and verified in-house using XRF and other lab equipment. Lot-level traceability is maintained through rigorous supplier management, while FMEA and risk-based reviews anticipate and mitigate risks. A fully digital quality system supports SPC and trend analysis, creating forward traceability and consistent compliance."
+      },
+      "reliability": {
+        "title": "Reliability",
+        "desc": "Reliability is built in through tooling and processes designed for stability. Molds are engineered and validated for long lifecycle programs, maintaining dimensional integrity over years of production. Critical molding and assembly are carried out in controlled environments, ensuring process consistency, cleanliness, and uninterrupted supply for global OEMs. At Mnex, we engineer for compliance, safety, and reliability — so your regulated products remain safe, trusted, and globally marketable."
+      }
+    },
+    "oilAndGas": {
+      "title": "Oil & Gas",
+      "buttonText": "Learn more at meibanenergy.com",
+      "content": "In Oil & Gas, components must withstand extreme conditions — high pressure, corrosive environments, and remote field deployment. With over 10 years of experience in machining and turnkey manufacturing, Mnex is a trusted partner to global service companies delivering reliable performance in the toughest environments.",
+      "ruggedness": {
+        "title": "Ruggedness",
+        "desc": "Processes and controls are built for subsea, high-pressure, and high-temperature duty. Our API Spec Q1–certified quality management system underpins drilling, honing, machining, and threading services tailored for Oil & Gas applications."
+      },
+      "precision": {
+        "title": "Precision",
+        "desc": "We deliver tight-tolerance parts through process-disciplined deep-hole boring, long-length honing, turning and milling, as well as controlled threading — verified to drawing and API requirements with in-process checks and documented release criteria."
+      },
+      "material": {
+        "title": "Material Mastery",
+        "desc": "We work extensively with exotic alloys including titanium and Inconel, and apply advanced coatings and treatments to extend wear life and corrosion resistance. Our capabilities span welding, heat treatment, and nondestructive testing, enabling us to manufacture mission-critical parts with confidence."
+      },
+      "lifecycle": {
+        "title": "Lifecycle Support",
+        "desc": "Programs are built to run long: we sustain legacy SKUs, manage engineering changes, and maintain capacity at our Johor site for replacement and service parts to support field demand."
+      }
+    }
+  },
+  "About": {
+    "title": "About MNex",
+    "purposeCarousel": {
+      "title": "Engineering with purpose.\nDelivering with precision.",
+      "paragraph1": "We begin with your business reality - your volumes, cost targets, and roadmap.",
+      "paragraph2": "Then we engineer what matters: solutions shaped by clarity, operational discipline, and purposeful innovation."
+    },
+    "approach": {
+      "title": "Our Approach",
+      "slide1": {
+        "title": "Business-Aligned from Day One",
+        "lead": "We start with your strategy - not our machines. Every plan is tailored to your volumes, risks, and business goals.",
+        "bullet1": "Tailored manufacturing strategies",
+        "bullet2": "Early alignment to cost, compliance, and launch targets",
+        "cta1": "See How We Build",
+        "cta2": "Explore Case Studies"
+      },
+      "slide2": {
+        "title": "Flexible from Specialized to Scaled",
+        "lead": "Structured for global manufacturing programs, yet agile enough for custom industrial builds.",
+        "bullet1": "Agile teams for complex custom projects",
+        "bullet2": "Systems designed for consistent large-scale execution",
+        "cta1": "See How We Build",
+        "cta2": "Explore Case Studies"
+      },
+      "slide3": {
+        "title": "Vertically Integrated for Speed",
+        "lead": "Everything in one place: tooling, molding, automation, assembly.",
+        "bullet1": "Faster iteration cycles",
+        "bullet2": "Tighter quality control",
+        "bullet3": "Seamless handoffs at every stage",
+        "cta1": "See How We Build",
+        "cta2": "Explore Case Studies"
+      },
+      "slide4": {
+        "title": "Precision by Design",
+        "lead": "Decades of tooling and process mastery are built into every solution.",
+        "bullet1": "Stable, repeatable results",
+        "bullet2": "Micron-level tolerances where it matters",
+        "bullet3": "Quality designed in, not inspected in",
+        "cta1": "See How We Build",
+        "cta2": "Explore Case Studies"
+      },
+      "slide5": {
+        "title": "Pragmatic Innovation",
+        "lead": "We don't add complexity for show.",
+        "bullet1": "Right technology for the right reason",
+        "bullet2": "Outcome-driven solutions, never overengineered",
+        "bullet3": "Measurable gains in performance and reliability",
+        "cta1": "See How We Build",
+        "cta2": "Explore Case Studies"
+      },
+      "slide6": {
+        "title": "Execution Obsessed",
+        "lead": "Because ideas only matter if they launch on time.",
+        "bullet1": "Fast setups and mature systems",
+        "bullet2": "Teams with decades of successful deliveries",
+        "bullet3": "Relentless focus on timelines and outcomes",
+        "cta1": "See How We Build",
+        "cta2": "Explore Case Studies"
+      }
+    },
+    "legacy": {
+      "title": "Our Origin:\nFrom Meiban to Mnex",
+      "subtitle1": "A legacy of precision.",
+      "subtitle2": "A future of purpose-driven manufacturing.",
+      "paragraph1": "For nearly four decades, Meiban was trusted worldwide for precision tooling, high-quality injection molding, and disciplined manufacturing. That hard-earned reputation for reliability is the foundation of everything we do at Mnex.",
+      "paragraph2": "Mnex represents the next phase of that legacy - shaped by modern manufacturing needs, advanced automation, and digitally integrated systems.",
+      "execution": {
+        "title": "Execution Aligned with Strategy",
+        "desc": "Your business goals - volume, cost, speed, and compliance - guide how we engineer, automate, and deliver. We don't just manufacture parts; we build purpose-driven solutions that reduce risk and create measurable value."
+      },
+      "agility": {
+        "title": "Agility Built In",
+        "desc": "Our lean teams and digital-first operations (MES and paperless QA systems) ensure faster decision-making, total traceability, and quicker launches."
+      },
+      "automation": {
+        "title": "Automation that Matters",
+        "desc": "From robotics to closed-loop process control, we apply automation with intention - enhancing scalability, quality, and smart labor use."
+      },
+      "spirit": {
+        "title": "The Spirit of Meiban Lives On.",
+        "desc": "But Mnex brings a new momentum - Strategic. Responsive. Precision-led. Engineering what matters today, with the vision of tomorrow."
+      }
+    },
+    "leadership": {
+      "title": "Leadership"
+    }
+  },
+  "Sustainability": {
+    "title": "Sustainability",
+    "environmental": "Environmental Impact",
+    "material": "Material Efficiency",
+    "compliance": "Compliance & Standards",
+    "hero": {
+      "title": "Built to Perform.",
+      "subtitle": "Designed to Waste Less.",
+      "description1": "We believe good manufacturing is responsible manufacturing.",
+      "description2": "At Mnex, we reduce waste, save energy, and build smarter for a better planet."
+    }
+  },
+  "Common": {
+    "language": "Language",
+    "english": "English",
+    "chinese": "中文",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "menu": "Menu",
+    "sitemap": "Sitemap"
+  }
+}

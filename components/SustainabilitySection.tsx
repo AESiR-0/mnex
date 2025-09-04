@@ -1,34 +1,38 @@
 import Header from "./Header";
+import { useTranslations, useLocale } from 'next-intl';
+import LocalizedLink from "./LocalizedLink";
 
 // components/SustainabilitySection.tsx
 export default function SustainabilitySection() {
+  const t = useTranslations();
+  const locale = useLocale();
   return (
     <section className="w-full h-screen max-md:h-[60vh] bg-cover bg-center bg-no-repeat text-white flex items-center relative" style={{ backgroundImage: 'url(/static/home/sustainability.webp)' }}>
       <div className="absolute inset-0 bg-[#009B80]/50"></div>
       <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 items-center">
         {/* Left copy */}
         <div className="max-w-2xl">
-          <Header className="text-white text-sm sm:text-base md:text-lg lg:text-xl">Sustainability</Header>
+          <Header className="text-white text-sm sm:text-base md:text-lg lg:text-xl">{t("Sustainability.title")}</Header>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl leading-[1] md:leading-[1.25] font-semibold mb-6 sm:mb-8 md:mb-10">
-            Built to Perform.
+            {t("Sustainability.hero.title")}
             <br />
-            Designed to Waste Less.
+            {t("Sustainability.hero.subtitle")}
           </h2>
 
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-snug mb-4 sm:mb-6 opacity-95">
-            We believe good manufacturing <br /> is responsible manufacturing.
+            {t("Sustainability.hero.description1")}
           </p>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-snug mb-6 sm:mb-8 md:mb-10 opacity-95">
-            At Mnex, we reduce waste, save energy, <br /> and build smarter for a better planet.
+            {t("Sustainability.hero.description2")}
           </p>
 
-          <a
+          <LocalizedLink
             href="/sustainability"
             className="uppercase inline-block text-xs sm:text-sm md:text-base tracking-wider font-medium underline underline-offset-4 decoration-white/70 hover:decoration-white transition"
           >
-            Learn more
-          </a>
+            {t("Common.learnMore")}
+          </LocalizedLink>
         </div>
 
         {/* Right badges */}

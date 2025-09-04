@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useRef, useEffect } from "react";
 import Header from "./Header";
+import { useTranslations } from 'next-intl';
 
 export default function CaseStudySpotlight({
   href,
@@ -19,6 +20,7 @@ export default function CaseStudySpotlight({
   poster?: string;
 }) {
   const vref = useRef<HTMLVideoElement | null>(null);
+  const t = useTranslations();
 
   useEffect(() => {
     const v = vref.current;
@@ -56,7 +58,7 @@ export default function CaseStudySpotlight({
             "
           >
             <div>
-              <Header className="text-white/90 mb-0 pb-2 text-sm sm:text-base md:text-lg lg:text-xl">Case Study</Header>
+              <Header className="text-white/90 mb-0 pb-2 text-sm sm:text-base md:text-lg lg:text-xl">{t("Home.caseStudy.label")}</Header>
               <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-[2.5rem] font-semibold leading-tight mb-4 sm:mb-6 md:mb-8">
                 {title}
               </h2>
@@ -65,13 +67,13 @@ export default function CaseStudySpotlight({
             <div className="grid md:grid-cols-1 gap-6 sm:gap-8 md:gap-10 leading-tight text-white">
               <div>
                 <Header className="text-white mb-0 pb-2 font-semibold uppercase text-xs sm:text-sm md:text-base lg:text-lg">
-                  Sector
+                  {t("Home.caseStudy.sectorLabel")}
                 </Header>
                 <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl">{sector}</p>
               </div>
               <div>
                 <Header className="text-white mb-0 pb-2 font-semibold uppercase text-xs sm:text-sm md:text-base lg:text-lg">
-                  Challenge
+                  {t("Home.caseStudy.challengeLabel")}
                 </Header>
                 <p className="text-white/95 text-sm sm:text-base md:text-lg lg:text-2xl whitespace-pre-line leading-tight">
                   {challenge}
