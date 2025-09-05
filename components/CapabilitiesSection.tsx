@@ -70,7 +70,7 @@ const getCapabilities = (t: any): Capability[] => [
             t("Solutions.productDevelopmentBullet4"),
         ],
         img: "/images/capabilities/development.jpg",
-        video: "/videos/home/Solutions - Integrated Product Development.webm",
+        video: "/videos/home/Solutions - Integrated_Product_Development.webm",
     },
 ];
 

@@ -30,7 +30,7 @@ const getTabData = (t: any) => [
   {
     title: "Solutions.productDevelopment",
     video:
-      "/videos/home/Solutions - Integrated Product Development.webm",
+      "/videos/home/Solutions - Integrated_Product_Development.webm",
     desc: "Solutions.productDevelopmentDesc",
     link: "/solutions#integrated-product-development",
   },
