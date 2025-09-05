@@ -54,7 +54,7 @@ export default function Tabs({
               aria-current={isActive ? "page" : undefined}
               className={`px-6 sm:px-5 flex items-center justify-center  py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                 ${tab.nameKey === "Navigation.industriesSubmenu.cei"
-                  ? "text-center w-40"
+                  ? "text-center max-md:w-40 w-56"
                   : ""
                 }
               

@@ -27,7 +27,7 @@ const capabilities: Capability[] = [
             **Zero** untreated wastewater`
         ],
         img: "/static/home/sustainability.webp",
-        video: "/videos/sustainability/Environmental impact.webm",
+        video: "/videos/sustainability/Environmental_impact.webm",
     },
     {
         title: "Material Efficiency & Design Optimization",
@@ -39,7 +39,7 @@ const capabilities: Capability[] = [
             "Vertical integration reduces packaging & logistics waste"
         ],
         img: "/static/home/sustainability.webp",
-        video: "",
+        video: "/videos/sustainability/Material_Efficiency.webm",
     },
     {
         title: "Responsible Procurement",
@@ -63,7 +63,7 @@ const capabilities: Capability[] = [
             compliant`
         ],
         img: "/static/home/sustainability.webp",
-        video: "/videos/sustainability/Complaince & Standards.webm",
+        video: "/videos/sustainability/Complaince_Standards.webm",
     },
 ];
 

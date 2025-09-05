@@ -26,3 +26,47 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* Remove Safari focus outlines and click borders */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+
+/* Remove Safari link click borders */
+a {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* Remove Safari input focus styles */
+input, textarea, select {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* Ensure no focus rings appear on any interactive elements */
+*:focus {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Safari-specific fixes for click borders */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  button:active,
+  a:active,
+  input:active,
+  textarea:active,
+  select:active {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
+}
+

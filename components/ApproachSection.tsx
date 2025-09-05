@@ -128,7 +128,7 @@ export default function ApproachSection({
   const activeTabId = active >= 0 ? `${sectionId}-tab-${active}` : undefined;
 
   // The container height is N * 700px + 200px (extra to release pin) - only on desktop
-  const containerHeight = isMobile ? 'auto' : items.length * 700 + 200;
+  const containerHeight = isMobile ? 'auto' : items.length * 700 + 500;
 
   return (
     <section className="w-full  bg-[#ececec]">
