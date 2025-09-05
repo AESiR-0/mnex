@@ -23,11 +23,11 @@ export default function SiteFooter() {
             <div className="min-h-32 sm:min-h-40 md:min-h-48 w-full">
               <LocalizedLink href="/" className="block w-20 sm:w-24 lg:w-32">
                 <Image
-                  src="/static/Logo/Logo_SVG/MNex_v2-12.svg"
-                  alt="MNEX"
-                  width={128}
-                  height={128}
-                  className="h-auto w-auto pb-5 sm:pb-5"
+                  src="/static/Logo/Logo_SVG/MNex_v2-11.svg"
+                  alt="MNex Logo"
+                  className="h-16 w-32"
+                  width={160}
+                  height={160}
                 />
               </LocalizedLink>
               <p className="text-sm xl:text-md text-[#595959] pb-2 sm:pb-3">
@@ -45,7 +45,7 @@ export default function SiteFooter() {
               </p>
               <p className="text-sm xl:text-md text-[#595959] pb-3 sm:pb-5">
                 Mnex Malaysia <br />
-                Unit 2 Jalan Seroja 2 
+                Unit 2 Jalan Seroja 2
                 Bandar Indahpura, 810 00, <br />
                 Kulai, Johor, Malaysia
               </p>
