@@ -6,6 +6,7 @@ import CapabilitiesSection from "@/components/ManufacturingCapabilities";
 import { useState } from "react";
 import Header from "@/components/Header";
 import { useTranslations } from 'next-intl';
+import LocalizedLink from "@/components/LocalizedLink";
 
 const getTabData = (t: any) => [
   {

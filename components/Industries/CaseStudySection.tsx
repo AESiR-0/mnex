@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
+import { useTranslations } from 'next-intl';
 
 type CaseStudy = {
   id: number;
@@ -52,13 +53,14 @@ const caseStudies: CaseStudy[] = [
 export default function CaseStudySection() {
   const [active, setActive] = useState(0);
   const study = caseStudies[active];
+  const t = useTranslations();
 
   return (
     <div className="max-w-7xl py-16 sm:py-20 mx-auto px-4">
       {/* Top Navigation */}
       <div className="flex items-center justify-between mb-8 text-xs uppercase tracking-widest text-[#595959]">
         <div className="flex w-full pb-16 max-md:pb-0 gap-5">
-          <Header className="mb-0 ">Case Study</Header>
+          <Header className="mb-0 ">{t("CaseStudy.title")}</Header>
           <div className="flex gap-2">
             {caseStudies.map((_, idx) => (
               <button
@@ -86,7 +88,7 @@ export default function CaseStudySection() {
 
           <div className="mb-6">
             <Header className="text-[#1789FF] py-6 mb-0">
-              Challenge
+              {t("CaseStudy.challenge")}
             </Header>
             <p className="text-[#595959] text-sm md:text-base">
               {study.challenge}
@@ -95,7 +97,7 @@ export default function CaseStudySection() {
 
           <div className="mb-6">
             <Header className="text-[#1789FF] py-6 mb-0">
-              Mnex Approach
+              {t("CaseStudy.approach")}
             </Header>
             <ul className="whitespace-pre-line space-y-2 text-[#595959] text-sm md:text-base">
               {study.approach}
@@ -104,7 +106,7 @@ export default function CaseStudySection() {
 
           <div className="mb-6">
             <Header className="text-[#1789FF] py-6 mb-0">
-              Outcome
+              {t("CaseStudy.outcome")}
             </Header>
             <ul className="space-y-2 text-[#595959] text-sm md:text-base">
               {study.outcome.map((point, i) => {

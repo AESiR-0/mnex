@@ -276,6 +276,12 @@
       "description2": "在MNex，我们减少浪费，节约能源，为更美好的星球而更智能地建造。"
     }
   },
+  "CaseStudy": {
+    "title": "案例研究",
+    "challenge": "挑战",
+    "approach": "MNex方法",
+    "outcome": "结果"
+  },
   "Common": {
     "language": "语言",
     "english": "English",

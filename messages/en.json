@@ -275,6 +275,12 @@
       "description2": "At Mnex, we reduce waste, save energy, and build smarter for a better planet."
     }
   },
+  "CaseStudy": {
+    "title": "Case Study",
+    "challenge": "Challenge",
+    "approach": "Mnex Approach",
+    "outcome": "Outcome"
+  },
   "Common": {
     "language": "Language",
     "english": "English",

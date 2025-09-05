@@ -1,8 +1,8 @@
 "use client";
-import Link from "next/link";
 import { useRef, useEffect } from "react";
 import Header from "./Header";
 import { useTranslations } from 'next-intl';
+import LocalizedLink from "./LocalizedLink";
 
 export default function CaseStudySpotlight({
   href,
@@ -43,7 +43,7 @@ export default function CaseStudySpotlight({
       <div className="absolute inset-0 bg-black/25" />
 
       <div className="relative z-10 h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <Link
+        <LocalizedLink
           href={href}
           className="group block w-full max-w-[20rem] sm:max-w-[24rem] md:max-w-[28rem] lg:max-w-[34rem] aspect-square"
           aria-label={`Open case study: ${title}`}
@@ -81,7 +81,7 @@ export default function CaseStudySpotlight({
               </div>
             </div>
           </div>
-        </Link>
+        </LocalizedLink>
       </div>
     </section>
   );
