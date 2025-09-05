@@ -7,7 +7,7 @@ const ALL_VIDEO_SOURCES = [
   "/videos/home/hero.webm",
   "/videos/home/case-study.webm",
   "/videos/home/Solutions - Injection Molding.webm",
-  "/videos/home/Solutions - Smart Automation & Fixtures.webm",
+  "/videos/home/Solutions - Smart_Automation_Fixtures.webm",
   "/videos/home/Solutions - Tooling.webm"
 ];
 

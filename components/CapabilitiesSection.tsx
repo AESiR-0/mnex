@@ -56,7 +56,7 @@ const getCapabilities = (t: any): Capability[] => [
             t("Solutions.smartAutomationBullet4"),
         ],
         img: "/images/capabilities/automation.jpg",
-        video: "/videos/home/Solutions - Smart Automation & Fixtures.webm",
+        video: "/videos/home/Solutions - Smart_Automation_Fixtures.webm",
     },
     {
         id: "integrated-product-development",

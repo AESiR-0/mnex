@@ -23,7 +23,7 @@ const getTabData = (t: any) => [
   },
   {
     title: "Solutions.smartAutomation",
-    video: "/videos/home/Solutions - Smart Automation & Fixtures.webm",
+    video: "/videos/home/Solutions - Smart_Automation_Fixtures.webm",
     desc: "Solutions.smartAutomationDesc",
     link: "/solutions#smart-automation-assembly",
   },
