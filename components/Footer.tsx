@@ -3,6 +3,7 @@ import { useContactSlider } from "@/lib/useContactSlider";
 import Image from "next/image";
 import LocalizedLink from "./LocalizedLink";
 import { useTranslations, useLocale } from 'next-intl';
+import Link from "next/link";
 
 export default function SiteFooter() {
   const { open } = useContactSlider();
@@ -133,12 +134,12 @@ export default function SiteFooter() {
               <p className="uppercase font-bold text-xs tracking-wider pb-1 max-md:pb-3  text-[#7A7A7A]">
                 {t("Navigation.contact")}
               </p>
-              <a
+              <Link
                 href="mailto:connect@mnexprecision.com"
                 className="text-sm lg:text-base xl:text-lg text-[#595959] hover:text-[#1789FF] transition"
               >
                 connect@mnexprecision.com
-              </a>
+              </Link>
             </div>
 
             {/* Legal Section */}

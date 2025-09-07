@@ -15,7 +15,7 @@ export default function SolutionsSection({ tabs }: { tabs: Tab[] }) {
   useDownOnlyObserver(ids, onActive, paneRef.current ?? undefined);
 
   return (
-    <section className="w-full h-[100vh]">
+    <section className="w-full h-screen">
       <div className="h-full grid grid-rows-[auto_1fr]">
         {/* Header + Tabs */}
         <div className="max-w-7xl mx-auto px-4 pt-10">

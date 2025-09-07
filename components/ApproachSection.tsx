@@ -7,37 +7,37 @@ import { useTranslations } from 'next-intl';
 
 export type ApproachItem = { title: string; desc: string };
 
-// Hook to detect mobile devices
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
+// Hook to detect phone devices only (not tablets)
+const useIsPhone = () => {
+  const [isPhone, setIsPhone] = useState(false);
 
   useEffect(() => {
-    const checkIsMobile = () => {
-      // Check screen width
-      const isSmallScreen = window.innerWidth < 768;
+    const checkIsPhone = () => {
+      // Check screen width - phones are typically smaller than tablets
+      const isSmallScreen = window.innerWidth < 640; // More restrictive than 768
 
-      // Check if device has touch capability
-      const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-      // Check user agent for mobile devices
+      // Check user agent for phone devices specifically (excluding tablets)
       const userAgent = navigator.userAgent.toLowerCase();
-      const isMobileUserAgent = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+      const isPhoneUserAgent = /android.*mobile|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+      
+      // Exclude tablets explicitly
+      const isTablet = /ipad|android(?!.*mobile)/i.test(userAgent);
 
-      const isMobileDevice = isSmallScreen || hasTouch || isMobileUserAgent;
+      const isPhoneDevice = (isSmallScreen || isPhoneUserAgent) && !isTablet;
 
-      setIsMobile(isMobileDevice);
+      setIsPhone(isPhoneDevice);
     };
 
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    window.addEventListener('orientationchange', checkIsMobile);
+    checkIsPhone();
+    window.addEventListener('resize', checkIsPhone);
+    window.addEventListener('orientationchange', checkIsPhone);
     return () => {
-      window.removeEventListener('resize', checkIsMobile);
-      window.removeEventListener('orientationchange', checkIsMobile);
+      window.removeEventListener('resize', checkIsPhone);
+      window.removeEventListener('orientationchange', checkIsPhone);
     };
   }, []);
 
-  return isMobile;
+  return isPhone;
 };
 
 export default function ApproachSection({
@@ -52,7 +52,7 @@ export default function ApproachSection({
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const lastScrollY = useRef(0);
   const t = useTranslations();
-  const isMobile = useIsMobile();
+  const isPhone = useIsPhone();
 
   // viewport height (handles mobile address bar)
   useEffect(() => {
@@ -62,37 +62,25 @@ export default function ApproachSection({
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  // Handle click outside of headings and p tags to deactivate tabs (mobile only)
-  useEffect(() => {
-    if (!isMobile || !sectionRef.current) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      
-      // Check if the click is within the section
-      if (!sectionRef.current?.contains(target)) {
-        return;
-      }
-      
-      // Check if the click is on a heading (h1, h2, h3, h4, h5, h6) or p tag
-      const isHeadingOrParagraph = target.tagName.match(/^H[1-6]$/i) || target.tagName === 'P';
-      
-      // If click is not on heading or paragraph, deactivate all tabs (set to 0)
-      if (!isHeadingOrParagraph) {
-        setActiveApproach(0);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [isMobile]);
+  // Handle click outside of headings and p tags to deactivate tabs (phone only)
+  const handleSectionClick = (e: React.MouseEvent) => {
+    if (!isPhone) return;
+    
+    const target = e.target as HTMLElement;
+    
+    // Check if the click is on a heading (h1, h2, h3, h4, h5, h6) or p tag
+    const isHeadingOrParagraph = target.tagName.match(/^H[1-6]$/i) || target.tagName === 'P';
+    
+    // If click is not on heading or paragraph, deactivate all tabs (set to 0)
+    if (!isHeadingOrParagraph) {
+      setActiveApproach(0);
+    }
+  };
 
   // scroll logic: pin + advance on down only (exactly like ManufacturingCapabilities)
-  // Only enable on desktop
+  // Only enable on desktop (not phones)
   useEffect(() => {
-    if (!sectionRef.current || vh === 0 || items.length === 0 || isMobile) return;
+    if (!sectionRef.current || vh === 0 || items.length === 0 || isPhone) return;
 
     const root = sectionRef.current;
     const rootTop = () => root.getBoundingClientRect().top + window.scrollY;
@@ -110,11 +98,13 @@ export default function ApproachSection({
         clearTimeout(scrollTimeout);
       }
 
-      // where we are inside the pinned region
-      const offset = Math.max(0, Math.min(y - topPx, items.length * 700 + 410));
+      // where we are inside the pinned region (using vh-based calculations)
+      const frameHeight = vh * 0.7; // 70vh per frame
+      const totalHeight = items.length * frameHeight + vh * 0.5; // 50vh extra
+      const offset = Math.max(0, Math.min(y - topPx, totalHeight));
 
       // which "frame" we are in (0..items.length-1)
-      const idx = Math.min(items.length - 1, Math.floor(offset / 700));
+      const idx = Math.min(items.length - 1, Math.floor(offset / frameHeight));
 
       // Debounce the state change to prevent flashing
       scrollTimeout = setTimeout(() => {
@@ -140,7 +130,7 @@ export default function ApproachSection({
         clearTimeout(scrollTimeout);
       }
     };
-  }, [vh, items.length, activeApproach, isMobile]);
+  }, [vh, items.length, activeApproach, isPhone]);
 
 
 
@@ -154,19 +144,30 @@ export default function ApproachSection({
   const panelId = `${sectionId}-panel`;
   const activeTabId = active >= 0 ? `${sectionId}-tab-${active}` : undefined;
 
-  // The container height is N * 700px + 200px (extra to release pin) - only on desktop
-  const containerHeight = isMobile ? 'auto' : items.length * 700 + 500;
+  // The container height is N * 70vh + 50vh (extra to release pin) - only on desktop
+  // Increase height on XL screens
+  const getContainerHeight = () => {
+    if (isPhone) return 'auto';
+    const frameHeight = vh * 0.7; // 70vh per frame
+    const baseHeight = items.length * frameHeight + vh * 0.5; // 50vh extra
+    // Increase height on XL screens (1280px+)
+    if (typeof window !== 'undefined' && window.innerWidth >= 1280) {
+      return baseHeight + vh * 0.3; // Add extra 30vh for XL screens
+    }
+    return baseHeight;
+  };
+  const containerHeight = getContainerHeight();
 
   return (
-    <section className="w-full  bg-[#ececec]">
+    <section className="w-full  bg-[#ececec]" onClick={handleSectionClick}>
       {/* SCROLL CONTAINER (tall) */}
       <div
         ref={sectionRef}
-        style={{ height: isMobile ? 'auto' : (vh ? `${containerHeight}px` : undefined) }}
+        style={{ height: isPhone ? 'auto' : (vh ? `${containerHeight}px` : undefined) }}
         className="relative"
       >
         {/* STICKY LAYER (pinned) - only on desktop */}
-        <div className={isMobile ? "relative" : "sticky top-0"}>
+        <div className={isPhone ? "relative" : "sticky top-0"}>
           {/* Header section */}
           <section className="w-full relative min-h-[20vh] md:min-h-[30vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
             {/* Background Image with reduced opacity */}
@@ -191,7 +192,7 @@ export default function ApproachSection({
           </section>
 
           {/* Approach content */}
-          <div className={`${isMobile ? 'min-h-[50vh]' : 'h-[60vh]'} flex items-start py-6 sm:py-8 md:py-10`}>
+          <div className={`${isPhone ? 'min-h-[50vh]' : 'h-[60vh] xl:h-[70vh]'} flex items-start py-6 sm:py-8 md:py-10`}>
             <div className="max-w-7xl h-full px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 mx-auto w-full">
               <Header className="pb-3 pt-5 sm:pb-4 md:pb-5">{t("Home.approach.title")}</Header>
               <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-0 h-full">
@@ -224,7 +225,7 @@ export default function ApproachSection({
                 </div>
 
                 {/* Right: Buttons */}
-                <div className="flex w-fit lg:w-1/2 h-[78%] lg:h-full flex-col gap-2 sm:gap-3">
+                <div className="flex  max-md:w-fit w-full lg:w-1/2 h-[78%] lg:h-full flex-col gap-2 sm:gap-3">
                   {items.map((it, i) => {
                     const isActive = active === i;
                     const tabId = `${sectionId}-tab-${i}`;
@@ -239,15 +240,19 @@ export default function ApproachSection({
                         role="tab"
                         aria-selected={isActive}
                         aria-controls={panelId}
-                        onClick={() => {
-                          if (isMobile) {
-                            // On mobile, just update the active state without scroll effects
+                        onClick={(e) => {
+                          // Prevent event bubbling to avoid triggering section click handler
+                          e.stopPropagation();
+                          
+                          if (isPhone) {
+                            // On phone, just update the active state without scroll effects
                             setActiveApproach(i);
                             return;
                           }
 
-                          // Calculate the scroll position for this tab (exactly like ManufacturingCapabilities)
-                          const tabScrollPosition = i * 700 + 60;
+                          // Calculate the scroll position for this tab (using vh-based calculations)
+                          const frameHeight = vh * 0.7; // 70vh per frame
+                          const tabScrollPosition = i * frameHeight + vh * 0.1; // 10vh offset
                           const containerTop = sectionRef.current?.getBoundingClientRect().top || 0;
                           const scrollTarget = window.scrollY + containerTop + tabScrollPosition;
 

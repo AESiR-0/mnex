@@ -237,9 +237,9 @@ export default function Navbar() {
                   <AnimatePresence>
                     {link.children && !isAboutSectionActive && openDropdown === link.name && (
                       <motion.div
-                        initial={{ opacity: 1, height: 0, y: -10 }}
+                        initial={{ opacity: 1, height: 0, y: 0 }}
                         animate={{ opacity: 1, height: "auto", y: 0 }}
-                        exit={{ opacity: 1, height: 0, y: -10 }}
+                        exit={{ opacity: 1, height: 0, y: 0 }}
                         transition={{
                           type: "keyframes",
                           duration: 0.2,
@@ -357,14 +357,14 @@ export default function Navbar() {
                   <AnimatePresence>
                     {link.children && !isIndustriesSectionActive && openDropdown === link.name && (
                       <motion.div
-                        initial={{ opacity: 1, height: 0, y: -10 }}
+                        initial={{ opacity: 1, height: 0, y: 0 }}
                         animate={{ opacity: 1, height: "auto", y: 0 }}
                         exit={{ opacity: 1, height: 0, y: 0 }}
                         transition={{
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[55px] w-screen bg-white flex justify-center overflow-hidden"
+                        className="fixed left-0 top-[55px] pb-3 w-screen bg-[#ffffff] flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
@@ -495,9 +495,9 @@ export default function Navbar() {
                   <AnimatePresence>
                     {link.children && shouldShowDropdown(link.href) && openDropdown === link.name && (
                       <motion.div
-                        initial={{ opacity: 1, height: 0, y: -10 }}
+                        initial={{ opacity: 1, height: 0, y: 0 }}
                         animate={{ opacity: 1, height: "auto", y: 0 }}
-                        exit={{ opacity: 1, height: 0, y: -10 }}
+                        exit={{ opacity: 1, height: 0, y: 0 }}
                         transition={{
                           type: "keyframes",
                           duration: 0.2,

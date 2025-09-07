@@ -36,7 +36,7 @@ export default function VerticalContent({
             id={sectionId}
             className="w-full bg-[#ececec] min-h-screen max-md:min-h-[50vh]"
         >
-            <section className="w-full bg-[#f5f5f5] py-10 sm:py-10 md:py-20" >
+            <section className="w-full  py-10 sm:py-10 md:py-20" >
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-semibold text-[#595959] mb-4 sm:mb-6">
                         {t("Industries.proofLives")}
@@ -145,7 +145,7 @@ export default function VerticalContent({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex justify-center  -mt-20 max-md:-mt-28 "
+                            className="flex justify-center left-1/2 -translate-x-1/2 absolute bottom-8 lg:bottom-10 xl:bottom-20 2xl:bottom-8"
                         >
                             <Link href={'https://meibanenergy.com'} target="_blank">
                                 <button className="px-4 sm:px-5 md:px-6 py-2 text-xs font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">

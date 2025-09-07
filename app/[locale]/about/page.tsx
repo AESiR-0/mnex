@@ -5,7 +5,7 @@ import React, { use, useEffect } from "react";
 const Page = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push("/about/approach");
+    router.push("about/approach");
   }, []);
   return <div></div>;
 };

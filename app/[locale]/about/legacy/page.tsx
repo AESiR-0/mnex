@@ -40,7 +40,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="w-full bg-white text-[#595959] py-10 px-6">
+      <section className="w-full bg-white text-[#595959] py-10 xl:py-8 2xl:py-6 px-6">
         <div className="max-w-5xl mx-auto space-y-6 text-base leading-relaxed">
           <p>
             {t("About.legacy.paragraph1")}
