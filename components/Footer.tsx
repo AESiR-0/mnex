@@ -21,11 +21,11 @@ export default function SiteFooter() {
           <div className="flex flex-col w-full md:w-1/2  justify-between gap-6 md:gap-0">
             {/* Logo */}
             <div className="min-h-32 sm:min-h-40 md:min-h-48 w-full">
-              <LocalizedLink href="/" className="block w-20 sm:w-24 lg:w-32">
+              <LocalizedLink href="/" className="block pb-5 w-20 sm:w-24 lg:w-32">
                 <Image
                   src="/static/Logo/Logo_SVG/MNex_v2-11.svg"
                   alt="MNex Logo"
-                  className="h-16 w-32"
+                  className="h-5 w-32"
                   width={160}
                   height={160}
                 />
@@ -36,18 +36,18 @@ export default function SiteFooter() {
                 #44-02, Singapore 038 988
               </p>
               <h5 className="text-sm xl:text-md text-[#1789FF] pb-1 sm:pb-2">
-                Our Facilities
+                {t("Footer.ourFacilities")}
               </h5>
               <p className="text-sm xl:text-md text-[#595959] pb-2 sm:pb-3">
                 Mnex China <br />
-                No. 1 Zhi Hui Road, Banfu Town, Zhongshan <br />
-                Guangdong, China 528 459
+                No. 1 Zhi Hui Road, Banfu Town,<br />
+                Zhongshan, Guangdong, China 528 459
               </p>
               <p className="text-sm xl:text-md text-[#595959] pb-3 sm:pb-5">
                 Mnex Malaysia <br />
                 Unit 2 Jalan Seroja 2
-                Bandar Indahpura, 810 00, <br />
-                Kulai, Johor, Malaysia
+                Bandar Indahpura, <br />
+                810 00, Kulai, Johor, Malaysia
               </p>
             </div>
 
@@ -63,7 +63,7 @@ export default function SiteFooter() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-xs sm:text-sm text-[#595959] hover:text-[#1789FF] transition self-start"
             >
-              {t("Common.back")} to Top <span className="inline-block rotate-45 hover:rotate-0 transition-transform duration-300 align-middle"><svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg></span>
+{t("Footer.backToTop")} <span className="inline-block rotate-45 hover:rotate-0 transition-transform duration-300 align-middle"><svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg></span>
             </button>
           </div>
 
@@ -129,8 +129,8 @@ export default function SiteFooter() {
             </div>
 
             {/* Contact Section */}
-            <div>
-              <p className="uppercase font-bold text-xs tracking-wider pb-3 sm:pb-5 text-[#7A7A7A]">
+            <div className="sm:mt-10">
+              <p className="uppercase font-bold text-xs tracking-wider pb-1 max-md:pb-3  text-[#7A7A7A]">
                 {t("Navigation.contact")}
               </p>
               <a
@@ -144,13 +144,13 @@ export default function SiteFooter() {
             {/* Legal Section */}
             <div className="pt-3 sm:pt-4 lg:pt-6">
               <div className="flex md:items-center gap-5 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-[#595959]">
-                <p>Copyright © {new Date().getFullYear()} Mnex Precision</p>
+                <p>{t("Footer.copyright", { year: new Date().getFullYear() })}</p>
                 <div className="flex gap-3 sm:gap-4 lg:gap-6">
                   <LocalizedLink href="/privacy" className="hover:text-[#1789FF] transition">
-                    Privacy Policy
+                    {t("Common.privacyPolicy")}
                   </LocalizedLink>
                   <LocalizedLink href="/terms" className="hover:text-[#1789FF] transition">
-                    Terms of Use
+                    {t("Common.termsOfUse")}
                   </LocalizedLink>
                 </div>
               </div>

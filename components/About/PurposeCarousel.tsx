@@ -171,7 +171,7 @@ export default function PurposeCarousel({
 
         {/* Dots */}
         {/* Arrow Navigation */}
-        <div className="absolute z-10 max-md:bottom-64 max-md:left-6 bottom-20 left-0 w-full">
+        <div className="absolute z-10 max-md:bottom-40 max-md:left-6 bottom-20 left-0 w-full">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex justify-start gap-5 items-center">
               {/* Left Arrow */}

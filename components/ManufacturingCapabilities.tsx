@@ -53,7 +53,7 @@ export default function CapabilitiesSection({
   const t = useTranslations();
 
   return (
-    <section className="w-full bg-[#ececec]">
+    <section className="w-full h-full bg-[#ececec]">
       {/* Header and Tabs */}
       <div className="bg-[#ececec]">
         <Header className="text-center pt-4 sm:pt-6 pb-4 md:mb-0">{t("Home.capabilities.title")}</Header>
@@ -79,7 +79,7 @@ export default function CapabilitiesSection({
       </div>
 
       {/* Content Area */}
-      <div className="relative w-full h-[50vh] sm:h-[58vh] md:h-[64vh] lg:h-[75vh] xl:h-[85vh] overflow-hidden">
+      <div className="relative w-full h-[60vh] md:h-[64vh] lg:h-[75vh] xl:h-[85vh] overflow-hidden">
         {/* Media */}
         {tab.video ? (
           <video

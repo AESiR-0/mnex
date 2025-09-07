@@ -282,6 +282,11 @@
     "approach": "MNex方法",
     "outcome": "结果"
   },
+  "Footer": {
+    "ourFacilities": "我们的设施",
+    "backToTop": "返回顶部",
+    "copyright": "版权所有 © {year} Mnex Precision"
+  },
   "Common": {
     "language": "语言",
     "english": "English",
@@ -293,6 +298,8 @@
     "previous": "上一步",
     "close": "关闭",
     "menu": "菜单",
-    "sitemap": "网站地图"
+    "sitemap": "网站地图",
+    "privacyPolicy": "隐私政策",
+    "termsOfUse": "使用条款"
   }
 }

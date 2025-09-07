@@ -145,7 +145,7 @@ export default function VerticalContent({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex justify-center -mt-32 "
+                            className="flex justify-center  -mt-20 max-md:-mt-28 "
                         >
                             <Link href={'https://meibanenergy.com'} target="_blank">
                                 <button className="px-4 sm:px-5 md:px-6 py-2 text-xs font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">

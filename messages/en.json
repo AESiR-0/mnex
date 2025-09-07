@@ -107,7 +107,7 @@
     "smartAutomationBullet4": "Proprietary solutions when off-the-shelf isn't enough - improving productivity, safety, and quality",
     "productDevelopment": "Integrated Product Development",
     "productDevelopmentHeadline": "Design thinking,\nmanufacturing reality.",
-    "productDevelopmentDesc": "Design thinking, built for reality.",
+    "productDevelopmentDesc": "Design thinking,\n built for reality.",
     "productDevelopmentBullet1": "Structured product strategy and design-for-manufacturability",
     "productDevelopmentBullet2": "Built-in function, compliance, durability, and aesthetics",
     "productDevelopmentBullet3": "Proven track record: child safety systems, sterilizers, complex sub-assemblies",
@@ -281,6 +281,11 @@
     "approach": "Mnex Approach",
     "outcome": "Outcome"
   },
+  "Footer": {
+    "ourFacilities": "Our Facilities",
+    "backToTop": "Back to Top",
+    "copyright": "Copyright © {year} Mnex Precision"
+  },
   "Common": {
     "language": "Language",
     "english": "English",
@@ -292,6 +297,8 @@
     "previous": "Previous",
     "close": "Close",
     "menu": "Menu",
-    "sitemap": "Sitemap"
+    "sitemap": "Sitemap",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use"
   }
 }

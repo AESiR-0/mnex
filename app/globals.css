@@ -1,16 +1,5 @@
 @import "tailwindcss";
 
-
-@theme inline {
-  --primary-dark: #595959;
-  --primary-blue: #1789FF;
-  --secondary-green: #009B80;
-  --secondary-grey: #D1D1D1;
-  --secondary-red: #FD5A4F;
-  --secondary-light-blue: #A8D3FF;
-  --font-sans: var(--font-instrument-sans);
-}
-
 /* Global scroll behavior - single declaration to prevent conflicts */
 html {
   scroll-behavior: smooth;
@@ -40,14 +29,6 @@ select:focus {
 
 /* Remove Safari link click borders */
 a {
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-}
-
-/* Remove Safari input focus styles */
-input, textarea, select {
-  -webkit-appearance: none;
-  appearance: none;
   -webkit-tap-highlight-color: transparent;
   outline: none;
 }

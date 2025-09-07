@@ -283,7 +283,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               {/* Submit button */}
               <button
                 type="submit"
-                className="w-full bg-[#009B80] rounded-full text-white py-3 px-6  font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#009B80] rounded-full text-white py-3 mb-12 px-6  font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={!formData.consent}
               >
                 Send Message

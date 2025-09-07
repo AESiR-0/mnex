@@ -62,6 +62,29 @@ export default function ApproachSection({
     return () => window.removeEventListener("resize", update);
   }, []);
 
+  // Handle click outside of headings and p tags to deactivate tabs (mobile only)
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+    console.log(target.tagName);
+         
+      // Check if the click is on a heading (h1, h2, h3, h4, h5, h6) or p tag
+      const isHeadingOrParagraph = target.tagName.match(/^H[1-6]$/i) || target.tagName === 'P';
+      
+      // If click is not on heading or paragraph, deactivate all tabs (set to 0)
+      if (!isHeadingOrParagraph) {
+        setActiveApproach(0);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMobile]);
+
   // scroll logic: pin + advance on down only (exactly like ManufacturingCapabilities)
   // Only enable on desktop
   useEffect(() => {

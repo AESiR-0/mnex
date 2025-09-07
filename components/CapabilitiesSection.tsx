@@ -96,10 +96,11 @@ export default function CapabilitiesSection() {
             if (hash) {
                 const tabIndex = getTabIndexFromHash(hash);
                 setActiveTab(tabIndex);
+                // This is external navigation, so we don't set isInternalNavigation
             }
         };
 
-        // Set initial tab from hash if present
+        // Set initial tab from hash if present (external navigation)
         if (window.location.hash) {
             const tabIndex = getTabIndexFromHash(window.location.hash);
             setActiveTab(tabIndex);
@@ -110,11 +111,11 @@ export default function CapabilitiesSection() {
         return () => window.removeEventListener('hashchange', handleHashChange);
     }, []);
 
-    // Update hash when tab changes
+    // Update hash when tab changes (only for external navigation)
     const handleTabChange = (index: number) => {
         setActiveTab(index);
-        const tabId = capabilities[index].id;
-        window.location.hash = tabId;
+        // Don't update hash for internal tab switching
+        // Hash will only be updated when navigating from external pages
     };
 
     // Function to format bullet text with bold parts
@@ -132,7 +133,7 @@ export default function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line bg-[#ececec] flex flex-col">
+        <section className="w-full whitespace-pre-line h-full bg-[#ececec] flex flex-col">
             {/* Header */}
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
@@ -165,7 +166,7 @@ export default function CapabilitiesSection() {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 py-16 relative">
+            <div className="flex-1 py-10 pb-32 h-full  relative">
                 {/* Background Video/Image */}
                 {activeCapability.video ? (
                     <video
