@@ -64,12 +64,16 @@ export default function ApproachSection({
 
   // Handle click outside of headings and p tags to deactivate tabs (mobile only)
   useEffect(() => {
-    if (!isMobile) return;
+    if (!isMobile || !sectionRef.current) return;
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-    console.log(target.tagName);
-         
+      
+      // Check if the click is within the section
+      if (!sectionRef.current?.contains(target)) {
+        return;
+      }
+      
       // Check if the click is on a heading (h1, h2, h3, h4, h5, h6) or p tag
       const isHeadingOrParagraph = target.tagName.match(/^H[1-6]$/i) || target.tagName === 'P';
       
@@ -220,7 +224,7 @@ export default function ApproachSection({
                 </div>
 
                 {/* Right: Buttons */}
-                <div className="flex  w-full lg:w-1/2 h-[78%] lg:h-full flex-col gap-2 sm:gap-3">
+                <div className="flex w-fit lg:w-1/2 h-[78%] lg:h-full flex-col gap-2 sm:gap-3">
                   {items.map((it, i) => {
                     const isActive = active === i;
                     const tabId = `${sectionId}-tab-${i}`;
