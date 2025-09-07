@@ -82,7 +82,7 @@ export default function VerticalContent({
                 )}
 
                 <div className="max-w-4xl h-full px-4 sm:px-6 md:px-8 lg:px-10 space-y-4 sm:space-y-5 mx-auto w-full relative z-10">
-                    <div className="flex flex-col-reverse  h-full justify-center items-center">
+                    <div className="flex flex-col-reverse h-full justify-center items-center gap-4 lg:gap-2 xl:gap-1">
                         {/* Left: Active content - Now horizontal */}
                         <div
                             id={panelId}
@@ -110,7 +110,7 @@ export default function VerticalContent({
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className="flex flex-wrap max-md:flex-nowrap max-md:flex-col max-md:justify-center max-md:gap-4 h-1/2 py-6 sm:py-8 md:py-10 justify-between w-full gap-x-2 sm:gap-x-3"
+                                className="flex flex-wrap max-md:flex-nowrap max-md:flex-col max-md:justify-center max-md:gap-4 xl:gap-6 xl:py-12 h-1/2 py-6 sm:py-8 md:py-10   justify-between w-full gap-x-2 sm:gap-x-3"
                                 role="tablist"
                                 aria-label="Approach options"
                             >

@@ -213,7 +213,7 @@ function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line bg-white h-screen max-md:h-[85vh] flex flex-col">
+        <section className="w-full h-screen whitespace-pre-line bg-white max-md:h-[85vh] flex flex-col">
             {/* Header */}
             <div className="bg-white py-3 sm:py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
