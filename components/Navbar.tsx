@@ -723,13 +723,13 @@ export default function Navbar() {
             })}
             {/* Language Selector (Mobile only) */}
             <li className="px-6 py-4 flex items-center justify-between">
-              <span className="text-[#595959] font-semibold">
+              <span className="text-[#595959] ">
                 {t("Common.language")}
               </span>
               <div className="relative">
                 <button
                   onClick={() => setLangOpen((v) => !v)}
-                  className="h-8 w-8 flex items-center text-xs justify-center bg-[#1789ff] rounded-full border border-[#595959]/40  font-semibold text-white hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
+                  className="h-8 w-8 flex items-center text-xs justify-center bg-[#1789ff] rounded-full border border-[#595959]/40 text-white hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
                   aria-label="Change language"
                 >
                   {getCurrentLanguage()}
@@ -751,7 +751,7 @@ export default function Navbar() {
                               const newLocale = lang === 'EN' ? 'en' : 'zh';
                               handleLanguageChange(newLocale);
                             }}
-                            className="w-full px-3 py-3 text-left text-xs  hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
+                            className="w-full px-3 py-3 text-left text-xs font-thin  hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
                           >
                             {lang}
                           </button>
