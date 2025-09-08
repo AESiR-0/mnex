@@ -46,7 +46,7 @@ export default function VerticalContent({
                     </p>
                 </div>
             </section>
-            <div className="h-[70vh] flex items-center py-6 sm:py-8 md:py-10 relative">
+            <div className="h-[70vh] max-[380px]:h-screen flex items-center py-6 sm:py-8 md:py-10 relative">
                 {/* Background Image */}
                 {backgroundImage && (
                     <div className="absolute inset-0 z-0">
@@ -81,14 +81,14 @@ export default function VerticalContent({
                     </div>
                 )}
 
-                <div className="max-w-4xl h-full px-4 sm:px-6 md:px-8 lg:px-10 space-y-4 sm:space-y-5 mx-auto w-full relative z-10">
+                <div className="max-w-4xl  h-full px-4 sm:px-6 md:px-8 lg:px-10 space-y-4 sm:space-y-5 mx-auto w-full relative z-10">
                     <div className="flex flex-col-reverse h-full justify-center items-center gap-4 lg:gap-2 xl:gap-1">
                         {/* Left: Active content - Now horizontal */}
                         <div
                             id={panelId}
                             role="tabpanel"
                             aria-labelledby={activeTabId}
-                            className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10 h-1/2 text-white"
+                            className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10  h-1/2 text-white"
                         >
                             <motion.div
                                 key={active}

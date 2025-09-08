@@ -76,7 +76,7 @@ export default function PurposeCarousel({
   return (
     <section className="w-full bg-[#ececec] min-h-screen">
       {/* Top copy */}
-      <div className="max-w-7xl px-4 mx-auto   py-10 space-y-4 sm:py-12 text-center">
+      <div className="max-w-7xl px-4 mx-auto max-[380px]:my-4 py-10 space-y-4 sm:py-12 text-center">
         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl md:text-4xl">
           {t('About.purposeCarousel.title')}
         </h2>
@@ -171,7 +171,7 @@ export default function PurposeCarousel({
 
         {/* Dots */}
         {/* Arrow Navigation */}
-        <div className="absolute z-10 max-md:bottom-40 max-md:left-6 md:bottom-20 xl:bottom-28 2xl:bottom-20 md:left-0 w-full">
+        <div className="absolute z-10 max-[390px]:bottom-8 max-[750px]:bottom-40 max-md:left-6 md:bottom-20 xl:bottom-28 2xl:bottom-20 md:left-0 w-full">
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex justify-start gap-5 items-center">
               {/* Left Arrow */}

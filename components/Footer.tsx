@@ -32,7 +32,7 @@ export default function SiteFooter() {
                 />
               </LocalizedLink>
               <p className="text-sm xl:text-md text-[#595959] pb-2 sm:pb-3">
-                Mnex Singapore <br />
+             <b>   Mnex Singapore </b> <br />
                 8 Temasek Blvd, Suntec Tower 3 <br />
                 #44-02, Singapore 038 988
               </p>
@@ -40,12 +40,12 @@ export default function SiteFooter() {
                 {t("Footer.ourFacilities")}
               </h5>
               <p className="text-sm xl:text-md text-[#595959] pb-2 sm:pb-3">
-                Mnex China <br />
+                <b>Mnex China </b> <br />
                 No. 1 Zhi Hui Road, Banfu Town,<br />
                 Zhongshan, Guangdong, China 528 459
               </p>
               <p className="text-sm xl:text-md text-[#595959] pb-3 sm:pb-5">
-                Mnex Malaysia <br />
+                <b>Mnex Malaysia </b> <br />
                 Unit 2 Jalan Seroja 2
                 Bandar Indahpura, <br />
                 810 00, Kulai, Johor, Malaysia

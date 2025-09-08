@@ -127,7 +127,7 @@ export default function CapabilitiesSection({
                       {t("Common.learnMore")}
                     </LocalizedLink>
                     {/* Badges */}
-                    <div className="flex  flex-wrap text-left justify-start max-w-2xl gap-2 sm:gap-3 md:gap-4 mt-44 sm:mt-24 md:mt-24">
+                    <div className="flex  flex-wrap text-left justify-start max-w-2xl gap-2 sm:gap-3 xl:mt-32 lg:mt-24 md:gap-4 mt-44 sm:mt-24 md:mt-10 max-[380px]:mt-20">
                       <Image src="/static/badges/Thermoplastics unit.svg" alt="capabilities" width={400} height={400} className="object-contain w-56 sm:w-80 md:w-96 lg:w-[400px]" />
 
                       {/* {<div className="bg-transparent border border-white py-3 rounded-lg">

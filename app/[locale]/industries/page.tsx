@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
 
 export default function IndustriesPage() {
-  redirect('/industries/cei');
+  redirect('industries/cei');
 }
