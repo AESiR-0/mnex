@@ -138,10 +138,10 @@ export default function PurposeCarousel({
 
         {/* Overlay content */}
         <div className="absolute -top-20  inset-0 z-10 flex items-start pt-[10rem]">
-          <div className="pr-28  pl-10 sm:px-6 lg:px-12  max-w-7xl w-full mx-auto">
-            <div className="max-w-3xl  max-md:max-w-xl text-white">
+          <div className="pr-28 max-[400px]:pr-20  pl-10 sm:px-6 lg:px-12  max-w-7xl w-full mx-auto">
+            <div className="max-w-3xl  max-md:max-w-xl  text-white">
               {slide.step && (
-                <div className="text-3xl font-semibold mb-20 opacity-90">
+                <div className="text-3xl font-semibold mb-20 max-[400px]:mb-12 opacity-90">
                   {slide.step}
                 </div>
               )}
