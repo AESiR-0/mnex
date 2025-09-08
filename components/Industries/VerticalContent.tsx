@@ -46,7 +46,7 @@ export default function VerticalContent({
                     </p>
                 </div>
             </section>
-            <div className="h-[70vh] max-[380px]:h-screen flex items-center py-6 sm:py-8 md:py-10 relative">
+            <div className="h-[70vh] max-[400px]:h-screen flex items-center py-6 sm:py-8 md:py-10 relative">
                 {/* Background Image */}
                 {backgroundImage && (
                     <div className="absolute inset-0 z-0">
