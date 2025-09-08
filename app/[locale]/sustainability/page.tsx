@@ -96,7 +96,7 @@ export default function Sustainability() {
         </div>
       </section>
       {/* Solar Energy Data Section */}
-      <section className="w-full bg-[#ebebeb] py-10 sm:py-12 md:py-16">
+      <section className="w-full bg-[#eaeaea] py-10 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Header className="text-center text-xs sm:text-sm font-medium text-[#009b80] uppercase tracking-[0.15em] mb-0 pb-12 sm:pb-16 md:pb-20">
             MNEX SOLAR ENERGY DATA
@@ -209,9 +209,9 @@ function CapabilitiesSection() {
   };
 
   return (
-    <section className="w-full h-screen  max-[400px]:h-[120vh] whitespace-pre-line bg-white  flex flex-col">
+    <section className="w-full h-screen  max-[400px]:h-[120vh] whitespace-pre-line bg-[#eaeaea]  flex flex-col">
       {/* Header */}
-      <div className="bg-white py-3 sm:py-4 flex-shrink-0">
+      <div className="bg-[#ffff] py-3 sm:py-4 flex-shrink-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Navigation Tabs */}
           <div className="flex max-md:flex-wrap max-md:justify-center max-md:gap-y-2 justify-between gap-4 sm:gap-6 md:gap-20">
