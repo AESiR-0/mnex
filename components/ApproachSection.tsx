@@ -194,7 +194,7 @@ export default function ApproachSection({
           {/* Approach content */}
           <div className={`${isPhone ? 'min-h-[50vh]' : 'h-[60vh] xl:h-[70vh]'} flex items-start py-6 sm:py-8 md:py-10`}>
             <div className="max-w-7xl h-full px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 mx-auto w-full">
-              <Header className="pb-3 pt-5 sm:pb-4 md:pb-5">{t("Home.approach.title")}</Header>
+              <Header className="pb-3 pt-5 max-md:w-fit  sm:pb-4 md:pb-5">{t("Home.approach.title")}</Header>
               <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-0 h-full">
                 {/* Left: Active content */}
                 <div
@@ -212,11 +212,11 @@ export default function ApproachSection({
                       transition={{ duration: 0, ease: "easeOut" }}
                       className="contents"
                     >
-                      <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl pb-2 font-semibold ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
+                      <h3 className={`text-xl  max-md:w-fit sm:text-2xl md:text-3xl lg:text-4xl pb-2 font-semibold ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
                         }`}>
                         {items[active]?.title || 'No title'}
                       </h3>
-                      <p className={`text-lg sm:text-xl md:text-2xl leading-tight ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
+                      <p className={`text-lg sm:text-xl  max-md:w-[23rem] md:text-2xl leading-tight ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
                         }`}>
                         {items[active]?.desc || 'No description'}
                       </p>
@@ -267,7 +267,7 @@ export default function ApproachSection({
                             behavior: 'smooth'
                           });
                         }}
-                        className={`text-left px-0 pb-2 sm:pb-2.5 md:pb-3 text-lg sm:text-xl md:text-2xl lg:text-3xl font-regular transition-all duration-300 ease-out
+                        className={`text-left  px-0 pb-2 sm:pb-2.5 md:pb-3 text-lg sm:text-xl md:text-2xl lg:text-3xl font-regular transition-all duration-300 ease-out
                             ${isActive
                             ? "text-[#009B80]"
                             : "text-[#969696] hover:text-[#009B80]"
