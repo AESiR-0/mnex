@@ -133,7 +133,7 @@ export default function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line h-screen bg-[#ececec] flex flex-col">
+        <section className="w-full whitespace-pre-line max-md:h-fit  h-screen bg-[#ececec] flex flex-col">
             {/* Header */}
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
@@ -166,7 +166,7 @@ export default function CapabilitiesSection() {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 py-10 pb-32 h-full  relative">
+            <div className="flex-1 py-10 pb-32  h-full  relative">
                 {/* Background Video/Image */}
                 {activeCapability.video ? (
                     <video
