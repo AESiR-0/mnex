@@ -601,9 +601,9 @@ export default function Navbar() {
         {menuOpen && (
           <motion.ul
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
+            animate={{ height: "auto", opacity: 1, y:-2 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.15, ease: "easeInOut" }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
             className="md:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
           >
             {navLocalizedLinks.map((link) => {
@@ -625,12 +625,116 @@ export default function Navbar() {
                 );
               }
 
+              // Special handling for About and Industries in mobile - show dropdown instead of direct navigation
+              if (link.name === "Navigation.about" || link.name === "Navigation.industries") {
+                const isSectionActive = link.name === "Navigation.about" ? isAboutActive() : isIndustriesActive();
+                return (
+                  <li key={link.name} className="">
+                    <div className="flex items-center  px-6 py-4">
+                      <button
+                        onClick={() =>
+                          setMobileDropdown(
+                            mobileDropdown === link.name ? null : link.name
+                          )
+                        }
+                        className={`text-left w-[90%] ${isSectionActive ? "text-[#1789FF]" : "text-[#595959]"}`}
+                        aria-label={`Toggle ${t(link.name)} submenu`}
+                      >
+                        {t(link.name)}
+                      </button>
+                      {link.children && (
+                        <button
+                          onClick={() =>
+                            setMobileDropdown(
+                              mobileDropdown === link.name ? null : link.name
+                            )
+                          }
+                          aria-label={`Toggle ${t(link.name)} submenu`}
+                          className="ml-2 flex items-center justify-center w-4 h-4"
+                        >
+                          <motion.span
+                            initial={false}
+                            animate={{
+                              rotate: mobileDropdown === link.name ? 180 : 0,
+                            }}
+                            transition={{
+                              duration: 0.15,
+                              ease: "easeInOut"
+                            }}
+                            className="flex items-center justify-center w-4 h-4"
+                          >
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <motion.rect
+                                x="3"
+                                y="7.25"
+                                width="10"
+                                height="1.5"
+                                rx="0.75"
+                                fill="#1789FF"
+                              />
+                              <motion.rect
+                                x="7.25"
+                                y="3"
+                                width="1.5"
+                                height="10"
+                                rx="0.75"
+                                fill="#1789FF"
+                                animate={{
+                                  scaleY: mobileDropdown === link.name ? 0 : 1,
+                                }}
+                                transition={{
+                                  duration: 0.2,
+                                  ease: "easeInOut"
+                                }}
+                              />
+                            </svg>
+                          </motion.span>
+                        </button>
+                      )}
+                    </div>
+                    {/* Mobile Dropdown */}
+                    <AnimatePresence>
+                      {link.children && mobileDropdown === link.name && (
+                        <motion.ul
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{
+                            duration: 0.15,
+                            ease: "easeInOut"
+                          }}
+                          className="flex flex-col bg-white  ml-6"
+                        >
+                          {link.children.map((sublink) => (
+                            <li key={sublink.name}>
+                              <LocalizedLink
+                                href={sublink.href}
+                                className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10"
+                                onClick={() => setMenuOpen(false)}
+                              >
+                                {t(sublink.name)}
+                              </LocalizedLink>
+                            </li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                );
+              }
+
               return (
-                <li key={link.name} className="border-b border-[#595959]/5">
+                <li key={link.name} className="">
                   <div className="flex items-center justify-between px-6 py-4">
                     <LocalizedLink
                       href={link.href}
-                      className={` ${isLocalizedLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
+                      className={`w-full ${isLocalizedLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
                       onClick={() => setMenuOpen(false)}
                     >
                       {t(link.name)}
@@ -643,7 +747,7 @@ export default function Navbar() {
                           )
                         }
                         aria-label={`Toggle ${t(link.name)} submenu`}
-                        className="ml-2 flex items-center justify-center w-4 h-4"
+                        className="ml-2  flex items-center justify-center w-4 h-4"
                       >
                         <motion.span
                           initial={false}

@@ -9,6 +9,7 @@ import ContactSliderProvider from "@/components/ContactSliderProvider";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -18,6 +19,16 @@ const instrumentSans = Instrument_Sans({
 });
 
 const locales = ['en', 'zh'];
+
+export const metadata: Metadata = {
+  title: 'MNex - Industrial Solutions',
+  description: 'MNex provides innovative industrial solutions and services',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
+};
 
 export default async function LocaleLayout({
   children,
