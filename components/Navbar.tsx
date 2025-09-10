@@ -609,14 +609,14 @@ export default function Navbar() {
             {navLocalizedLinks.map((link) => {
               if (link.name === "Navigation.contact") {
                 return (
-                  <li key={link.name} className="border-b border-[#595959]/5">
+                  <li key={link.name} className="border-b uppercase border-[#595959]/5">
                     <div className="flex items-center justify-between px-6 py-4">
                       <button
                         onClick={() => {
                           openContactSlider();
                           setMenuOpen(false);
                         }}
-                        className="text-[#595959] hover:text-[#1789FF] transition-colors"
+                        className="text-[#595959] uppercase hover:text-[#1789FF] transition-colors"
                       >
                         {t(link.name)}
                       </button>
@@ -637,7 +637,7 @@ export default function Navbar() {
                             mobileDropdown === link.name ? null : link.name
                           )
                         }
-                        className={`text-left w-[90%] ${isSectionActive ? "text-[#1789FF]" : "text-[#595959]"}`}
+                        className={`text-left w-[90%] uppercase ${isSectionActive ? "text-[#1789FF]" : "text-[#595959]"}`}
                         aria-label={`Toggle ${t(link.name)} submenu`}
                       >
                         {t(link.name)}
