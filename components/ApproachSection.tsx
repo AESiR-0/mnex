@@ -168,28 +168,7 @@ export default function ApproachSection({
       >
         {/* STICKY LAYER (pinned) - only on desktop */}
         <div className={isPhone ? "relative" : "sticky top-0"}>
-          {/* Header section */}
-          <section className="w-full relative min-h-[20vh] md:min-h-[30vh] flex items-center justify-start bg-[#ffffff] overflow-hidden">
-            {/* Background Image with reduced opacity */}
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/static/home/second_section.webp"
-                alt="Background"
-                fill
-                className="object-cover opacity-25 max-md:opacity-40"
-                priority
-              />
-            </div>
 
-            {/* Content overlay */}
-            <div className="relative z-10 mx-auto max-w-7xl   w-full flex items-center justify-start ">
-              <h1 className="text-[1.7rem] whitespace-pre-line sm:text-2xl px-4 lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold text-[#1789FF] leading-tight">
-                {t("Home.hero.line1")}
-                <br />
-                {t("Home.hero.line2")}
-              </h1>
-            </div>
-          </section>
 
           {/* Approach content */}
           <div className={`${isPhone ? 'min-h-[50vh]' : 'h-[60vh] xl:h-[70vh]'} flex items-start py-6 sm:py-8 md:py-10`}>

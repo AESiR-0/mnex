@@ -146,7 +146,8 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto h-[calc(100vh-120px)]">
+            <div className="flex flex-col h-[calc(100vh-120px)]">
+              <form id="contact-form" onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1">
               {/* Name fields */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -280,15 +281,20 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 </label>
               </div>
 
-              {/* Submit button */}
-              <button
-                type="submit"
-                className="w-full bg-[#009B80] rounded-full text-white py-3 mb-12 px-6  font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={!formData.consent}
-              >
-                Send Message
-              </button>
-            </form>
+              </form>
+              
+              {/* Submit button - Fixed at bottom */}
+              <div className="p-6 pt-0 border-t border-gray-100 bg-white">
+                <button
+                  type="submit"
+                  form="contact-form"
+                  className="w-full bg-[#009B80] rounded-full text-white py-3 px-6 font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={!formData.consent}
+                >
+                  Send Message
+                </button>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       )}

@@ -29,7 +29,7 @@ const getNavLocalizedLinks = () => [
     ],
   },
   { name: "Navigation.sustainability", href: "/sustainability" },
-  // { name: "Culture", href: "/culture" },
+  { name: "Navigation.culture", href: "/culture" },
   { name: "Navigation.contact", href: "/contact" },
 ];
 

@@ -63,7 +63,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeApproach, setActiveApproach] = useState(0);
   const t = useTranslations();
-  
+
   const tabData = getTabData(t);
   const approachContent = getApproachContent(t);
 
@@ -89,7 +89,7 @@ export default function Home() {
           muted
           className="object-cover w-full h-full md:hidden"
         />
-        
+
         {/* Desktop Video */}
         <video
           src="/videos/home/hero.webm"
@@ -99,6 +99,15 @@ export default function Home() {
           muted
           className="object-cover w-full h-full hidden md:block"
         />
+        <div className="absolute inset-0 z-10 flex items-center justify-center tracking-wide">
+          <div className="mx-auto max-w-7xl w-full px-4">
+            <h1 className="text-4xl max-md:text-[28px] whitespace-pre-line font-semibold text-white text-center leading-tight">
+              {t("Home.hero.line1")}
+              <br />
+              {t("Home.hero.line2")}
+            </h1>
+          </div>
+        </div>
       </section>
 
       {/* 2. Content Container */}

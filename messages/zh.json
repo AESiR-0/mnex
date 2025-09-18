@@ -14,7 +14,8 @@
       "cei": "消费与工业",
       "regulated": "受监管行业",
       "oilAndGas": "石油与天然气"
-    }
+    },
+    "culture": "文化"
   },
   "Home": {
     "title": "制造卓越",
@@ -176,7 +177,6 @@
   },
   "About": {
     "title": "关于MNex",
-
     "purposeCarousel": {
       "title": "有目的的工程。\n精确交付。",
       "paragraph1": "我们从您的业务现实开始——您的产量、成本目标和路线图。",
