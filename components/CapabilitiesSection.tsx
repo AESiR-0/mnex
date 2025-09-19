@@ -133,7 +133,7 @@ export default function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line max-md:h-fit  h-screen bg-[#ececec] flex flex-col">
+        <section className="w-full whitespace-pre-line max-lg:h-fit max-lg:py-0 max-lg:max-h-fit min-h-screen h-screen bg-[#ececec] flex flex-col">
             {/* Header */}
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
@@ -142,7 +142,7 @@ export default function CapabilitiesSection() {
                     </Header>
 
                     {/* Navigation Tabs */}
-                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-20">
+                    <div className="flex flex-wrap justify-center gap-x-3 sm:gap-x-4 md:gap-x-6 lg:gap-20">
                         {capabilities.map((capability, index) => {
                             return (
                                 <button
@@ -166,7 +166,7 @@ export default function CapabilitiesSection() {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 py-10 pb-32  h-full  relative">
+            <div className="flex-1 py-10 pb-32  max-lg:py-0 max-lg:pb-0   h-full  relative">
                 {/* Background Video/Image */}
                 {activeCapability.video ? (
                     <video

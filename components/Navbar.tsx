@@ -153,7 +153,7 @@ export default function Navbar() {
         </LocalizedLink>
 
         {/* Desktop Nav */}
-        <ul className="hidden transition-all  tracking-[0.05em] text-sm md:flex gap-8 items-center">
+        <ul className="hidden transition-all  tracking-[0.05em] text-sm lg:flex gap-8 items-center">
           {navLocalizedLinks.map((link) => {
             if (link.name == "Navigation.contact") {
               return (
@@ -587,7 +587,7 @@ export default function Navbar() {
 
         {/* Hamburger */}
         <button
-          className="md:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
+          className="lg:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -614,7 +614,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1, y:-2 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="md:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
+            className="lg:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
           >
             {navLocalizedLinks.map((link) => {
               if (link.name === "Navigation.contact") {

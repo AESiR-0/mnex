@@ -8,36 +8,40 @@ import { useTranslations } from 'next-intl';
 export type ApproachItem = { title: string; desc: string };
 
 // Hook to detect phone devices only (not tablets)
-const useIsPhone = () => {
-  const [isPhone, setIsPhone] = useState(false);
+const useIsPhoneOrTablet = () => {
+  const [isPhoneOrTablet, setIsPhoneOrTablet] = useState(false);
 
   useEffect(() => {
-    const checkIsPhone = () => {
-      // Check screen width - phones are typically smaller than tablets
-      const isSmallScreen = window.innerWidth < 640; // More restrictive than 768
+    const checkIsPhoneOrTablet = () => {
+      // Phone: width < 640, Tablet: width < 1024 (typical breakpoints)
+      const isSmallScreen = window.innerWidth < 640;
+      const isTabletScreen = window.innerWidth >= 640 && window.innerWidth < 1024;
 
-      // Check user agent for phone devices specifically (excluding tablets)
+      // User agent checks
       const userAgent = navigator.userAgent.toLowerCase();
       const isPhoneUserAgent = /android.*mobile|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-      
-      // Exclude tablets explicitly
-      const isTablet = /ipad|android(?!.*mobile)/i.test(userAgent);
+      const isTabletUserAgent = /ipad|tablet|android(?!.*mobile)/i.test(userAgent);
 
-      const isPhoneDevice = (isSmallScreen || isPhoneUserAgent) && !isTablet;
+      // If it's a phone or a tablet, return true
+      const isPhoneOrTabletDevice =
+        isPhoneUserAgent ||
+        isTabletUserAgent ||
+        isSmallScreen ||
+        isTabletScreen;
 
-      setIsPhone(isPhoneDevice);
+      setIsPhoneOrTablet(isPhoneOrTabletDevice);
     };
 
-    checkIsPhone();
-    window.addEventListener('resize', checkIsPhone);
-    window.addEventListener('orientationchange', checkIsPhone);
+    checkIsPhoneOrTablet();
+    window.addEventListener('resize', checkIsPhoneOrTablet);
+    window.addEventListener('orientationchange', checkIsPhoneOrTablet);
     return () => {
-      window.removeEventListener('resize', checkIsPhone);
-      window.removeEventListener('orientationchange', checkIsPhone);
+      window.removeEventListener('resize', checkIsPhoneOrTablet);
+      window.removeEventListener('orientationchange', checkIsPhoneOrTablet);
     };
   }, []);
 
-  return isPhone;
+  return isPhoneOrTablet;
 };
 
 export default function ApproachSection({
@@ -52,7 +56,7 @@ export default function ApproachSection({
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const lastScrollY = useRef(0);
   const t = useTranslations();
-  const isPhone = useIsPhone();
+  const isPhoneOrTablet = useIsPhoneOrTablet();
 
   // viewport height (handles mobile address bar)
   useEffect(() => {
@@ -64,7 +68,7 @@ export default function ApproachSection({
 
   // Handle click outside of headings and p tags to deactivate tabs (phone only)
   const handleSectionClick = (e: React.MouseEvent) => {
-    if (!isPhone) return;
+    if (!isPhoneOrTablet) return;
     
     const target = e.target as HTMLElement;
     
@@ -80,7 +84,7 @@ export default function ApproachSection({
   // scroll logic: pin + advance on down only (exactly like ManufacturingCapabilities)
   // Only enable on desktop (not phones)
   useEffect(() => {
-    if (!sectionRef.current || vh === 0 || items.length === 0 || isPhone) return;
+    if (!sectionRef.current || vh === 0 || items.length === 0 || isPhoneOrTablet) return;
 
     const root = sectionRef.current;
     const rootTop = () => root.getBoundingClientRect().top + window.scrollY;
@@ -130,7 +134,7 @@ export default function ApproachSection({
         clearTimeout(scrollTimeout);
       }
     };
-  }, [vh, items.length, activeApproach, isPhone]);
+  }, [vh, items.length, activeApproach, isPhoneOrTablet]);
 
 
 
@@ -147,7 +151,7 @@ export default function ApproachSection({
   // The container height is N * 70vh + 50vh (extra to release pin) - only on desktop
   // Increase height on XL screens
   const getContainerHeight = () => {
-    if (isPhone) return 'auto';
+    if (isPhoneOrTablet) return 'auto';
     const frameHeight = vh * 0.7; // 70vh per frame
     const baseHeight = items.length * frameHeight + vh * 0.5; // 50vh extra
     // Increase height on XL screens (1280px+)
@@ -163,15 +167,15 @@ export default function ApproachSection({
       {/* SCROLL CONTAINER (tall) */}
       <div
         ref={sectionRef}
-        style={{ height: isPhone ? 'auto' : (vh ? `${containerHeight}px` : undefined) }}
+        style={{ height: isPhoneOrTablet ? 'auto' : (vh ? `${containerHeight}px` : undefined) }}
         className="relative"
       >
         {/* STICKY LAYER (pinned) - only on desktop */}
-        <div className={isPhone ? "relative" : "sticky top-0"}>
+        <div className={isPhoneOrTablet ? "relative" : "sticky top-0"}>
 
 
           {/* Approach content */}
-          <div className={`${isPhone ? 'min-h-[50vh]' : 'h-[60vh] xl:h-[70vh]'} flex items-start py-6 sm:py-8 md:py-10`}>
+          <div className={`${isPhoneOrTablet   ? 'min-h-[50vh]' : 'h-[60vh] xl:h-[70vh]'} flex items-start py-6 sm:py-8 md:py-10`}>
             <div className="max-w-7xl h-full px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 mx-auto w-full">
               <Header className="pb-3 pt-5 max-md:w-fit  sm:pb-4 md:pb-5">{t("Home.approach.title")}</Header>
               <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-0 h-full">
@@ -223,7 +227,7 @@ export default function ApproachSection({
                           // Prevent event bubbling to avoid triggering section click handler
                           e.stopPropagation();
                           
-                          if (isPhone) {
+                          if (isPhoneOrTablet) {
                             // On phone, just update the active state without scroll effects
                             setActiveApproach(i);
                             return;

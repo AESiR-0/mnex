@@ -59,7 +59,7 @@ export default function CapabilitiesSection({
         <Header className="text-center pt-4 sm:pt-6 pb-4 md:mb-0">{t("Home.capabilities.title")}</Header>
         <div className="pb-3 flex justify-center z-10">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between max-md:justify-center max-md:gap-y-0 max-md:flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-20 overflow-x-auto no-scrollbar">
+            <div className="flex justify-between max-lg:justify-center max-lg:gap-y-0 max-lg:flex-wrap gap-x-3 sm:gap-x-4 md:gap-x-6 lg:gap-20 overflow-x-auto no-scrollbar">
               {tabs.map((tab, idx) => (
                 <button
                   key={`${tab.title}-${idx}`}
