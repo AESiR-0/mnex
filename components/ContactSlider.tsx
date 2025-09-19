@@ -47,15 +47,9 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
 
   // Close on outside click
   const handleBackdropClick = (e: React.MouseEvent) => {
-    // Close if clicking on the backdrop (not on the slider content)
     if (e.target === e.currentTarget) {
       onClose();
     }
-  };
-
-  const handleSliderClick = (e: React.MouseEvent) => {
-    // Prevent clicks inside the slider from closing it
-    e.stopPropagation();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -70,9 +64,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
     console.log("Form submitted:", formData);
-    // You can add your form submission logic here
   };
 
   const regions = [
@@ -102,7 +94,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-[99999] flex items-center justify-end"
         >
-          {/* Blurred background overlay */}
+          {/* Background overlay */}
           <motion.div
             initial={{ backdropFilter: "blur(0px)" }}
             animate={{ backdropFilter: "blur(8px)" }}
@@ -112,7 +104,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
             onClick={handleBackdropClick}
           />
 
-          {/* Contact form slider */}
+          {/* Contact form container */}
           <motion.div
             ref={sliderRef}
             initial={{ x: "100%" }}
@@ -124,13 +116,13 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               stiffness: 200,
               duration: 0.5
             }}
-            className="relative px-5 w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden max-md:w-full max-md:h-screen max-md:max-w-none max-md:px-0 max-md:flex max-md:flex-col"
+            className="relative w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden md:px-5 flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 py-5 border-b border-gray-100 max-md:px-4">
+            <div className="flex items-center justify-between p-6 py-5 border-b border-gray-100">
               <div>
-                <Header className="text-sm pb-5 font-medium  mb-1">
+                <Header className="text-sm pb-5 font-medium mb-1">
                   GENERAL INQUIRY
                 </Header>
                 <h2 className="text-2xl font-bold text-[#1789FF]">
@@ -145,9 +137,15 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               </button>
             </div>
 
-            {/* Form */}
-            <div className="flex flex-col h-[calc(100vh-120px)] max-md:h-screen max-md:flex-col">
-              <form id="contact-form" onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1 max-md:px-4 max-md:pb-24">
+            {/* Form Container */}
+            <div className="flex-1 overflow-y-auto">
+              {/* Form */}
+              <form 
+                id="contact-form" 
+                onSubmit={handleSubmit} 
+                className="p-6 space-y-6"
+              >
+                {/* Name fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#595959] mb-2">
@@ -179,7 +177,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   </div>
                 </div>
 
-                {/* Company and Position */}
+                {/* Company */}
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
                     Company Name *
@@ -194,45 +192,43 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     placeholder="Enter company name"
                   />
                 </div>
-                {/* Contact fields */}
-                <div className="grid grid-cols-1 gap-4">
 
-                  <div>
-                    <label className="block text-sm font-medium text-[#595959] mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
-                      placeholder="Enter email address"
-                    />
-                  </div>
+                {/* Email */}
+                <div>
+                  <label className="block text-sm font-medium text-[#595959] mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
+                    placeholder="Enter email address"
+                  />
                 </div>
-                {/* Dropdowns */}
-                <div className="grid grid-cols-1 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-[#595959] mb-2">
-                      Region
-                    </label>
-                    <select
-                      name="region"
-                      value={formData.region}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm appearance-none cursor-pointer"
-                    >
-                      <option value="">Select region</option>
-                      {regions.map((region) => (
-                        <option key={region} value={region}>
-                          {region}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+
+                {/* Region */}
+                <div>
+                  <label className="block text-sm font-medium text-[#595959] mb-2">
+                    Region
+                  </label>
+                  <select
+                    name="region"
+                    value={formData.region}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm appearance-none cursor-pointer"
+                  >
+                    <option value="">Select region</option>
+                    {regions.map((region) => (
+                      <option key={region} value={region}>
+                        {region}
+                      </option>
+                    ))}
+                  </select>
                 </div>
+
                 {/* Message */}
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
@@ -247,6 +243,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     placeholder="Help us help you - please add details about your inquiry."
                   />
                 </div>
+
                 {/* Consent */}
                 <div className="space-y-3">
                   <p className="text-sm text-[#595959]">
@@ -272,22 +269,19 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                       </LocalizedLink>.
                     </span>
                   </label>
-                  <div className=" pt-0 border-t border-gray-100 bg-white max-md:px-4  max-md:pb-20 ">
-                    <button
-                      type="submit"
-                      form="contact-form"
-                      className="w-full bg-[#009B80] rounded-full text-white py-3 px-6 font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      disabled={!formData.consent}
-                    >
-                      Send Message
-                    </button>
-                  </div>
                 </div>
 
+                {/* Submit Button */}
+                <div className="pt-6">
+                  <button
+                    type="submit"
+                    className="w-full bg-[#009B80] rounded-full text-white py-3 px-6 font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={!formData.consent}
+                  >
+                    Send Message
+                  </button>
+                </div>
               </form>
-
-              {/* Submit button - Fixed at bottom */}
-
             </div>
           </motion.div>
         </motion.div>
