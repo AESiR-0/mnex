@@ -124,7 +124,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               stiffness: 200,
               duration: 0.5
             }}
-            className="relative px-5 w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden"
+            className="relative px-5 w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden max-md:max-h-[95vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -146,8 +146,8 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
             </div>
 
             {/* Form */}
-            <div className="flex flex-col h-[calc(100vh-120px)]">
-              <form id="contact-form" onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1">
+            <div className="flex flex-col h-[calc(100vh-120px)] max-md:h-[calc(100vh-100px)]">
+              <form id="contact-form" onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1 max-md:pb-4">
               {/* Name fields */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -284,11 +284,11 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               </form>
               
               {/* Submit button - Fixed at bottom */}
-              <div className="p-6 pt-0 border-t border-gray-100 bg-white">
+              <div className="p-6 pt-0 border-t border-gray-100 bg-white flex-shrink-0 max-md:px-4 max-md:pb-4">
                 <button
                   type="submit"
                   form="contact-form"
-                  className="w-full bg-[#009B80] rounded-full text-white py-3 px-6 font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-[#009B80] rounded-full text-white py-3 px-6 font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed max-md:py-4"
                   disabled={!formData.consent}
                 >
                   Send Message
