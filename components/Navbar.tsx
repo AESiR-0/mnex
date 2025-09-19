@@ -47,6 +47,16 @@ export default function Navbar() {
   const t = useTranslations();
   const { isOpen: isContactOpen, open: openContactSlider } = useContactSlider();
 
+  // Close all dropdowns when contact slider opens
+  useEffect(() => {
+    if (isContactOpen) {
+      setOpenDropdown(null);
+      setMobileDropdown(null);
+      setLangOpen(false);
+      setMenuOpen(false);
+    }
+  }, [isContactOpen]);
+
   const navLocalizedLinks = getNavLocalizedLinks();
 
   // Check if a link is active

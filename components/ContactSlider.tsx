@@ -100,7 +100,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-end"
+          className="fixed inset-0 z-[99999] flex items-center justify-end"
         >
           {/* Blurred background overlay */}
           <motion.div
@@ -124,7 +124,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               stiffness: 200,
               duration: 0.5
             }}
-            className="relative px-5 w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden max-md:w-full max-md:h-full max-md:max-w-none max-md:px-0"
+            className="relative px-5 w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden max-md:w-full max-md:h-screen max-md:max-w-none max-md:px-0 max-md:flex max-md:flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -146,8 +146,8 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
             </div>
 
             {/* Form */}
-            <div className="flex flex-col h-[calc(100vh-120px)] max-md:h-[calc(100vh-100px)]">
-              <form id="contact-form" onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1 max-md:px-4">
+            <div className="flex flex-col h-[calc(100vh-120px)] max-md:h-screen max-md:flex-col">
+              <form id="contact-form" onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1 max-md:px-4 max-md:pb-24">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#595959] mb-2">
@@ -272,7 +272,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                       </LocalizedLink>.
                     </span>
                   </label>
-                  <div className=" pt-0 border-t border-gray-100 bg-white max-md:px-4 max-md:pb-4 ">
+                  <div className=" pt-0 border-t border-gray-100 bg-white max-md:px-4  max-md:pb-20 ">
                     <button
                       type="submit"
                       form="contact-form"
