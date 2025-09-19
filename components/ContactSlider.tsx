@@ -124,11 +124,11 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               stiffness: 200,
               duration: 0.5
             }}
-            className="relative px-5 w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden max-md:max-h-[95vh]"
+            className="relative px-5 w-full max-w-2xl h-full bg-white shadow-2xl overflow-hidden max-md:w-full max-md:h-full max-md:max-w-none max-md:px-0"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 py-5 border-b border-gray-100">
+            <div className="flex items-center justify-between p-6 py-5 border-b border-gray-100 max-md:px-4">
               <div>
                 <Header className="text-sm pb-5 font-medium  mb-1">
                   GENERAL INQUIRY
@@ -147,8 +147,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
 
             {/* Form */}
             <div className="flex flex-col h-[calc(100vh-120px)] max-md:h-[calc(100vh-100px)]">
-              <form id="contact-form" onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1 max-md:pb-4">
-              {/* Name fields */}
+              <form id="contact-form" onSubmit={handleSubmit} className="p-6 space-y-6 overflow-y-auto flex-1 max-md:px-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
@@ -195,9 +194,6 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   placeholder="Enter company name"
                 />
               </div>
-
-
-
               {/* Contact fields */}
               <div className="grid grid-cols-1 gap-4">
 
@@ -216,7 +212,6 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   />
                 </div>
               </div>
-
               {/* Dropdowns */}
               <div className="grid grid-cols-1 gap-4">
                 <div>
@@ -238,7 +233,6 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   </select>
                 </div>
               </div>
-
               {/* Message */}
               <div>
                 <label className="block text-sm font-medium text-[#595959] mb-2">
@@ -253,7 +247,6 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   placeholder="Help us help you - please add details about your inquiry."
                 />
               </div>
-
               {/* Consent */}
               <div className="space-y-3">
                 <p className="text-sm text-[#595959]">
@@ -284,11 +277,11 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
               </form>
               
               {/* Submit button - Fixed at bottom */}
-              <div className="p-6 pt-0 border-t border-gray-100 bg-white flex-shrink-0 max-md:px-4 max-md:pb-4">
+              <div className=" pt-0 border-t border-gray-100 bg-white max-md:px-4 max-md:pb-4 max-md:mb-12">
                 <button
                   type="submit"
                   form="contact-form"
-                  className="w-full bg-[#009B80] rounded-full text-white py-3 px-6 font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed max-md:py-4"
+                  className="w-full bg-[#009B80] rounded-full text-white py-3 px-6 font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!formData.consent}
                 >
                   Send Message
