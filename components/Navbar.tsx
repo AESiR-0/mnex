@@ -129,6 +129,25 @@ export default function Navbar() {
     setOpenDropdown(null);
   };
 
+  // Handle click outside to close dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      // Close dropdown if clicking outside the navbar
+      if (!target.closest('nav')) {
+        setOpenDropdown(null);
+      }
+    };
+
+    if (openDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openDropdown]);
+
   return (
     <motion.nav
       className="fixed left-0 top-0 min-h-[65px] max-md:w-full w-full max-w-screen text-[#575757] bg-[#ffffff] uppercase z-50 flex items-center shadow-none border-none"
@@ -185,6 +204,7 @@ export default function Navbar() {
                   <div className="flex items-center">
                     <LocalizedLink
                       href={link.href}
+                      onClick={() => setOpenDropdown(null)}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
             ${isAboutSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
           `}
@@ -305,6 +325,7 @@ export default function Navbar() {
                   <div className="flex items-center">
                     <LocalizedLink
                       href={link.href}
+                      onClick={() => setOpenDropdown(null)}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
             ${isIndustriesSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
           `}
