@@ -92,6 +92,7 @@ export default function CapabilitiesSection() {
     // Handle hash changes and initial load
     useEffect(() => {
         const handleHashChange = () => {
+            if (typeof window === 'undefined') return;
             const hash = window.location.hash;
             if (hash) {
                 const tabIndex = getTabIndexFromHash(hash);
@@ -101,14 +102,16 @@ export default function CapabilitiesSection() {
         };
 
         // Set initial tab from hash if present (external navigation)
-        if (window.location.hash) {
+        if (typeof window !== 'undefined' && window.location.hash) {
             const tabIndex = getTabIndexFromHash(window.location.hash);
             setActiveTab(tabIndex);
         }
 
         // Listen for hash changes
-        window.addEventListener('hashchange', handleHashChange);
-        return () => window.removeEventListener('hashchange', handleHashChange);
+        if (typeof window !== 'undefined') {
+            window.addEventListener('hashchange', handleHashChange);
+            return () => window.removeEventListener('hashchange', handleHashChange);
+        }
     }, []);
 
     // Update hash when tab changes (only for external navigation)

@@ -61,7 +61,11 @@ export default function SiteFooter() {
 
             {/* Back to Top */}
             <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
               className="text-xs sm:text-sm text-[#595959] hover:text-[#1789FF] transition self-start"
             >
 {t("Footer.backToTop")} <span className="inline-block rotate-45 hover:rotate-0 transition-transform duration-300 align-middle"><svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg></span>

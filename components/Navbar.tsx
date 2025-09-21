@@ -57,6 +57,19 @@ export default function Navbar() {
     }
   }, [isContactOpen]);
 
+  // Auto-open dropdown when on about or industries pages
+  useEffect(() => {
+    if (pathname.includes('/about')) {
+      setOpenDropdown('Navigation.about');
+    } else if (pathname.includes('/industries')) {
+      setOpenDropdown('Navigation.industries');
+    } else {
+      // Close all dropdowns when not on about/industries pages
+      setOpenDropdown(null);
+    }
+  }, [pathname]);
+
+
   const navLocalizedLinks = getNavLocalizedLinks();
 
   // Check if a link is active
@@ -129,22 +142,30 @@ export default function Navbar() {
     setOpenDropdown(null);
   };
 
+  // Handle dropdown switching - ensure only one dropdown is open at a time
+  const handleDropdownHover = (dropdownName: string) => {
+    setOpenDropdown(dropdownName);
+  };
+
   // Handle click outside to close dropdowns
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
+      
       // Close dropdown if clicking outside the navbar
       if (!target.closest('nav')) {
         setOpenDropdown(null);
       }
     };
 
-    if (openDropdown) {
+    if (openDropdown && typeof document !== 'undefined') {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      if (typeof document !== 'undefined') {
+        document.removeEventListener('mousedown', handleClickOutside);
+      }
     };
   }, [openDropdown]);
 
@@ -189,29 +210,34 @@ export default function Navbar() {
                 </li>
               );
             } else if (link.name === "Navigation.about") {
-              // Special handling for About Us - no dropdown when About is active
+              // Special handling for About Us - keep dropdown open when About is active
               const isAboutSectionActive = isAboutActive();
               return (
                 <li
                   key={link.name}
                   className="relative group transition-all"
                   onMouseEnter={() =>
-                    !isAboutSectionActive && link.children && setOpenDropdown(link.name)
+                    link.children && handleDropdownHover(link.name)
                   }
                   tabIndex={0}
-                  onFocus={() => !isAboutSectionActive && link.children && setOpenDropdown(link.name)}
+                  onFocus={() => link.children && handleDropdownHover(link.name)}
                 >
                   <div className="flex items-center">
                     <LocalizedLink
                       href={link.href}
-                      onClick={() => setOpenDropdown(null)}
+                      onClick={() => {
+                        // Don't close dropdown when on about pages
+                        if (!isAboutSectionActive) {
+                          setOpenDropdown(null);
+                        }
+                      }}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
             ${isAboutSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
                       {t(link.name)}
                     </LocalizedLink>
-                    {link.children && !isAboutSectionActive && (
+                    {link.children && (
                       <motion.span
                         initial={false}
                         animate={{
@@ -263,9 +289,9 @@ export default function Navbar() {
                       </motion.span>
                     )}
                   </div>
-                  {/* Mega Dropdown - only show when About is not active */}
+                  {/* Mega Dropdown - show when About is active or when hovering */}
                   <AnimatePresence>
-                    {link.children && !isAboutSectionActive && openDropdown === link.name && (
+                    {link.children && openDropdown === link.name && (
                       <motion.div
                         initial={{ opacity: 1, height: 0, y: 0 }}
                         animate={{ opacity: 1, height: "auto", y: 0 }}
@@ -310,29 +336,34 @@ export default function Navbar() {
                 </li>
               );
             } else if (link.name === "Navigation.industries") {
-              // Special handling for Industries - no dropdown when Industries is active
+              // Special handling for Industries - keep dropdown open when Industries is active
               const isIndustriesSectionActive = isIndustriesActive();
               return (
                 <li
                   key={link.name}
                   className="relative group transition-all"
                   onMouseEnter={() =>
-                    !isIndustriesSectionActive && link.children && setOpenDropdown(link.name)
+                    link.children && handleDropdownHover(link.name)
                   }
                   tabIndex={0}
-                  onFocus={() => !isIndustriesSectionActive && link.children && setOpenDropdown(link.name)}
+                  onFocus={() => link.children && handleDropdownHover(link.name)}
                 >
                   <div className="flex items-center">
                     <LocalizedLink
                       href={link.href}
-                      onClick={() => setOpenDropdown(null)}
+                      onClick={() => {
+                        // Don't close dropdown when on industries pages
+                        if (!isIndustriesSectionActive) {
+                          setOpenDropdown(null);
+                        }
+                      }}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
             ${isIndustriesSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
                       {t(link.name)}
                     </LocalizedLink>
-                    {link.children && !isIndustriesSectionActive && (
+                    {link.children && (
                       <motion.span
                         initial={false}
                         animate={{
@@ -384,9 +415,9 @@ export default function Navbar() {
                       </motion.span>
                     )}
                   </div>
-                  {/* Mega Dropdown - only show when Industries is not active */}
+                  {/* Mega Dropdown - show when Industries is active or when hovering */}
                   <AnimatePresence>
-                    {link.children && !isIndustriesSectionActive && openDropdown === link.name && (
+                    {link.children && openDropdown === link.name && (
                       <motion.div
                         initial={{ opacity: 1, height: 0, y: 0 }}
                         animate={{ opacity: 1, height: "auto", y: 0 }}

@@ -18,7 +18,7 @@ const useIsPhoneOrTablet = () => {
       const isTabletScreen = window.innerWidth >= 640 && window.innerWidth < 1024;
 
       // User agent checks
-      const userAgent = navigator.userAgent.toLowerCase();
+      const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
       const isPhoneUserAgent = /android.*mobile|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
       const isTabletUserAgent = /ipad|tablet|android(?!.*mobile)/i.test(userAgent);
 
@@ -237,18 +237,19 @@ export default function ApproachSection({
                           const frameHeight = vh * 0.7; // 70vh per frame
                           const tabScrollPosition = i * frameHeight + vh * 0.1; // 10vh offset
                           const containerTop = sectionRef.current?.getBoundingClientRect().top || 0;
-                          const scrollTarget = window.scrollY + containerTop + tabScrollPosition;
+                          
+                          if (typeof window !== 'undefined') {
+                            const scrollTarget = window.scrollY + containerTop + tabScrollPosition;
 
-                          console.log('Scroll calculation:', { i, tabScrollPosition, containerTop, scrollTarget });
+                            // Update the active state immediately
+                            setActiveApproach(i);
 
-                          // Update the active state immediately
-                          setActiveApproach(i);
-
-                          // Smooth scroll to the tab position (exactly like ManufacturingCapabilities)
-                          window.scrollTo({
-                            top: scrollTarget,
-                            behavior: 'smooth'
-                          });
+                            // Smooth scroll to the tab position (exactly like ManufacturingCapabilities)
+                            window.scrollTo({
+                              top: scrollTarget,
+                              behavior: 'smooth'
+                            });
+                          }
                         }}
                         className={`text-left  px-0 pb-2 sm:pb-2.5 md:pb-3 text-lg sm:text-xl md:text-2xl lg:text-3xl font-regular transition-all duration-300 ease-out
                             ${isActive

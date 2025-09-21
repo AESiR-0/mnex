@@ -39,9 +39,16 @@ export default function PurposeCarousel({
   }, [paused, intervalMs, len]);
 
   useEffect(() => {
-    const onVis = () => setPaused(document.hidden);
-    document.addEventListener("visibilitychange", onVis);
-    return () => document.removeEventListener("visibilitychange", onVis);
+    const onVis = () => {
+      if (typeof document !== 'undefined') {
+        setPaused(document.hidden);
+      }
+    };
+    
+    if (typeof document !== 'undefined') {
+      document.addEventListener("visibilitychange", onVis);
+      return () => document.removeEventListener("visibilitychange", onVis);
+    }
   }, []);
 
   // swipe
@@ -67,8 +74,11 @@ export default function PurposeCarousel({
       if (e.key === "ArrowLeft") go(-1);
       if (e.key === "ArrowRight") go(+1);
     };
-    window.addEventListener("keydown", h);
-    return () => window.removeEventListener("keydown", h);
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener("keydown", h);
+      return () => window.removeEventListener("keydown", h);
+    }
   }, []);
 
   const slide = slides[idx];
