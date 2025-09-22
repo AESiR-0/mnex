@@ -34,9 +34,9 @@ export default function VerticalContent({
     return (
         <section
             id={sectionId}
-            className="w-full bg-[#ececec] min-h-screen max-md:min-h-[50vh]"
+            className="w-full bg-white min-h-screen max-md:min-h-[50vh]"
         >
-            <section className="w-full  py-10 sm:py-10 md:py-20" >
+            <section className="w-full bg-[#ececec] py-10 sm:py-10 md:py-20" >
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-semibold text-[#595959] mb-4 sm:mb-6">
                         {t("Industries.proofLives")}

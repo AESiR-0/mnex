@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 const Page = () => {
   const t = useTranslations();
   return (
-    <div className="py-5 max-lg:py-0 h-fit">
+    <div className="py-5  bg-[#ececec] max-lg:py-0 h-fit">
       <section className="w-full bg-[#F2F2F2]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-18 lg:py-24 text-center">
           {/* Headline */}

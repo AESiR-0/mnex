@@ -79,9 +79,9 @@ export default function CaseStudySection() {
       </div>
 
       {/* Content */}
-      <div className="grid max-md:grid-cols-1 gap-x-20 max-md:gap-x-0 grid-cols-2 items-start max-md:flex max-md:flex-col-reverse">
-        {/* Left Column - Text Content (2/3 width) */}
-        <div className="">
+      <div className="grid max-md:grid-cols-1 gap-x-20 max-md:gap-x-0 grid-cols-2 lg:grid-cols-3 md:gap-x-16 lg:gap-x-20 items-start max-md:flex max-md:flex-col-reverse">
+        {/* Left Column - Text Content (2/3 width on desktop, 2/3 on tablet) */}
+        <div className="lg:col-span-2">
           <h2 className="text-2xl md:text-3xl font-semibold text-[#1789FF] mb-6">
             {study.title}
           </h2>
@@ -135,15 +135,15 @@ export default function CaseStudySection() {
           )}
         </div>
 
-        {/* Right Column - Image Placeholder (1/3 width) */}
-        <div className="ml-36 max-md:ml-0 px-10 max-md:mb-10 max-md:mt-0 mt-24 flex justify-end max-md:justify-center">
-          <div className="w-full h-[80%] max-md:h-[50%] max-md:max-w-[70%]   overflow-hidden">
+        {/* Right Column - Image Placeholder (1/3 width on desktop) */}
+        <div className="lg:col-span-1 max-lg:ml-0 max-lg:px-0  max-md:ml-0 px-10 max-md:mb-10 max-md:mt-0 mt-24 flex justify-end max-md:justify-center">
+          <div className="w-full h-[80%]  max-lg:h-full max-md:h-[50%] max-md:max-w-[70%] md:max-w-[90%] lg:max-w-full overflow-hidden">
             <Image
               src="/static/industries/case-study-product.webp"
               alt={`${study.title} case study product`}
               width={420}
               height={700}
-              className="object-cover"
+              className="object-cover w-full h-auto"
             />
           </div>
         </div>

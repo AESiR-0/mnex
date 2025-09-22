@@ -136,10 +136,10 @@ export default function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line max-lg:h-fit max-lg:py-0 max-lg:max-h-fit min-h-screen h-screen bg-[#ececec] flex flex-col">
+        <section className="w-full whitespace-pre-line max-lg:h-fit  max-lg:py-0 max-lg:max-h-fit min-h-screen h-[110vh] bg-[#ececec] flex flex-col">
             {/* Header */}
-            <div className="bg-[#ececec] py-4 flex-shrink-0">
-                <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
+            <div className="bg-[#eaeaea] py-4 flex-shrink-0 ">
+                <div className="max-w-7xl bg-[#eaeaea] mx-auto px-4 max-md:max-w-full">
                     <Header className="pt-4 sm:pt-6 pb-4 md:mb-0 text-center">
                         {t("Home.capabilities.title")}
                     </Header>
@@ -169,7 +169,7 @@ export default function CapabilitiesSection() {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 py-10 pb-32  max-lg:py-0 max-lg:pb-0   h-full  relative">
+            <div className="flex-1 py-10  max-lg:py-0 max-lg:pb-0   bg-[#eaeaea]  relative">
                 {/* Background Video/Image */}
                 {activeCapability.video ? (
                     <video
@@ -208,10 +208,7 @@ export default function CapabilitiesSection() {
                                 {activeCapability.headline}
                             </h3>
 
-                            {/* Description */}
-                            <p className="text-white/90  text-lg md:text-xl leading-normal mb-4 whitespace-pre-line">
-                                {activeCapability.desc}
-                            </p>
+                         
 
                             {/* Bullet Points */}
                             <ul className="space-y-4">
