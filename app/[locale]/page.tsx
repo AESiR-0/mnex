@@ -12,26 +12,26 @@ const getTabData = (t: any) => [
   {
     title: "Solutions.tooling",
     video: "/videos/home/Solutions - Tooling.webm",
-    desc: "Solutions.toolingDesc",
+    headline: "Solutions.toolingHeadline",
     link: "/solutions#tooling",
   },
   {
     title: "Solutions.injectionMolding",
     video: "/videos/home/Solutions - Injection Molding.webm",
-    desc: "Solutions.injectionMoldingDesc",
+    headline: "Solutions.injectionMoldingHeadline",
     link: "/solutions#injection-molding",
   },
   {
     title: "Solutions.smartAutomation",
     video: "/videos/home/Solutions - Smart_Automation_Fixtures.webm",
-    desc: "Solutions.smartAutomationDesc",
+    headline: "Solutions.smartAutomationHeadline",
     link: "/solutions#smart-automation-assembly",
   },
   {
     title: "Solutions.productDevelopment",
     video:
       "/videos/home/Solutions - Integrated_Product_Development.webm",
-    desc: "Solutions.productDevelopmentDesc",
+    headline: "Solutions.productDevelopmentHeadline",
     link: "/solutions#integrated-product-development",
   },
 ];

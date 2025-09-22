@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 
 type Tab = {
   title: string;
-  desc: string;
+  headline: string;
   video?: string;
   poster?: string;
   img?: string;
@@ -104,7 +104,7 @@ export default function CapabilitiesSection({
             <div className="max-w-lg sm:max-w-xl md:max-w-2xl flex flex-col gap-3 sm:gap-4 justify-between h-full py-12 sm:py-16 md:py-20">
               <div className="">
                 <h3 className="text-white text-[1.7rem] sm:text-2xl md:text-3xl lg:text-5xl font-medium leading-tight mb-3 sm:mb-4 md:mb-6 whitespace-pre-line">
-                  {t(tab.desc)}
+                  {t(tab.headline)}
                 </h3>
 
                 {/* Show bullets if they exist, otherwise show badges */}
