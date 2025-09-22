@@ -21,7 +21,7 @@ const instrumentSans = Instrument_Sans({
 const locales = ['en', 'zh'];
 
 export const metadata: Metadata = {
-  title: 'MNex - Industrial Solutions',
+  title: 'Mnex - Industrial Solutions',
   description: 'MNex provides innovative industrial solutions and services',
   icons: {
     icon: '/favicon.ico',
