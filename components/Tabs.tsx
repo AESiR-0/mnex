@@ -42,7 +42,7 @@ export default function Tabs({
   }, [pathname, tabs, isMounted]);
 
   return (
-    <div className={`w-full max-md:px-3   bg-[#ffffff] pt-18 ${isIndustriesPage ? 'py-3' : 'py-6'}`}>
+    <div className={`w-full max-md:px-3   bg-[#ffffff] pt-18 ${isIndustriesPage ? 'py-3 pb-6' : 'py-6'}`}>
       <div className="max-w-5xl mx-auto tracking-[0.05em]   flex justify-center  gap-3 sm:gap-4">
         {tabs.map((tab, index) => {
           const tabName = tab.nameKey ? t(tab.nameKey) : tab.name;

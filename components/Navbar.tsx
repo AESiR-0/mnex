@@ -69,6 +69,21 @@ export default function Navbar() {
     }
   }, [pathname]);
 
+  // Handle dropdown switching - ensure only one dropdown is open at a time
+  const handleDropdownHover = (dropdownName: string) => {
+    // Don't close about dropdown when on about pages
+    if (pathname.includes('/about') && dropdownName === 'Navigation.about') {
+      return; // Keep about dropdown open
+    }
+    // Don't close industries dropdown when on industries pages
+    if (pathname.includes('/industries') && dropdownName === 'Navigation.industries') {
+      return; // Keep industries dropdown open
+    }
+    
+    // For other cases, allow normal dropdown switching
+    setOpenDropdown(dropdownName);
+  };
+
 
   const navLocalizedLinks = getNavLocalizedLinks();
 
@@ -137,14 +152,25 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Handle navbar mouse leave to close all dropdowns
+  // Handle navbar mouse leave to close all dropdowns (except when on about/industries pages)
   const handleNavbarMouseLeave = () => {
-    setOpenDropdown(null);
-  };
-
-  // Handle dropdown switching - ensure only one dropdown is open at a time
-  const handleDropdownHover = (dropdownName: string) => {
-    setOpenDropdown(dropdownName);
+    // Don't close about dropdown when on about pages
+    if (pathname.includes('/about')) {
+      // Keep about dropdown open, close others
+      if (openDropdown !== 'Navigation.about') {
+        setOpenDropdown(null);
+      }
+    } 
+    // Don't close industries dropdown when on industries pages
+    else if (pathname.includes('/industries')) {
+      // Keep industries dropdown open, close others
+      if (openDropdown !== 'Navigation.industries') {
+        setOpenDropdown(null);
+      }
+    } else {
+      // Close all dropdowns when not on about/industries pages
+      setOpenDropdown(null);
+    }
   };
 
   // Handle click outside to close dropdowns
@@ -154,7 +180,23 @@ export default function Navbar() {
       
       // Close dropdown if clicking outside the navbar
       if (!target.closest('nav')) {
-        setOpenDropdown(null);
+        // Don't close about dropdown when on about pages
+        if (pathname.includes('/about')) {
+          // Keep about dropdown open, close others
+          if (openDropdown !== 'Navigation.about') {
+            setOpenDropdown(null);
+          }
+        } 
+        // Don't close industries dropdown when on industries pages
+        else if (pathname.includes('/industries')) {
+          // Keep industries dropdown open, close others
+          if (openDropdown !== 'Navigation.industries') {
+            setOpenDropdown(null);
+          }
+        } else {
+          // Close all dropdowns when not on about/industries pages
+          setOpenDropdown(null);
+        }
       }
     };
 
@@ -167,7 +209,7 @@ export default function Navbar() {
         document.removeEventListener('mousedown', handleClickOutside);
       }
     };
-  }, [openDropdown]);
+  }, [openDropdown, pathname]);
 
   return (
     <motion.nav
@@ -237,7 +279,7 @@ export default function Navbar() {
                     >
                       {t(link.name)}
                     </LocalizedLink>
-                    {link.children && (
+                    {link.children && !isAboutSectionActive && (
                       <motion.span
                         initial={false}
                         animate={{
@@ -363,7 +405,7 @@ export default function Navbar() {
                     >
                       {t(link.name)}
                     </LocalizedLink>
-                    {link.children && (
+                    {link.children && !isIndustriesSectionActive && (
                       <motion.span
                         initial={false}
                         animate={{
@@ -501,7 +543,7 @@ export default function Navbar() {
                     >
                       {t(link.name)}
                     </LocalizedLink>
-                    {link.children && shouldShowDropdown(link.href) && (
+                    {link.children && shouldShowDropdown(link.href) && !isLocalizedLinkActive(link.href) && (
                       <motion.span
                         initial={false}
                         animate={{
