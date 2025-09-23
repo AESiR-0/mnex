@@ -279,9 +279,9 @@ const page = () => {
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="flex justify-center mt-10 max-md:mt-0"
                         >
-                            <Link href={'https://meibanenergy.com'} target="_blank">
+                            <Link href={'mailto:careers@mnexprecision.com'} target="_blank">
                                 <button className="mt-12 max-md:mt-6 px-8  py-3 text-sm sm:text-base font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-white/80 hover:text-[#009B80] border-white hover:border-white/80">
-                                    Submit Careers Form                                </button>
+                                   Reach Us                               </button>
                             </Link>
                         </motion.div>
                     </div>
