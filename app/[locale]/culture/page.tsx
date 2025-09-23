@@ -16,6 +16,7 @@ type Capability = {
     desc: string;
     bullets: string[];
     img: string;
+    imgPhone: string;
     video?: string;
     id: string; // English identifier for hash navigation
 };
@@ -32,6 +33,7 @@ const getCapabilities = (t: any): Capability[] => [
             "Mandatory safety training & equipment maintenance: Ongoing education and upkeep to keep everyone protected and prepared.",
         ],
         img: "/static/culture/1.webp",
+        imgPhone: "/static/culture/1-phone.webp",
         // video: "/videos/home/Solutions - Tooling.webm",
     },
     {
@@ -45,6 +47,7 @@ const getCapabilities = (t: any): Capability[] => [
             "Representation at every level: From the shop floor to the boardroom, including a women-led leadership team.",
         ],
         img: "/static/culture/2.webp",
+        imgPhone: "/static/culture/2-phone.webp",
         // video: "/videos/home/Solutions - Injection Molding.webm",
     },
     {
@@ -60,6 +63,7 @@ const getCapabilities = (t: any): Capability[] => [
             "Recognition & Global Opportunities: Celebrating contributions and offering exposure across regions to build cultural intelligence.",
         ],
         img: "/static/culture/3.webp",
+        imgPhone: "/static/culture/3-phone.webp",
         // video: "/videos/home/Solutions: Smart_Automation_Fixtures.webm",
     },
 ];
@@ -123,7 +127,7 @@ function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line max-md:h-[125vh]  h-[135vh] bg-[#ececec] flex flex-col">
+        <section className="w-full whitespace-pre-line max-md:h-[128vh]  h-[135vh] bg-[#ececec] flex flex-col">
             {/* Header */}
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
@@ -156,12 +160,12 @@ function CapabilitiesSection() {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 py-10 pb-32  h-full  relative">
+            <div className="flex-1 py-10   relative">
                 {/* Background Video/Image */}
                 {activeCapability.video ? (
                     <video
                         key={`${activeCapability.title}-${activeTab}`}
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="absolute inset-0 w-full  object-cover"
                         src={activeCapability.video}
                         muted
                         playsInline
@@ -169,13 +173,24 @@ function CapabilitiesSection() {
                         loop
                     />
                 ) : (
-                    <Image
-                        src={activeCapability.img}
-                        alt={activeCapability.title}
-                        fill
-                        className="object-cover"
-                        priority={activeTab === 0}
-                    />
+                    <>
+                        {/* Desktop Image */}
+                        <Image
+                            src={activeCapability.img}
+                            alt={activeCapability.title}
+                            fill
+                            className="object-cover hidden md:block"
+                            priority={activeTab === 0}
+                        />
+                        {/* Mobile Image */}
+                        <Image
+                            src={activeCapability.imgPhone}
+                            alt={activeCapability.title}
+                            fill
+                            className="object-cover block md:hidden"
+                            priority={activeTab === 0}
+                        />
+                    </>
                 )}
 
                 {/* Overlay gradient */}
@@ -225,7 +240,7 @@ const page = () => {
         <div>
             <section className="w-full h-[60vh] ">
                 <div className=" h-full w-full bg-[#f2f2f2]">
-                    <div className="max-w-4xl px-4 mx-auto max-[380px]:my-4 pb-20 pt-32   space-y-3  text-center">
+                    <div className="max-w-4xl px-4 mx-auto max-[380px]:my-4 pb-20 pt-32 space-y-3  text-center">
                         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl pb-4 md:text-4xl">
                             Our Culture:
                             <br />
