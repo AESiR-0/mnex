@@ -124,7 +124,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden transition-all  tracking-[0.05em] text-sm md:flex gap-8 items-center">
+        <ul className="hidden transition-all  tracking-[0.05em] text-sm xl:flex gap-8 items-center">
           {navLinks.map((link) => {
             if (link.name == "Contact Us") {
               return (
@@ -345,7 +345,7 @@ export default function Navbar() {
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[55px] w-screen bg-white flex justify-center overflow-hidden"
+                        className="fixed left-0 pb-3 top-[55px] w-screen bg-white flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
@@ -558,7 +558,7 @@ export default function Navbar() {
 
         {/* Hamburger */}
         <button
-          className="md:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
+          className="xl:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -585,7 +585,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.15, ease: "easeInOut" }}
-            className="md:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
+            className="xl:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
           >
             {navLinks.map((link) => {
               if (link.name === "Contact Us") {
@@ -616,7 +616,7 @@ export default function Navbar() {
                     >
                       {link.name}
                     </Link>
-                    {link.children && shouldShowDropdown(link.href) && (
+                    {link.children && (
                       <button
                         onClick={() =>
                           setMobileDropdown(
@@ -674,7 +674,7 @@ export default function Navbar() {
                   </div>
                   {/* Mobile Dropdown */}
                   <AnimatePresence>
-                    {link.children && shouldShowDropdown(link.href) && mobileDropdown === link.name && (
+                    {link.children && mobileDropdown === link.name && (
                       <motion.ul
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}

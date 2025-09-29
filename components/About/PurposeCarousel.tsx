@@ -77,7 +77,7 @@ export default function PurposeCarousel({
   const slide = slides[idx];
 
   return (
-    <section className="w-full bg-[#ececec] min-h-screen">
+    <section className="w-full bg-[#ececec] xl:min-h-screen min-h-[40vh]">
       {/* Top copy */}
       <div className="max-w-7xl px-4 mx-auto py-10 space-y-4 sm:py-12 text-center">
         <h2 className="text-[#444] font-semibold text-2xl sm:text-3xl md:text-4xl">
@@ -95,7 +95,7 @@ export default function PurposeCarousel({
 
       {/* Carousel */}
       <div
-        className="relative w-full min-h-screen sm:h-[70vh] overflow-hidden"
+        className="relative w-full xl:min-h-screen h-screen  lg:min-h-[40vh] lg:max-h-[60vh] sm:h-[70vh] overflow-hidden"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={onTouchStart}
@@ -164,7 +164,7 @@ export default function PurposeCarousel({
         </div>
 
         {/* Arrow Navigation */}
-        <div className="absolute z-10 max-md:bottom-40 xs:bottom-0 max-md:left-1 bottom-20 left-0 w-full">
+        <div className="absolute z-10 max-md:bottom-40 xs:bottom-0 max-md:left-1 bottom-20 left-0 w-full" style={{ bottom: typeof window !== "undefined" && window.innerWidth < 380 ? '48px' : undefined }}>
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex justify-start gap-5 items-center">
               {/* Left Arrow */}

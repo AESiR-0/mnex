@@ -101,9 +101,9 @@ export default function Sustainability() {
                         MNEX SOLAR ENERGY DATA
                     </Header>
 
-                    <div className="grid grid-cols-1 pl-10 md:grid-cols-3 text-base sm:text-lg md:text-xl gap-6 sm:gap-8 md:gap-12">
+                    <div className="grid grid-cols-1   md:grid-cols-3 text-base sm:text-lg md:text-xl gap-6 sm:gap-8 md:gap-12">
                         {/* Solar Panels */}
-                        <div className="flex items-center gap-8  sm:gap-6 px-8 sm:px-12 md:px-20">
+                        <div className="flex items-center gap-8  sm:gap-6  ">
                             <div className="flex-shrink-0">
                                 <Image
                                     src="/static/sustainability/solar panel.svg"
@@ -124,7 +124,7 @@ export default function Sustainability() {
                         </div>
 
                         {/* Annual Power Generation */}
-                        <div className="flex items-center gap-8  sm:gap-6 px-6 sm:px-8 md:px-10">
+                        <div className="flex items-center gap-8  sm:gap-6  ">
                             <div className="flex-shrink-0">
                                 <Image
                                     src="/static/sustainability/annual power.svg"
@@ -145,7 +145,7 @@ export default function Sustainability() {
                         </div>
 
                         {/* CO2 Emissions Reduction */}
-                        <div className="flex items-center gap-8  sm:gap-6 px-6 sm:px-8 md:px-10">
+                        <div className="flex items-center gap-8  sm:gap-6  ">
                             <div className="flex-shrink-0">
                                 <Image
                                     src="/static/sustainability/c02 emission.svg"
@@ -211,7 +211,7 @@ function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line bg-white h-screen max-md:h-[85vh] flex flex-col">
+        <section className="w-full whitespace-pre-line bg-white h-screen lg:h-[70vh] sm:h-[85vh] flex flex-col">
             {/* Header */}
             <div className="bg-white py-3 sm:py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
