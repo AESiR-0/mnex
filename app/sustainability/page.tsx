@@ -101,9 +101,9 @@ export default function Sustainability() {
                         MNEX SOLAR ENERGY DATA
                     </Header>
 
-                    <div className="grid grid-cols-1   md:grid-cols-3 text-base sm:text-lg md:text-xl gap-6 sm:gap-8 md:gap-12">
+                    <div className="flex flex-col sm:flex-row lg:flex-row flex-wrap text-base sm:text-lg md:text-xl gap-6 sm:gap-8 md:gap-12 justify-center sm:justify-center lg:justify-between">
                         {/* Solar Panels */}
-                        <div className="flex items-center gap-8  sm:gap-6  ">
+                        <div className="flex items-center justify-center sm:justify-start gap-4 sm:gap-6 md:gap-8 flex-1 sm:flex-1 lg:flex-1 min-w-0">
                             <div className="flex-shrink-0">
                                 <Image
                                     src="/static/sustainability/solar panel.svg"
@@ -113,7 +113,7 @@ export default function Sustainability() {
                                     className="sm:w-16 sm:h-16 md:w-20 md:h-20 text-[#009b80]"
                                 />
                             </div>
-                            <div className="text-left">
+                            <div className="text-center sm:text-left min-w-0 flex-1">
                                 <div className="text-[#009b80] font-semibold leading-none text-lg sm:text-xl md:text-2xl">
                                     1,562
                                 </div>
@@ -124,7 +124,7 @@ export default function Sustainability() {
                         </div>
 
                         {/* Annual Power Generation */}
-                        <div className="flex items-center gap-8  sm:gap-6  ">
+                        <div className="flex items-center justify-center sm:justify-start gap-4 sm:gap-6 md:gap-8 flex-1 sm:flex-1 lg:flex-1 min-w-0">
                             <div className="flex-shrink-0">
                                 <Image
                                     src="/static/sustainability/annual power.svg"
@@ -134,7 +134,7 @@ export default function Sustainability() {
                                     className="sm:w-16 sm:h-16 md:w-20 md:h-20 text-[#009b80]"
                                 />
                             </div>
-                            <div className="text-left">
+                            <div className="text-center sm:text-left min-w-0 flex-1">
                                 <div className="text-[#009b80] text-sm sm:text-base md:text-lg">
                                     ANNUAL POWER GENERATION
                                 </div>
@@ -145,7 +145,7 @@ export default function Sustainability() {
                         </div>
 
                         {/* CO2 Emissions Reduction */}
-                        <div className="flex items-center gap-8  sm:gap-6  ">
+                        <div className="flex items-center justify-center sm:justify-start gap-4 sm:gap-6 md:gap-8 flex-1 sm:flex-1 lg:flex-1 min-w-0">
                             <div className="flex-shrink-0">
                                 <Image
                                     src="/static/sustainability/c02 emission.svg"
@@ -155,7 +155,7 @@ export default function Sustainability() {
                                     className="sm:w-16 sm:h-16 md:w-20 md:h-20 text-[#009b80]"
                                 />
                             </div>
-                            <div className="text-left">
+                            <div className="text-center sm:text-left min-w-0 flex-1">
                                 <div className="text-[#009b80] font-medium text-sm sm:text-base md:text-lg">
                                     CO₂ EMISSIONS REDUCTION:
                                 </div>
