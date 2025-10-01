@@ -1,39 +1,38 @@
 "use client";
-import LocalizedLink from "./LocalizedLink";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useContactSlider } from "@/lib/useContactSlider";
-import { useTranslations, useLocale } from 'next-intl';
-import Logo from "./Logo";
 
-const getNavLocalizedLinks = () => [
+const navLinks = [
   {
-    name: "Navigation.about",
+    name: "About Us",
     href: "/about/approach",
     children: [
-      { name: "Navigation.aboutSubmenu.approach", href: "/about/approach" },
-      { name: "Navigation.aboutSubmenu.legacy", href: "/about/legacy" },
-      // { name: "Navigation.aboutSubmenu.leadership", href: "/about/leadership" },
+      { name: "Approach", href: "/about/approach" },
+      { name: "Legacy", href: "/about/legacy" },
+      // { name: "Leadership", href: "/about/leadership" },
     ],
   },
-  { name: "Navigation.solutions", href: "/solutions" },
+  { name: "Solutions", href: "/solutions" },
   {
-    name: "Navigation.industries",
+    name: "Industries",
     href: "/industries/cei",
     children: [
-      { name: "Navigation.industriesSubmenu.cei", href: "/industries/cei" },
-      { name: "Navigation.industriesSubmenu.regulated", href: "/industries/regulated" },
-      { name: "Navigation.industriesSubmenu.oilAndGas", href: "/industries/oil-and-gas" },
+      { name: "Consumer & Industrial", href: "/industries/cei" },
+      { name: "Regulated", href: "/industries/regulated" },
+      { name: "Oil & Gas", href: "/industries/oil-and-gas" },
     ],
   },
-  { name: "Navigation.sustainability", href: "/sustainability" },
-  { name: "Navigation.culture", href: "/culture" },
-  { name: "Navigation.contact", href: "/contact" },
+  { name: "Sustainability", href: "/sustainability" },
+  // { name: "Culture", href: "/culture" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
+  const [language, setLanguage] = useState<"EN" | "中文">("EN");
   const [langOpen, setLangOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -42,67 +41,11 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollUpDistance, setScrollUpDistance] = useState(0); // Track how much we've scrolled up
   const pathname = usePathname();
-  const router = useRouter();
-  const locale = useLocale();
-  const t = useTranslations();
   const { isOpen: isContactOpen, open: openContactSlider } = useContactSlider();
 
-  // Close all dropdowns when contact slider opens
-  useEffect(() => {
-    if (isContactOpen) {
-      setOpenDropdown(null);
-      setMobileDropdown(null);
-      setLangOpen(false);
-      setMenuOpen(false);
-    }
-  }, [isContactOpen]);
-
-  // Auto-open dropdown when on about or industries pages
-  useEffect(() => {
-    if (pathname.includes('/about')) {
-      setOpenDropdown('Navigation.about');
-    } else if (pathname.includes('/industries')) {
-      setOpenDropdown('Navigation.industries');
-    } else {
-      // Close all dropdowns when not on about/industries pages
-      setOpenDropdown(null);
-    }
-  }, [pathname]);
-
-  // Handle dropdown switching - ensure only one dropdown is open at a time
-  const handleDropdownHover = (dropdownName: string) => {
-    // Don't close about dropdown when on about pages
-    if (pathname.includes('/about') && dropdownName === 'Navigation.about') {
-      return; // Keep about dropdown open
-    }
-    // Don't close industries dropdown when on industries pages
-    if (pathname.includes('/industries') && dropdownName === 'Navigation.industries') {
-      return; // Keep industries dropdown open
-    }
-    
-    // For other cases, allow normal dropdown switching
-    setOpenDropdown(dropdownName);
-  };
-
-
-  const navLocalizedLinks = getNavLocalizedLinks();
-
   // Check if a link is active
-  const isLocalizedLinkActive = (href: string) => {
+  const isLinkActive = (href: string) => {
     return pathname.includes(href);
-  };
-
-  // Language switching function
-  const handleLanguageChange = (newLocale: string) => {
-    // Replace the locale in the current path
-    const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
-    router.push(newPath);
-    setLangOpen(false);
-  };
-
-  // Get current language display
-  const getCurrentLanguage = () => {
-    return locale === 'zh' ? '中文' : 'EN';
   };
 
   // Check if About section is active
@@ -117,7 +60,7 @@ export default function Navbar() {
 
   // Check if a link should show dropdown (not active)
   const shouldShowDropdown = (href: string) => {
-    return !isLocalizedLinkActive(href);
+    return !isLinkActive(href);
   };
 
   // Handle scroll for navbar visibility
@@ -128,12 +71,12 @@ export default function Navbar() {
       // Track scroll up distance when scrolling up
       if (currentScrollY < lastScrollY && currentScrollY > 500) {
         setScrollUpDistance(prev => prev + (lastScrollY - currentScrollY));
-
+        
         // Only show navbar after scrolling up 500px
         if (scrollUpDistance >= 500) {
           setIsVisible(true);
         }
-      }
+      } 
       // Reset scroll up distance and hide navbar when scrolling down
       else if (currentScrollY > lastScrollY && currentScrollY > 500) {
         setScrollUpDistance(0);
@@ -152,92 +95,38 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Handle navbar mouse leave to close all dropdowns (except when on about/industries pages)
+  // Handle navbar mouse leave to close all dropdowns
   const handleNavbarMouseLeave = () => {
-    // Don't close about dropdown when on about pages
-    if (pathname.includes('/about')) {
-      // Keep about dropdown open, close others
-      if (openDropdown !== 'Navigation.about') {
-        setOpenDropdown(null);
-      }
-    } 
-    // Don't close industries dropdown when on industries pages
-    else if (pathname.includes('/industries')) {
-      // Keep industries dropdown open, close others
-      if (openDropdown !== 'Navigation.industries') {
-        setOpenDropdown(null);
-      }
-    } else {
-      // Close all dropdowns when not on about/industries pages
-      setOpenDropdown(null);
-    }
+    setOpenDropdown(null);
   };
-
-  // Handle click outside to close dropdowns
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      
-      // Close dropdown if clicking outside the navbar
-      if (!target.closest('nav')) {
-        // Don't close about dropdown when on about pages
-        if (pathname.includes('/about')) {
-          // Keep about dropdown open, close others
-          if (openDropdown !== 'Navigation.about') {
-            setOpenDropdown(null);
-          }
-        } 
-        // Don't close industries dropdown when on industries pages
-        else if (pathname.includes('/industries')) {
-          // Keep industries dropdown open, close others
-          if (openDropdown !== 'Navigation.industries') {
-            setOpenDropdown(null);
-          }
-        } else {
-          // Close all dropdowns when not on about/industries pages
-          setOpenDropdown(null);
-        }
-      }
-    };
-
-    if (openDropdown && typeof document !== 'undefined') {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      if (typeof document !== 'undefined') {
-        document.removeEventListener('mousedown', handleClickOutside);
-      }
-    };
-  }, [openDropdown, pathname]);
 
   return (
     <motion.nav
       className="fixed left-0 top-0 min-h-[65px] max-md:w-full w-full max-w-screen text-[#575757] bg-[#ffffff] uppercase z-50 flex items-center shadow-none border-none"
       initial={{ y: 0 }}
-      animate={{
+      animate={{ 
         y: isVisible && !isContactOpen ? 0 : -70,
         opacity: isContactOpen ? 0 : 1
       }}
       transition={{ duration: 0.3, ease: "linear" }}
       onMouseLeave={handleNavbarMouseLeave}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4  w-full">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 w-full">
         {/* Logo */}
-        <LocalizedLink href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/static/Logo/Logo_SVG/MNex_v2-11.svg"
+            src="/static/Logo/Logo_PNG/MNex_v2-11.png"
+            width={128}
+            height={128}
             alt="MNex Logo"
-            className="h-16 w-32"
-            width={160}
-            height={160}
+            className="h-auto w-auto"
           />
-        </LocalizedLink>
+        </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden transition-all  tracking-[0.05em] text-sm lg:flex gap-8 items-center">
-          {navLocalizedLinks.map((link) => {
-            if (link.name == "Navigation.contact") {
+        <ul className="hidden transition-all  tracking-[0.05em] text-sm xl:flex gap-8 items-center">
+          {navLinks.map((link) => {
+            if (link.name == "Contact Us") {
               return (
                 <li key={link.name} className="relative group  transition-all">
                   <div className="flex bg-transparent items-center">
@@ -246,39 +135,33 @@ export default function Navbar() {
                       className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                         bg-transparent text-[#595959] hover:bg-[#009b80] hover:text-white`}
                     >
-                      {t(link.name)}
+                      {link.name}
                     </button>
                   </div>
                 </li>
               );
-            } else if (link.name === "Navigation.about") {
-              // Special handling for About Us - keep dropdown open when About is active
+            } else if (link.name === "About Us") {
+              // Special handling for About Us - no dropdown when About is active
               const isAboutSectionActive = isAboutActive();
               return (
                 <li
                   key={link.name}
                   className="relative group transition-all"
                   onMouseEnter={() =>
-                    link.children && handleDropdownHover(link.name)
+                    !isAboutSectionActive && link.children && setOpenDropdown(link.name)
                   }
                   tabIndex={0}
-                  onFocus={() => link.children && handleDropdownHover(link.name)}
+                  onFocus={() => !isAboutSectionActive && link.children && setOpenDropdown(link.name)}
                 >
                   <div className="flex items-center">
-                    <LocalizedLink
+                    <Link
                       href={link.href}
-                      onClick={() => {
-                        // Don't close dropdown when on about pages
-                        if (!isAboutSectionActive) {
-                          setOpenDropdown(null);
-                        }
-                      }}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
             ${isAboutSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
-                      {t(link.name)}
-                    </LocalizedLink>
+                      {link.name}
+                    </Link>
                     {link.children && !isAboutSectionActive && (
                       <motion.span
                         initial={false}
@@ -331,13 +214,13 @@ export default function Navbar() {
                       </motion.span>
                     )}
                   </div>
-                  {/* Mega Dropdown - show when About is active or when hovering */}
+                  {/* Mega Dropdown - only show when About is not active */}
                   <AnimatePresence>
-                    {link.children && openDropdown === link.name && (
+                    {link.children && !isAboutSectionActive && openDropdown === link.name && (
                       <motion.div
-                        initial={{ opacity: 1, height: 0, y: 0 }}
+                        initial={{ opacity: 1, height: 0, y: -10 }}
                         animate={{ opacity: 1, height: "auto", y: 0 }}
-                        exit={{ opacity: 1, height: 0, y: 0 }}
+                        exit={{ opacity: 1, height: 0, y: -10 }}
                         transition={{
                           type: "keyframes",
                           duration: 0.2,
@@ -347,7 +230,7 @@ export default function Navbar() {
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
                           {link.children.map((sublink, index) => {
-                            const isSublinkActive = isLocalizedLinkActive(sublink.href);
+                            const isSublinkActive = isLinkActive(sublink.href);
                             return (
                               <motion.div
                                 key={sublink.name}
@@ -358,7 +241,7 @@ export default function Navbar() {
                                   ease: "easeOut"
                                 }}
                               >
-                                <LocalizedLink
+                                <Link
                                   href={sublink.href}
                                   className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                                     ${isSublinkActive
@@ -366,8 +249,8 @@ export default function Navbar() {
                                       : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
                                     }`}
                                 >
-                                  {t(sublink.name)}
-                                </LocalizedLink>
+                                  {sublink.name}
+                                </Link>
                               </motion.div>
                             );
                           })}
@@ -377,34 +260,28 @@ export default function Navbar() {
                   </AnimatePresence>
                 </li>
               );
-            } else if (link.name === "Navigation.industries") {
-              // Special handling for Industries - keep dropdown open when Industries is active
+            } else if (link.name === "Industries") {
+              // Special handling for Industries - no dropdown when Industries is active
               const isIndustriesSectionActive = isIndustriesActive();
               return (
                 <li
                   key={link.name}
                   className="relative group transition-all"
                   onMouseEnter={() =>
-                    link.children && handleDropdownHover(link.name)
+                    !isIndustriesSectionActive && link.children && setOpenDropdown(link.name)
                   }
                   tabIndex={0}
-                  onFocus={() => link.children && handleDropdownHover(link.name)}
+                  onFocus={() => !isIndustriesSectionActive && link.children && setOpenDropdown(link.name)}
                 >
                   <div className="flex items-center">
-                    <LocalizedLink
+                    <Link
                       href={link.href}
-                      onClick={() => {
-                        // Don't close dropdown when on industries pages
-                        if (!isIndustriesSectionActive) {
-                          setOpenDropdown(null);
-                        }
-                      }}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
             ${isIndustriesSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
-                      {t(link.name)}
-                    </LocalizedLink>
+                      {link.name}
+                    </Link>
                     {link.children && !isIndustriesSectionActive && (
                       <motion.span
                         initial={false}
@@ -457,23 +334,23 @@ export default function Navbar() {
                       </motion.span>
                     )}
                   </div>
-                  {/* Mega Dropdown - show when Industries is active or when hovering */}
+                  {/* Mega Dropdown - only show when Industries is not active */}
                   <AnimatePresence>
-                    {link.children && openDropdown === link.name && (
+                    {link.children && !isIndustriesSectionActive && openDropdown === link.name && (
                       <motion.div
-                        initial={{ opacity: 1, height: 0, y: 0 }}
+                        initial={{ opacity: 1, height: 0, y: -10 }}
                         animate={{ opacity: 1, height: "auto", y: 0 }}
                         exit={{ opacity: 1, height: 0, y: 0 }}
                         transition={{
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[55px] pb-3 w-screen bg-[#ffffff] flex justify-center overflow-hidden"
+                        className="fixed left-0 pb-3 top-[55px] w-screen bg-white flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
                           {link.children.map((sublink, index) => {
-                            const isSublinkActive = isLocalizedLinkActive(sublink.href);
+                            const isSublinkActive = isLinkActive(sublink.href);
                             return (
                               <motion.div
                                 key={sublink.name}
@@ -484,7 +361,7 @@ export default function Navbar() {
                                   ease: "easeOut"
                                 }}
                               >
-                                <LocalizedLink
+                                <Link
                                   href={sublink.href}
                                   className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                                     ${isSublinkActive
@@ -492,8 +369,8 @@ export default function Navbar() {
                                       : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
                                     }`}
                                 >
-                                  {t(sublink.name)}
-                                </LocalizedLink>
+                                  {sublink.name}
+                                </Link>
                               </motion.div>
                             );
                           })}
@@ -505,21 +382,21 @@ export default function Navbar() {
               );
             } else if (link.name === "Sustainability") {
               // Special handling for Sustainability - hover effect
-              const isSustainabilityActive = isLocalizedLinkActive(link.href);
+              const isSustainabilityActive = isLinkActive(link.href);
               return (
                 <li
                   key={link.name}
                   className="relative group transition-all"
                 >
                   <div className="flex items-center">
-                    <LocalizedLink
+                    <Link
                       href={link.href}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#009b80]
             ${isSustainabilityActive ? "text-[#009b80]" : "text-[#575757]"}
           `}
                     >
-                      {t(link.name)}
-                    </LocalizedLink>
+                      {link.name}
+                    </Link>
                   </div>
                 </li>
               );
@@ -535,15 +412,15 @@ export default function Navbar() {
                   onFocus={() => link.children && shouldShowDropdown(link.href) && setOpenDropdown(link.name)}
                 >
                   <div className="flex items-center">
-                    <LocalizedLink
+                    <Link
                       href={link.href}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
-            ${isLocalizedLinkActive(link.href) ? "text-[#1789FF]" : "text-[#575757]"}
+            ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
-                      {t(link.name)}
-                    </LocalizedLink>
-                    {link.children && shouldShowDropdown(link.href) && !isLocalizedLinkActive(link.href) && (
+                      {link.name}
+                    </Link>
+                    {link.children && shouldShowDropdown(link.href) && (
                       <motion.span
                         initial={false}
                         animate={{
@@ -569,7 +446,7 @@ export default function Navbar() {
                             width="10"
                             height="1.5"
                             rx="0.75"
-                            fill={`${isLocalizedLinkActive(link.href) ? "#1789ff" : "#595959"}`}
+                            fill={`${isLinkActive(link.href) ? "#1789ff" : "#595959"}`}
                             className="group-hover:fill-[#1789FF]"
                           />
                           <motion.rect
@@ -578,7 +455,7 @@ export default function Navbar() {
                             width="1.5"
                             height="10"
                             rx="0.75"
-                            fill={`${isLocalizedLinkActive(link.href) ? "#1789ff" : "#595959"}`}
+                            fill={`${isLinkActive(link.href) ? "#1789ff" : "#595959"}`}
                             className="group-hover:fill-[#1789FF]"
                             animate={{
                               scaleY: openDropdown === link.name ? 0 : 1,
@@ -599,9 +476,9 @@ export default function Navbar() {
                   <AnimatePresence>
                     {link.children && shouldShowDropdown(link.href) && openDropdown === link.name && (
                       <motion.div
-                        initial={{ opacity: 1, height: 0, y: 0 }}
+                        initial={{ opacity: 1, height: 0, y: -10 }}
                         animate={{ opacity: 1, height: "auto", y: 0 }}
-                        exit={{ opacity: 1, height: 0, y: 0 }}
+                        exit={{ opacity: 1, height: 0, y: -10 }}
                         transition={{
                           type: "keyframes",
                           duration: 0.2,
@@ -611,7 +488,7 @@ export default function Navbar() {
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
                           {link.children.map((sublink, index) => {
-                            const isSublinkActive = isLocalizedLinkActive(sublink.href);
+                            const isSublinkActive = isLinkActive(sublink.href);
                             return (
                               <motion.div
                                 key={sublink.name}
@@ -622,7 +499,7 @@ export default function Navbar() {
                                   ease: "easeOut"
                                 }}
                               >
-                                <LocalizedLink
+                                <Link
                                   href={sublink.href}
                                   className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                                     ${isSublinkActive
@@ -630,8 +507,8 @@ export default function Navbar() {
                                       : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
                                     }`}
                                 >
-                                  {t(sublink.name)}
-                                </LocalizedLink>
+                                  {sublink.name}
+                                </Link>
                               </motion.div>
                             );
                           })}
@@ -648,7 +525,7 @@ export default function Navbar() {
               className="h-[2.075rem] w-[2.075rem]  flex items-center bg-[#1789FF] justify-center rounded-full  text-xs   text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
               aria-label="Change language"
             >
-              {getCurrentLanguage()}
+              {language}
             </button>
 
             <AnimatePresence>
@@ -664,8 +541,8 @@ export default function Navbar() {
                     <li key={lang}>
                       <button
                         onClick={() => {
-                          const newLocale = lang === 'EN' ? 'en' : 'zh';
-                          handleLanguageChange(newLocale);
+                          setLanguage(lang as "EN" | "中文");
+                          setLangOpen(false);
                         }}
                         className="w-full px-3 py-2 text-left  text-xs  hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
                       >
@@ -681,7 +558,7 @@ export default function Navbar() {
 
         {/* Hamburger */}
         <button
-          className="lg:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
+          className="xl:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -705,153 +582,49 @@ export default function Navbar() {
         {menuOpen && (
           <motion.ul
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1, y:-2 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="lg:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
+            transition={{ duration: 0.15, ease: "easeInOut" }}
+            className="xl:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
           >
-            {navLocalizedLinks.map((link) => {
-              if (link.name === "Navigation.contact") {
+            {navLinks.map((link) => {
+              if (link.name === "Contact Us") {
                 return (
-                  <li key={link.name} className="border-b uppercase border-[#595959]/5">
+                  <li key={link.name} className="border-b border-[#595959]/5">
                     <div className="flex items-center justify-between px-6 py-4">
                       <button
                         onClick={() => {
                           openContactSlider();
                           setMenuOpen(false);
                         }}
-                        className="text-[#595959] uppercase hover:text-[#1789FF] transition-colors"
+                        className="text-[#595959] hover:text-[#1789FF] transition-colors"
                       >
-                        {t(link.name)}
+                        {link.name}
                       </button>
                     </div>
-                  </li>
-                );
-              }
-
-              // Special handling for About and Industries in mobile - show dropdown instead of direct navigation
-              if (link.name === "Navigation.about" || link.name === "Navigation.industries") {
-                const isSectionActive = link.name === "Navigation.about" ? isAboutActive() : isIndustriesActive();
-                return (
-                  <li key={link.name} className="">
-                    <div className="flex items-center  px-6 py-4">
-                      <button
-                        onClick={() =>
-                          setMobileDropdown(
-                            mobileDropdown === link.name ? null : link.name
-                          )
-                        }
-                        className={`text-left w-[90%] uppercase ${isSectionActive ? "text-[#1789FF]" : "text-[#595959]"}`}
-                        aria-label={`Toggle ${t(link.name)} submenu`}
-                      >
-                        {t(link.name)}
-                      </button>
-                      {link.children && (
-                        <button
-                          onClick={() =>
-                            setMobileDropdown(
-                              mobileDropdown === link.name ? null : link.name
-                            )
-                          }
-                          aria-label={`Toggle ${t(link.name)} submenu`}
-                          className="ml-2 flex items-center justify-center w-4 h-4"
-                        >
-                          <motion.span
-                            initial={false}
-                            animate={{
-                              rotate: mobileDropdown === link.name ? 180 : 0,
-                            }}
-                            transition={{
-                              duration: 0.15,
-                              ease: "easeInOut"
-                            }}
-                            className="flex items-center justify-center w-4 h-4"
-                          >
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <motion.rect
-                                x="3"
-                                y="7.25"
-                                width="10"
-                                height="1.5"
-                                rx="0.75"
-                                fill="#1789FF"
-                              />
-                              <motion.rect
-                                x="7.25"
-                                y="3"
-                                width="1.5"
-                                height="10"
-                                rx="0.75"
-                                fill="#1789FF"
-                                animate={{
-                                  scaleY: mobileDropdown === link.name ? 0 : 1,
-                                }}
-                                transition={{
-                                  duration: 0.2,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                            </svg>
-                          </motion.span>
-                        </button>
-                      )}
-                    </div>
-                    {/* Mobile Dropdown */}
-                    <AnimatePresence>
-                      {link.children && mobileDropdown === link.name && (
-                        <motion.ul
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{
-                            duration: 0.15,
-                            ease: "easeInOut"
-                          }}
-                          className="flex flex-col bg-white  ml-6"
-                        >
-                          {link.children.map((sublink) => (
-                            <li key={sublink.name}>
-                              <LocalizedLink
-                                href={sublink.href}
-                                className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10"
-                                onClick={() => setMenuOpen(false)}
-                              >
-                                {t(sublink.name)}
-                              </LocalizedLink>
-                            </li>
-                          ))}
-                        </motion.ul>
-                      )}
-                    </AnimatePresence>
                   </li>
                 );
               }
 
               return (
-                <li key={link.name} className="">
+                <li key={link.name} className="border-b border-[#595959]/5">
                   <div className="flex items-center justify-between px-6 py-4">
-                    <LocalizedLink
+                    <Link
                       href={link.href}
-                      className={`w-full ${isLocalizedLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
+                      className={` ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
                       onClick={() => setMenuOpen(false)}
                     >
-                      {t(link.name)}
-                    </LocalizedLink>
-                    {link.children && shouldShowDropdown(link.href) && (
+                      {link.name}
+                    </Link>
+                    {link.children && (
                       <button
                         onClick={() =>
                           setMobileDropdown(
                             mobileDropdown === link.name ? null : link.name
                           )
                         }
-                        aria-label={`Toggle ${t(link.name)} submenu`}
-                        className="ml-2  flex items-center justify-center w-4 h-4"
+                        aria-label={`Toggle ${link.name} submenu`}
+                        className="ml-2 flex items-center justify-center w-4 h-4"
                       >
                         <motion.span
                           initial={false}
@@ -901,7 +674,7 @@ export default function Navbar() {
                   </div>
                   {/* Mobile Dropdown */}
                   <AnimatePresence>
-                    {link.children && shouldShowDropdown(link.href) && mobileDropdown === link.name && (
+                    {link.children && mobileDropdown === link.name && (
                       <motion.ul
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
@@ -914,13 +687,13 @@ export default function Navbar() {
                       >
                         {link.children.map((sublink) => (
                           <li key={sublink.name}>
-                            <LocalizedLink
+                            <Link
                               href={sublink.href}
                               className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10"
                               onClick={() => setMenuOpen(false)}
                             >
-                              {t(sublink.name)}
-                            </LocalizedLink>
+                              {sublink.name}
+                            </Link>
                           </li>
                         ))}
                       </motion.ul>
@@ -931,16 +704,16 @@ export default function Navbar() {
             })}
             {/* Language Selector (Mobile only) */}
             <li className="px-6 py-4 flex items-center justify-between">
-              <span className="text-[#595959] ">
-                {t("Common.language")}
+              <span className="text-[#595959] font-semibold">
+                Language
               </span>
               <div className="relative">
                 <button
                   onClick={() => setLangOpen((v) => !v)}
-                  className="h-8 w-8 flex items-center text-xs justify-center bg-[#1789ff] rounded-full border border-[#595959]/40 text-white hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
+                  className="h-8 w-8 flex items-center text-xs justify-center bg-[#1789ff] rounded-full border border-[#595959]/40  font-semibold text-white hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
                   aria-label="Change language"
                 >
-                  {getCurrentLanguage()}
+                  {language}
                 </button>
 
                 <AnimatePresence>
@@ -956,10 +729,10 @@ export default function Navbar() {
                         <li key={lang}>
                           <button
                             onClick={() => {
-                              const newLocale = lang === 'EN' ? 'en' : 'zh';
-                              handleLanguageChange(newLocale);
+                              setLanguage(lang as "EN" | "中文");
+                              setLangOpen(false);
                             }}
-                            className="w-full px-3 py-3 text-left text-xs font-thin  hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
+                            className="w-full px-3 py-3 text-left text-xs  hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
                           >
                             {lang}
                           </button>

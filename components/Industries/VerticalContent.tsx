@@ -3,7 +3,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from 'next-intl';
 
 export type ApproachItem = { title: string; desc: string };
 
@@ -12,7 +11,6 @@ export default function VerticalContent({
     sectionId = "approach",
     content,
     backgroundImage,
-    mobileImage,
     buttonText,
 }: {
     items: ApproachItem[];
@@ -20,10 +18,8 @@ export default function VerticalContent({
     buttonText?: string;
     content: string;
     backgroundImage?: string;
-    mobileImage?: string;
 }) {
     const [activeApproach, setActiveApproach] = useState(0);
-    const t = useTranslations();
 
     if (!items || items.length === 0) return null;
 
@@ -34,61 +30,42 @@ export default function VerticalContent({
     return (
         <section
             id={sectionId}
-            className="w-full bg-white min-h-screen max-md:min-h-[50vh]"
+            className="w-full bg-[#ececec] xl:min-h-screen max-md:min-h-[60vh]  min-h-[40vh]"
         >
-            <section className="w-full bg-[#ececec] py-10 sm:py-10 md:py-20" >
+            <section className="w-full bg-[#f5f5f5] xl:h-[35vh]  py-10" >
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-semibold text-[#595959] mb-4 sm:mb-6">
-                        {t("Industries.proofLives")}
+                    <h2 className="text-2xl  md:text-2xl lg:text-3xl font-semibold text-[#595959] mb-4 sm:mb-6">
+                        Where proof lives.
                     </h2>
-                    <p className="text-lg sm:text-sm md:text-base lg:text-lg text-[#595959]/80 leading-tight">
+                    <p className="text-lg text-[#595959]/80 leading-tight">
                         {content}
                     </p>
                 </div>
             </section>
-            <div className="h-[70vh] max-[400px]:h-screen flex items-center py-6 sm:py-8 md:py-10 relative">
+            <div className="h-[70vh]  xs:h-screen  flex items-center py-6 sm:py-8 md:py-10 relative">
                 {/* Background Image */}
                 {backgroundImage && (
                     <div className="absolute inset-0 z-0">
-                        {/* Desktop/Tablet: Always show backgroundImage */}
                         <Image
                             src={backgroundImage}
                             alt="Background"
                             fill
-                            className="object-cover max-md:hidden"
+                            className="object-cover"
                             priority
                         />
-                        {/* Mobile: Show mobileImage if available, otherwise show backgroundImage */}
-                        {mobileImage ? (
-                            <Image
-                                src={mobileImage}
-                                alt="Background"
-                                fill
-                                className="object-cover md:hidden"
-                                priority
-                            />
-                        ) : (
-                            <Image
-                                src={backgroundImage}
-                                alt="Background"
-                                fill
-                                className="object-cover md:hidden"
-                                priority
-                            />
-                        )}
                         {/* Blue overlay */}
                         <div className="absolute inset-0 mix-blend-multiply bg-[#005190] z-10"></div>
                     </div>
                 )}
 
-                <div className="max-w-4xl  h-full px-4 sm:px-6 md:px-8 lg:px-10 space-y-4 sm:space-y-5 mx-auto w-full relative z-10">
-                    <div className="flex flex-col-reverse h-full justify-center items-center gap-4 lg:gap-2 xl:gap-1">
+                <div className="max-w-4xl h-full px-4 sm:px-6 md:px-8 lg:px-10 space-y-4 sm:space-y-5 mx-auto w-full relative z-10">
+                    <div className="flex flex-col-reverse h-full gap-5 justify-center items-center">
                         {/* Left: Active content - Now horizontal */}
                         <div
                             id={panelId}
                             role="tabpanel"
                             aria-labelledby={activeTabId}
-                            className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10  h-1/2 text-white"
+                            className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10 h-1/2  text-white"
                         >
                             <motion.div
                                 key={active}
@@ -97,7 +74,7 @@ export default function VerticalContent({
                                 transition={{ duration: 0, ease: "easeOut" }}
                                 className="contents"
                             >
-                                <h3 className="text-lg max-md:pt-2 sm:text-xl md:text-2xl leading-tight">
+                                <h3 className="text-lg sm:text-xl md:text-2xl leading-tight">
                                     {items[active].desc}
                                 </h3>
                             </motion.div>
@@ -110,7 +87,7 @@ export default function VerticalContent({
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className="flex flex-wrap max-md:flex-nowrap max-md:flex-col max-md:justify-center max-md:gap-4 xl:gap-6 xl:py-12 h-1/2 py-6 sm:py-8 md:py-10   justify-between w-full gap-x-2 sm:gap-x-3"
+                                className="flex flex-wrap max-md:flex-nowrap  max-md:flex-col max-md:justify-center max-md:gap-4 xs:h-1/2 md:h-[30%]  sm:py-6 md:py-0 justify-between w-full gap-x-2 sm:gap-x-3"
                                 role="tablist"
                                 aria-label="Approach options"
                             >
@@ -132,7 +109,8 @@ export default function VerticalContent({
                                                     : "text-[#009B80] hover:text-white"
                                                 }`}
                                         >
-                                            {it.title}</button>
+                                            {it.title}
+                                        </button>
                                     );
                                 })}
                             </motion.div>
@@ -145,7 +123,7 @@ export default function VerticalContent({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex justify-center left-1/2 -translate-x-1/2 absolute bottom-8 lg:bottom-10 xl:bottom-20 2xl:bottom-8"
+                            className="flex justify-center sm:-mt-28 xs:-mt-20 lg:-mt-40 -mt-20 "
                         >
                             <Link href={'https://meibanenergy.com'} target="_blank">
                                 <button className="px-4 sm:px-5 md:px-6 py-2 text-xs font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
