@@ -2,16 +2,16 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from 'next-intl';
 
 type Slide = {
   img: string; // public/ path or remote URL
-  mobileImg?: string; // mobile-specific image
+  mobileImage?: string; // mobile-specific image path
   imgAlt?: string;
   step?: string; // e.g. "1"
   title: string; // "Business-Aligned from Day One"
   lead?: string; // short paragraph
   bullets?: string[]; // bullet list
+  ctas?: { label: string; href: string }[]; // call-to-action links
 };
 
 export default function PurposeCarousel({
@@ -23,7 +23,7 @@ export default function PurposeCarousel({
 }) {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
-  const t = useTranslations();
+  const [isMobile, setIsMobile] = useState(false);
 
   const len = slides.length;
   const clamp = (n: number) => (n + len) % len;
@@ -31,7 +31,10 @@ export default function PurposeCarousel({
   const go = (n: number) => setIdx((i) => clamp(i + n));
   const to = (n: number) => setIdx(clamp(n));
 
-  // autoplay (pause on hover / when tab hidden)
+  // Mobile detection
+
+
+  // Autoplay (pause on hover / when tab hidden)
   useEffect(() => {
     if (paused || len <= 1) return;
     const id = setInterval(() => setIdx((i) => clamp(i + 1)), intervalMs);
@@ -39,19 +42,12 @@ export default function PurposeCarousel({
   }, [paused, intervalMs, len]);
 
   useEffect(() => {
-    const onVis = () => {
-      if (typeof document !== 'undefined') {
-        setPaused(document.hidden);
-      }
-    };
-    
-    if (typeof document !== 'undefined') {
-      document.addEventListener("visibilitychange", onVis);
-      return () => document.removeEventListener("visibilitychange", onVis);
-    }
+    const onVis = () => setPaused(document.hidden);
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
   }, []);
 
-  // swipe
+  // Swipe
   const touch = useRef<{ x: number; y: number } | null>(null);
   const onTouchStart = (e: React.TouchEvent) => {
     const t = e.touches[0];
@@ -68,76 +64,54 @@ export default function PurposeCarousel({
     touch.current = null;
   };
 
-  // keyboard
+  // Keyboard
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") go(-1);
       if (e.key === "ArrowRight") go(+1);
     };
-    
-    if (typeof window !== 'undefined') {
-      window.addEventListener("keydown", h);
-      return () => window.removeEventListener("keydown", h);
-    }
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
   }, []);
 
   const slide = slides[idx];
 
   return (
-    <section className="w-full bg-[#ececec] min-h-screen">
+    <section className="w-full bg-[#ececec] xl:min-h-screen  min-h-[45vh]">
       {/* Top copy */}
-      <div className="max-w-7xl px-4 mx-auto max-[380px]:my-4 py-10 space-y-4 sm:py-12 text-center">
+      <div className="max-w-7xl px-4 mx-auto py-10 sm:py-12 text-center">
         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl md:text-4xl">
-          {t('About.purposeCarousel.title')}
+         {` Engineering with purpose.
+          Delivering with precision.`}
         </h2>
-        <p className="mt-4 max-w-2xl mx-auto  text-[#6F6F6F] text-lg">
-          {t('About.purposeCarousel.paragraph1')}
+        <p className="mt-4 mb-0 max-w-4xl mx-auto text-[#6F6F6F] text-lg">
+          We begin with your business reality -  your volumes, cost targets, and
+          roadmap.
         </p>
-        <p className=" max-w-2xl mx-auto  text-[#6F6F6F] text-lg">
-          {t('About.purposeCarousel.paragraph2')}
+        <br />
+        <p className="mb-2 -mt-2 max-w-2xl mx-auto text-[#6F6F6F] whitespace-pre-line text-lg">
+          Then we engineer what matters: solutions shaped by  clarity, operational discipline, and purposeful innovation.
         </p>
       </div>
 
       {/* Carousel */}
       <div
-        className="relative w-full min-h-screen sm:h-[70vh] overflow-hidden"
+        className="relative w-full xl:min-h-screen h-screen  lg:min-h-[40vh] lg:max-h-[60vh] sm:h-[75vh] overflow-hidden"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        {/* Desktop/Tablet: Always show regular image */}
+        {/* Image */}
         <Image
-          key={slide.title + idx}
+          key={slide.img + idx}
           src={slide.img}
           alt={slide.imgAlt || slide.title}
           fill
           priority
           sizes="100vw"
-          className="object-cover transition-transform duration-[800ms] will-change-transform max-md:hidden"
+          className="object-cover transition-transform duration-[800ms] will-change-transform"
         />
-        {/* Mobile: Show mobileImg if available, otherwise show regular image */}
-        {slide.mobileImg ? (
-          <Image
-            key={slide.mobileImg + idx}
-            src={slide.mobileImg}
-            alt={slide.imgAlt || slide.title}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover transition-transform duration-[800ms] will-change-transform md:hidden"
-          />
-        ) : (
-          <Image
-            key={slide.img + idx}
-            src={slide.img}
-            alt={slide.imgAlt || slide.title}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover transition-transform duration-[800ms] will-change-transform md:hidden"
-          />
-        )}
         {/* Gradient for legibility */}
         <div className="absolute inset-0">
           {/* base black fade for readability */}
@@ -147,41 +121,51 @@ export default function PurposeCarousel({
         </div>
 
         {/* Overlay content */}
-        <div className="absolute -top-20  inset-0 z-10 flex items-start pt-[10rem]">
-          <div className="pr-28 max-[400px]:pr-20  pl-10 sm:px-6 lg:px-12  max-w-7xl w-full mx-auto">
-            <div className="max-w-3xl  max-md:max-w-xl  text-white">
+        <div className="absolute -top-20 inset-0 pr-[3rem] z-10 flex items-start pt-[10rem]">
+          <div className="px-2 pl-4 lg:pl-18 lg:px-12 max-w-7xl w-full mx-auto">
+            <div className="max-w-4xl text-white">
               {slide.step && (
-                <div className="text-3xl font-semibold mb-20 max-[400px]:mb-12 opacity-90">
+                <div className="text-3xl font-semibold mb-20 opacity-90">
                   {slide.step}
                 </div>
               )}
-              <h3 className="text-2xl whitespace-pre-line  sm:text-3xl md:text-5xl font-semibold leading-tight mb-6">
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight mb-6">
                 {slide.title}
               </h3>
               {slide.lead && (
-                <p className="text-lg  text-white/90 leading-tight mb-8">
+                <p className="text-lg text-white/90 leading-relaxed mb-8">
                   {slide.lead}
                 </p>
               )}
               {!!slide.bullets?.length && (
                 <ul className="space-y-4 text-lg md:text-xl font-light text-white/90 mb-12">
                   {slide.bullets.map((b, i) => (
-                    <li key={i} className="relative max-md:pr-1 flex gap-4 items-center">
-                      <span className="font-bold rounded-full ">•</span>
-
+                    <li key={i} className="relative  flex gap-4 items-center">
+                      <span className="font-semibold rounded-full ">•</span>
                       <span>{b}</span>
                     </li>
                   ))}
                 </ul>
               )}
-
+              {!!slide.ctas?.length && (
+                <div className="flex gap-4">
+                  {slide.ctas.map((cta, i) => (
+                    <Link
+                      key={i}
+                      href={cta.href}
+                      className="inline-block px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-200 backdrop-blur-sm"
+                    >
+                      {cta.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Dots */}
         {/* Arrow Navigation */}
-        <div className="absolute z-10 max-[390px]:bottom-8 max-[750px]:bottom-40 max-md:left-6 md:bottom-20 xl:bottom-28 2xl:bottom-20 md:left-0 w-full">
+        <div className="absolute z-10 max-md:bottom-40 max-[380px]:bottom-2  max-md:left-1 bottom-20 left-0 w-full" style={{ bottom: typeof window !== "undefined" && window.innerWidth < 380 ? '48px' : undefined }}>
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex justify-start gap-5 items-center">
               {/* Left Arrow */}

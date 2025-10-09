@@ -12,10 +12,6 @@ const slides = [
       "Tailored manufacturing strategies",
       "Early alignment to cost, compliance, and launch targets",
     ],
-    ctas: [
-      { label: "See How We Build", href: "/build" },
-      { label: "Explore Case Studies", href: "/case-studies" },
-    ],
   },
   {
     img: "/static/about/2.webp",
@@ -27,10 +23,6 @@ const slides = [
     bullets: [
       "Agile teams for complex custom projects",
       "Systems designed for consistent large-scale execution",
-    ],
-    ctas: [
-      { label: "See How We Build", href: "/build" },
-      { label: "Explore Case Studies", href: "/case-studies" },
     ],
   },
   {
@@ -45,10 +37,6 @@ const slides = [
       "Tighter quality control",
       "Seamless handoffs at every stage",
     ],
-    ctas: [
-      { label: "See How We Build", href: "/build" },
-      { label: "Explore Case Studies", href: "/case-studies" },
-    ],
   },
   {
     img: "/static/about/4.jpg",
@@ -60,10 +48,6 @@ const slides = [
       "Stable, repeatable results",
       "Micron-level tolerances where it matters",
       "Quality designed in, not inspected in",
-    ],
-    ctas: [
-      { label: "See How We Build", href: "/build" },
-      { label: "Explore Case Studies", href: "/case-studies" },
     ],
   },
   {
@@ -77,10 +61,6 @@ const slides = [
       "Outcome-driven solutions, never overengineered",
       "Measurable gains in performance and reliability",
     ],
-    ctas: [
-      { label: "See How We Build", href: "/build" },
-      { label: "Explore Case Studies", href: "/case-studies" },
-    ],
   },
   {
     img: "/static/about/6.jpg",
@@ -93,28 +73,19 @@ const slides = [
       "Teams with decades of successful deliveries",
       "Relentless focus on timelines and outcomes",
     ],
-    ctas: [
-      { label: "See How We Build", href: "/build" },
-      { label: "Explore Case Studies", href: "/case-studies" },
-    ],
   },
 ];
 
 export default function AboutApproach() {
   const t = useTranslations();
   const locale = useLocale();
-  
+
   const translatedSlides = slides.map(slide => ({
     ...slide,
     title: t(`About.approach.slide${slide.step}.title`),
     lead: t(`About.approach.slide${slide.step}.lead`),
     bullets: slide.bullets.map((_, index) => t(`About.approach.slide${slide.step}.bullet${index + 1}`)),
-    ctas: slide.ctas.map((cta, index) => ({
-      ...cta,
-      label: t(`About.approach.slide${slide.step}.cta${index + 1}`),
-      href: `/${locale}${cta.href}`
-    }))
   }));
-  
+
   return <PurposeCarousel slides={translatedSlides} intervalMs={6000} />;
 }

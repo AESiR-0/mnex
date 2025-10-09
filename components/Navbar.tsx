@@ -39,8 +39,6 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrollUpDistance, setScrollUpDistance] = useState(0); // Track how much we've scrolled up
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
@@ -122,13 +120,15 @@ export default function Navbar() {
 
   // Handle scroll for navbar visibility
   useEffect(() => {
+    let lastScrollY = 0;
+    let scrollUpDistance = 0;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       // Track scroll up distance when scrolling up
       if (currentScrollY < lastScrollY && currentScrollY > 500) {
-        setScrollUpDistance(prev => prev + (lastScrollY - currentScrollY));
-
+        scrollUpDistance += (lastScrollY - currentScrollY);
         // Only show navbar after scrolling up 500px
         if (scrollUpDistance >= 500) {
           setIsVisible(true);
@@ -136,21 +136,21 @@ export default function Navbar() {
       }
       // Reset scroll up distance and hide navbar when scrolling down
       else if (currentScrollY > lastScrollY && currentScrollY > 500) {
-        setScrollUpDistance(0);
+        scrollUpDistance = 0;
         setIsVisible(false);
       }
       // Always show navbar when above 500px
       else if (currentScrollY <= 500) {
-        setScrollUpDistance(0);
+        scrollUpDistance = 0;
         setIsVisible(true);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Handle navbar mouse leave to close all dropdowns (except when on about/industries pages)
   const handleNavbarMouseLeave = () => {
@@ -342,7 +342,7 @@ export default function Navbar() {
                           type: "keyframes",
                           duration: 0.2,
                         }}
-                        className="fixed left-0 top-[55px] pb-3 w-screen bg-[#ffffff] flex justify-center overflow-hidden"
+                        className="fixed left-0 top-[55px] pb-3 w-screen z-1 bg-[#ffffff] flex justify-center overflow-hidden"
                         style={{ zIndex: 100 }}
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
@@ -357,6 +357,7 @@ export default function Navbar() {
                                   duration: 0.3,
                                   ease: "easeOut"
                                 }}
+                                className="z-[1]"
                               >
                                 <LocalizedLink
                                   href={sublink.href}
@@ -658,7 +659,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 mt-2 w-28 bg-white border border-[#e0e0e0] rounded-lg shadow-md overflow-hidden z-50"
+                  className="absolute right-0 mt-2 w-28 bg-white border border-[#e0e0e0] rounded-lg shadow-md overflow-hidden z-[9999]"
                 >
                   {["EN", "中文"].map((lang) => (
                     <li key={lang}>
@@ -959,7 +960,7 @@ export default function Navbar() {
                               const newLocale = lang === 'EN' ? 'en' : 'zh';
                               handleLanguageChange(newLocale);
                             }}
-                            className="w-full px-3 py-3 text-left text-xs font-thin  hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
+                            className="w-full px-3 py-3 text-left z-[9999] text-xs font-thin  hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
                           >
                             {lang}
                           </button>

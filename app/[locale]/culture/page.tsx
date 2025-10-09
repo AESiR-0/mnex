@@ -127,7 +127,7 @@ function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line max-md:h-[128vh]  h-[135vh] bg-[#ececec] flex flex-col">
+        <section className="w-full whitespace-pre-line sm:h-[128vh] md:h-screen  xl:h-[135vh] bg-[#ececec] flex flex-col">
             {/* Header */}
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
@@ -238,7 +238,7 @@ const page = () => {
     const t = useTranslations();
     return (
         <div>
-            <section className="w-full h-[60vh] ">
+            <section className="w-full h-auto ">
                 <div className=" h-full w-full bg-[#f2f2f2]">
                     <div className="max-w-4xl px-4 mx-auto max-[380px]:my-4 pb-20 pt-32 space-y-3  text-center">
                         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl pb-4 md:text-4xl">
