@@ -102,66 +102,68 @@ export default function Sustainability() {
             MNEX SOLAR ENERGY DATA
           </Header>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 text-base sm:text-lg md:text-xl gap-6 sm:gap-8 md:gap-12">
+          <div className="grid grid-cols-1 sm:gap-y-10 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-0 sm:place-items-center lg:gap-8">
             {/* Solar Panels */}
-            <div className="flex items-center gap-8  sm:gap-6 px-8 sm:px-12 md:px-20">
-              <div className="flex-shrink-0">
+            <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8">
+              <div className="flex-shrink">
                 <Image
                   src="/static/sustainability/solar panel.svg"
                   alt="Solar Panel Icon"
-                  width={60}
-                  height={60}
-                  className="sm:w-16 sm:h-16 md:w-20 md:h-20 text-[#009b80]"
+                  width={50}
+                  height={50}
+                  className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 text-[#009b80]"
                 />
               </div>
-              <div className="text-left">
-                <div className="text-[#009b80] font-bold leading-none text-lg sm:text-xl md:text-2xl">
+              <div className="text-left  min-w-0 flex-1">
+                <div className="text-[#009b80] font-bold leading-none text-base sm:text-lg lg:text-xl">
                   1,562
                 </div>
-                <div className="text-[#009b80] font-medium text-sm sm:text-base md:text-lg">
+                <div className="text-[#009b80] font-medium text-xs sm:text-sm lg:text-base">
                   SOLAR PANELS
                 </div>
               </div>
             </div>
 
             {/* Annual Power Generation */}
-            <div className="flex items-center gap-8  sm:gap-6 px-6 sm:px-8 md:px-10">
+            <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8">
               <div className="flex-shrink-0">
                 <Image
                   src="/static/sustainability/annual power.svg"
                   alt="Power Generation Icon"
-                  width={60}
-                  height={60}
-                  className="sm:w-16 sm:h-16 md:w-20 md:h-20 text-[#009b80]"
+                  width={50}
+                  height={50}
+                  className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 text-[#009b80]"
                 />
               </div>
-              <div className="text-left">
-                <div className="text-[#009b80] text-sm sm:text-base md:text-lg">
+              <div className="text-left   min-w-0 flex-1">
+                <div className="text-[#009b80] text-xs sm:text-sm lg:text-base">
                   ANNUAL POWER GENERATION
                 </div>
-                <div className="text-[#009b80] uppercase font-semibold leading-none text-lg sm:text-xl md:text-2xl">
+                <div className="text-[#009b80] uppercase font-semibold leading-none text-base sm:text-lg lg:text-xl">
                   1,150,000 kWh
                 </div>
               </div>
             </div>
 
             {/* CO2 Emissions Reduction */}
-            <div className="flex items-center gap-8  sm:gap-6 px-6 sm:px-8 md:px-10">
-              <div className="flex-shrink-0">
-                <Image
-                  src="/static/sustainability/c02 emission.svg"
-                  alt="CO2 Reduction Icon"
-                  width={60}
-                  height={60}
-                  className="sm:w-16 sm:h-16 md:w-20 md:h-20 text-[#009b80]"
-                />
-              </div>
-              <div className="text-left">
-                <div className="text-[#009b80] font-medium text-sm sm:text-base md:text-lg">
-                  CO₂ EMISSIONS REDUCTION:
+            <div className="sm:col-span-2 lg:col-span-1 sm:flex sm:justify-center lg:justify-start">
+              <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8">
+                <div className="flex-shrink-0">
+                  <Image
+                    src="/static/sustainability/c02 emission.svg"
+                    alt="CO2 Reduction Icon"
+                    width={50}
+                    height={50}
+                    className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 text-[#009b80]"
+                  />
                 </div>
-                <div className="text-[#009b80] uppercase font-semibold leading-none text-lg sm:text-xl md:text-2xl">
-                  920 Tonnes
+                <div className="text-left  min-w-0 flex-1  lg:text-left">
+                  <div className="text-[#009b80] font-medium text-xs sm:text-sm lg:text-base">
+                    CO₂ EMISSIONS REDUCTION:
+                  </div>
+                  <div className="text-[#009b80] uppercase font-semibold leading-none text-base sm:text-lg lg:text-xl">
+                    920 Tonnes
+                  </div>
                 </div>
               </div>
             </div>

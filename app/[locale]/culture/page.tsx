@@ -127,7 +127,7 @@ function CapabilitiesSection() {
     };
 
     return (
-        <section className="w-full whitespace-pre-line sm:h-[128vh] md:h-screen  xl:h-[135vh] bg-[#ececec] flex flex-col">
+        <section className="w-full whitespace-pre-line sm:h-[128vh] md:h-screen  max-md:min-h-screen xl:h-[135vh] bg-[#ececec] flex flex-col">
             {/* Header */}
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
@@ -238,7 +238,7 @@ const page = () => {
     const t = useTranslations();
     return (
         <div>
-            <section className="w-full h-auto ">
+            <section className="w-full h-auto  ">
                 <div className=" h-full w-full bg-[#f2f2f2]">
                     <div className="max-w-4xl px-4 mx-auto max-[380px]:my-4 pb-20 pt-32 space-y-3  text-center">
                         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl pb-4 md:text-4xl">
@@ -281,7 +281,7 @@ const page = () => {
                         >
                             <Link href={'mailto:careers@mnexprecision.com'} target="_blank">
                                 <button className="mt-12 max-md:mt-6 px-8  py-3 text-sm sm:text-base font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-white/80 hover:text-[#009B80] border-white hover:border-white/80">
-                                   Reach Us                               </button>
+                                    Reach Us                               </button>
                             </Link>
                         </motion.div>
                     </div>

@@ -120,6 +120,14 @@ export default function SiteFooter() {
                     </LocalizedLink>
                   </li>
                   <li>
+                    <LocalizedLink
+                      href="/culture"
+                      className="text-[#595959] hover:text-[#1789FF] transition"
+                    >
+                      {t("Navigation.culture").toUpperCase()}
+                    </LocalizedLink>
+                  </li>
+                  <li>
                     <button
                       onClick={() => {
                         open();
@@ -130,6 +138,7 @@ export default function SiteFooter() {
                     </button>
                   </li>
                 </ul>
+                
               </div>
             </div>
 

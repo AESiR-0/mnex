@@ -13,12 +13,16 @@ const useIsPhoneOrTablet = () => {
 
   useEffect(() => {
     const checkIsPhoneOrTablet = () => {
+      if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+        return;
+      }
+
       // Phone: width < 640, Tablet: width < 1024 (typical breakpoints)
       const isSmallScreen = window.innerWidth < 640;
       const isTabletScreen = window.innerWidth >= 640 && window.innerWidth < 1024;
 
       // User agent checks
-      const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
+      const userAgent = navigator.userAgent.toLowerCase();
       const isPhoneUserAgent = /android.*mobile|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
       const isTabletUserAgent = /ipad|tablet|android(?!.*mobile)/i.test(userAgent);
 
@@ -33,11 +37,17 @@ const useIsPhoneOrTablet = () => {
     };
 
     checkIsPhoneOrTablet();
-    window.addEventListener('resize', checkIsPhoneOrTablet);
-    window.addEventListener('orientationchange', checkIsPhoneOrTablet);
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', checkIsPhoneOrTablet);
+      window.addEventListener('orientationchange', checkIsPhoneOrTablet);
+    }
+    
     return () => {
-      window.removeEventListener('resize', checkIsPhoneOrTablet);
-      window.removeEventListener('orientationchange', checkIsPhoneOrTablet);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', checkIsPhoneOrTablet);
+        window.removeEventListener('orientationchange', checkIsPhoneOrTablet);
+      }
     };
   }, []);
 

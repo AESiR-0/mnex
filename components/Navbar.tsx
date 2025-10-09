@@ -1,12 +1,12 @@
 "use client";
-import Link from "next/link";
+import LocalizedLink from "./LocalizedLink";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useContactSlider } from "@/lib/useContactSlider";
 
-const navLinks = [
+const navLocalizedLinks = [
   {
     name: "About Us",
     href: "/about/approach",
@@ -27,7 +27,7 @@ const navLinks = [
     ],
   },
   { name: "Sustainability", href: "/sustainability" },
-  // { name: "Culture", href: "/culture" },
+  { name: "Culture", href: "/culture" },
   { name: "Contact Us", href: "/contact" },
 ];
 
@@ -42,7 +42,7 @@ export default function Navbar() {
   const { isOpen: isContactOpen, open: openContactSlider } = useContactSlider();
 
   // Check if a link is active
-  const isLinkActive = (href: string) => {
+  const isLocalizedLinkActive = (href: string) => {
     return pathname.includes(href);
   };
 
@@ -58,7 +58,7 @@ export default function Navbar() {
 
   // Check if a link should show dropdown (not active)
   const shouldShowDropdown = (href: string) => {
-    return !isLinkActive(href);
+    return !isLocalizedLinkActive(href);
   };
 
   // Handle scroll for navbar visibility
@@ -113,7 +113,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 w-full">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <LocalizedLink href="/" className="flex items-center gap-2">
           <Image
             src="/static/Logo/Logo_PNG/MNex_v2-11.png"
             width={128}
@@ -121,11 +121,11 @@ export default function Navbar() {
             alt="MNex Logo"
             className="h-auto w-auto"
           />
-        </Link>
+        </LocalizedLink>
 
         {/* Desktop Nav */}
         <ul className="hidden transition-all  tracking-[0.05em] text-sm xl:flex gap-8 items-center">
-          {navLinks.map((link) => {
+          {navLocalizedLinks.map((link) => {
             if (link.name == "Contact Us") {
               return (
                 <li key={link.name} className="relative group  transition-all">
@@ -154,14 +154,14 @@ export default function Navbar() {
                   onFocus={() => !isAboutSectionActive && link.children && setOpenDropdown(link.name)}
                 >
                   <div className="flex items-center">
-                    <Link
+                    <LocalizedLink
                       href={link.href}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
             ${isAboutSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
                       {link.name}
-                    </Link>
+                    </LocalizedLink>
                     {link.children && !isAboutSectionActive && (
                       <motion.span
                         initial={false}
@@ -230,7 +230,7 @@ export default function Navbar() {
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
                           {link.children.map((sublink, index) => {
-                            const isSublinkActive = isLinkActive(sublink.href);
+                            const isSublinkActive = isLocalizedLinkActive(sublink.href);
                             return (
                               <motion.div
                                 key={sublink.name}
@@ -242,7 +242,7 @@ export default function Navbar() {
                                 }}
                                 className="z-[1]"
                               >
-                                <Link
+                                <LocalizedLink
                                   href={sublink.href}
                                   className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                                     ${isSublinkActive
@@ -251,7 +251,7 @@ export default function Navbar() {
                                     }`}
                                 >
                                   {sublink.name}
-                                </Link>
+                                </LocalizedLink>
                               </motion.div>
                             );
                           })}
@@ -275,14 +275,14 @@ export default function Navbar() {
                   onFocus={() => !isIndustriesSectionActive && link.children && setOpenDropdown(link.name)}
                 >
                   <div className="flex items-center">
-                    <Link
+                    <LocalizedLink
                       href={link.href}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
             ${isIndustriesSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
                       {link.name}
-                    </Link>
+                    </LocalizedLink>
                     {link.children && !isIndustriesSectionActive && (
                       <motion.span
                         initial={false}
@@ -351,7 +351,7 @@ export default function Navbar() {
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
                           {link.children.map((sublink, index) => {
-                            const isSublinkActive = isLinkActive(sublink.href);
+                            const isSublinkActive = isLocalizedLinkActive(sublink.href);
                             return (
                               <motion.div
                                 key={sublink.name}
@@ -362,7 +362,7 @@ export default function Navbar() {
                                   ease: "easeOut"
                                 }}
                               >
-                                <Link
+                                <LocalizedLink
                                   href={sublink.href}
                                   className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                                     ${isSublinkActive
@@ -371,7 +371,7 @@ export default function Navbar() {
                                     }`}
                                 >
                                   {sublink.name}
-                                </Link>
+                                </LocalizedLink>
                               </motion.div>
                             );
                           })}
@@ -383,21 +383,21 @@ export default function Navbar() {
               );
             } else if (link.name === "Sustainability") {
               // Special handling for Sustainability - hover effect
-              const isSustainabilityActive = isLinkActive(link.href);
+              const isSustainabilityActive = isLocalizedLinkActive(link.href);
               return (
                 <li
                   key={link.name}
                   className="relative group transition-all"
                 >
                   <div className="flex items-center">
-                    <Link
+                    <LocalizedLink
                       href={link.href}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#009b80]
             ${isSustainabilityActive ? "text-[#009b80]" : "text-[#575757]"}
           `}
                     >
                       {link.name}
-                    </Link>
+                    </LocalizedLink>
                   </div>
                 </li>
               );
@@ -413,14 +413,14 @@ export default function Navbar() {
                   onFocus={() => link.children && shouldShowDropdown(link.href) && setOpenDropdown(link.name)}
                 >
                   <div className="flex items-center">
-                    <Link
+                    <LocalizedLink
                       href={link.href}
                       className={`px-2 py-1 transition-colors duration-200 flex items-center gap-1 hover:text-[#1789FF]
-            ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#575757]"}
+            ${isLocalizedLinkActive(link.href) ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
                       {link.name}
-                    </Link>
+                    </LocalizedLink>
                     {link.children && shouldShowDropdown(link.href) && (
                       <motion.span
                         initial={false}
@@ -447,7 +447,7 @@ export default function Navbar() {
                             width="10"
                             height="1.5"
                             rx="0.75"
-                            fill={`${isLinkActive(link.href) ? "#1789ff" : "#595959"}`}
+                            fill={`${isLocalizedLinkActive(link.href) ? "#1789ff" : "#595959"}`}
                             className="group-hover:fill-[#1789FF]"
                           />
                           <motion.rect
@@ -456,7 +456,7 @@ export default function Navbar() {
                             width="1.5"
                             height="10"
                             rx="0.75"
-                            fill={`${isLinkActive(link.href) ? "#1789ff" : "#595959"}`}
+                            fill={`${isLocalizedLinkActive(link.href) ? "#1789ff" : "#595959"}`}
                             className="group-hover:fill-[#1789FF]"
                             animate={{
                               scaleY: openDropdown === link.name ? 0 : 1,
@@ -489,7 +489,7 @@ export default function Navbar() {
                       >
                         <div className="max-w-5xl mx-auto flex justify-center gap-3 sm:gap-4 py-6">
                           {link.children.map((sublink, index) => {
-                            const isSublinkActive = isLinkActive(sublink.href);
+                            const isSublinkActive = isLocalizedLinkActive(sublink.href);
                             return (
                               <motion.div
                                 key={sublink.name}
@@ -500,7 +500,7 @@ export default function Navbar() {
                                   ease: "easeOut"
                                 }}
                               >
-                                <Link
+                                <LocalizedLink
                                   href={sublink.href}
                                   className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                                     ${isSublinkActive
@@ -509,7 +509,7 @@ export default function Navbar() {
                                     }`}
                                 >
                                   {sublink.name}
-                                </Link>
+                                </LocalizedLink>
                               </motion.div>
                             );
                           })}
@@ -588,7 +588,7 @@ export default function Navbar() {
             transition={{ duration: 0.15, ease: "easeInOut" }}
             className="xl:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
           >
-            {navLinks.map((link) => {
+            {navLocalizedLinks.map((link) => {
               if (link.name === "Contact Us") {
                 return (
                   <li key={link.name} className="border-b border-[#595959]/5">
@@ -610,13 +610,13 @@ export default function Navbar() {
               return (
                 <li key={link.name} className="border-b border-[#595959]/5">
                   <div className="flex items-center justify-between px-6 py-4">
-                    <Link
+                    <LocalizedLink
                       href={link.href}
-                      className={` ${isLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
+                      className={` ${isLocalizedLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
                       onClick={() => setMenuOpen(false)}
                     >
                       {link.name}
-                    </Link>
+                    </LocalizedLink>
                     {link.children && (
                       <button
                         onClick={() =>
@@ -688,13 +688,13 @@ export default function Navbar() {
                       >
                         {link.children.map((sublink) => (
                           <li key={sublink.name}>
-                            <Link
+                            <LocalizedLink
                               href={sublink.href}
                               className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10"
                               onClick={() => setMenuOpen(false)}
                             >
                               {sublink.name}
-                            </Link>
+                            </LocalizedLink>
                           </li>
                         ))}
                       </motion.ul>

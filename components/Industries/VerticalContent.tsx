@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useMobileDetection } from "@/lib/useMobileDetection";
 
 export type ApproachItem = { title: string; desc: string };
 
@@ -12,14 +13,25 @@ export default function VerticalContent({
     content,
     backgroundImage,
     buttonText,
+    mobileImage,
 }: {
     items: ApproachItem[];
     sectionId?: string;
     buttonText?: string;
     content: string;
     backgroundImage?: string;
+    mobileImage?: string;
 }) {
     const [activeApproach, setActiveApproach] = useState(0);
+    const isMobile = useMobileDetection();
+
+    // Debug logging for image selection
+    console.log('VerticalContent Image Selection:', {
+        isMobile,
+        hasBackgroundImage: !!backgroundImage,
+        hasMobileImage: !!mobileImage,
+        selectedImage: isMobile && mobileImage ? mobileImage : backgroundImage
+    });
 
     if (!items || items.length === 0) return null;
 
@@ -44,10 +56,10 @@ export default function VerticalContent({
             </section>
             <div className="h-[80vh] md:h-[70vh]  sm:h-screen  flex items-center py-6 sm:py-8 md:py-10 relative">
                 {/* Background Image */}
-                {backgroundImage && (
+                {(backgroundImage || mobileImage) && (
                     <div className="absolute inset-0 z-0">
                         <Image
-                            src={backgroundImage}
+                            src={isMobile && mobileImage ? mobileImage : backgroundImage!}
                             alt="Background"
                             fill
                             className="object-cover"
@@ -55,6 +67,7 @@ export default function VerticalContent({
                         />
                         {/* Blue overlay */}
                         <div className="absolute inset-0 mix-blend-multiply bg-[#005190] z-10"></div>
+                       
                     </div>
                 )}
 

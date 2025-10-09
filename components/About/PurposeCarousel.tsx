@@ -114,7 +114,7 @@ export default function PurposeCarousel({
         {/* Mobile: Show mobileImage if available, otherwise show regular image */}
         {slide.mobileImage ? (
           <Image
-            key={slide.mobileImage + idx}
+            key={slide.step? slide.step : slide.img + idx}
             src={slide.mobileImage}
             alt={slide.imgAlt || slide.title}
             fill
@@ -124,7 +124,7 @@ export default function PurposeCarousel({
           />
         ) : (
           <Image
-            key={slide.img + idx}
+            key={slide.step? slide.step : slide.img + idx}
             src={slide.img}
             alt={slide.imgAlt || slide.title}
             fill

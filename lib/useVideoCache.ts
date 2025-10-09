@@ -59,6 +59,11 @@ class VideoCache {
 
   private async loadVideo(src: string): Promise<void> {
     return new Promise((resolve, reject) => {
+      if (typeof document === 'undefined') {
+        reject(new Error('Document is not available'));
+        return;
+      }
+      
       const video = document.createElement('video');
       video.muted = true;
       video.preload = 'metadata';
