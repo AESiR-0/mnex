@@ -11,7 +11,6 @@ type Slide = {
   title: string; // "Business-Aligned from Day One"
   lead?: string; // short paragraph
   bullets?: string[]; // bullet list
-  ctas?: { label: string; href: string }[]; // call-to-action links
 };
 
 export default function PurposeCarousel({
@@ -77,7 +76,7 @@ export default function PurposeCarousel({
   const slide = slides[idx];
 
   return (
-    <section className="w-full bg-[#ececec] xl:min-h-screen  min-h-[45vh]">
+    <section className="w-full bg-[#ececec] xl:min-h-screen min-h-[40vh]">
       {/* Top copy */}
       <div className="max-w-7xl px-4 mx-auto py-10 sm:py-12 text-center">
         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl md:text-4xl">
@@ -110,8 +109,30 @@ export default function PurposeCarousel({
           fill
           priority
           sizes="100vw"
-          className="object-cover transition-transform duration-[800ms] will-change-transform"
+          className="object-cover transition-transform duration-[800ms] will-change-transform max-md:hidden"
         />
+        {/* Mobile: Show mobileImage if available, otherwise show regular image */}
+        {slide.mobileImage ? (
+          <Image
+            key={slide.mobileImage + idx}
+            src={slide.mobileImage}
+            alt={slide.imgAlt || slide.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover transition-transform duration-[800ms] will-change-transform md:hidden"
+          />
+        ) : (
+          <Image
+            key={slide.img + idx}
+            src={slide.img}
+            alt={slide.imgAlt || slide.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover transition-transform duration-[800ms] will-change-transform md:hidden"
+          />
+        )}
         {/* Gradient for legibility */}
         <div className="absolute inset-0">
           {/* base black fade for readability */}
@@ -147,19 +168,7 @@ export default function PurposeCarousel({
                   ))}
                 </ul>
               )}
-              {!!slide.ctas?.length && (
-                <div className="flex gap-4">
-                  {slide.ctas.map((cta, i) => (
-                    <Link
-                      key={i}
-                      href={cta.href}
-                      className="inline-block px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full transition-all duration-200 backdrop-blur-sm"
-                    >
-                      {cta.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
+             
             </div>
           </div>
         </div>

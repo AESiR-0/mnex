@@ -11,7 +11,6 @@ export default function VerticalContent({
     sectionId = "approach",
     content,
     backgroundImage,
-    mobileImage,
     buttonText,
 }: {
     items: ApproachItem[];
@@ -19,7 +18,6 @@ export default function VerticalContent({
     buttonText?: string;
     content: string;
     backgroundImage?: string;
-    mobileImage?: string;
 }) {
     const [activeApproach, setActiveApproach] = useState(0);
 
