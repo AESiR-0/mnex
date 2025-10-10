@@ -24,47 +24,59 @@ type Capability = {
 const getCapabilities = (t: any): Capability[] => [
     {
         id: "safety",
-        title: "Safety as Standard",
-        headline: "Preventive, systematic, and always improving.",
+        title: t("Culture.safety.title"),
+        headline: t("Culture.safety.headline"),
         desc: '',
         bullets: [
-            "Regular risk assessments & safety audits: Proactively identifying and addressing hazards before they become incidents.",
-            "Standard operating procedures: Clear, documented steps for all high-risk functions to ensure consistency and safety.",
-            "Mandatory safety training & equipment maintenance: Ongoing education and upkeep to keep everyone protected and prepared.",
+            t("Culture.safety.bullet1"),
+            t("Culture.safety.bullet2"),
+            t("Culture.safety.bullet3"),
+            t("Culture.safety.bullet4")
         ],
         img: "/static/culture/1.webp",
         imgPhone: "/static/culture/1-phone.webp",
-        // video: "/videos/home/Solutions - Tooling.webm",
     },
     {
-        id: "fair-inclusive-hiring",
-        title: "Fair & Inclusive Hiring",
-        headline: "Diverse teams\nmake us stronger",
+        id: "innovation",
+        title: t("Culture.innovation.title"),
+        headline: t("Culture.innovation.headline"),
         desc: "",
         bullets: [
-            "Clear expectations & fair advancement: Transparent criteria ensure opportunities are open and merit-based.",
-            "Equal opportunity policies: A workplace built on respect, with zero tolerance for discrimination.",
-            "Representation at every level: From the shop floor to the boardroom, including a women-led leadership team.",
+            t("Culture.innovation.bullet1"),
+            t("Culture.innovation.bullet2"),
+            t("Culture.innovation.bullet3"),
+            t("Culture.innovation.bullet4")
         ],
         img: "/static/culture/2.webp",
         imgPhone: "/static/culture/2-phone.webp",
-        // video: "/videos/home/Solutions - Injection Molding.webm",
     },
     {
-        id: "employee-development",
-        title: "Employee Development",
-        headline: "Growth at\nevery level",
-        desc: "We believe growth is built into every role, every project, every career.",
+        id: "collaboration",
+        title: t("Culture.collaboration.title"),
+        headline: t("Culture.collaboration.headline"),
+        desc: "",
         bullets: [
-            "Targeted Upskilling & Cross-Training: Building expertise with programs that strengthen both depth and breadth.",
-            "Job Rotation & Knowledge Sharing: Expanding perspectives through cross-department exposure and collaboration.",
-            "Clear Metrics & Feedback: Transparent performance measures and real-time feedback to fuel growth.",
-            "Leadership & Career Development: Structured pathways to advance careers and prepare tomorrow's leaders.",
-            "Recognition & Global Opportunities: Celebrating contributions and offering exposure across regions to build cultural intelligence.",
+            t("Culture.collaboration.bullet1"),
+            t("Culture.collaboration.bullet2"),
+            t("Culture.collaboration.bullet3"),
+            t("Culture.collaboration.bullet4")
         ],
         img: "/static/culture/3.webp",
         imgPhone: "/static/culture/3-phone.webp",
-        // video: "/videos/home/Solutions: Smart_Automation_Fixtures.webm",
+    },
+    {
+        id: "values",
+        title: t("Culture.values.title"),
+        headline: t("Culture.values.headline"),
+        desc: "",
+        bullets: [
+            t("Culture.values.bullet1"),
+            t("Culture.values.bullet2"),
+            t("Culture.values.bullet3"),
+            t("Culture.values.bullet4")
+        ],
+        img: "/static/culture/1.webp",
+        imgPhone: "/static/culture/1-phone.webp",
     },
 ];
 
@@ -73,6 +85,7 @@ function CapabilitiesSection() {
     const t = useTranslations();
     const capabilities = getCapabilities(t);
     const activeCapability = capabilities[activeTab];
+
 
     // Function to get tab index from hash
     const getTabIndexFromHash = (hash: string) => {
@@ -114,6 +127,21 @@ function CapabilitiesSection() {
 
     // Function to format bullet text with bold parts
     const formatBulletText = (text: string) => {
+        // Handle bold text with ** syntax
+        if (text.includes("**")) {
+            const parts = text.split("**");
+            if (parts.length >= 3) {
+                return (
+                    <>
+                        <span>{parts[0]}</span>
+                        <span className="font-semibold">{parts[1]}</span>
+                        <span>{parts.slice(2).join("**")}</span>
+                    </>
+                );
+            }
+        }
+
+        // Handle text with colons
         const parts = text.split(':');
         if (parts.length > 1) {
             return (
@@ -242,17 +270,12 @@ const page = () => {
                 <div className=" h-full w-full bg-[#f2f2f2]">
                     <div className="max-w-4xl px-4 mx-auto max-[380px]:my-4 pb-20 pt-32 space-y-3  text-center">
                         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl pb-4 md:text-4xl">
-                            Our Culture:
+                            {t("Culture.hero.title")}
                             <br />
-                            Safe, Fair & Growth Oriented                    </h2>
+                            {t("Culture.hero.subtitle")}
+                        </h2>
                         <p className="mt-4 max-w-2xl mx-auto  text-[#6F6F6F] text-lg">
-                            Our people are the foundation of everything we build.
-                        </p>
-                        <p className=" max-w-2xl mx-auto  text-[#6F6F6F] whitespace-pre-line text-lg">
-                            At Mnex, operational excellence starts with a workforce that's supported,
-                            empowered, and growing. We focus on Safety, Fair & Inclusive Hiring,
-
-                            Employee Development, and Career Growth Opportunities.
+                            {t("Culture.hero.description")}
                         </p>
                     </div></div>
             </section>

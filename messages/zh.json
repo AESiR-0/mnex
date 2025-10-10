@@ -287,6 +287,46 @@
     "backToTop": "返回顶部",
     "copyright": "版权所有 © {year} Mnex Precision"
   },
+  "Culture": {
+    "title": "企业文化",
+    "hero": {
+      "title": "以人为本，为人而建",
+      "subtitle": "卓越与人文的完美结合",
+      "description": "我们的员工是我们所构建一切的基础。在MNex，运营卓越始于一支得到支持、赋权并不断成长的员工队伍。"
+    },
+    "safety": {
+      "title": "安全标准",
+      "headline": "预防性、系统性，持续改进。",
+      "bullet1": "**2023年零**工作场所伤害",
+      "bullet2": "**月度**安全培训和演练",
+      "bullet3": "**个人防护装备**合规和人体工程学工作站",
+      "bullet4": "**事件**报告和持续改进"
+    },
+    "innovation": {
+      "title": "创新文化",
+      "headline": "创意成为现实的地方。",
+      "bullet1": "**30多项**精密制造专利",
+      "bullet2": "**研发**投资前沿技术",
+      "bullet3": "**跨职能**团队推动突破",
+      "bullet4": "**持续**学习和技能发展"
+    },
+    "collaboration": {
+      "title": "协作卓越",
+      "headline": "团结一致，成就更多。",
+      "bullet1": "**开放**沟通，覆盖所有层级",
+      "bullet2": "**导师**计划促进技能发展",
+      "bullet3": "**团队**认可和成就奖励",
+      "bullet4": "**多元化**视角推动创新"
+    },
+    "values": {
+      "title": "我们的价值观",
+      "headline": "指导我们的原则。",
+      "bullet1": "**诚信**在每次互动中",
+      "bullet2": "**卓越**在每个产品中",
+      "bullet3": "**尊重**人和环境",
+      "bullet4": "**创新**通过持续改进"
+    }
+  },
   "Common": {
     "language": "语言",
     "english": "English",

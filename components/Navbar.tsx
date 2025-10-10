@@ -3,8 +3,9 @@ import LocalizedLink from "./LocalizedLink";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useContactSlider } from "@/lib/useContactSlider";
+import { useLocale } from 'next-intl';
 
 const navLocalizedLinks = [
   {
@@ -32,14 +33,27 @@ const navLocalizedLinks = [
 ];
 
 export default function Navbar() {
-  const [language, setLanguage] = useState<"EN" | "中文">("EN");
   const [langOpen, setLangOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(true);
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale();
   const { isOpen: isContactOpen, open: openContactSlider } = useContactSlider();
+
+  // Get current language display
+  const currentLanguage = locale === 'zh' ? '中文' : 'EN';
+
+  // Handle language switching
+  const handleLanguageChange = (newLang: 'EN' | '中文') => {
+    const newLocale = newLang === '中文' ? 'zh' : 'en';
+    const currentPath = pathname.replace(`/${locale}`, '') || '/';
+    const newPath = `/${newLocale}${currentPath}`;
+    router.push(newPath);
+    setLangOpen(false);
+  };
 
   // Check if a link is active
   const isLocalizedLinkActive = (href: string) => {
@@ -526,7 +540,7 @@ export default function Navbar() {
               className="h-[2.075rem] w-[2.075rem]  flex items-center bg-[#1789FF] justify-center rounded-full  text-xs   text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
               aria-label="Change language"
             >
-              {language}
+              {currentLanguage}
             </button>
 
             <AnimatePresence>
@@ -541,11 +555,12 @@ export default function Navbar() {
                   {["EN", "中文"].map((lang) => (
                     <li key={lang}>
                       <button
-                        onClick={() => {
-                          setLanguage(lang as "EN" | "中文");
-                          setLangOpen(false);
-                        }}
-                        className="w-full px-3 py-2 text-left  text-xs  hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
+                        onClick={() => handleLanguageChange(lang as "EN" | "中文")}
+                        className={`w-full px-3 py-2 text-left text-xs transition ${
+                          currentLanguage === lang 
+                            ? "bg-[#1789FF]/10 text-[#1789FF] font-medium" 
+                            : "hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF]"
+                        }`}
                       >
                         {lang}
                       </button>
@@ -714,7 +729,7 @@ export default function Navbar() {
                   className="h-8 w-8 flex items-center text-xs justify-center bg-[#1789ff] rounded-full border border-[#595959]/40  font-semibold text-white hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
                   aria-label="Change language"
                 >
-                  {language}
+                  {currentLanguage}
                 </button>
 
                 <AnimatePresence>
@@ -729,11 +744,12 @@ export default function Navbar() {
                       {["EN", "中文"].map((lang) => (
                         <li key={lang}>
                           <button
-                            onClick={() => {
-                              setLanguage(lang as "EN" | "中文");
-                              setLangOpen(false);
-                            }}
-                            className="w-full px-3 py-3 text-left z-[9999] text-xs font-thin  hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF] transition"
+                            onClick={() => handleLanguageChange(lang as "EN" | "中文")}
+                            className={`w-full px-3 py-3 text-left z-[9999] text-xs font-thin transition ${
+                              currentLanguage === lang 
+                                ? "bg-[#1789FF]/10 text-[#1789FF] font-medium" 
+                                : "hover:bg-[#1789FF]/10 text-[#595959] hover:text-[#1789FF]"
+                            }`}
                           >
                             {lang}
                           </button>

@@ -287,6 +287,46 @@
     "backToTop": "Back to Top",
     "copyright": "Copyright © {year} Mnex Precision"
   },
+  "Culture": {
+    "title": "Culture",
+    "hero": {
+      "title": "Built by People, for People",
+      "subtitle": "Where excellence meets humanity",
+      "description": "Our people are the foundation of everything we build. At Mnex, operational excellence starts with a workforce that's supported, empowered, and growing."
+    },
+    "safety": {
+      "title": "Safety as Standard",
+      "headline": "Preventive, systematic, and always improving.",
+      "bullet1": "**Zero** workplace injuries in 2023",
+      "bullet2": "**Monthly** safety training and drills",
+      "bullet3": "**PPE** compliance and ergonomic workstations",
+      "bullet4": "**Incident** reporting and continuous improvement"
+    },
+    "innovation": {
+      "title": "Innovation Culture",
+      "headline": "Where ideas become reality.",
+      "bullet1": "**30+** patents in precision manufacturing",
+      "bullet2": "**R&D** investment in cutting-edge technology",
+      "bullet3": "**Cross-functional** teams driving breakthroughs",
+      "bullet4": "**Continuous** learning and skill development"
+    },
+    "collaboration": {
+      "title": "Collaborative Excellence",
+      "headline": "Together, we achieve more.",
+      "bullet1": "**Open** communication across all levels",
+      "bullet2": "**Mentorship** programs for skill development",
+      "bullet3": "**Team** recognition and achievement awards",
+      "bullet4": "**Diverse** perspectives driving innovation"
+    },
+    "values": {
+      "title": "Our Values",
+      "headline": "The principles that guide us.",
+      "bullet1": "**Integrity** in every interaction",
+      "bullet2": "**Excellence** in every product",
+      "bullet3": "**Respect** for people and environment",
+      "bullet4": "**Innovation** through continuous improvement"
+    }
+  },
   "Common": {
     "language": "Language",
     "english": "English",

@@ -25,14 +25,6 @@ export default function VerticalContent({
     const [activeApproach, setActiveApproach] = useState(0);
     const isMobile = useMobileDetection();
 
-    // Debug logging for image selection
-    console.log('VerticalContent Image Selection:', {
-        isMobile,
-        hasBackgroundImage: !!backgroundImage,
-        hasMobileImage: !!mobileImage,
-        selectedImage: isMobile && mobileImage ? mobileImage : backgroundImage
-    });
-
     if (!items || items.length === 0) return null;
 
     const active = activeApproach >= 0 ? Math.max(0, Math.min(activeApproach, items.length - 1)) : -1;
