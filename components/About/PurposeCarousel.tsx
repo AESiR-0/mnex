@@ -76,7 +76,7 @@ export default function PurposeCarousel({
   const slide = slides[idx];
 
   return (
-    <section className="w-full bg-[#ececec] xl:min-h-screen min-h-[40vh]">
+    <section className="w-full bg-[#ececec] xl:min-h-screen lg:min-h-[90vh] md:min-h-[80vh] sm:min-h-[70vh] min-h-[60vh]">
       {/* Top copy */}
       <div className="max-w-7xl px-4 mx-auto py-10 sm:py-12 text-center">
         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl md:text-4xl">

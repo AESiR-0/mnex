@@ -34,7 +34,7 @@ export default function VerticalContent({
     return (
         <section
             id={sectionId}
-            className="w-full bg-[#ececec]  min-h-[45vh]"
+            className="w-full bg-[#ececec]  min-h-[45vh] "
         >
             <section className="w-full  xl:h-[35vh]  py-10" >
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -46,7 +46,7 @@ export default function VerticalContent({
                     </p>
                 </div>
             </section>
-            <div className="h-[80vh] md:h-[70vh]  sm:h-screen  flex items-center py-6 sm:py-8 md:py-10 relative">
+            <div className="h-[80vh] md:h-[45vh] xl:h-[70vh]  sm:h-screen  flex items-center py-6 sm:py-8 md:py-10 relative">
                 {/* Background Image */}
                 {(backgroundImage || mobileImage) && (
                     <div className="absolute inset-0 z-0">
@@ -131,7 +131,7 @@ export default function VerticalContent({
                             className="flex justify-center max-[380px]:-mt-10   -mt-20"
                         >
                             <Link href={'mailto:careers@mnexprecision.com'} target="_blank">
-                                <button className="px-4 sm:px-5 md:px-6 py-2 text-xs font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-[#1789FF] hover:text-white border-white hover:border-[#1789FF]">
+                                <button className="px-8 py-3 text-sm font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-white/80 hover:text-[#009B80] border-white hover:border-white/80">
                                     {buttonText}
                                 </button>
                             </Link>

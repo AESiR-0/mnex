@@ -5,10 +5,10 @@ import { useTranslations } from 'next-intl';
 export default function Page() {
   const t = useTranslations();
   return (
-    <>
+    <div className="py-10">
       <section className="w-full bg-[#ececec]">
         {/* Copy block */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 lg:pt-14 pb-6 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6 text-center">
           <h1
             className="whitespace-pre-line text-[#444] font-semibold
                        text-2xl  md:text-4xl "
@@ -40,7 +40,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="w-full bg-white text-[#595959] py-10 xl:py-8 2xl:py-6 px-6">
+      <section className="w-full bg-white text-[#595959] pt-10 px-6">
         <div className="max-w-[75rem] mx-auto space-y-6 text-base leading-relaxed">
           <p>
             {t("About.legacy.paragraph1")}
@@ -87,6 +87,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
