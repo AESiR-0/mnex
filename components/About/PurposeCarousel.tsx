@@ -31,6 +31,19 @@ export default function PurposeCarousel({
   const to = (n: number) => setIdx(clamp(n));
 
   // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      if (typeof window === 'undefined') return;
+      const userAgent = navigator.userAgent;
+      const isMobileDevice = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+      const isSmallScreen = window.innerWidth <= 768;
+      setIsMobile(isMobileDevice || isSmallScreen);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
 
   // Autoplay (pause on hover / when tab hidden)
@@ -76,7 +89,7 @@ export default function PurposeCarousel({
   const slide = slides[idx];
 
   return (
-    <section className="w-full bg-[#ececec] xl:min-h-screen lg:min-h-[90vh] md:min-h-[80vh] sm:min-h-[70vh] min-h-[60vh]">
+    <section className="w-full bg-[#ececec] min-h-[85vh] sm:min-h-[90vh] md:min-h-[65vh] lg:min-h-[75vh] xl:min-h-screen">
       {/* Top copy */}
       <div className="max-w-7xl px-4 mx-auto py-10 sm:py-12 text-center">
         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl md:text-4xl">
@@ -95,7 +108,7 @@ export default function PurposeCarousel({
 
       {/* Carousel */}
       <div
-        className="relative w-full xl:min-h-screen h-screen  lg:min-h-[40vh] lg:max-h-[60vh] sm:h-[75vh] overflow-hidden"
+        className="relative w-full h-[85vh] sm:h-[90vh] md:h-[65vh] lg:h-[75vh] xl:h-screen overflow-hidden"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={onTouchStart}

@@ -46,7 +46,7 @@ export default function VerticalContent({
                     </p>
                 </div>
             </section>
-            <div className="h-[80vh] md:h-[45vh] xl:h-[70vh]  sm:h-screen  flex items-center py-6 sm:py-8 md:py-10 relative">
+            <div className="h-[60vh] sm:h-[100vh] md:h-[50vh] lg:h-[60vh] xl:h-[80vh] flex items-center py-6 sm:py-8 md:py-10 relative">
                 {/* Background Image */}
                 {(backgroundImage || mobileImage) && (
                     <div className="absolute inset-0 z-0">
@@ -92,7 +92,7 @@ export default function VerticalContent({
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className="flex flex-wrap max-md:flex-nowrap  max-md:flex-col max-md:justify-center max-md:gap-4 xs:h-1/2 md:h-[30%]  sm:py-6 md:py-0 justify-between w-full gap-x-2 sm:gap-x-3"
+                                className="flex flex-col md:flex-row md:flex-wrap gap-4 md:gap-6 justify-between w-full"
                                 role="tablist"
                                 aria-label="Approach options"
                             >
