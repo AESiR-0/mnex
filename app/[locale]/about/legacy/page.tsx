@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 export default function Page() {
   const t = useTranslations();
   return (
-    <div className="py-10">
+    <div className="pb-10">
       <section className="w-full bg-[#ececec]">
         {/* Copy block */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6 text-center">
