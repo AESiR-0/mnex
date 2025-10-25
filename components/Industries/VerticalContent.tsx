@@ -46,7 +46,7 @@ export default function VerticalContent({
                     </p>
                 </div>
             </section>
-            <div className="h-[60vh] sm:h-[100vh] md:h-[50vh] lg:h-[60vh] xl:h-[80vh] flex items-center py-6 sm:py-8 md:py-10 relative">
+            <div className="h-[60vh] sm:h-[105vh] md:h-[50vh] lg:h-[60vh] xl:h-[80vh] flex items-center py-6 sm:py-8 md:py-10 relative">
                 {/* Background Image */}
                 {(backgroundImage || mobileImage) && (
                     <div className="absolute inset-0 z-0">
@@ -128,7 +128,7 @@ export default function VerticalContent({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex justify-center max-[380px]:-mt-10   -mt-20"
+                            className="flex justify-center max-[380px]:-mt-16   -mt-20"
                         >
                             <Link href={'mailto:careers@mnexprecision.com'} target="_blank">
                                 <button className="px-8 py-3 text-sm font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-white/80 hover:text-[#009B80] border-white hover:border-white/80">
