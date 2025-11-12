@@ -273,20 +273,59 @@
   "Sustainability": {
     "title": "Sustainability",
     "environmental": "Environmental Impact",
-    "material": "Material Efficiency",
+    "material": "Material Efficiency & Design Optimization",
+    "responsibleProcurement": "Responsible Procurement",
     "compliance": "Compliance & Standards",
     "hero": {
       "title": "Built to Perform.",
       "subtitle": "Designed to Waste Less.",
       "description1": "We believe good manufacturing is responsible manufacturing.",
       "description2": "At Mnex, we reduce waste, save energy, and build smarter for a better planet."
+    },
+    "solarEnergy": {
+      "title": "MNEX SOLAR ENERGY DATA",
+      "panels": "SOLAR PANELS",
+      "powerGeneration": "ANNUAL POWER GENERATION 1,150,000 KWH",
+      "co2Reduction": "CO₂ EMISSIONS REDUCTION: 920 TONNES"
+    },
+    "environmentalImpact": {
+      "headline": "Sustainability starts at the source",
+      "bullet1": "**>10%** renewable energy",
+      "bullet2": "**>20%** of machines hybrid or electric (50% less energy)",
+      "bullet3": "**VOC** captured and filtered on all production lines",
+      "bullet4": "Closed-loop water systems; **Zero** untreated wastewater"
+    },
+    "materialEfficiency": {
+      "headline": "Smarter design = less waste",
+      "bullet1": "Optimized part design, gating and molding",
+      "bullet2": "Vertical integration reduces packaging & logistics waste"
+    },
+    "responsibleProcurementContent": {
+      "headline": "Local, recyclable, accountable.",
+      "bullet1": "**>50%** of packaging & consumables sourced within 50 km",
+      "bullet2": "Recyclable packaging with recycled content",
+      "bullet3": "Suppliers vetted for traceability & compliance"
+    },
+    "complianceStandards": {
+      "headline": "Global benchmarks, always met.",
+      "bullet1": "**ISO 14001** certified",
+      "bullet2": "**REACH, RoHS & Prop 65** compliant"
     }
   },
   "CaseStudy": {
     "title": "Case Study",
     "challenge": "Challenge",
     "approach": "Mnex Approach",
-    "outcome": "Outcome"
+    "outcome": "Outcome",
+    "caseStudy1": {
+      "title": "Doubling Output with Multi-Level Tooling",
+      "challenge": "Reduce cost per part for a long-running legacy program without changing the material, function, or aesthetics of a stable production part.",
+      "approach1": "Designed and built a Multi-Level Tool (MLT) that doubled cavitation—and productivity—without requiring a larger press.",
+      "approach2": "Developed a lightweight hot runner system to reduce tool mass, allowing the MLT to run on existing machines across all production sites.",
+      "approach3": "Maintained full part integrity and dimensional stability despite increased mold complexity and shot size.",
+      "outcome1": "2× throughput achieved without additional floor space or new capital equipment",
+      "outcome2": "Significant cost-per-part reduction with no compromises in quality or process reliability"
+    }
   },
   "Footer": {
     "ourFacilities": "Our Facilities",
@@ -313,6 +352,7 @@
   },
   "Culture": {
     "title": "Culture",
+    "ourFocus": "OUR FOCUS",
     "hero": {
       "title": "Built by People, for People",
       "subtitle": "Where excellence meets humanity",
@@ -349,6 +389,12 @@
       "bullet2": "**Excellence** in every product",
       "bullet3": "**Respect** for people and environment",
       "bullet4": "**Innovation** through continuous improvement"
+    },
+    "careerOpportunities": {
+      "title": "Career Opportunities:",
+      "subtitle": "Build your future with us",
+      "description": "We offer long-term career growth with clear progression paths, providing opportunities for every stage—whether you're just starting out or bringing years of expertise—within a collaborative, high-performance culture that thrives on innovation, support, and shared success.",
+      "cta": "Reach Us"
     }
   },
   "VerticalContent": {

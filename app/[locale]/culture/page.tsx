@@ -160,7 +160,7 @@ function CapabilitiesSection() {
             <div className="bg-[#ececec] py-4 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 max-md:max-w-full">
                     <Header className="pt-4 sm:pt-6 pb-4 md:mb-0 text-center">
-                        OUR FOCUS
+                        {t("Culture.ourFocus")}
                     </Header>
 
                     {/* Navigation Tabs */}
@@ -285,15 +285,12 @@ const page = () => {
                 <div className="relative z-10 mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col  items-center justify-center h-full">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-2xl sm:text-3xl md:text-4xl leading-[1] md:leading-[1.25] font-semibold mb-6 sm:mb-8 md:mb-10">
-                            Career Opportunities: <br />
-                            Build your future with us
+                            {t("Culture.careerOpportunities.title")} <br />
+                            {t("Culture.careerOpportunities.subtitle")}
                         </h2>
 
                         <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.3] opacity-95 mb-8 sm:mb-10">
-                            We offer long-term career growth with clear progression paths, providing
-                            opportunities for every stage—whether you're just starting out or bringing
-                            years of expertise—within a collaborative, high-performance culture that
-                            thrives on innovation, support, and shared success.
+                            {t("Culture.careerOpportunities.description")}
                         </p>
 
                         <motion.div
@@ -304,7 +301,8 @@ const page = () => {
                         >
                             <Link href={'mailto:careers@mnexprecision.com'} target="_blank">
                                 <button className="mt-12 max-md:mt-6 px-8  py-3 text-sm sm:text-base font-regular rounded-full border transition-colors duration-200 bg-transparent text-white hover:bg-white/80 hover:text-[#009B80] border-white hover:border-white/80">
-                                    Reach Us                               </button>
+                                    {t("Culture.careerOpportunities.cta")}
+                                </button>
                             </Link>
                         </motion.div>
                     </div>

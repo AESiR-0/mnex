@@ -13,54 +13,50 @@ type Capability = {
   video?: string;
 };
 
-const capabilities: Capability[] = [
+const getCapabilities = (t: any): Capability[] => [
   {
-    title: "Environmental Impact",
-    headline: `Sustainability 
-        starts at the source`,
+    title: t("Sustainability.environmental"),
+    headline: t("Sustainability.environmentalImpact.headline"),
     desc: ``,
     bullets: [
-      "**>10%** renewable energy",
-      "**>20%** of machines hybrid or electric (50% less energy)",
-      "**VOC** captured and filtered on all production lines",
-      ` Closed-loop water systems;
-            **Zero** untreated wastewater`,
+      t("Sustainability.environmentalImpact.bullet1"),
+      t("Sustainability.environmentalImpact.bullet2"),
+      t("Sustainability.environmentalImpact.bullet3"),
+      t("Sustainability.environmentalImpact.bullet4"),
     ],
     img: "/static/home/sustainability.webp",
     video: "/videos/sustainability/Environmental_impact.webm",
   },
   {
-    title: "Material Efficiency & Design Optimization",
-    headline: `Smarter design 
-        = less waste`,
+    title: t("Sustainability.material"),
+    headline: t("Sustainability.materialEfficiency.headline"),
     desc: "",
     bullets: [
-      "Optimized part design, gating and molding",
-      "Vertical integration reduces packaging & logistics waste",
+      t("Sustainability.materialEfficiency.bullet1"),
+      t("Sustainability.materialEfficiency.bullet2"),
     ],
     img: "/static/home/sustainability.webp",
     video: "/videos/sustainability/Material_Efficiency.webm",
   },
   {
-    title: "Responsible Procurement",
-    headline: `Local, recyclable, accountable.`,
+    title: t("Sustainability.responsibleProcurement"),
+    headline: t("Sustainability.responsibleProcurementContent.headline"),
     desc: "",
     bullets: [
-      "**>50%** of packaging & consumables sourced within 50 km",
-      "Recyclable packaging with recycled content",
-      "Suppliers vetted for traceability & compliance",
+      t("Sustainability.responsibleProcurementContent.bullet1"),
+      t("Sustainability.responsibleProcurementContent.bullet2"),
+      t("Sustainability.responsibleProcurementContent.bullet3"),
     ],
     img: "/static/home/sustainability.webp",
     video: "/videos/sustainability/Responsible+Procurement.webm",
   },
   {
-    title: "Compliance & Standards",
-    headline: `Global benchmarks, always met.`,
+    title: t("Sustainability.compliance"),
+    headline: t("Sustainability.complianceStandards.headline"),
     desc: "",
     bullets: [
-      "**ISO 14001** certified",
-      ` **REACH, RoHS & Prop 65**
-            compliant`,
+      t("Sustainability.complianceStandards.bullet1"),
+      t("Sustainability.complianceStandards.bullet2"),
     ],
     img: "/static/home/sustainability.webp",
     video: "/videos/sustainability/Complaince_Standards.webm",
@@ -69,6 +65,7 @@ const capabilities: Capability[] = [
 
 export default function Sustainability() {
   const t = useTranslations();
+  const capabilities = getCapabilities(t);
   return (
     <div className="pt-10">
       <section className="w-full text-[#009b80]  bg-[#F2F2F2]">
@@ -99,7 +96,7 @@ export default function Sustainability() {
       <section className="w-full bg-[#eaeaea] py-10 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Header className="text-center text-xs sm:text-sm font-medium text-[#009b80] uppercase tracking-[0.15em] mb-0 pb-12 sm:pb-16 md:pb-20">
-            MNEX SOLAR ENERGY DATA
+            {t("Sustainability.solarEnergy.title")}
           </Header>
 
           <div className="grid grid-cols-1 sm:gap-y-10 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-0 sm:place-items-center lg:gap-8">
@@ -119,7 +116,7 @@ export default function Sustainability() {
                   1,562
                 </div>
                 <div className="text-[#009b80] font-medium text-xs sm:text-sm lg:text-base">
-                  SOLAR PANELS
+                  {t("Sustainability.solarEnergy.panels")}
                 </div>
               </div>
             </div>
@@ -137,10 +134,7 @@ export default function Sustainability() {
               </div>
               <div className="text-left   min-w-0 flex-1">
                 <div className="text-[#009b80] text-xs sm:text-sm lg:text-base">
-                  ANNUAL POWER GENERATION
-                </div>
-                <div className="text-[#009b80] uppercase font-semibold leading-none text-base sm:text-lg lg:text-xl">
-                  1,150,000 kWh
+                  {t("Sustainability.solarEnergy.powerGeneration")}
                 </div>
               </div>
             </div>
@@ -159,10 +153,7 @@ export default function Sustainability() {
                 </div>
                 <div className="text-left  min-w-0 flex-1  lg:text-left">
                   <div className="text-[#009b80] font-medium text-xs sm:text-sm lg:text-base">
-                    CO₂ EMISSIONS REDUCTION:
-                  </div>
-                  <div className="text-[#009b80] uppercase font-semibold leading-none text-base sm:text-lg lg:text-xl">
-                    920 Tonnes
+                    {t("Sustainability.solarEnergy.co2Reduction")}
                   </div>
                 </div>
               </div>
@@ -179,6 +170,8 @@ export default function Sustainability() {
 
 function CapabilitiesSection() {
   const [activeTab, setActiveTab] = useState(0);
+  const t = useTranslations();
+  const capabilities = getCapabilities(t);
   const activeCapability = capabilities[activeTab];
 
   // Function to format bullet text with bold parts

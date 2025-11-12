@@ -14,18 +14,19 @@ type CaseStudy = {
   author: string;
 };
 
-const caseStudies: CaseStudy[] = [
+const getCaseStudies = (t: any): CaseStudy[] => [
   {
     id: 1,
-    title: "Doubling Output with Multi-Level Tooling",
-    challenge:
-      "Reduce cost per part for a long-running legacy program without changing the material, function, or aesthetics of a stable production part.",
+    title: t("CaseStudy.caseStudy1.title"),
+    challenge: t("CaseStudy.caseStudy1.challenge"),
     approach: [
-      `Designed and built a Multi-Level Tool (MLT) that doubled cavitation—and productivity—without requiring a larger press.\n\nDeveloped a lightweight hot runner system to reduce tool mass, allowing the MLT to run on existing machines across all production sites.\n\nMaintained full part integrity and dimensional stability despite increased mold complexity and shot size.`,
+      t("CaseStudy.caseStudy1.approach1"),
+      t("CaseStudy.caseStudy1.approach2"),
+      t("CaseStudy.caseStudy1.approach3"),
     ],
     outcome: [
-      "2× throughput achieved without additional floor space or new capital equipment",
-      "Significant cost-per-part reduction with no compromises in quality or process reliability",
+      t("CaseStudy.caseStudy1.outcome1"),
+      t("CaseStudy.caseStudy1.outcome2"),
     ],
     quote: "",
     author: "",
@@ -52,8 +53,9 @@ const caseStudies: CaseStudy[] = [
 
 export default function CaseStudySection() {
   const [active, setActive] = useState(0);
-  const study = caseStudies[active];
   const t = useTranslations();
+  const caseStudies = getCaseStudies(t);
+  const study = caseStudies[active];
 
   return (
     <div className="max-w-7xl py-16 sm:py-20 mx-auto px-4">
@@ -100,7 +102,9 @@ export default function CaseStudySection() {
               {t("CaseStudy.approach")}
             </Header>
             <ul className="whitespace-pre-line space-y-2 text-[#595959] text-sm md:text-base">
-              {study.approach}
+              {study.approach.map((item, i) => (
+                <li key={i} className="mb-4">{item}</li>
+              ))}
             </ul>
           </div>
 
