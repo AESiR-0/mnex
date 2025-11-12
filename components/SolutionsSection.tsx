@@ -2,12 +2,14 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useDownOnlyObserver } from "@/lib/useDownOnlyObserver";
 import Header from "./Header";
+import { useTranslations } from 'next-intl';
 
 type Tab = { title: string; image?: string; desc: string };
 
 export default function SolutionsSection({ tabs }: { tabs: Tab[] }) {
   const [active, setActive] = useState(0);
   const paneRef = useRef<HTMLDivElement | null>(null);
+  const t = useTranslations();
 
   const ids = useMemo(() => tabs.map((_, i) => `#solution-pane-${i}`), [tabs]);
   const onActive = useCallback((i: number) => setActive(i), []);
@@ -19,7 +21,7 @@ export default function SolutionsSection({ tabs }: { tabs: Tab[] }) {
       <div className="h-full grid grid-rows-[auto_1fr]">
         {/* Header + Tabs */}
         <div className="max-w-7xl mx-auto px-4 pt-10">
-          <Header className="mb-3">Solutions</Header>
+          <Header className="mb-3">{t("SolutionsSection.title")}</Header>
           <div className="flex flex-wrap items-center gap-2">
             {tabs.map((t, i) => (
               <button
@@ -37,7 +39,7 @@ export default function SolutionsSection({ tabs }: { tabs: Tab[] }) {
             ))}
           </div>
           <p className="mt-4 text-2xl md:text-3xl font-semibold text-[#595959]">
-            We don't sell capabilities. We build the right one for you.
+            {t("SolutionsSection.tagline")}
           </p>
         </div>
 

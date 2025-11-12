@@ -5,32 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useContactSlider } from "@/lib/useContactSlider";
-import { useLocale } from 'next-intl';
-
-const navLocalizedLinks = [
-  {
-    name: "About Us",
-    href: "/about/approach",
-    children: [
-      { name: "Approach", href: "/about/approach" },
-      { name: "Legacy", href: "/about/legacy" },
-      // { name: "Leadership", href: "/about/leadership" },
-    ],
-  },
-  { name: "Solutions", href: "/solutions" },
-  {
-    name: "Industries",
-    href: "/industries/cei",
-    children: [
-      { name: "Consumer & Industrial", href: "/industries/cei" },
-      { name: "Regulated", href: "/industries/regulated" },
-      { name: "Oil & Gas", href: "/industries/oil-and-gas" },
-    ],
-  },
-  { name: "Sustainability", href: "/sustainability" },
-  { name: "Culture", href: "/culture" },
-  { name: "Contact Us", href: "/contact" },
-];
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
@@ -41,10 +16,37 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations();
   const { isOpen: isContactOpen, open: openContactSlider } = useContactSlider();
 
   // Get current language display
   const currentLanguage = locale === 'zh' ? '中文' : 'EN';
+
+  // Get translated navigation links
+  const navLocalizedLinks = [
+    {
+      name: t("Navigation.about"),
+      href: "/about/approach",
+      children: [
+        { name: t("Navigation.aboutSubmenu.approach"), href: "/about/approach" },
+        { name: t("Navigation.aboutSubmenu.legacy"), href: "/about/legacy" },
+        // { name: t("Navigation.aboutSubmenu.leadership"), href: "/about/leadership" },
+      ],
+    },
+    { name: t("Navigation.solutions"), href: "/solutions" },
+    {
+      name: t("Navigation.industries"),
+      href: "/industries/cei",
+      children: [
+        { name: t("Navigation.industriesSubmenu.cei"), href: "/industries/cei" },
+        { name: t("Navigation.industriesSubmenu.regulated"), href: "/industries/regulated" },
+        { name: t("Navigation.industriesSubmenu.oilAndGas"), href: "/industries/oil-and-gas" },
+      ],
+    },
+    { name: t("Navigation.sustainability"), href: "/sustainability" },
+    { name: t("Navigation.culture"), href: "/culture" },
+    { name: t("Navigation.contact"), href: "/contact" },
+  ];
 
   // Handle language switching
   const handleLanguageChange = (newLang: 'EN' | '中文') => {
@@ -140,7 +142,7 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <ul className="hidden transition-all  tracking-[0.05em] text-sm xl:flex gap-8 items-center">
           {navLocalizedLinks.map((link) => {
-            if (link.name == "Contact Us") {
+            if (link.href === "/contact") {
               return (
                 <li key={link.name} className="relative group  transition-all">
                   <div className="flex bg-transparent items-center">
@@ -154,7 +156,7 @@ export default function Navbar() {
                   </div>
                 </li>
               );
-            } else if (link.name === "About Us") {
+            } else if (link.href === "/about/approach") {
               // Special handling for About Us - no dropdown when About is active
               const isAboutSectionActive = isAboutActive();
               return (
@@ -275,7 +277,7 @@ export default function Navbar() {
                   </AnimatePresence>
                 </li>
               );
-            } else if (link.name === "Industries") {
+            } else if (link.href === "/industries/cei") {
               // Special handling for Industries - no dropdown when Industries is active
               const isIndustriesSectionActive = isIndustriesActive();
               return (
@@ -395,7 +397,7 @@ export default function Navbar() {
                   </AnimatePresence>
                 </li>
               );
-            } else if (link.name === "Sustainability") {
+            } else if (link.href === "/sustainability") {
               // Special handling for Sustainability - hover effect
               const isSustainabilityActive = isLocalizedLinkActive(link.href);
               return (
@@ -538,7 +540,7 @@ export default function Navbar() {
             <button
               onClick={() => setLangOpen((v) => !v)}
               className="h-[2.075rem] w-[2.075rem]  flex items-center bg-[#1789FF] justify-center rounded-full  text-xs   text-[#ffffff] hover:bg-[#00b298] hover:border-[#00b298] transition-colors"
-              aria-label="Change language"
+              aria-label={t("Common.changeLanguage")}
             >
               {currentLanguage}
             </button>
@@ -576,7 +578,7 @@ export default function Navbar() {
         <button
           className="xl:hidden relative z-50 flex flex-col justify-center items-center w-8 h-8"
           onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-label={t("Common.toggleMenu")}
         >
           <span
             className={`block absolute h-0.5 w-6 bg-[#595959] rounded transform transition duration-300 ease-in-out
@@ -604,7 +606,7 @@ export default function Navbar() {
             className="xl:hidden flex flex-col bg-white  shadow-lg w-full absolute top-full left-0"
           >
             {navLocalizedLinks.map((link) => {
-              if (link.name === "Contact Us") {
+              if (link.href === "/contact") {
                 return (
                   <li key={link.name} className="border-b border-[#595959]/5">
                     <div className="flex items-center justify-between px-6 py-4">
@@ -639,7 +641,7 @@ export default function Navbar() {
                             mobileDropdown === link.name ? null : link.name
                           )
                         }
-                        aria-label={`Toggle ${link.name} submenu`}
+                        aria-label={t("Common.toggleSubmenu", { name: link.name })}
                         className="ml-2 flex items-center justify-center w-4 h-4"
                       >
                         <motion.span
@@ -721,13 +723,13 @@ export default function Navbar() {
             {/* Language Selector (Mobile only) */}
             <li className="px-6 py-4 flex items-center justify-between">
               <span className="text-[#595959] font-semibold">
-                Language
+                {t("Common.language")}
               </span>
               <div className="relative">
                 <button
                   onClick={() => setLangOpen((v) => !v)}
                   className="h-8 w-8 flex items-center text-xs justify-center bg-[#1789ff] rounded-full border border-[#595959]/40  font-semibold text-white hover:border-[#1789FF] hover:text-[#1789FF] transition-colors"
-                  aria-label="Change language"
+                  aria-label={t("Common.changeLanguage")}
                 >
                   {currentLanguage}
                 </button>

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useMobileDetection } from "@/lib/useMobileDetection";
+import { useTranslations } from 'next-intl';
 
 export type ApproachItem = { title: string; desc: string };
 
@@ -24,6 +25,7 @@ export default function VerticalContent({
 }) {
     const [activeApproach, setActiveApproach] = useState(0);
     const isMobile = useMobileDetection();
+    const t = useTranslations();
 
     if (!items || items.length === 0) return null;
 
@@ -39,7 +41,7 @@ export default function VerticalContent({
             <section className="w-full  xl:h-[35vh]  py-10" >
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-2xl  md:text-2xl lg:text-3xl font-semibold text-[#595959] mb-4 sm:mb-6">
-                        Where proof lives.
+                        {t("VerticalContent.title")}
                     </h2>
                     <p className="text-lg text-[#595959]/80 leading-tight">
                         {content}
@@ -94,7 +96,7 @@ export default function VerticalContent({
                                 transition={{ duration: 0.3, ease: "easeOut" }}
                                 className="flex flex-col md:flex-row md:flex-wrap gap-4 md:gap-6 justify-between w-full"
                                 role="tablist"
-                                aria-label="Approach options"
+                                aria-label={t("VerticalContent.ariaLabel")}
                             >
                                 {items.map((it, i) => {
                                     const isActive = active === i;

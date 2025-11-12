@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Header from "./Header";
 import LocalizedLink from "./LocalizedLink";
+import { useTranslations } from 'next-intl';
 
 interface ContactSliderProps {
   isOpen: boolean;
@@ -11,6 +12,7 @@ interface ContactSliderProps {
 }
 
 export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
+  const t = useTranslations();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -68,20 +70,20 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
   };
 
   const regions = [
-    "North America",
-    "Europe",
-    "Asia Pacific",
-    "Latin America",
-    "Middle East & Africa"
+    t("ContactSlider.regions.northAmerica"),
+    t("ContactSlider.regions.europe"),
+    t("ContactSlider.regions.asiaPacific"),
+    t("ContactSlider.regions.latinAmerica"),
+    t("ContactSlider.regions.middleEastAfrica")
   ];
 
   const categories = [
-    "General Inquiry",
-    "Product Information",
-    "Technical Support",
-    "Sales Inquiry",
-    "Partnership",
-    "Other"
+    t("ContactSlider.categories.generalInquiry"),
+    t("ContactSlider.categories.productInformation"),
+    t("ContactSlider.categories.technicalSupport"),
+    t("ContactSlider.categories.salesInquiry"),
+    t("ContactSlider.categories.partnership"),
+    t("ContactSlider.categories.other")
   ];
 
   return (
@@ -123,10 +125,10 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
             <div className="flex items-center justify-between p-6 py-5 border-b border-gray-100">
               <div>
                 <Header className="text-sm pb-5 font-medium mb-1">
-                  GENERAL INQUIRY
+                  {t("ContactSlider.title")}
                 </Header>
                 <h2 className="text-2xl font-bold text-[#1789FF]">
-                  Let's talk.
+                  {t("ContactSlider.heading")}
                 </h2>
               </div>
               <button
@@ -149,7 +151,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#595959] mb-2">
-                      First Name *
+                      {t("ContactSlider.firstName")}
                     </label>
                     <input
                       type="text"
@@ -158,12 +160,12 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                       onChange={handleInputChange}
                       required
                       className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
-                      placeholder="Enter first name"
+                      placeholder={t("ContactSlider.firstNamePlaceholder")}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-[#595959] mb-2">
-                      Last Name *
+                      {t("ContactSlider.lastName")}
                     </label>
                     <input
                       type="text"
@@ -172,7 +174,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                       onChange={handleInputChange}
                       required
                       className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
-                      placeholder="Enter last name"
+                      placeholder={t("ContactSlider.lastNamePlaceholder")}
                     />
                   </div>
                 </div>
@@ -180,7 +182,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 {/* Company */}
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
-                    Company Name *
+                    {t("ContactSlider.companyName")}
                   </label>
                   <input
                     type="text"
@@ -189,14 +191,14 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     onChange={handleInputChange}
                     required
                     className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
-                    placeholder="Enter company name"
+                    placeholder={t("ContactSlider.companyNamePlaceholder")}
                   />
                 </div>
 
                 {/* Email */}
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
-                    Email *
+                    {t("ContactSlider.email")}
                   </label>
                   <input
                     type="email"
@@ -205,14 +207,14 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     onChange={handleInputChange}
                     required
                     className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm"
-                    placeholder="Enter email address"
+                    placeholder={t("ContactSlider.emailPlaceholder")}
                   />
                 </div>
 
                 {/* Region */}
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
-                    Region
+                    {t("ContactSlider.region")}
                   </label>
                   <select
                     name="region"
@@ -220,7 +222,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm appearance-none cursor-pointer"
                   >
-                    <option value="">Select region</option>
+                    <option value="">{t("ContactSlider.selectRegion")}</option>
                     {regions.map((region) => (
                       <option key={region} value={region}>
                         {region}
@@ -232,7 +234,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 {/* Message */}
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
-                    Message
+                    {t("ContactSlider.message")}
                   </label>
                   <textarea
                     name="message"
@@ -240,14 +242,14 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     onChange={handleInputChange}
                     rows={4}
                     className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm resize-none"
-                    placeholder="Help us help you - please add details about your inquiry."
+                    placeholder={t("ContactSlider.messagePlaceholder")}
                   />
                 </div>
 
                 {/* Consent */}
                 <div className="space-y-3">
                   <p className="text-sm text-[#595959]">
-                    To submit this form, you must consent to the terms below:
+                    {t("ContactSlider.consentText")}
                   </p>
                   <label className="flex items-start space-x-3 cursor-pointer">
                     <input
@@ -259,13 +261,13 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                       className="mt-1 h-4 w-4 text-[#009B80] border-gray-300 rounded focus:ring-[#009B80] focus:ring-2"
                     />
                     <span className="text-sm text-[#595959] leading-relaxed">
-                      I consent to receive communications from Mnex and understand that I may revoke this consent at any time. I agree to the{" "}
+                      {t("ContactSlider.consentAgreement")}{" "}
                       <LocalizedLink href="/privacy" className="text-[#1789FF] hover:underline">
-                        Privacy Policy
+                        {t("Common.privacyPolicy")}
                       </LocalizedLink>{" "}
-                      and{" "}
+                      {t("ContactSlider.and")}{" "}
                       <LocalizedLink href="/terms" className="text-[#1789FF] hover:underline">
-                        Terms of Service
+                        {t("ContactSlider.termsOfService")}
                       </LocalizedLink>.
                     </span>
                   </label>
@@ -278,7 +280,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     className="w-full bg-[#009B80] rounded-full text-white py-3 px-6 font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={!formData.consent}
                   >
-                    Send Message
+                    {t("ContactSlider.sendMessage")}
                   </button>
                 </div>
               </form>

@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 
 type Slide = {
   img: string; // public/ path or remote URL
@@ -23,6 +24,7 @@ export default function PurposeCarousel({
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const t = useTranslations();
 
   const len = slides.length;
   const clamp = (n: number) => (n + len) % len;
@@ -93,16 +95,14 @@ export default function PurposeCarousel({
       {/* Top copy */}
       <div className="max-w-7xl px-4 mx-auto py-10 sm:py-12 text-center">
         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl md:text-4xl">
-         {` Engineering with purpose.
-          Delivering with precision.`}
+          {t("PurposeCarousel.title")}
         </h2>
         <p className="mt-4 mb-0 max-w-4xl mx-auto text-[#6F6F6F] text-lg">
-          We begin with your business reality -  your volumes, cost targets, and
-          roadmap.
+          {t("PurposeCarousel.description1")}
         </p>
         <br />
         <p className="mb-2 -mt-2 max-w-2xl mx-auto text-[#6F6F6F] whitespace-pre-line text-lg">
-          Then we engineer what matters: solutions shaped by  clarity, operational discipline, and purposeful innovation.
+          {t("PurposeCarousel.description2")}
         </p>
       </div>
 
@@ -193,7 +193,7 @@ export default function PurposeCarousel({
               {/* Left Arrow */}
               <button
                 onClick={() => to(idx === 0 ? slides.length - 1 : idx - 1)}
-                aria-label="Previous slide"
+                aria-label={t("PurposeCarousel.previousSlide")}
                 className="p-4 rounded-full hover:bg-[#1789FF] bg-white/20 transition-all duration-200 backdrop-blur-sm"
               >
                 <svg
@@ -214,7 +214,7 @@ export default function PurposeCarousel({
               {/* Right Arrow */}
               <button
                 onClick={() => to(idx === slides.length - 1 ? 0 : idx + 1)}
-                aria-label="Next slide"
+                aria-label={t("PurposeCarousel.nextSlide")}
                 className="p-4 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-200 backdrop-blur-sm"
               >
                 <svg
@@ -245,7 +245,7 @@ export default function PurposeCarousel({
                   <button
                     key={i}
                     onClick={() => to(i)}
-                    aria-label={`Go to slide ${i + 1}`}
+                    aria-label={t("PurposeCarousel.goToSlide", { number: i + 1 })}
                     className={`h-3 w-3 rounded-full transition-all
                       ${active ? "bg-white" : "bg-white/50 hover:bg-white/70"}`}
                   />

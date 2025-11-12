@@ -207,11 +207,11 @@ export default function ApproachSection({
                     >
                       <h3 className={`text-xl  max-md:w-fit sm:text-2xl md:text-3xl lg:text-4xl pb-2 font-semibold ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
                         }`}>
-                        {items[active]?.title || 'No title'}
+                        {items[active]?.title || t("ApproachSection.noTitle")}
                       </h3>
                       <p className={`text-lg sm:text-xl  max-md:w-[23rem] md:text-2xl leading-tight ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
                         }`}>
-                        {items[active]?.desc || 'No description'}
+                        {items[active]?.desc || t("ApproachSection.noDescription")}
                       </p>
                     </motion.div>
                   </AnimatePresence>

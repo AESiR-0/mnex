@@ -32,23 +32,35 @@ export default function SiteFooter() {
                 />
               </LocalizedLink>
               <p className="text-sm xl:text-md text-[#595959] pb-2 sm:pb-3">
-             <b>   Mnex Singapore </b> <br />
-                8 Temasek Blvd, Suntec Tower 3 <br />
-                #44-02, Singapore 038 988
+                <b>{t("Footer.singapore.name")}</b> <br />
+                {t("Footer.singapore.address1")} <br />
+                {t("Footer.singapore.address2")}
+                {t("Footer.singapore.address3") && (
+                  <>
+                    <br />
+                    {t("Footer.singapore.address3")}
+                  </>
+                )}
               </p>
               <h5 className="text-sm xl:text-md text-[#1789FF] pb-1 sm:pb-2">
                 {t("Footer.ourFacilities")}
               </h5>
               <p className="text-sm xl:text-md text-[#595959] pb-2 sm:pb-3">
-                <b>Mnex China </b> <br />
-                No. 1 Zhi Hui Road, Banfu Town,<br />
-                Zhongshan, Guangdong, China 528 459
+                <b>{t("Footer.china.name")}</b> <br />
+                {t("Footer.china.address1")}<br />
+                {t("Footer.china.address2")}
+                {t("Footer.china.address3") && (
+                  <>
+                    <br />
+                    {t("Footer.china.address3")}
+                  </>
+                )}
               </p>
               <p className="text-sm xl:text-md text-[#595959] pb-3 sm:pb-5">
-                <b>Mnex Malaysia </b> <br />
-                Unit 2 Jalan Seroja 2
-                Bandar Indahpura, <br />
-                810 00, Kulai, Johor, Malaysia
+                <b>{t("Footer.malaysia.name")}</b> <br />
+                {t("Footer.malaysia.address1")} <br />
+                {t("Footer.malaysia.address2")} <br />
+                {t("Footer.malaysia.address3")}
               </p>
             </div>
 

@@ -112,7 +112,13 @@
     "productDevelopmentBullet1": "Structured product strategy and design-for-manufacturability",
     "productDevelopmentBullet2": "Built-in function, compliance, durability, and aesthetics",
     "productDevelopmentBullet3": "Proven track record: child safety systems, sterilizers, complex sub-assemblies",
-    "productDevelopmentBullet4": "Same rigor whether it's a single part or a full electromechanical system"
+    "productDevelopmentBullet4": "Same rigor whether it's a single part or a full electromechanical system",
+    "injectionMoldingBadges": {
+      "thermoplasticsThermosets": "THERMOPLASTICS | THERMOSETS",
+      "sustainablePolymers": "SUSTAINABLE POLYMERS",
+      "multiShotFusion": "MULTI-SHOT | MULTI-MATERIAL FUSION",
+      "leanCellsFlow": "LEAN CELLS | INTEGRATED FLOW"
+    }
   },
   "Industries": {
     "title": "Industries We Serve",
@@ -285,7 +291,25 @@
   "Footer": {
     "ourFacilities": "Our Facilities",
     "backToTop": "Back to Top",
-    "copyright": "Copyright © {year} Mnex Precision"
+    "copyright": "Copyright © {year} Mnex Precision",
+    "singapore": {
+      "name": "Mnex Singapore",
+      "address1": "8 Temasek Blvd, Suntec Tower 3",
+      "address2": "#44-02, Singapore 038 988",
+      "address3": ""
+    },
+    "china": {
+      "name": "Mnex China",
+      "address1": "No. 1 Zhi Hui Road, Banfu Town,",
+      "address2": "Zhongshan, Guangdong, China 528 459",
+      "address3": ""
+    },
+    "malaysia": {
+      "name": "Mnex Malaysia",
+      "address1": "Unit 2 Jalan Seroja 2",
+      "address2": "Bandar Indahpura,",
+      "address3": "810 00, Kulai, Johor, Malaysia"
+    }
   },
   "Culture": {
     "title": "Culture",
@@ -327,6 +351,70 @@
       "bullet4": "**Innovation** through continuous improvement"
     }
   },
+  "VerticalContent": {
+    "title": "Where proof lives.",
+    "ariaLabel": "Approach options"
+  },
+  "PurposeCarousel": {
+    "title": "Engineering with purpose.\nDelivering with precision.",
+    "description1": "We begin with your business reality - your volumes, cost targets, and roadmap.",
+    "description2": "Then we engineer what matters: solutions shaped by clarity, operational discipline, and purposeful innovation.",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "goToSlide": "Go to slide {number}"
+  },
+  "SolutionsSection": {
+    "title": "Solutions",
+    "tagline": "We don't sell capabilities. We build the right one for you."
+  },
+  "ApproachSection": {
+    "noTitle": "No title",
+    "noDescription": "No description"
+  },
+  "ContactSlider": {
+    "title": "GENERAL INQUIRY",
+    "heading": "Let's talk.",
+    "firstName": "First Name *",
+    "lastName": "Last Name *",
+    "companyName": "Company Name *",
+    "positionTitle": "Position Title",
+    "phone": "Phone",
+    "email": "Email *",
+    "region": "Region",
+    "category": "Category",
+    "message": "Message",
+    "firstNamePlaceholder": "Enter first name",
+    "lastNamePlaceholder": "Enter last name",
+    "companyNamePlaceholder": "Enter company name",
+    "emailPlaceholder": "Enter email address",
+    "phonePlaceholder": "Enter phone number",
+    "selectRegion": "Select region",
+    "selectCategory": "Select category",
+    "messagePlaceholder": "Help us help you - please add details about your inquiry.",
+    "consentText": "To submit this form, you must consent to the terms below:",
+    "consentAgreement": "I consent to receive communications from Mnex and understand that I may revoke this consent at any time. I agree to the",
+    "and": "and",
+    "termsOfService": "Terms of Service",
+    "sendMessage": "Send Message",
+    "regions": {
+      "northAmerica": "North America",
+      "europe": "Europe",
+      "asiaPacific": "Asia Pacific",
+      "latinAmerica": "Latin America",
+      "middleEastAfrica": "Middle East & Africa"
+    },
+    "categories": {
+      "generalInquiry": "General Inquiry",
+      "productInformation": "Product Information",
+      "technicalSupport": "Technical Support",
+      "salesInquiry": "Sales Inquiry",
+      "partnership": "Partnership",
+      "other": "Other"
+    }
+  },
+  "ContactButton": {
+    "getStarted": "Get Started"
+  },
   "Common": {
     "language": "Language",
     "english": "English",
@@ -340,6 +428,9 @@
     "menu": "Menu",
     "sitemap": "Sitemap",
     "privacyPolicy": "Privacy Policy",
-    "termsOfUse": "Terms of Use"
+    "termsOfUse": "Terms of Use",
+    "changeLanguage": "Change language",
+    "toggleMenu": "Toggle menu",
+    "toggleSubmenu": "Toggle {name} submenu"
   }
 }
