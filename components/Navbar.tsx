@@ -116,6 +116,11 @@ export default function Navbar() {
     setOpenDropdown(null);
   };
 
+  // Hide navbar on ebizcard/cindy page
+  if (pathname.includes('ebizcard/cindy')) {
+    return null;
+  }
+
   return (
     <motion.nav
       className="fixed left-0 top-0 min-h-[65px] max-md:w-full w-full max-w-screen text-[#575757] bg-[#ffffff] uppercase z-50 flex items-center shadow-none border-none"

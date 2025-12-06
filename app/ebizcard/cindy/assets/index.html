@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="Digital Business Card">
+  <meta name="url" content="https://meibanenergy.com/">
+  <meta name="designer" content="Hariprem">
+  <meta property="og:title" content="Cindy Goh | CEO - MNEX">
+  <meta property="twitter:title" content="Cindy Goh | CEO - MNEX">
+  <meta name="theme-color" content="#0a1628">
+  <title>Cindy Goh | CEO - MNEX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+/* Modern Digital Business Card - Redesigned */
+:root {
+  --primary: #0ea5e9;
+  --primary-dark: #0284c7;
+  --primary-light: #38bdf8;
+  --bg-dark: #0a1628;
+  --bg-card: #0f172a;
+  --bg-surface: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --gradient-1: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+  --gradient-2: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Animated Background */
+.bg-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 70%);
+  z-index: -2;
+  animation: pulse 15s ease-in-out infinite;
+}
+
+.bg-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Main Card */
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  position: relative;
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Top Actions */
+.top-actions {
+  position: fixed;
+  right: 2rem;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+.action-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: none;
+}
+
+.action-icon:hover {
+  background: var(--primary-light);
+  transform: scale(1.1);
+  box-shadow: none;
+}
+
+.action-icon svg {
+  width: 22px;
+  height: 22px;
+  color: white;
+}
+
+/* Profile Section */
+.profile-section {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+  background: var(--gradient-2);
+  position: relative;
+}
+
+.profile-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.logo-container {
+  margin-bottom: 1rem;
+}
+
+#logo {
+  max-height: 80px;
+  max-width: 200px;
+  object-fit: contain;
+  filter: brightness(1.1);
+}
+
+.profile-info {
+  animation: fadeIn 0.8s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0rem;
+  letter-spacing: -0.02em;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-light);
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.tagline span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.company-info {
+  padding: 1rem 0;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+.company {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.08em;
+}
+
+.address {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+/* Save Contact Button */
+.save-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1rem 2rem;
+  padding: 1rem 2rem;
+  background: var(--gradient-1);
+  color: white;
+  text-decoration: none;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4);
+  animation: fadeIn 0.8s ease-out 0.5s both;
+}
+
+.save-contact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(14, 165, 233, 0.5);
+}
+
+.save-contact:active {
+  transform: translateY(0);
+}
+
+.save-contact svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 0 2rem 1rem;
+  animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.divider span {
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Action Cards Grid */
+.actions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0 1.5rem 1rem;
+}
+
+.action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: scaleIn 0.5s ease-out both;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+}
+
+.action-card:hover .action-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.action-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.action-icon-wrapper svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* Icon Colors */
+.action-icon-wrapper.whatsapp {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: white;
+}
+
+.action-icon-wrapper.phone {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  color: white;
+}
+
+.action-icon-wrapper.email {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+}
+
+.action-icon-wrapper.website {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+}
+
+.action-icon-wrapper.location {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.action-card span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.action-card:hover span {
+  color: var(--text-primary);
+}
+
+/* Card Footer */
+  .card-footer {
+    padding: 1rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+/* Toggle Switch */
+.region-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  background: #6E6E6E;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+.toggle-switch.active {
+  background: var(--primary);
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.toggle-switch.active .toggle-slider {
+  left: 32px;
+}
+
+.region-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}.card-footer .tagline {
+  margin-bottom: 0.75rem;
+}
+
+.card-footer .tagline span {
+  display: inline;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-footer .tagline span:first-child::after {
+  content: ' ';
+}
+
+.card-footer .copyright {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-close svg {
+  width: 24px;
+  height: 24px;
+  color: var(--text-primary);
+}
+
+.modal-content {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 400px;
+}
+
+.modal-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.modal-content h3 {
+  color: var(--text-primary);
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
+
+#qr {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+#qr svg {
+  width: 200px;
+  height: 200px;
+}
+
+/* Buttons */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: none;
+  width: 100%;
+}
+
+.btn-primary {
+  background: var(--gradient-1);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(14, 165, 233, 0.4);
+}
+
+.btn-primary.success {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive - Mobile First Priority */
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    align-items: stretch;
+    background: var(--bg-card); /* Seamless background */
+  }
+  
+  .bg-gradient, .bg-pattern {
+    display: none; /* Remove distractions on mobile for performance and clean look */
+  }
+  
+  .top-actions {
+    right: 1rem;
+    top: 1rem;
+  }
+  
+  .card {
+    max-width: 100%;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-section {
+    padding: 3rem 1.5rem 1.5rem;
+    flex: 1; /* Push footer down if content is short */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .logo-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  #logo {
+    max-height: 90px; /* Slightly larger on mobile */
+  }
+  
+  .name {
+    font-size: 2rem; /* Larger name */
+    margin-bottom: 0rem;
+  }
+  
+  .title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
+  
+  .company-info {
+    background: transparent;
+    border-radius: 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-top: 0.5rem;
+  }
+  
+  .save-contact {
+    margin: 1.5rem 1.5rem;
+    padding: 1.1rem 2rem; /* Larger touch target */
+    font-size: 1.1rem;
+    position: sticky;
+    bottom: 2rem;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+    backdrop-filter: blur(5px);
+  }
+  
+  .divider {
+    margin: 0 2rem 1.5rem;
+  }
+  
+  .actions-grid {
+    padding: 0 1rem 2rem;
+    gap: 1rem;
+  }
+  
+  .action-card {
+    padding: 0.5rem;
+  }
+  
+  .action-icon-wrapper {
+    width: 56px; /* Larger icons */
+    height: 56px;
+  }
+  
+  .action-icon-wrapper svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .card-footer {
+    padding-bottom: 4rem; /* Space for sticky button if needed, or just breathing room */
+    background: transparent;
+    border-top: none;
+  }
+}
+
+/* Dark Mode Preference (already dark, this is for light mode override if needed) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-dark: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-surface: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border: rgba(0, 0, 0, 0.08);
+    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .bg-gradient {
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+  }
+  
+  .bg-pattern {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  }
+  
+  .profile-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  }
+  
+  .action-icon {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+  
+  .action-icon:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .action-icon svg {
+    color: var(--text-primary);
+  }
+  
+  .company-info {
+    background: transparent;
+  }
+  
+  .card-footer {
+    background: rgba(0, 0, 0, 0.02);
+  }
+  
+  .modal {
+    background: rgba(248, 250, 252, 0.95);
+  }
+  
+  .modal-close {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  .modal-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-close svg {
+    color: var(--text-primary);
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-gradient"></div>
+  <div class="bg-pattern"></div>
+  
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <a id="close" class="modal-close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </a>
+    <div id="keyView" class="modal-content">
+      <p>Use my public key to send me encrypted messages</p>
+      <a download="" target="_blank" id="dlKey" rel="noreferrer" href="./Cindy's public key.asc" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        <span>Download Key</span>
+      </a>
+    </div>
+    <div id="copyView" class="modal-content">
+      <p>Copy and send the URL to share my Business Card</p>
+      <button id="copyURL" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+        </svg>
+        <span>Copy URL</span>
+      </button>
+    </div>
+    <div id="qrView" class="modal-content">
+      <div id="qr"></div>
+      <h3>Scan the QR Code</h3>
+      <p>to view my Business Card on another device</p>
+    </div>
+  </div>
+
+  <!-- Main Card -->
+  <div class="card">
+    <!-- Header Actions -->
+    <div id="topActions" class="top-actions">
+      <a id="share" class="action-icon" title="Share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="18" cy="5" r="3"/>
+          <circle cx="6" cy="12" r="3"/>
+          <circle cx="18" cy="19" r="3"/>
+          <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+        </svg>
+      </a>
+      <a id="showQR" class="action-icon" title="QR Code">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-section">
+      <!-- Region Toggle -->
+      <div class="region-toggle">
+        <span class="region-label">SG</span>
+        <div id="regionToggle" class="toggle-switch">
+          <div class="toggle-slider"></div>
+        </div>
+        <span class="region-label">CN</span>
+      </div>
+
+      <div class="logo-container">
+        <img id="logo" src="./logo.png" alt="Meiban Global Logo">
+      </div>
+      <div class="profile-info">
+        <h1 class="name" id="nameDisplay">Cindy Goh</h1>
+        <p class="title" id="titleDisplay">Chief Executive Officer</p>
+        <div class="company-info">
+          <p class="company" id="companyDisplay">MNEX</p>
+          <p class="address" id="addressDisplay">Mnex Singapore, 8 Temasek Blvd,<br>Suntec Tower 3, #44-02, Singapore 038988</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Contact CTA -->
+    <a id="cta" class="save-contact" href="cindy.vcf" download="" rel="noreferrer" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/>
+        <polyline points="17,21 17,13 7,13 7,21"/>
+        <polyline points="7,3 7,8 15,8"/>
+      </svg>
+      <span>Save Contact</span>
+    </a>
+
+    <!-- Divider -->
+    <div class="divider">
+      <span>Connect with me</span>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="actions-grid">
+      <a id="whatsappLink" href="https://wa.me/+6591891000" target="_blank" rel="noopener noreferrer" class="action-card" aria-label="WhatsApp">
+        <div class="action-icon-wrapper whatsapp">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </div>
+        <span>WhatsApp</span>
+      </a>
+      
+      <a id="phoneLink" href="tel:+6568160111" target="_blank" rel="noopener noreferrer" class="action-card" aria-label="Mobile">
+        <div class="action-icon-wrapper phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <span>Mobile</span>
+      </a>
+      
+      <a id="emailLink" href="mailto:cindy.goh@mnexprecision.com" target="_blank" rel="noopener noreferrer" class="action-card" aria-label="Email">
+        <div class="action-icon-wrapper email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <span>Email</span>
+      </a>
+      
+      <a id="websiteLink" href="https://www.mnexprecision.com" target="_blank" rel="noopener noreferrer" class="action-card" aria-label="Website">
+        <div class="action-icon-wrapper website">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+        </div>
+        <span>Website</span>
+      </a>
+      
+      <a id="locationLink" href="https://maps.app.goo.gl/NU4qLn5fHSEoi3PHA" target="_blank" rel="noopener noreferrer" class="action-card" aria-label="Location">
+        <div class="action-icon-wrapper location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <span>Location</span>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="card-footer">
+      <div class="tagline">
+        <span>Shaping Precision,</span>
+        <span>Engineering What Matters</span>
+      </div>
+      <p class="copyright">© 2025 MNEX</p>
+    </footer>
+  </div>
+
+  <script src="./qrcode.min.js"></script>
+  <script>
+    // Region data
+    const regionData = {
+      SG: {
+        name: "Cindy Goh",
+        title: "Chief Executive Officer",
+        company: "MNEX",
+        address: "Mnex Singapore, 8 Temasek Blvd,<br>Suntec Tower 3, #44-02, Singapore 038988",
+        phone: "++6591891000",
+        whatsapp: "+6591891000",
+        email: "cindy.goh@mnexprecision.com",
+        website: "https://www.mnexprecision.com",
+        location: "https://maps.app.goo.gl/NU4qLn5fHSEoi3PHA",
+        vcf: "cindy.vcf"
+      },
+      CN: {
+        name: "吴淑敏",
+        title: "首席执行官",
+        company: "MNEX",
+        address: "铭板精密科技（中山）有限公司<br>广东省中山市板芙镇智能制造装备产业园智慧路1号<br>纳税识别号: 9144200076380367XK",
+        phone: "+86 13917511111",
+        whatsapp: "+6591891000",
+        email: "cindy.goh@mnexprecision.com",
+        website: "https://www.mnexprecision.com/zh",
+        location: "https://maps.app.goo.gl/nJqBAGHmTs37s6te7",
+        vcf: "cindy-cn.vcf"
+      }
+    };
+
+    let currentRegion = "SG";
+
+    const modal = document.getElementById("modal");
+    const closeBtn = document.getElementById("close");
+    const keyView = document.getElementById("keyView");
+    const copyView = document.getElementById("copyView");
+    const copyURL = document.getElementById("copyURL");
+    const qrView = document.getElementById("qrView");
+    const qr = document.getElementById("qr");
+    const shareBtn = document.getElementById("share");
+    const showQRBtn = document.getElementById("showQR");
+    const regionToggle = document.getElementById("regionToggle");
+
+    function toggleModal(show) {
+      if (show) {
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      } else {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    }
+
+    function hideAllViews() {
+      keyView.style.display = "none";
+      copyView.style.display = "none";
+      qrView.style.display = "none";
+    }
+
+    function updateContent() {
+      const data = regionData[currentRegion];
+      document.getElementById("nameDisplay").textContent = data.name;
+      document.getElementById("titleDisplay").textContent = data.title;
+      document.getElementById("companyDisplay").textContent = data.company;
+      document.getElementById("addressDisplay").innerHTML = data.address;
+      document.getElementById("phoneLink").href = `tel:${data.phone.replace(/\s/g, '')}`;
+      document.getElementById("whatsappLink").href = `https://wa.me/${data.whatsapp.replace(/\s|\+/g, '')}`;
+      document.getElementById("emailLink").href = `mailto:${data.email}`;
+      document.getElementById("websiteLink").href = data.website;
+      document.getElementById("locationLink").href = data.location;
+      document.getElementById("cta").href = data.vcf;
+      
+      // Update QR code
+      qr.innerHTML = new QRCode({
+        content: window.location.href + (currentRegion === "CN" ? "?region=CN" : ""),
+        container: "svg-viewbox",
+        join: true,
+        ecl: "L",
+        padding: 0
+      }).svg();
+    }
+
+    regionToggle.addEventListener("click", () => {
+      currentRegion = currentRegion === "SG" ? "CN" : "SG";
+      regionToggle.classList.toggle("active");
+      updateContent();
+    });
+
+    window.addEventListener("load", () => {
+      document.querySelector("#topActions").style.opacity = "1";
+      updateContent();
+      
+      // Add entrance animations
+      document.querySelectorAll('.action-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+    });
+
+    if (navigator.canShare) {
+      shareBtn.addEventListener("click", () => {
+        navigator.share({
+          title: document.title,
+          text: "You can view my Digital Business Card here:",
+          url: window.location.href
+        });
+      });
+    } else {
+      shareBtn.addEventListener("click", () => {
+        hideAllViews();
+        copyView.style.display = "flex";
+        toggleModal(true);
+      });
+    }
+
+    showQRBtn.addEventListener("click", () => {
+      hideAllViews();
+      qrView.style.display = "flex";
+      toggleModal(true);
+    });
+
+    closeBtn.addEventListener("click", () => toggleModal(false));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) toggleModal(false);
+    });
+
+    copyURL.addEventListener("click", async () => {
+      const span = copyURL.querySelector("span");
+      await navigator.clipboard.writeText(window.location.href);
+      span.textContent = "Copied!";
+      copyURL.classList.add("success");
+      setTimeout(() => {
+        span.textContent = "Copy URL";
+        copyURL.classList.remove("success");
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

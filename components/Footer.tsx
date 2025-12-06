@@ -4,11 +4,18 @@ import Image from "next/image";
 import LocalizedLink from "./LocalizedLink";
 import { useTranslations, useLocale } from 'next-intl';
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function SiteFooter() {
   const { open } = useContactSlider();
   const t = useTranslations();
   const locale = useLocale();
+  const pathname = usePathname();
+
+  // Hide footer on ebizcard/cindy page
+  if (pathname.includes('ebizcard/cindy')) {
+    return null;
+  }
 
   return (
     <footer className="w-full bg-[#eaeaea]">
