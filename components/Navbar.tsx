@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useContactSlider } from "@/lib/useContactSlider";
 import { useLocale, useTranslations } from 'next-intl';
+import TranslatableText from "./TranslatableText";
 
 export default function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
@@ -13,39 +14,47 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations();
   const { isOpen: isContactOpen, open: openContactSlider } = useContactSlider();
 
+  // Ensure component is mounted before checking pathname to avoid hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Get current language display
   const currentLanguage = locale === 'zh' ? '中文' : 'EN';
 
-  // Get translated navigation links
+  // Get translated navigation links with translation keys for visual editing
   const navLocalizedLinks = [
     {
       name: t("Navigation.about"),
+      translationKey: "Navigation.about",
       href: "/about/approach",
       children: [
-        { name: t("Navigation.aboutSubmenu.approach"), href: "/about/approach" },
-        { name: t("Navigation.aboutSubmenu.legacy"), href: "/about/legacy" },
-        // { name: t("Navigation.aboutSubmenu.leadership"), href: "/about/leadership" },
+        { name: t("Navigation.aboutSubmenu.approach"), translationKey: "Navigation.aboutSubmenu.approach", href: "/about/approach" },
+        { name: t("Navigation.aboutSubmenu.legacy"), translationKey: "Navigation.aboutSubmenu.legacy", href: "/about/legacy" },
+        // { name: t("Navigation.aboutSubmenu.leadership"), translationKey: "Navigation.aboutSubmenu.leadership", href: "/about/leadership" },
       ],
     },
-    { name: t("Navigation.solutions"), href: "/solutions" },
+    { name: t("Navigation.solutions"), translationKey: "Navigation.solutions", href: "/solutions" },
     {
       name: t("Navigation.industries"),
+      translationKey: "Navigation.industries",
       href: "/industries/cei",
       children: [
-        { name: t("Navigation.industriesSubmenu.cei"), href: "/industries/cei" },
-        { name: t("Navigation.industriesSubmenu.regulated"), href: "/industries/regulated" },
-        { name: t("Navigation.industriesSubmenu.oilAndGas"), href: "/industries/oil-and-gas" },
+        { name: t("Navigation.industriesSubmenu.cei"), translationKey: "Navigation.industriesSubmenu.cei", href: "/industries/cei" },
+        { name: t("Navigation.industriesSubmenu.regulated"), translationKey: "Navigation.industriesSubmenu.regulated", href: "/industries/regulated" },
+        { name: t("Navigation.industriesSubmenu.oilAndGas"), translationKey: "Navigation.industriesSubmenu.oilAndGas", href: "/industries/oil-and-gas" },
       ],
     },
-    { name: t("Navigation.sustainability"), href: "/sustainability" },
-    { name: t("Navigation.culture"), href: "/culture" },
-    { name: t("Navigation.contact"), href: "/contact" },
+    { name: t("Navigation.sustainability"), translationKey: "Navigation.sustainability", href: "/sustainability" },
+    { name: t("Navigation.culture"), translationKey: "Navigation.culture", href: "/culture" },
+    { name: t("Navigation.contact"), translationKey: "Navigation.contact", href: "/contact" },
   ];
 
   // Handle language switching
@@ -116,8 +125,8 @@ export default function Navbar() {
     setOpenDropdown(null);
   };
 
-  // Hide navbar on ebizcard/cindy page
-  if (pathname.includes('ebizcard/cindy')) {
+  // Hide navbar on ebizcard/cindy page (only after mount to avoid hydration mismatch)
+  if (isMounted && pathname.includes('ebizcard/cindy')) {
     return null;
   }
 
@@ -156,7 +165,7 @@ export default function Navbar() {
                       className={`px-6 sm:px-5 py-2 text-xs font-regular  uppercase rounded-full border transition-colors duration-200 
                         bg-transparent text-[#595959] hover:bg-[#009b80] hover:text-white`}
                     >
-                      {link.name}
+                      <TranslatableText translationKey={link.translationKey} />
                     </button>
                   </div>
                 </li>
@@ -271,7 +280,7 @@ export default function Navbar() {
                                       : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
                                     }`}
                                 >
-                                  {sublink.name}
+                                  <TranslatableText translationKey={sublink.translationKey} />
                                 </LocalizedLink>
                               </motion.div>
                             );
@@ -302,7 +311,7 @@ export default function Navbar() {
             ${isIndustriesSectionActive ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
-                      {link.name}
+                      <TranslatableText translationKey={link.translationKey} />
                     </LocalizedLink>
                     {link.children && !isIndustriesSectionActive && (
                       <motion.span
@@ -391,7 +400,7 @@ export default function Navbar() {
                                       : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
                                     }`}
                                 >
-                                  {sublink.name}
+                                  <TranslatableText translationKey={sublink.translationKey} />
                                 </LocalizedLink>
                               </motion.div>
                             );
@@ -417,7 +426,7 @@ export default function Navbar() {
             ${isSustainabilityActive ? "text-[#009b80]" : "text-[#575757]"}
           `}
                     >
-                      {link.name}
+                      <TranslatableText translationKey={link.translationKey} />
                     </LocalizedLink>
                   </div>
                 </li>
@@ -440,7 +449,7 @@ export default function Navbar() {
             ${isLocalizedLinkActive(link.href) ? "text-[#1789FF]" : "text-[#575757]"}
           `}
                     >
-                      {link.name}
+                      <TranslatableText translationKey={link.translationKey} />
                     </LocalizedLink>
                     {link.children && shouldShowDropdown(link.href) && (
                       <motion.span
@@ -529,7 +538,7 @@ export default function Navbar() {
                                       : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
                                     }`}
                                 >
-                                  {sublink.name}
+                                  <TranslatableText translationKey={sublink.translationKey} />
                                 </LocalizedLink>
                               </motion.div>
                             );
@@ -622,7 +631,7 @@ export default function Navbar() {
                         }}
                         className="text-[#595959] hover:text-[#1789FF] transition-colors"
                       >
-                        {link.name}
+                        <TranslatableText translationKey={link.translationKey} />
                       </button>
                     </div>
                   </li>
@@ -637,7 +646,7 @@ export default function Navbar() {
                       className={` ${isLocalizedLinkActive(link.href) ? "text-[#1789FF]" : "text-[#595959]"}`}
                       onClick={() => setMenuOpen(false)}
                     >
-                      {link.name}
+                      <TranslatableText translationKey={link.translationKey} />
                     </LocalizedLink>
                     {link.children && (
                       <button
@@ -715,7 +724,7 @@ export default function Navbar() {
                               className="block px-4 py-2 text-[#595959] hover:bg-[#1789FF]/10"
                               onClick={() => setMenuOpen(false)}
                             >
-                              {sublink.name}
+                              <TranslatableText translationKey={sublink.translationKey} />
                             </LocalizedLink>
                           </li>
                         ))}
@@ -728,7 +737,7 @@ export default function Navbar() {
             {/* Language Selector (Mobile only) */}
             <li className="px-6 py-4 flex items-center justify-between">
               <span className="text-[#595959] font-semibold">
-                {t("Common.language")}
+                <TranslatableText translationKey="Common.language" />
               </span>
               <div className="relative">
                 <button

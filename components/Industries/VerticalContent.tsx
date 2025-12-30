@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMobileDetection } from "@/lib/useMobileDetection";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "../TranslatableText";
 
-export type ApproachItem = { title: string; desc: string };
+export type ApproachItem = { title: string; desc: string; titleKey?: string };
 
 export default function VerticalContent({
     items,
@@ -19,7 +20,7 @@ export default function VerticalContent({
     items: ApproachItem[];
     sectionId?: string;
     buttonText?: string;
-    content: string;
+    content: string | React.ReactNode;
     backgroundImage?: string;
     mobileImage?: string;
 }) {
@@ -41,7 +42,7 @@ export default function VerticalContent({
             <section className="w-full  xl:h-[35vh]  py-10" >
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-2xl  md:text-2xl lg:text-3xl font-semibold text-[#595959] mb-4 sm:mb-6">
-                        {t("VerticalContent.title")}
+                        <TranslatableText translationKey="VerticalContent.title" />
                     </h2>
                     <p className="text-lg text-[#595959]/80 leading-tight">
                         {content}
@@ -116,7 +117,11 @@ export default function VerticalContent({
                                                     : "text-[#009B80] hover:text-white"
                                                 }`}
                                         >
-                                            {it.title}
+                                            {it.titleKey ? (
+                                              <TranslatableText translationKey={it.titleKey} />
+                                            ) : (
+                                              it.title
+                                            )}
                                         </button>
                                     );
                                 })}

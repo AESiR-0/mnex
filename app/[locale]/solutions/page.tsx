@@ -1,6 +1,7 @@
 import CapabilitiesSection from "@/components/CapabilitiesSection";
 import React from "react";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "@/components/TranslatableText";
 
 const Page = () => {
   const t = useTranslations();
@@ -13,9 +14,9 @@ const Page = () => {
             className="text-[#444] pt-5 font-semibold leading-tight
                        text-2xl sm:text-3xl md:text-4xl "
           >
-            {t("Home.solutions.leftTitle.line1")}
+            <TranslatableText translationKey="Home.solutions.leftTitle.line1" />
             <br />
-            {t("Home.solutions.leftTitle.line2")}
+            <TranslatableText translationKey="Home.solutions.leftTitle.line2" />
           </h1>
 
           {/* Copy */}
@@ -24,13 +25,13 @@ const Page = () => {
               className="mx-auto max-w-2xl leading-relaxed
                         text-lg   "
             >
-              {t("Home.solutions.rightText.paragraph1")}
+              <TranslatableText translationKey="Home.solutions.rightText.paragraph1" />
             </p>
             <p  
               className="mx-auto max-w-xl leading-relaxed
                         text-lg   "
             >
-              {t("Home.solutions.rightText.paragraph2")}
+              <TranslatableText translationKey="Home.solutions.rightText.paragraph2" />
             </p>
           </div>
         </div>

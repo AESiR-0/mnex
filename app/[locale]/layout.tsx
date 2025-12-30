@@ -10,6 +10,10 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { SanityLive } from '@/sanity/lib/live';
+import VisualEditingWrapper from '@/components/VisualEditingWrapper';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import { draftMode } from 'next/headers';
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -38,17 +42,31 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
   
-  // Providing all messages to the client
-  // side is the easiest way to get started
+  // Check if draft mode is enabled (for visual editing in preview)
+  // The Presentation Tool should enable draft mode automatically
+  const draft = await draftMode();
+  const isDraftMode = draft.isEnabled;
+  
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className={`overflow-x-hidden ${instrumentSans.variable} font-sans`}>
+    <>
+      {/* Set html lang attribute dynamically */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.setAttribute('lang', '${locale}');`,
+        }}
+      />
+      <div className={`${instrumentSans.variable} font-sans`}>
         <NextIntlClientProvider messages={messages}>
+          <SanityLive />
+          {/* Visual editing - always render, but only activates in draft mode */}
+          {/* The VisualEditing component handles its own connection logic */}
+          <ErrorBoundary fallback={null}>
+            <VisualEditingWrapper />
+          </ErrorBoundary>
           <GSAPCleanupProvider />
           <ContactSliderProvider />
           <VideoPreloader />
@@ -58,8 +76,8 @@ export default async function LocaleLayout({
           </div>
           <SiteFooter />
         </NextIntlClientProvider>
-      </body>
-    </html>
+      </div>
+    </>
   );
 }
 

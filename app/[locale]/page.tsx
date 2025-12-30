@@ -7,6 +7,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import { useTranslations } from 'next-intl';
 import LocalizedLink from "@/components/LocalizedLink";
+import TranslatableText from "@/components/TranslatableText";
 
 const getTabData = (t: any) => [
   {
@@ -39,23 +40,33 @@ const getTabData = (t: any) => [
 const getApproachContent = (t: any) => [
   {
     title: t("Home.approach.weBuild.title"),
+    titleKey: "Home.approach.weBuild.title",
     desc: t("Home.approach.weBuild.desc"),
+    descKey: "Home.approach.weBuild.desc",
   },
   {
     title: t("Home.approach.vision.title"),
+    titleKey: "Home.approach.vision.title",
     desc: t("Home.approach.vision.desc"),
+    descKey: "Home.approach.vision.desc",
   },
   {
     title: t("Home.approach.innovation.title"),
+    titleKey: "Home.approach.innovation.title",
     desc: t("Home.approach.innovation.desc"),
+    descKey: "Home.approach.innovation.desc",
   },
   {
     title: t("Home.approach.scale.title"),
+    titleKey: "Home.approach.scale.title",
     desc: t("Home.approach.scale.desc"),
+    descKey: "Home.approach.scale.desc",
   },
   {
     title: t("Home.approach.integrated.title"),
+    titleKey: "Home.approach.integrated.title",
     desc: t("Home.approach.integrated.desc"),
+    descKey: "Home.approach.integrated.desc",
   },
 ];
 
@@ -117,35 +128,35 @@ export default function Home() {
 
         {/* 4. Case Study Section with Background (full width) */}
         <CaseStudySection
-          sector={t("Home.caseStudy.sector")}
-          challenge={t("Home.caseStudy.challenge")}
+          sector={<TranslatableText translationKey="Home.caseStudy.sector" />}
+          challenge={<TranslatableText translationKey="Home.caseStudy.challenge" />}
           href="/industries/cei#case-study"
-          title={t("Home.caseStudy.title")}
+          title={<TranslatableText translationKey="Home.caseStudy.title" />}
           key={"case-study"}
         />
 
         {/* 5. Solutions Section */}
         <section className="w-full h-fit justify-start py-6 pb-10 sm:py-8 md:py-10 flex flex-col items-center bg-white lg:px-8">
           <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <Header className="pb-3 sm:pb-4 md:pb-5 max-md:text-center">{t("Home.solutions.title")}</Header>
+            <Header className="pb-3 sm:pb-4 md:pb-5 max-md:text-center"><TranslatableText translationKey="Home.solutions.title" /></Header>
           </div>
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 px-4 sm:px-6 lg:px-8">
             {/* Left column */}
             <div className="flex flex-col justify-start">
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-[#1789FF] leading-snug">
-                {t("Home.solutions.leftTitle.line1")}
+                <TranslatableText translationKey="Home.solutions.leftTitle.line1" />
                 <br />
-                {t("Home.solutions.leftTitle.line2")}
+                <TranslatableText translationKey="Home.solutions.leftTitle.line2" />
               </p>
             </div>
 
             {/* Right column */}
             <div className="flex flex-col justify-center text-[#595959]">
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-3 sm:mb-4 md:mb-6">
-                {t("Home.solutions.rightText.paragraph1")}
+                <TranslatableText translationKey="Home.solutions.rightText.paragraph1" />
               </p>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed">
-                {t("Home.solutions.rightText.paragraph2")}
+                <TranslatableText translationKey="Home.solutions.rightText.paragraph2" />
               </p>
             </div>
           </div>

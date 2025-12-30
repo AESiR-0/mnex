@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "../TranslatableText";
 
 type Slide = {
   img: string; // public/ path or remote URL
@@ -10,8 +11,11 @@ type Slide = {
   imgAlt?: string;
   step?: string; // e.g. "1"
   title: string; // "Business-Aligned from Day One"
+  titleKey?: string; // Translation key for visual editing
   lead?: string; // short paragraph
+  leadKey?: string; // Translation key for visual editing
   bullets?: string[]; // bullet list
+  bulletKeys?: string[]; // Translation keys for visual editing
 };
 
 export default function PurposeCarousel({
@@ -24,6 +28,7 @@ export default function PurposeCarousel({
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isSquareScreen, setIsSquareScreen] = useState(false);
   const t = useTranslations();
 
   const len = slides.length;
@@ -45,6 +50,20 @@ export default function PurposeCarousel({
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Detect 1:1 aspect ratio screens
+  useEffect(() => {
+    const checkAspectRatio = () => {
+      if (typeof window === 'undefined') return;
+      const aspectRatio = window.innerWidth / window.innerHeight;
+      // Check if aspect ratio is approximately 1:1 (between 0.9 and 1.1)
+      setIsSquareScreen(aspectRatio >= 0.8 && aspectRatio <= 1.2);
+    };
+    
+    checkAspectRatio();
+    window.addEventListener('resize', checkAspectRatio);
+    return () => window.removeEventListener('resize', checkAspectRatio);
   }, []);
 
 
@@ -95,14 +114,14 @@ export default function PurposeCarousel({
       {/* Top copy */}
       <div className="max-w-7xl px-4 mx-auto py-10 sm:py-12 text-center">
         <h2 className="text-[#444] whitespace-pre-line font-semibold text-2xl sm:text-3xl md:text-4xl">
-          {t("PurposeCarousel.title")}
+          <TranslatableText translationKey="PurposeCarousel.title" />
         </h2>
         <p className="mt-4 mb-0 max-w-4xl mx-auto text-[#6F6F6F] text-lg">
-          {t("PurposeCarousel.description1")}
+          <TranslatableText translationKey="PurposeCarousel.description1" />
         </p>
         <br />
         <p className="mb-2 -mt-2 max-w-2xl mx-auto text-[#6F6F6F] whitespace-pre-line text-lg">
-          {t("PurposeCarousel.description2")}
+          <TranslatableText translationKey="PurposeCarousel.description2" />
         </p>
       </div>
 
@@ -164,11 +183,19 @@ export default function PurposeCarousel({
                 </div>
               )}
               <h3 className="text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight mb-6">
-                {slide.title}
+                {slide.titleKey ? (
+                  <TranslatableText translationKey={slide.titleKey} />
+                ) : (
+                  slide.title
+                )}
               </h3>
               {slide.lead && (
                 <p className="text-lg text-white/90 leading-relaxed mb-8">
-                  {slide.lead}
+                  {slide.leadKey ? (
+                    <TranslatableText translationKey={slide.leadKey} />
+                  ) : (
+                    slide.lead
+                  )}
                 </p>
               )}
               {!!slide.bullets?.length && (
@@ -176,7 +203,13 @@ export default function PurposeCarousel({
                   {slide.bullets.map((b, i) => (
                     <li key={i} className="relative  flex gap-4 items-center">
                       <span className="font-semibold rounded-full ">•</span>
-                      <span>{b}</span>
+                      <span>
+                        {slide.bulletKeys && slide.bulletKeys[i] ? (
+                          <TranslatableText translationKey={slide.bulletKeys[i]} />
+                        ) : (
+                          b
+                        )}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -187,7 +220,12 @@ export default function PurposeCarousel({
         </div>
 
         {/* Arrow Navigation */}
-        <div className="absolute z-10 max-md:bottom-40 max-[380px]:bottom-2  max-md:left-1 bottom-20 left-0 w-full" style={{ bottom: typeof window !== "undefined" && window.innerWidth < 380 ? '48px' : undefined }}>
+        <div 
+          className={`absolute z-10 max-md:bottom-40 max-[380px]:bottom-2 max-md:left-1 left-0 w-full ${
+            isSquareScreen ? 'bottom-32 md:bottom-40' : 'bottom-20'
+          }`}
+          style={{ bottom: typeof window !== "undefined" && window.innerWidth < 380 ? '48px' : undefined }}
+        >
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex justify-start gap-5 items-center">
               {/* Left Arrow */}
@@ -236,7 +274,9 @@ export default function PurposeCarousel({
         </div>
 
         {/* Dots Navigation */}
-        <div className="absolute max-md:hidden z-10 bottom-8 left-0 w-full">
+        <div className={`absolute max-md:hidden z-10 left-0 w-full ${
+          isSquareScreen ? 'bottom-16 md:bottom-20' : 'bottom-8'
+        }`}>
           <div className="px-4 sm:px-6 lg:px-12 max-w-7xl w-full mx-auto">
             <div className="max-w-3xl flex gap-3">
               {slides.map((_, i) => {

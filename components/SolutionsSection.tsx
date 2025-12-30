@@ -3,6 +3,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { useDownOnlyObserver } from "@/lib/useDownOnlyObserver";
 import Header from "./Header";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "./TranslatableText";
 
 type Tab = { title: string; image?: string; desc: string };
 
@@ -21,7 +22,7 @@ export default function SolutionsSection({ tabs }: { tabs: Tab[] }) {
       <div className="h-full grid grid-rows-[auto_1fr]">
         {/* Header + Tabs */}
         <div className="max-w-7xl mx-auto px-4 pt-10">
-          <Header className="mb-3">{t("SolutionsSection.title")}</Header>
+          <Header className="mb-3"><TranslatableText translationKey="SolutionsSection.title" /></Header>
           <div className="flex flex-wrap items-center gap-2">
             {tabs.map((t, i) => (
               <button
@@ -39,7 +40,7 @@ export default function SolutionsSection({ tabs }: { tabs: Tab[] }) {
             ))}
           </div>
           <p className="mt-4 text-2xl md:text-3xl font-semibold text-[#595959]">
-            {t("SolutionsSection.tagline")}
+            <TranslatableText translationKey="SolutionsSection.tagline" />
           </p>
         </div>
 

@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import { useTranslations } from "next-intl";
+import TranslatableText from "@/components/TranslatableText";
 
 type Capability = {
   title: string;
@@ -75,9 +76,9 @@ export default function Sustainability() {
             className="pt-3 sm:pt-4 md:pt-5 font-semibold leading-tight
                        text-xl sm:text-2xl md:text-3xl lg:text-4xl"
           >
-            {t("Sustainability.hero.title")}
+            <TranslatableText translationKey="Sustainability.hero.title" />
             <br />
-            {t("Sustainability.hero.subtitle")}
+            <TranslatableText translationKey="Sustainability.hero.subtitle" />
           </h1>
 
           {/* Copy */}
@@ -86,8 +87,8 @@ export default function Sustainability() {
               className="mx-auto max-w-2xl leading-relaxed
                         text-base sm:text-lg"
             >
-              {t("Sustainability.hero.description1")}
-              <br /> {t("Sustainability.hero.description2")}
+              <TranslatableText translationKey="Sustainability.hero.description1" />
+              <br /> <TranslatableText translationKey="Sustainability.hero.description2" />
             </p>
           </div>
         </div>
@@ -96,7 +97,7 @@ export default function Sustainability() {
       <section className="w-full bg-[#eaeaea] py-10 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Header className="text-center text-xs sm:text-sm font-medium text-[#009b80] uppercase tracking-[0.15em] mb-0 pb-12 sm:pb-16 md:pb-20">
-            {t("Sustainability.solarEnergy.title")}
+            <TranslatableText translationKey="Sustainability.solarEnergy.title" />
           </Header>
 
           <div className="grid grid-cols-1 sm:gap-y-10 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-0 sm:place-items-center lg:gap-8">
@@ -116,7 +117,7 @@ export default function Sustainability() {
                   1,562
                 </div>
                 <div className="text-[#009b80] font-medium text-xs sm:text-sm lg:text-base">
-                  {t("Sustainability.solarEnergy.panels")}
+                  <TranslatableText translationKey="Sustainability.solarEnergy.panels" />
                 </div>
               </div>
             </div>
@@ -134,7 +135,7 @@ export default function Sustainability() {
               </div>
               <div className="text-left   min-w-0 flex-1">
                 <div className="text-[#009b80] text-xs sm:text-sm lg:text-base">
-                  {t("Sustainability.solarEnergy.powerGeneration")}
+                  <TranslatableText translationKey="Sustainability.solarEnergy.powerGeneration" />
                 </div>
               </div>
             </div>
@@ -153,7 +154,7 @@ export default function Sustainability() {
                 </div>
                 <div className="text-left  min-w-0 flex-1  lg:text-left">
                   <div className="text-[#009b80] font-medium text-xs sm:text-sm lg:text-base">
-                    {t("Sustainability.solarEnergy.co2Reduction")}
+                    <TranslatableText translationKey="Sustainability.solarEnergy.co2Reduction" />
                   </div>
                 </div>
               </div>

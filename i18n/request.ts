@@ -1,4 +1,5 @@
 import { getRequestConfig } from 'next-intl/server';
+import { getTranslations, translationMetadataMap } from '@/lib/sanity-translations';
  
 export default getRequestConfig(async ({ requestLocale }) => {
   try {
@@ -7,35 +8,23 @@ export default getRequestConfig(async ({ requestLocale }) => {
     // Provide a fallback locale if none is provided
     const validLocale = locale || 'en';
     
-    try {
-      const messages = (await import(`../messages/${validLocale}.json`)).default;
-      return {
-        locale: validLocale,
-        messages
-      };
-    } catch (error) {
-      console.error(`Failed to load messages for locale: ${validLocale}`, error);
-      // Fallback to English if the requested locale fails
-      if (validLocale !== 'en') {
-        try {
-          const fallbackMessages = (await import(`../messages/en.json`)).default;
-          return {
-            locale: 'en',
-            messages: fallbackMessages
-          };
-        } catch (fallbackError) {
-          console.error('Failed to load fallback messages:', fallbackError);
-          return {
-            locale: 'en',
-            messages: {}
-          };
-        }
+    // Get translations from Sanity (with JSON fallback)
+    const messages = await getTranslations(validLocale);
+    
+    // Serialize translation metadata for client-side access
+    // Store it in a special key that won't conflict with translations
+    const metadata = Array.from(translationMetadataMap.entries()).map(([key, value]) => ({
+      ...value
+    }));
+    
+    return {
+      locale: validLocale,
+      messages: {
+        ...messages,
+        // Store metadata in a special namespace (won't be used as translation)
+        __translationMetadata: metadata
       }
-      return {
-        locale: validLocale,
-        messages: {}
-      };
-    }
+    };
   } catch (error) {
     console.error('Error in getRequestConfig:', error);
     // Return minimal config to prevent complete failure

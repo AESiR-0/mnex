@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import Header from "./Header";
 import LocalizedLink from "./LocalizedLink";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "./TranslatableText";
 
 interface ContactSliderProps {
   isOpen: boolean;
@@ -151,7 +152,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#595959] mb-2">
-                      {t("ContactSlider.firstName")}
+                      <TranslatableText translationKey="ContactSlider.firstName" />
                     </label>
                     <input
                       type="text"
@@ -165,7 +166,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-[#595959] mb-2">
-                      {t("ContactSlider.lastName")}
+                      <TranslatableText translationKey="ContactSlider.lastName" />
                     </label>
                     <input
                       type="text"
@@ -198,7 +199,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 {/* Email */}
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
-                    {t("ContactSlider.email")}
+                    <TranslatableText translationKey="ContactSlider.email" />
                   </label>
                   <input
                     type="email"
@@ -214,7 +215,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 {/* Region */}
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
-                    {t("ContactSlider.region")}
+                    <TranslatableText translationKey="ContactSlider.region" />
                   </label>
                   <select
                     name="region"
@@ -222,7 +223,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border-b-2 border-gray-200 focus:border-[#009B80] outline-none transition-all duration-300 bg-transparent hover:border-gray-300 focus:bg-gray-50/50 rounded-t-sm appearance-none cursor-pointer"
                   >
-                    <option value="">{t("ContactSlider.selectRegion")}</option>
+                    <option value=""><TranslatableText translationKey="ContactSlider.selectRegion" /></option>
                     {regions.map((region) => (
                       <option key={region} value={region}>
                         {region}
@@ -234,7 +235,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                 {/* Message */}
                 <div>
                   <label className="block text-sm font-medium text-[#595959] mb-2">
-                    {t("ContactSlider.message")}
+                    <TranslatableText translationKey="ContactSlider.message" />
                   </label>
                   <textarea
                     name="message"
@@ -280,7 +281,7 @@ export default function ContactSlider({ isOpen, onClose }: ContactSliderProps) {
                     className="w-full bg-[#009B80] rounded-full text-white py-3 px-6 font-medium hover:bg-[#009B80]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={!formData.consent}
                   >
-                    {t("ContactSlider.sendMessage")}
+                    <TranslatableText translationKey="ContactSlider.sendMessage" />
                   </button>
                 </div>
               </form>

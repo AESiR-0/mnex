@@ -1,8 +1,9 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, type ReactNode } from "react";
 import Header from "./Header";
 import { useTranslations } from 'next-intl';
 import LocalizedLink from "./LocalizedLink";
+import TranslatableText from "./TranslatableText";
 
 export default function CaseStudySpotlight({
   href,
@@ -13,9 +14,9 @@ export default function CaseStudySpotlight({
   poster,
 }: {
   href: string;
-  title: string;
-  sector: string;
-  challenge: string;
+  title: string | ReactNode;
+  sector: string | ReactNode;
+  challenge: string | ReactNode;
   videoSrc?: string;
   poster?: string;
 }) {
@@ -58,22 +59,22 @@ export default function CaseStudySpotlight({
             "
           >
             <div>
-              <Header className="text-white/90 mb-0 pb-2 text-sm sm:text-base md:text-lg lg:text-xl">{t("Home.caseStudy.label")}</Header>
+              <Header className="text-white/90 mb-0 pb-2 text-sm sm:text-base md:text-lg lg:text-xl"><TranslatableText translationKey="Home.caseStudy.label" /></Header>
               <h2 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-[2.5rem] font-semibold leading-tight mb-4 sm:mb-6 md:mb-8">
-                {title}
+                {typeof title === 'string' ? title : title}
               </h2>
             </div>
 
             <div className="grid md:grid-cols-1 gap-6 sm:gap-8 md:gap-10 leading-tight text-white">
               <div>
                 <Header className="text-white mb-0 pb-2 font-semibold uppercase text-xs sm:text-sm md:text-base lg:text-lg">
-                  {t("Home.caseStudy.sectorLabel")}
+                  <TranslatableText translationKey="Home.caseStudy.sectorLabel" />
                 </Header>
                 <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl">{sector}</p>
               </div>
               <div>
                 <Header className="text-white mb-0 pb-2 font-semibold uppercase text-xs sm:text-sm md:text-base lg:text-lg">
-                  {t("Home.caseStudy.challengeLabel")}
+                  <TranslatableText translationKey="Home.caseStudy.challengeLabel" />
                 </Header>
                 <p className="text-white/95 text-sm sm:text-base md:text-lg lg:text-2xl whitespace-pre-line leading-tight">
                   {challenge}

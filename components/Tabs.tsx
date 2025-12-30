@@ -3,6 +3,7 @@ import LocalizedLink from "./LocalizedLink";
 import { usePathname } from "next/navigation";
 import { useMemo, useEffect, useState } from "react";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "./TranslatableText";
 
 const defaultTabs = [
   { nameKey: "Navigation.aboutSubmenu.approach", href: "/about/approach" },
@@ -45,7 +46,6 @@ export default function Tabs({
     <div className={`w-full max-md:px-3   bg-[#ffffff] pt-18 ${isIndustriesPage ? 'py-3 pb-6' : 'py-6'}`}>
       <div className="max-w-5xl mx-auto tracking-[0.05em]   flex justify-center  gap-3 sm:gap-4">
         {tabs.map((tab, index) => {
-          const tabName = tab.nameKey ? t(tab.nameKey) : tab.name;
           const isActive = isMounted && activeTabIndex === index;
           return (
             <LocalizedLink
@@ -67,7 +67,11 @@ export default function Tabs({
                   : "bg-transparent text-[#595959] hover:bg-[#1789FF] hover:text-white"
                 }`}
             >
-              {tabName}
+              {tab.nameKey ? (
+                <TranslatableText translationKey={tab.nameKey} />
+              ) : (
+                tab.name
+              )}
             </LocalizedLink>
           );
         })}

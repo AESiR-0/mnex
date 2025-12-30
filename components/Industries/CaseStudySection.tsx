@@ -3,13 +3,18 @@ import { useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "../TranslatableText";
 
 type CaseStudy = {
   id: number;
   title: string;
+  titleKey?: string;
   challenge: string;
+  challengeKey?: string;
   approach: string[];
+  approachKeys?: string[];
   outcome: string[];
+  outcomeKeys?: string[];
   quote: string;
   author: string;
 };
@@ -62,7 +67,7 @@ export default function CaseStudySection() {
       {/* Top Navigation */}
       <div className="flex items-center justify-between mb-8 text-xs uppercase tracking-widest text-[#595959]">
         <div className="flex w-full pb-16 max-md:pb-0 gap-5">
-          <Header className="mb-0 ">{t("CaseStudy.title")}</Header>
+          <Header className="mb-0 "><TranslatableText translationKey="CaseStudy.title" /></Header>
           <div className="flex gap-2">
             {caseStudies.map((_, idx) => (
               <button
@@ -85,37 +90,60 @@ export default function CaseStudySection() {
         {/* Left Column - Text Content (2/3 width on desktop, 2/3 on tablet) */}
         <div className="lg:col-span-2">
           <h2 className="text-2xl md:text-3xl font-semibold text-[#1789FF] mb-6">
-            {study.title}
+            {study.titleKey ? (
+              <TranslatableText translationKey={study.titleKey} />
+            ) : (
+              study.title
+            )}
           </h2>
 
           <div className="mb-6">
             <Header className="text-[#1789FF] py-6 mb-0">
-              {t("CaseStudy.challenge")}
+              <TranslatableText translationKey="CaseStudy.challenge" />
             </Header>
             <p className="text-[#595959] text-sm md:text-base">
-              {study.challenge}
+              {study.challengeKey ? (
+                <TranslatableText translationKey={study.challengeKey} />
+              ) : (
+                study.challenge
+              )}
             </p>
           </div>
 
           <div className="mb-6">
             <Header className="text-[#1789FF] py-6 mb-0">
-              {t("CaseStudy.approach")}
+              <TranslatableText translationKey="CaseStudy.approach" />
             </Header>
             <ul className="whitespace-pre-line space-y-2 text-[#595959] text-sm md:text-base">
               {study.approach.map((item, i) => (
-                <li key={i} className="mb-4">{item}</li>
+                <li key={i} className="mb-4">
+                  {study.approachKeys && study.approachKeys[i] ? (
+                    <TranslatableText translationKey={study.approachKeys[i]} />
+                  ) : (
+                    item
+                  )}
+                </li>
               ))}
             </ul>
           </div>
 
           <div className="mb-6">
             <Header className="text-[#1789FF] py-6 mb-0">
-              {t("CaseStudy.outcome")}
+              <TranslatableText translationKey="CaseStudy.outcome" />
             </Header>
             <ul className="space-y-2 text-[#595959] text-sm md:text-base">
               {study.outcome.map((point, i) => {
                 return (
-                  <li className="flex gap-2" key={i}><span className="font-bold">•</span><span className="">{point}</span></li>
+                  <li className="flex gap-2" key={i}>
+                    <span className="font-bold">•</span>
+                    <span className="">
+                      {study.outcomeKeys && study.outcomeKeys[i] ? (
+                        <TranslatableText translationKey={study.outcomeKeys[i]} />
+                      ) : (
+                        point
+                      )}
+                    </span>
+                  </li>
                 )
               })}
             </ul>

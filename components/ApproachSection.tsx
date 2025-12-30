@@ -4,10 +4,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Header from "@/components/Header";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "./TranslatableText";
 
-export type ApproachItem = { title: string; desc: string };
+export type ApproachItem = { 
+  title: string; 
+  desc: string;
+  titleKey?: string;
+  descKey?: string;
+};
 
-// Hook to detect phone devices only (not tablets)
+// Hook to detect mobile devices (phones and tablets) - disable scroll animation on mobile
+// Only disable on actual mobile devices, not small desktop windows
 const useIsPhoneOrTablet = () => {
   const [isPhoneOrTablet, setIsPhoneOrTablet] = useState(false);
 
@@ -17,25 +24,20 @@ const useIsPhoneOrTablet = () => {
         return;
       }
 
-      // Phone: width < 640, Tablet: width < 1024 (typical breakpoints)
-      const isSmallScreen = window.innerWidth < 640;
-      const isTabletScreen = window.innerWidth >= 640 && window.innerWidth < 1024;
-
-      // User agent checks
+      // User agent checks for actual mobile devices (more reliable than screen size)
       const userAgent = navigator.userAgent.toLowerCase();
       const isPhoneUserAgent = /android.*mobile|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
       const isTabletUserAgent = /ipad|tablet|android(?!.*mobile)/i.test(userAgent);
 
-      // If it's a phone or a tablet, return true
-      const isPhoneOrTabletDevice =
-        isPhoneUserAgent ||
-        isTabletUserAgent ||
-        isSmallScreen ||
-        isTabletScreen;
+      // Only disable on very small screens (< 768px) OR actual mobile devices
+      // This allows desktop windows to use scroll animation even if resized
+      const isVerySmallScreen = window.innerWidth < 768;
+      const isMobileDevice = isPhoneUserAgent || isTabletUserAgent || isVerySmallScreen;
 
-      setIsPhoneOrTablet(isPhoneOrTabletDevice);
+      setIsPhoneOrTablet(isMobileDevice);
     };
 
+    // Check immediately on mount
     checkIsPhoneOrTablet();
     
     if (typeof window !== 'undefined') {
@@ -92,59 +94,83 @@ export default function ApproachSection({
   };
 
   // scroll logic: pin + advance on down only (exactly like ManufacturingCapabilities)
-  // Only enable on desktop (not phones)
+  // Only enable on desktop (not phones/tablets)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const topPxRef = useRef<number>(0);
+
   useEffect(() => {
-    if (!sectionRef.current || vh === 0 || items.length === 0 || isPhoneOrTablet) return;
+    if (!sectionRef.current || vh === 0 || items.length === 0) return;
+    
+    // Check if mobile/tablet - disable scroll animation on mobile devices
+    // Only check the hook result (which uses user agent + very small screens < 768px)
+    // Don't add additional screen size checks here to avoid false positives
+    if (isPhoneOrTablet) return;
 
     const root = sectionRef.current;
-    const rootTop = () => root.getBoundingClientRect().top + window.scrollY;
-    let topPx = rootTop();
-    let scrollTimeout: NodeJS.Timeout | null = null;
-    let isScrollingUp = false;
+    
+    // Calculate the initial top position once - this is where the section starts
+    // We need to get this BEFORE the element becomes sticky
+    const getInitialTop = () => {
+      const rect = root.getBoundingClientRect();
+      return rect.top + window.scrollY;
+    };
+    
+    // Initialize topPx - this should be the scroll position where the section starts
+    // Only recalculate on resize, not on scroll (sticky elements change getBoundingClientRect)
+    topPxRef.current = getInitialTop();
 
     const onScroll = () => {
       const y = window.scrollY;
       const goingDown = y > lastScrollY.current;
       lastScrollY.current = y;
 
+      // Don't recalculate topPx on scroll - it should stay fixed at the initial position
+      // The sticky element's getBoundingClientRect changes as it sticks, which breaks calculations
+
       // Clear any existing timeout
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
 
       // where we are inside the pinned region (using vh-based calculations)
       const frameHeight = vh * 0.7; // 70vh per frame
       const totalHeight = items.length * frameHeight + vh * 0.5; // 50vh extra
-      const offset = Math.max(0, Math.min(y - topPx, totalHeight));
+      const offset = Math.max(0, Math.min(y - topPxRef.current, totalHeight));
 
       // which "frame" we are in (0..items.length-1)
       const idx = Math.min(items.length - 1, Math.floor(offset / frameHeight));
 
       // Debounce the state change to prevent flashing
-      scrollTimeout = setTimeout(() => {
-        if (idx !== activeApproach) {
-          setActiveApproach(idx);
-        }
+      scrollTimeoutRef.current = setTimeout(() => {
+        setActiveApproach((prevIdx) => {
+          // Only update if the index actually changed
+          if (idx !== prevIdx) {
+            return idx;
+          }
+          return prevIdx;
+        });
       }, 50); // Small delay to prevent rapid changes
-
-      // Handle scroll up - only trigger when at the start of the last tab
-
     };
 
     const onResize = () => {
-      topPx = rootTop();
+      // Recalculate initial top position on resize
+      topPxRef.current = getInitialTop();
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
+    
+    // Initial scroll check
+    onScroll();
+    
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, [vh, items.length, activeApproach, isPhoneOrTablet]);
+  }, [vh, items.length]); // Removed isPhoneOrTablet from dependencies - check it inside the effect instead
 
 
 
@@ -181,13 +207,13 @@ export default function ApproachSection({
         className="relative"
       >
         {/* STICKY LAYER (pinned) - only on desktop */}
-        <div className={isPhoneOrTablet ? "relative" : "sticky top-0"}>
+        <div className={isPhoneOrTablet ? "relative" : "sticky top-0 z-10 bg-[#ececec]"}>
 
 
           {/* Approach content */}
           <div className={`${isPhoneOrTablet   ? 'min-h-[50vh]' : 'h-[60vh] xl:h-[70vh]'} flex items-start py-6 sm:py-8 md:py-10`}>
             <div className="max-w-7xl h-full px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 mx-auto w-full">
-              <Header className="pb-3 pt-5 max-md:w-fit  sm:pb-4 md:pb-5">{t("Home.approach.title")}</Header>
+              <Header className="pb-3 pt-5 max-md:w-fit  sm:pb-4 md:pb-5"><TranslatableText translationKey="Home.approach.title" /></Header>
               <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-0 h-full">
                 {/* Left: Active content */}
                 <div
@@ -207,11 +233,19 @@ export default function ApproachSection({
                     >
                       <h3 className={`text-xl  max-md:w-fit sm:text-2xl md:text-3xl lg:text-4xl pb-2 font-semibold ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
                         }`}>
-                        {items[active]?.title || t("ApproachSection.noTitle")}
+                        {items[active]?.titleKey ? (
+                          <TranslatableText translationKey={items[active].titleKey!} />
+                        ) : (
+                          items[active]?.title || t("ApproachSection.noTitle")
+                        )}
                       </h3>
                       <p className={`text-lg sm:text-xl  max-md:w-[23rem] md:text-2xl leading-tight ${active === 0 ? 'text-[#595959]' : 'text-[#009B80]'
                         }`}>
-                        {items[active]?.desc || t("ApproachSection.noDescription")}
+                        {items[active]?.descKey ? (
+                          <TranslatableText translationKey={items[active].descKey!} />
+                        ) : (
+                          items[active]?.desc || t("ApproachSection.noDescription")
+                        )}
                       </p>
                     </motion.div>
                   </AnimatePresence>
@@ -267,7 +301,11 @@ export default function ApproachSection({
                             : "text-[#969696] hover:text-[#009B80]"
                           }`}
                       >
-                        {it.title}
+                        {it.titleKey ? (
+                          <TranslatableText translationKey={it.titleKey} />
+                        ) : (
+                          it.title
+                        )}
                       </button>
                     );
                   })}

@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import VerticalContent from "@/components/Industries/VerticalContent";
 import CaseStudySection from "@/components/Industries/CaseStudySection";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "@/components/TranslatableText";
 
 export default function CeiPage() {
   const t = useTranslations();
@@ -13,22 +14,22 @@ export default function CeiPage() {
         items={[
           {
             title: t("Industries.cei.speed.title"),
-            desc: t("Industries.cei.speed.desc")
+            desc: t("Industries.cei.speed.desc"),
           },
           {
             title: t("Industries.cei.volume.title"),
-            desc: t("Industries.cei.volume.desc")
+            desc: t("Industries.cei.volume.desc"),
           },
           {
             title: t("Industries.cei.cost.title"),
-            desc: t("Industries.cei.cost.desc")
+            desc: t("Industries.cei.cost.desc"),
           },
           {
             title: t("Industries.cei.aesthetics.title"),
-            desc: t("Industries.cei.aesthetics.desc")
+            desc: t("Industries.cei.aesthetics.desc"),
           }
         ]}
-        content={t("Industries.cei.content")}
+        content={<TranslatableText translationKey="Industries.cei.content" />}
       />
       <div id="case-study">
         <CaseStudySection />

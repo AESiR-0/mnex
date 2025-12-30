@@ -4,6 +4,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 40px;
+  /* Prevent horizontal scroll at root level - this won't break sticky */
+  overflow-x: hidden;
 }
 
 

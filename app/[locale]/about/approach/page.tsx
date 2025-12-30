@@ -1,5 +1,6 @@
 import PurposeCarousel from "@/components/About/PurposeCarousel";
 import { useTranslations, useLocale } from 'next-intl';
+import TranslatableText from "@/components/TranslatableText";
 
 const slides = [
   {
@@ -83,8 +84,11 @@ export default function AboutApproach() {
   const translatedSlides = slides.map(slide => ({
     ...slide,
     title: t(`About.approach.slide${slide.step}.title`),
+    titleKey: `About.approach.slide${slide.step}.title`,
     lead: t(`About.approach.slide${slide.step}.lead`),
+    leadKey: `About.approach.slide${slide.step}.lead`,
     bullets: slide.bullets.map((_, index) => t(`About.approach.slide${slide.step}.bullet${index + 1}`)),
+    bulletKeys: slide.bullets.map((_, index) => `About.approach.slide${slide.step}.bullet${index + 1}`),
   }));
 
   return <PurposeCarousel slides={translatedSlides} intervalMs={6000} />;

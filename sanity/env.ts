@@ -5,7 +5,9 @@ export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 
 export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || ''
 
-// Warn if Sanity env vars are missing (but don't throw to prevent app crashes)
-if (typeof window === 'undefined' && (!process.env.NEXT_PUBLIC_SANITY_DATASET || !process.env.NEXT_PUBLIC_SANITY_PROJECT_ID)) {
+// Only warn once on server startup, not on every request
+let hasWarned = false
+if (typeof window === 'undefined' && !hasWarned && (!process.env.NEXT_PUBLIC_SANITY_DATASET || !process.env.NEXT_PUBLIC_SANITY_PROJECT_ID)) {
   console.warn('Sanity environment variables are missing. Sanity features will not work.');
+  hasWarned = true
 }

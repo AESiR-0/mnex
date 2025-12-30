@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "./Header";
 import { useTranslations } from 'next-intl';
+import TranslatableText from "./TranslatableText";
 
 type Capability = {
     title: string;
@@ -141,7 +142,7 @@ export default function CapabilitiesSection() {
             <div className="bg-[#eaeaea] py-4 flex-shrink-0 ">
                 <div className="max-w-7xl bg-[#eaeaea] mx-auto px-4 max-md:max-w-full">
                     <Header className="pt-4 sm:pt-6 pb-4 md:mb-0 text-center">
-                        {t("Home.capabilities.title")}
+                        <TranslatableText translationKey="Home.capabilities.title" />
                     </Header>
 
                     {/* Navigation Tabs */}
