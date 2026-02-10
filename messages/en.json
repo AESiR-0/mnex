@@ -337,6 +337,12 @@
       "address2": "#44-02, Singapore 038 988",
       "address3": ""
     },
+    "philipines": {
+      "name": "Mnex Philippines",
+      "address1": "Warehouse 3, EZP Technohub,",
+      "address2": "Lima Technology Center,",
+      "address3": "Brgy. Santiago, Malvar, Batangas"
+    },
     "china": {
       "name": "Mnex China",
       "address1": "No. 1 Zhi Hui Road, Banfu Town,",

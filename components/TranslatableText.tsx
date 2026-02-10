@@ -39,7 +39,7 @@ export default function TranslatableText({
   const metadataMap = useMemo(() => {
     const metadata = (messages as any).__translationMetadata as TranslationMetadata[] | undefined
     if (!metadata) return new Map<string, TranslationMetadata>()
-    
+
     const map = new Map<string, TranslationMetadata>()
     metadata.forEach(item => {
       map.set(item.key, item)
@@ -53,8 +53,8 @@ export default function TranslatableText({
     // Sanity preview adds sanity-preview param
     const params = new URLSearchParams(window.location.search)
     const cookies = document.cookie
-    const isDraftMode = 
-      params.has('sanity-preview') || 
+    const isDraftMode =
+      params.has('sanity-preview') ||
       params.has('draft') ||
       cookies.includes('__prerender_bypass') ||
       cookies.includes('__next_preview_data') ||

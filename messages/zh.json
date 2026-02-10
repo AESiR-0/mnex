@@ -339,6 +339,12 @@
       "address2": "新达城大厦3座44-02单元",
       "address3": "邮政编码 038988"
     },
+    "phillipines": {
+      "name": "Mnex菲律宾",
+      "address1": "菲律宾八打雁省马尔瓦尔镇",
+      "address2": "圣地亚哥描笼涯利马科技中心",
+      "address3": "EZP Technohub 3号仓库"
+    },
     "china": {
       "name": "Mnex中国",
       "address1": "中国广东省中山市板芙镇",
